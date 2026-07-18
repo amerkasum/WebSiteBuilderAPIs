@@ -79,6 +79,42 @@ namespace Resources.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} is deleted successfully..
+        /// </summary>
+        internal static string Deleted {
+            get {
+                return ResourceManager.GetString("Deleted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} is deleted successfully..
+        /// </summary>
+        internal static string Deleted2 {
+            get {
+                return ResourceManager.GetString("Deleted2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Email address is not valid..
+        /// </summary>
+        internal static string InvalidEmail {
+            get {
+                return ResourceManager.GetString("InvalidEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Phone number is invalid..
+        /// </summary>
+        internal static string InvalidPhonenNmber {
+            get {
+                return ResourceManager.GetString("InvalidPhonenNmber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Message sent..
         /// </summary>
         internal static string MessageSent {
@@ -90,9 +126,27 @@ namespace Resources.Resources {
         /// <summary>
         ///   Looks up a localized string similar to This field is required..
         /// </summary>
-        internal static string ThisFieldIsRequired {
+        internal static string Required {
             get {
-                return ResourceManager.GetString("ThisFieldIsRequired", resourceCulture);
+                return ResourceManager.GetString("Required", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} is updated successfully..
+        /// </summary>
+        internal static string Updated {
+            get {
+                return ResourceManager.GetString("Updated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} is updated successfully..
+        /// </summary>
+        internal static string Updated2 {
+            get {
+                return ResourceManager.GetString("Updated2", resourceCulture);
             }
         }
     }

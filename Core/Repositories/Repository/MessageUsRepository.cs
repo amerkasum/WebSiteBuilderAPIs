@@ -3,6 +3,7 @@ using Core.Repositories.IRepository;
 using Domain.DTO;
 using Domain.Entities.System;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,12 +19,10 @@ namespace Core.Repositories.Repository
             
         }
 
-        public List<MessageUsDto> GetAllWithParameters(string senderEmail, int? messageUsReasonId, DateTime? dateFrom, DateTime? dateTo)
+        public List<MessageUsDto> GetAllWithParameters(string? senderEmail, int? messageUsReasonId, DateTime? dateFrom, DateTime? dateTo)
         {
-            var messageUsReasons = _context.MessageUsReasons.ToList();
-
-            var result = _context.MessageUs.Where(x => 
-            (senderEmail == null || x.SenderEmail.ToLower() == senderEmail.ToLower())
+            var result = _context.MessageUs.Include(x => x.MessageUsReason).Where(x => 
+            (string.IsNullOrWhiteSpace(senderEmail) || x.SenderEmail.ToLower() == senderEmail.ToLower())
             && (!messageUsReasonId.HasValue || x.MessageUsReasonId == messageUsReasonId.Value)
             && ((!dateFrom.HasValue || x.CreatedDateTime >= dateFrom.Value) && (!dateTo.HasValue || x.CreatedDateTime <= dateTo.Value))).Select(x => new MessageUsDto
             {
@@ -31,7 +30,7 @@ namespace Core.Repositories.Repository
                 Message = x.Message,
                 CreatedDateTime = x.CreatedDateTime,
                 SenderEmail = x.SenderEmail,
-                MessageUsReason = messageUsReasons.FirstOrDefault(m => m.Id == x.MessageUsReasonId).Name
+                MessageUsReason = x.MessageUsReason.Name
             }).ToList();
 
             return result;

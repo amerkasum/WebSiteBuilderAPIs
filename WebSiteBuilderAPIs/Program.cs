@@ -3,6 +3,8 @@ using Core.UnitOfWork;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Localization;
+using Resources;
+using Resources.Localizer;
 using System.Globalization;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -19,7 +21,12 @@ builder.Services.AddLocalization(options =>
 {
     options.ResourcesPath = "Resources";
 });
-builder.Services.AddControllersWithViews().AddDataAnnotationsLocalization();
+builder.Services.AddControllersWithViews().AddDataAnnotationsLocalization(options =>
+{
+    options.DataAnnotationLocalizerProvider = (type, factory) =>
+            factory.Create(typeof(SharedResource));
+});
+builder.Services.AddScoped<Localizer>();
 
 builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 builder.Services.AddTransient<IUnitOfWork, UnitOfWork>(); //istraziti Transient, Scoped, Singleton

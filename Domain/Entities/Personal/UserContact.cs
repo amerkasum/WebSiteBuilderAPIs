@@ -16,10 +16,7 @@ namespace Domain.Entities.Personal
         [ForeignKey(nameof(UserId))]
         public User User { get; set; }
         public int UserId { get; set; }
-        [Required]
         public string Email { get; set; }
-        [Required]
-        [RegularExpression(RegEx.PhoneNumbers)]
         public string PhoneNumber { get; set; }
         public DateTime CreatedDateTime {get; set; }
         public DateTime? ModifiedDateTime {get; set; }

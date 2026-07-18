@@ -123,10 +123,28 @@
   <data name="Added2" xml:space="preserve">
     <value>{0} je uspješno dodana.</value>
   </data>
+  <data name="Deleted" xml:space="preserve">
+    <value>{0} je uspješno izbrisan.</value>
+  </data>
+  <data name="Deleted2" xml:space="preserve">
+    <value>{0} je uspješno izbrisana.</value>
+  </data>
+  <data name="InvalidEmail" xml:space="preserve">
+    <value>Email adresa nije validna.</value>
+  </data>
+  <data name="InvalidPhonenNmber" xml:space="preserve">
+    <value>Broj telefona nije validan.</value>
+  </data>
   <data name="MessageSent" xml:space="preserve">
     <value>Poruka je poslana.</value>
   </data>
-  <data name="ThisFieldIsRequired" xml:space="preserve">
+  <data name="Required" xml:space="preserve">
     <value>Ovo polje je obavezno.</value>
+  </data>
+  <data name="Updated" xml:space="preserve">
+    <value>{0} je uspješno uređen.</value>
+  </data>
+  <data name="Updated2" xml:space="preserve">
+    <value>{0} je uspješno uređena.</value>
   </data>
 </root>

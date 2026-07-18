@@ -125,6 +125,11 @@ namespace Core.EF.Seed
                 new MessageUsReason { Id = 4, Name = "Suggest", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false }
             );
 
+            modelBuilder.Entity<Role>().HasData(
+                new Role { Id = 1, Name = "Admin", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new Role { Id = 2, Name = "User", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false }
+            );
+
 
         }
     }

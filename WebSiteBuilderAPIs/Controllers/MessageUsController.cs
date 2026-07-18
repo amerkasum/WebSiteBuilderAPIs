@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Localization;
 using Resources;
+using Resources.Localizer;
+using Resources.Localizer.Resources.Localizer;
 
 namespace WebSiteBuilderAPIs.Controllers
 {
@@ -14,8 +16,8 @@ namespace WebSiteBuilderAPIs.Controllers
     public class MessageUsController : ControllerBase
     {
         private readonly IUnitOfWork UnitOfWork;
-        private readonly IStringLocalizer<SharedResource> Localizer;
-        public MessageUsController(IUnitOfWork unitOfwork, IStringLocalizer<SharedResource> localizer)
+        private readonly Localizer Localizer;
+        public MessageUsController(IUnitOfWork unitOfwork, Localizer localizer)
         {
             this.UnitOfWork = unitOfwork;
             this.Localizer = localizer;
@@ -28,7 +30,7 @@ namespace WebSiteBuilderAPIs.Controllers
         }
 
         [HttpGet(nameof(GetallWithParameters))]
-        public List<MessageUsDto> GetallWithParameters(string senderEmail, int? messageUsReasonId, DateTime? dateFrom, DateTime? dateTo)
+        public List<MessageUsDto> GetallWithParameters(string? senderEmail, int? messageUsReasonId, DateTime? dateFrom, DateTime? dateTo)
         {
             return UnitOfWork.MessageUs.GetAllWithParameters(senderEmail, messageUsReasonId, dateFrom, dateTo).ToList();
         }
@@ -36,7 +38,6 @@ namespace WebSiteBuilderAPIs.Controllers
         [HttpPost(nameof(Add))]
         public IActionResult Add(MessageUsViewModel model)
         {
-            string test = Localizer["MessageSent"];
 
             if(ModelState.IsValid)
             {
@@ -50,7 +51,7 @@ namespace WebSiteBuilderAPIs.Controllers
                 UnitOfWork.MessageUs.Add(m);
                 UnitOfWork.SaveChanges();
             }
-            return Ok(new { success = true, message = Localizer["MessageSent"] });
+            return Ok(new { success = true, message = Localizer.MessageSent });
         }
 
 
