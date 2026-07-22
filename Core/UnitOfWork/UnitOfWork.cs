@@ -15,6 +15,7 @@ namespace Core.UnitOfWork
         public ICountryRepository Countries => new CountryRepository(_context);
         public IRegionRepository Regions => new RegionRepository(_context);
         public IMessageUsRepository MessageUs => new MessageUsRepository(_context);
+        public ISocialMediaRepository SocialMedia => new SocialMediaRepository(_context);
         public UnitOfWork(ApplicationDbContext context)
         {
             this._context = context;

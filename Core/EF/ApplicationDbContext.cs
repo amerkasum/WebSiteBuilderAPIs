@@ -28,8 +28,8 @@ namespace Core.EF
         private void OnModelCreatingPartial(ModelBuilder modelBuilder)
         {
             GeneralDatabaseSeed.Seed(modelBuilder);
-            //CountriesDatabaseSeed.Seed(modelBuilder);
-            //RegionsDatabaseSeed.Seed(modelBuilder);
+            CountriesDatabaseSeed.Seed(modelBuilder);
+            RegionsDatabaseSeed.Seed(modelBuilder);
         }
 
         public override int SaveChanges()
@@ -61,6 +61,9 @@ namespace Core.EF
         public DbSet<Feedback> Feedback { get; set; }
         public DbSet<MessageUs> MessageUs { get; set; }
         public DbSet<MessageUsReason> MessageUsReasons { get; set; }
+        public DbSet<UserSocialMedia> UserSocialMedia { get; set; }
+        public DbSet<Role> Roles { get; set; }
+        public DbSet<UserRole> UserRoles { get; set; }
 
     }
 }

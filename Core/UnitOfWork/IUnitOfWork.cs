@@ -13,6 +13,7 @@ namespace Core.UnitOfWork
         ICountryRepository Countries{ get; }
         IRegionRepository Regions { get; }
         IMessageUsRepository MessageUs { get; }
+        ISocialMediaRepository SocialMedia { get; }
 
         int SaveChanges();
         Task CompleteAsync();
