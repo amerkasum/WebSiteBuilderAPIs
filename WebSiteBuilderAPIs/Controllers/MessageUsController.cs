@@ -38,20 +38,26 @@ namespace WebSiteBuilderAPIs.Controllers
         [HttpPost(nameof(Add))]
         public IActionResult Add(MessageUsViewModel model)
         {
-
-            if(ModelState.IsValid)
+            try
             {
-                MessageUs m = new MessageUs
+                if (ModelState.IsValid)
                 {
-                    SenderEmail = model.EmailSender,
-                    Message = model.Message,
-                    MessageUsReasonId = model.MessageUsReasonId
-                };
+                    MessageUs m = new MessageUs
+                    {
+                        SenderEmail = model.EmailSender,
+                        Message = model.Message,
+                        MessageUsReasonId = model.MessageUsReasonId
+                    };
 
-                UnitOfWork.MessageUs.Add(m);
-                UnitOfWork.SaveChanges();
+                    UnitOfWork.MessageUs.Add(m);
+                    UnitOfWork.SaveChanges();
+                }
+                return Ok(new { success = true, message = Localizer.MessageSent });
             }
-            return Ok(new { success = true, message = Localizer.MessageSent });
+            catch(Exception ex)
+            {
+                throw ex;
+            }        
         }
 
 

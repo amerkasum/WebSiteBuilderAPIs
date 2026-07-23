@@ -48,6 +48,7 @@ namespace Core.EF
             return base.SaveChanges();
         }
 
+        #region DbSets
         public DbSet<User> Users { get; set; }
         public DbSet<Settings> Settings { get; set; }
         public DbSet<UserContact> UserContacts { get; set; }
@@ -64,6 +65,8 @@ namespace Core.EF
         public DbSet<UserSocialMedia> UserSocialMedia { get; set; }
         public DbSet<Role> Roles { get; set; }
         public DbSet<UserRole> UserRoles { get; set; }
+        public DbSet<ContactType> ContactTypes { get; set; }
+        #endregion
 
     }
 }

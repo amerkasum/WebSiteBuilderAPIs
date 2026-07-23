@@ -1,4 +1,4 @@
-﻿using Domain.DTO;
+﻿using Domain.Entities.Personal;
 using Domain.Entities.System;
 using System;
 using System.Collections.Generic;
@@ -8,8 +8,7 @@ using System.Threading.Tasks;
 
 namespace Core.Repositories.IRepository
 {
-    public interface ISocialMediaRepository : IRepository<SocialMedia>
+    public interface IUserRoleRepository : IRepository<UserRole>
     {
-        List<SocialMediaDto> GetAll();
     }
 }

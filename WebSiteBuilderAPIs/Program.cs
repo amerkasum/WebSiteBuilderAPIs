@@ -40,7 +40,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-var supportedCultures = new[] { "en", "bs", "hr" };
+var supportedCultures = new[] { "en", "bs", "hr", "sr" };
 
 var localizationOptions = new RequestLocalizationOptions()
     .SetDefaultCulture("en")

@@ -1,5 +1,6 @@
 ﻿using Core.EF;
 using Core.Repositories.IRepository;
+using Domain.DTO;
 using Domain.Entities.System;
 using System;
 using System.Collections.Generic;
@@ -14,6 +15,19 @@ namespace Core.Repositories.Repository
         public SocialMediaRepository(ApplicationDbContext context) : base(context)
         {
             
+        }
+
+        public List<SocialMediaDto> GetAll()
+        {
+            return _context.SocialMedia.Where(x => !x.IsDeleted).Select(x => new SocialMediaDto
+            {
+                Id = x.Id,
+                Name = x.Name,
+                Code = x.Code,
+                Icon = x.Icon,
+                Color = x.Color,
+                DisplaOrder = x.DisplayOrder
+            }).OrderBy(x => x.DisplaOrder).ToList();
         }
     }
 }

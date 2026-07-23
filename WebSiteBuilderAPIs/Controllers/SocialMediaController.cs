@@ -1,4 +1,5 @@
 ﻿using Core.UnitOfWork;
+using Domain.DTO;
 using Domain.Entities.System;
 using Microsoft.AspNetCore.Mvc;
 
@@ -15,9 +16,9 @@ namespace WebSiteBuilderAPIs.Controllers
         }
 
         [HttpGet(nameof(GetAll))]
-        public IEnumerable<SocialMedia> GetAll()
+        public IEnumerable<SocialMediaDto> GetAll()
         {
-            return UnitOfWork.SocialMedia.GetAll().OrderBy(x => x.DisplayOrder);
+            return UnitOfWork.SocialMedia.GetAll();
         }
 
 

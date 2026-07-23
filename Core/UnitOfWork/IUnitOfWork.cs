@@ -9,11 +9,18 @@ namespace Core.UnitOfWork
 {
     public interface IUnitOfWork
     {
-        //UsersRepository UsersRepository { get; }
-        ICountryRepository Countries{ get; }
+        #region Repositories
+        ICountryRepository Countries { get; }
         IRegionRepository Regions { get; }
         IMessageUsRepository MessageUs { get; }
         ISocialMediaRepository SocialMedia { get; }
+        ISettingsRepository Settings { get; }
+        IUserSocialMediaRepository UserSocialMedia { get; }
+        IUserContactRepository UserContact { get; }
+        IRoleRepository Role { get; }
+        IUserRoleRepository UserRole { get; }
+        IUserRepository User { get; }
+        #endregion
 
         int SaveChanges();
         Task CompleteAsync();
