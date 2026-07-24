@@ -20,6 +20,8 @@ namespace Core.UnitOfWork
         IRoleRepository Role { get; }
         IUserRoleRepository UserRole { get; }
         IUserRepository User { get; }
+        ICityRepository City { get; }
+        IAddressRepository Address { get; }
         #endregion
 
         int SaveChanges();

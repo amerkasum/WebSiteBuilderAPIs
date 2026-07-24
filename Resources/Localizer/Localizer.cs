@@ -21,6 +21,13 @@ namespace Resources.Localizer
         public string Added2 => _localizer["Added2"];
         public string Required => _localizer["Required"];
         public string InvalidEmail => _localizer["InvalidEmail"];
+        public string InternalServerError => _localizer["InternalServerError"];
+        public string AlreadyExist => _localizer["AlreadyExist"];
+        public string Location => _localizer["Location"];
+        public string Address => _localizer["Address"];
+        public string City => _localizer["City"];
+        public string Region => _localizer["Region"];
+        public string Country => _localizer["Country"];
 
         #endregion
     }

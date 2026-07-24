@@ -23,6 +23,8 @@ namespace Core.UnitOfWork
         public IRoleRepository Role => new RoleRepository(_context);
         public IUserRoleRepository UserRole => new UserRoleRepository(_context);
         public IUserRepository User => new UserRepository(_context);
+        public ICityRepository City => new CityRepository(_context);
+        public IAddressRepository Address => new AddressRepository(_context);
 
         #endregion
         public UnitOfWork(ApplicationDbContext context)

@@ -66,6 +66,7 @@ namespace Core.EF
         public DbSet<Role> Roles { get; set; }
         public DbSet<UserRole> UserRoles { get; set; }
         public DbSet<ContactType> ContactTypes { get; set; }
+        public DbSet<Address> Addresses { get; set; }
         #endregion
 
     }
