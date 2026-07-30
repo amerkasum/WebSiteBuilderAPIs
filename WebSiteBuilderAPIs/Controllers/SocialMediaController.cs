@@ -21,6 +21,12 @@ namespace WebSiteBuilderAPIs.Controllers
             return UnitOfWork.SocialMedia.GetAll();
         }
 
+        [HttpGet(nameof(GetSocialMediaBasic))]
+        public IEnumerable<SocialMediaBasicDto> GetSocialMediaBasic()
+        {
+            return UnitOfWork.SocialMedia.GetSocialMediaBasic();
+        }
+
 
 
     }

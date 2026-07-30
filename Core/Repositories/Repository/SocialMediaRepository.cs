@@ -29,5 +29,18 @@ namespace Core.Repositories.Repository
                 DisplaOrder = x.DisplayOrder
             }).OrderBy(x => x.DisplaOrder).ToList();
         }
+
+        //returns id, name.toLower(), color
+        public IEnumerable<SocialMediaBasicDto> GetSocialMediaBasic()
+        {
+            return _context.SocialMedia.Where(x => !x.IsDeleted).Select(x => new SocialMediaBasicDto
+            {
+                Id = x.Id,
+                Name = x.Name.ToLower(),
+                Color = x.Color,
+                Code = x.Code.ToLower(),
+                Icon = x.Icon
+            });
+        }
     }
 }

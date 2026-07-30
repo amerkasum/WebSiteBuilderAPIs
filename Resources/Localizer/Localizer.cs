@@ -19,6 +19,8 @@ namespace Resources.Localizer
         public string MessageSent => _localizer["MessageSent"];
         public string Added => _localizer["Added"];
         public string Added2 => _localizer["Added2"];
+        public string Deleted => _localizer["Deleted"];
+        public string Deleted2 => _localizer["Deleted2"];
         public string Required => _localizer["Required"];
         public string InvalidEmail => _localizer["InvalidEmail"];
         public string InternalServerError => _localizer["InternalServerError"];
@@ -28,7 +30,10 @@ namespace Resources.Localizer
         public string City => _localizer["City"];
         public string Region => _localizer["Region"];
         public string Country => _localizer["Country"];
-
+        public string SomethingWentWrong => _localizer["SomethingWentWrong"];
+        public string YearsOld => _localizer["YearsOld"];
+        public string User => _localizer["User"];
+        public string Email => _localizer["Email"];
         #endregion
     }
 }

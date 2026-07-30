@@ -80,5 +80,28 @@ namespace WebSiteBuilderAPIs.Controllers
                 return BadRequest(new { success = false, message = Localizer.InternalServerError });
             }
         }
+
+        [HttpDelete(nameof(Delete))]
+        public IActionResult Delete(int id)
+        {
+            try
+            {
+                var address = UnitOfWork.Address.GetById(id);
+
+                if (address != null)
+                {
+                    UnitOfWork.Address.Remove(address);
+                    UnitOfWork.SaveChanges();
+
+                    return Ok(new { success = true, message = string.Format(Localizer.Deleted, Localizer.Location) });
+                }
+
+                return BadRequest(new { success = false, message = Localizer.SomethingWentWrong });
+            }
+            catch(Exception e)
+            {
+                return BadRequest(new { success = false, message = Localizer.InternalServerError });
+            }
+        }
     }
 }

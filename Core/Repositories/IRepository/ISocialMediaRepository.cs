@@ -11,5 +11,6 @@ namespace Core.Repositories.IRepository
     public interface ISocialMediaRepository : IRepository<SocialMedia>
     {
         List<SocialMediaDto> GetAll();
+        IEnumerable<SocialMediaBasicDto> GetSocialMediaBasic();
     }
 }

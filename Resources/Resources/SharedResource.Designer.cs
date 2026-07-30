@@ -88,7 +88,7 @@ namespace Resources.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Data already exist..
+        ///   Looks up a localized string similar to {0} already exist..
         /// </summary>
         internal static string AlreadyExist {
             get {
@@ -129,6 +129,15 @@ namespace Resources.Resources {
         internal static string Deleted2 {
             get {
                 return ResourceManager.GetString("Deleted2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Email.
+        /// </summary>
+        internal static string Email {
+            get {
+                return ResourceManager.GetString("Email", resourceCulture);
             }
         }
         
@@ -196,6 +205,15 @@ namespace Resources.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Something went wrong..
+        /// </summary>
+        internal static string SomethingWentWrong {
+            get {
+                return ResourceManager.GetString("SomethingWentWrong", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0} is updated successfully..
         /// </summary>
         internal static string Updated {
@@ -210,6 +228,24 @@ namespace Resources.Resources {
         internal static string Updated2 {
             get {
                 return ResourceManager.GetString("Updated2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User.
+        /// </summary>
+        internal static string User {
+            get {
+                return ResourceManager.GetString("User", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} years old.
+        /// </summary>
+        internal static string YearsOld {
+            get {
+                return ResourceManager.GetString("YearsOld", resourceCulture);
             }
         }
     }

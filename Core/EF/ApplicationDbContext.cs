@@ -42,7 +42,10 @@ namespace Core.EF
 
             foreach (var entry in ChangeTracker.Entries().Where(e => e.State == EntityState.Modified))
             {
-                entry.Property("ModifiedDateTime").CurrentValue = DateTime.Now;
+                if (!entry.Property("IsDeleted").IsModified)
+                {
+                    entry.Property("ModifiedDateTime").CurrentValue = DateTime.Now;
+                }
             }
 
             return base.SaveChanges();
@@ -67,6 +70,7 @@ namespace Core.EF
         public DbSet<UserRole> UserRoles { get; set; }
         public DbSet<ContactType> ContactTypes { get; set; }
         public DbSet<Address> Addresses { get; set; }
+        public DbSet<Gender> Genders { get; set; }
         #endregion
 
     }

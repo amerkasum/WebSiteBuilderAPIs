@@ -1,4 +1,4 @@
-﻿using Domain.DTO;
+﻿using Domain.Entities.IEntities;
 using Domain.Entities.Personal;
 using System;
 using System.Collections.Generic;
@@ -8,9 +8,7 @@ using System.Threading.Tasks;
 
 namespace Core.Repositories.IRepository
 {
-    public interface IUserRepository : IRepository<User>
+    public interface IUserActivityRepository : IRepository<UserActivity>
     {
-        List<UserDto> GetUsersWithParameters(string fullName);
-        bool DoesEmailAlreadyExist(string email);
     }
 }

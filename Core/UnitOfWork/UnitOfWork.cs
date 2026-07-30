@@ -25,6 +25,8 @@ namespace Core.UnitOfWork
         public IUserRepository User => new UserRepository(_context);
         public ICityRepository City => new CityRepository(_context);
         public IAddressRepository Address => new AddressRepository(_context);
+        public IGenderRepository Gender => new GenderRepository(_context);
+        public IUserActivityRepository UserActivity => new UserActivityRepository(_context);
 
         #endregion
         public UnitOfWork(ApplicationDbContext context)

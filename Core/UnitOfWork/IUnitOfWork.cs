@@ -22,6 +22,8 @@ namespace Core.UnitOfWork
         IUserRepository User { get; }
         ICityRepository City { get; }
         IAddressRepository Address { get; }
+        IGenderRepository Gender { get; }
+        IUserActivityRepository UserActivity { get; }
         #endregion
 
         int SaveChanges();

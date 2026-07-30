@@ -127,7 +127,7 @@
     <value>Adresa</value>
   </data>
   <data name="AlreadyExist" xml:space="preserve">
-    <value>Podaci već postoje.</value>
+    <value>{0} već postoji.</value>
   </data>
   <data name="City" xml:space="preserve">
     <value>Grad</value>
@@ -140,6 +140,9 @@
   </data>
   <data name="Deleted2" xml:space="preserve">
     <value>{0} je uspješno izbrisana.</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>Email</value>
   </data>
   <data name="InternalServerError" xml:space="preserve">
     <value>Došlo je do greške na serveru. </value>
@@ -162,10 +165,19 @@
   <data name="Required" xml:space="preserve">
     <value>Ovo polje je obavezno.</value>
   </data>
+  <data name="SomethingWentWrong" xml:space="preserve">
+    <value>Nešto je krenulo po zlu.</value>
+  </data>
   <data name="Updated" xml:space="preserve">
     <value>{0} je uspješno uređen.</value>
   </data>
   <data name="Updated2" xml:space="preserve">
     <value>{0} je uspješno uređena.</value>
+  </data>
+  <data name="User" xml:space="preserve">
+    <value>Korisnik</value>
+  </data>
+  <data name="YearsOld" xml:space="preserve">
+    <value>{0} godina</value>
   </data>
 </root>

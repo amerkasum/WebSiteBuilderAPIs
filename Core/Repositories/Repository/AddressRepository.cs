@@ -20,9 +20,10 @@ namespace Core.Repositories.Repository
         public IEnumerable<LocationDto> GetAll()
         {
             return _context.Addresses.Include(x => x.City).ThenInclude(x => x.Region).ThenInclude(x => x.Country)
-                .Where(x => x.City.RegionId == x.City.Region.Id && x.City.Region.CountryId == x.City.Region.Country.Id)
+                .Where(x => !x.IsDeleted && x.City.RegionId == x.City.Region.Id && x.City.Region.CountryId == x.City.Region.Country.Id)
                 .Select(x => new LocationDto
                 {
+                    Id = x.Id,
                     AddressName = x.Name,
                     CityName = x.City.Name,
                     PttCode = x.City.PttCode,

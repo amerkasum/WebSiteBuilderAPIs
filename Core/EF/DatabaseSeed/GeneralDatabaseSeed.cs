@@ -96,26 +96,26 @@ namespace Core.EF.Seed
             );
 
             modelBuilder.Entity<SocialMedia>().HasData(
-                new SocialMedia { Id = 1, Name = "Facebook", Code = "FACEBOOK", Icon = "facebook.svg", Color = "#1877F2", DisplayOrder = 1, CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
-                new SocialMedia { Id = 2, Name = "Instagram", Code = "INSTAGRAM", Icon = "instagram.svg", Color = "#E4405F", DisplayOrder = 2, CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
-                new SocialMedia { Id = 3, Name = "LinkedIn", Code = "LINKEDIN", Icon = "linkedin.svg", Color = "#0A66C2", DisplayOrder = 3, CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
-                new SocialMedia { Id = 4, Name = "X", Code = "X", Icon = "x.svg", Color = "#000000", DisplayOrder = 4, CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
-                new SocialMedia { Id = 5, Name = "YouTube", Code = "YOUTUBE", Icon = "youtube.svg", Color = "#FF0000", DisplayOrder = 5, CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
-                new SocialMedia { Id = 6, Name = "TikTok", Code = "TIKTOK", Icon = "tiktok.svg", Color = "#000000", DisplayOrder = 6, CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
-                new SocialMedia { Id = 7, Name = "WhatsApp", Code = "WHATSAPP", Icon = "whatsapp.svg", Color = "#25D366", DisplayOrder = 7, CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
-                new SocialMedia { Id = 8, Name = "Telegram", Code = "TELEGRAM", Icon = "telegram.svg", Color = "#26A5E4", DisplayOrder = 8, CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
-                new SocialMedia { Id = 9, Name = "Discord", Code = "DISCORD", Icon = "discord.svg", Color = "#5865F2", DisplayOrder = 9, CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
-                new SocialMedia { Id = 10, Name = "GitHub", Code = "GITHUB", Icon = "github.svg", Color = "#181717", DisplayOrder = 10, CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
-                new SocialMedia { Id = 11, Name = "GitLab", Code = "GITLAB", Icon = "gitlab.svg", Color = "#FC6D26", DisplayOrder = 11, CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
-                new SocialMedia { Id = 12, Name = "Pinterest", Code = "PINTEREST", Icon = "pinterest.svg", Color = "#E60023", DisplayOrder = 12, CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
-                new SocialMedia { Id = 13, Name = "Snapchat", Code = "SNAPCHAT", Icon = "snapchat.svg", Color = "#FFFC00", DisplayOrder = 13, CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
-                new SocialMedia { Id = 14, Name = "Dribbble", Code = "DRIBBBLE", Icon = "dribbble.svg", Color = "#EA4C89", DisplayOrder = 14, CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
-                new SocialMedia { Id = 15, Name = "Behance", Code = "BEHANCE", Icon = "behance.svg", Color = "#1769FF", DisplayOrder = 15, CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
-                new SocialMedia { Id = 16, Name = "Medium", Code = "MEDIUM", Icon = "medium.svg", Color = "#000000", DisplayOrder = 16, CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
-                new SocialMedia { Id = 17, Name = "Reddit", Code = "REDDIT", Icon = "reddit.svg", Color = "#FF4500", DisplayOrder = 17, CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
-                new SocialMedia { Id = 18, Name = "Twitch", Code = "TWITCH", Icon = "twitch.svg", Color = "#9146FF", DisplayOrder = 18, CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
-                new SocialMedia { Id = 19, Name = "Spotify", Code = "SPOTIFY", Icon = "spotify.svg", Color = "#1DB954", DisplayOrder = 19, CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
-                new SocialMedia { Id = 20, Name = "Threads", Code = "THREADS", Icon = "threads.svg", Color = "#000000", DisplayOrder = 20, CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false }
+                new SocialMedia { Id = 1, Name = "Facebook", Code = "FACEBOOK", Icon = "fa-brands fa-facebook", Color = "#1877F2", DisplayOrder = 1, CreatedDateTime = DateTime.Now, IsDeleted = false },
+                new SocialMedia { Id = 2, Name = "Instagram", Code = "INSTAGRAM", Icon = "fa-brands fa-instagram", Color = "#E4405F", DisplayOrder = 2, CreatedDateTime = DateTime.Now, IsDeleted = false },
+                new SocialMedia { Id = 3, Name = "LinkedIn", Code = "LINKEDIN", Icon = "fa-brands fa-linkedin", Color = "#0A66C2", DisplayOrder = 3, CreatedDateTime = DateTime.Now, IsDeleted = false },
+                new SocialMedia { Id = 4, Name = "X", Code = "X-TWITTER", Icon = "fa-brands fa-x-twitter", Color = "#000000", DisplayOrder = 4, CreatedDateTime = DateTime.Now, IsDeleted = false },
+                new SocialMedia { Id = 5, Name = "YouTube", Code = "YOUTUBE", Icon = "fa-brands fa-youtube", Color = "#FF0000", DisplayOrder = 5, CreatedDateTime = DateTime.Now, IsDeleted = false },
+                new SocialMedia { Id = 6, Name = "TikTok", Code = "TIKTOK", Icon = "fa-brands fa-tiktok", Color = "#000000", DisplayOrder = 6, CreatedDateTime = DateTime.Now, IsDeleted = false },
+                new SocialMedia { Id = 7, Name = "WhatsApp", Code = "WHATSAPP", Icon = "fa-brands fa-whatsapp", Color = "#25D366", DisplayOrder = 7, CreatedDateTime = DateTime.Now, IsDeleted = false },
+                new SocialMedia { Id = 8, Name = "Telegram", Code = "TELEGRAM", Icon = "fa-brands fa-telegram", Color = "#26A5E4", DisplayOrder = 8, CreatedDateTime = DateTime.Now, IsDeleted = false },
+                new SocialMedia { Id = 9, Name = "Discord", Code = "DISCORD", Icon = "fa-brands fa-discord", Color = "#5865F2", DisplayOrder = 9, CreatedDateTime = DateTime.Now, IsDeleted = false },
+                new SocialMedia { Id = 10, Name = "GitHub", Code = "GITHUB", Icon = "fa-brands fa-github", Color = "#181717", DisplayOrder = 10, CreatedDateTime = DateTime.Now, IsDeleted = false },
+                new SocialMedia { Id = 11, Name = "GitLab", Code = "GITLAB", Icon = "fa-brands fa-gitlab", Color = "#FC6D26", DisplayOrder = 11, CreatedDateTime = DateTime.Now, IsDeleted = false },
+                new SocialMedia { Id = 12, Name = "Pinterest", Code = "PINTEREST", Icon = "fa-brands fa-pinterest", Color = "#E60023", DisplayOrder = 12, CreatedDateTime = DateTime.Now, IsDeleted = false },
+                new SocialMedia { Id = 13, Name = "Snapchat", Code = "SNAPCHAT", Icon = "fa-brands fa-snapchat", Color = "#FFFC00", DisplayOrder = 13, CreatedDateTime = DateTime.Now, IsDeleted = false },
+                new SocialMedia { Id = 14, Name = "Dribbble", Code = "DRIBBBLE", Icon = "fa-brands fa-dribbble", Color = "#EA4C89", DisplayOrder = 14, CreatedDateTime = DateTime.Now, IsDeleted = false },
+                new SocialMedia { Id = 15, Name = "Behance", Code = "BEHANCE", Icon = "fa-brands fa-behance", Color = "#1769FF", DisplayOrder = 15, CreatedDateTime = DateTime.Now, IsDeleted = false },
+                new SocialMedia { Id = 16, Name = "Medium", Code = "MEDIUM", Icon = "fa-brands fa-medium", Color = "#000000", DisplayOrder = 16, CreatedDateTime = DateTime.Now, IsDeleted = false },
+                new SocialMedia { Id = 17, Name = "Reddit", Code = "REDDIT", Icon = "fa-brands fa-reddit", Color = "#FF4500", DisplayOrder = 17, CreatedDateTime = DateTime.Now, IsDeleted = false },
+                new SocialMedia { Id = 18, Name = "Twitch", Code = "TWITCH", Icon = "fa-brands fa-twitch", Color = "#9146FF", DisplayOrder = 18, CreatedDateTime = DateTime.Now, IsDeleted = false },
+                new SocialMedia { Id = 19, Name = "Spotify", Code = "SPOTIFY", Icon = "fa-brands fa-spotify", Color = "#1DB954", DisplayOrder = 19, CreatedDateTime = DateTime.Now, IsDeleted = false },
+                new SocialMedia { Id = 20, Name = "Threads", Code = "THREADS", Icon = "fa-brands fa-threads", Color = "#000000", DisplayOrder = 20, CreatedDateTime = DateTime.Now, IsDeleted = false }
             );
 
             modelBuilder.Entity<MessageUsReason>().HasData(
@@ -130,7 +130,16 @@ namespace Core.EF.Seed
                 new Role { Id = 2, Name = "User", Code = "USER", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false }
             );
 
+            modelBuilder.Entity<Gender>().HasData(
+                new Gender { Id = 1, Name = "Male", Code = "M", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new Gender { Id = 2, Name = "Female", Code = "F", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new Gender { Id = 3, Name = "Prefer not to say", Code = "PNTS", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false }
+            );
 
+            modelBuilder.Entity<ContactType>().HasData(
+                new ContactType { Id = 1, Name = "Email", Code = "EMAIL", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new ContactType { Id = 2, Name = "Phonenumber", Code = "PHONE_NUMBER", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false }
+            );
         }
     }
 }

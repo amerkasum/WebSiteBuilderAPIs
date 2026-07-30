@@ -127,7 +127,7 @@
     <value>Address</value>
   </data>
   <data name="AlreadyExist" xml:space="preserve">
-    <value>Data already exist.</value>
+    <value>{0} already exist.</value>
   </data>
   <data name="City" xml:space="preserve">
     <value>City</value>
@@ -140,6 +140,9 @@
   </data>
   <data name="Deleted2" xml:space="preserve">
     <value>{0} is deleted successfully.</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>Email</value>
   </data>
   <data name="InternalServerError" xml:space="preserve">
     <value>A server error occured.</value>
@@ -162,10 +165,19 @@
   <data name="Required" xml:space="preserve">
     <value>This field is required.</value>
   </data>
+  <data name="SomethingWentWrong" xml:space="preserve">
+    <value>Something went wrong.</value>
+  </data>
   <data name="Updated" xml:space="preserve">
     <value>{0} is updated successfully.</value>
   </data>
   <data name="Updated2" xml:space="preserve">
     <value>{0} is updated successfully.</value>
+  </data>
+  <data name="User" xml:space="preserve">
+    <value>User</value>
+  </data>
+  <data name="YearsOld" xml:space="preserve">
+    <value>{0} years old</value>
   </data>
 </root>
