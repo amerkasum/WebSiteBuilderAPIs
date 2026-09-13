@@ -141,6 +141,15 @@
   <data name="Deleted2" xml:space="preserve">
     <value>{0} is deleted successfully.</value>
   </data>
+  <data name="Edited" xml:space="preserve">
+    <value>{0} is successfully edited.</value>
+  </data>
+  <data name="Edited2" xml:space="preserve">
+    <value>{0} is successfully edited.</value>
+  </data>
+  <data name="Edited3" xml:space="preserve">
+    <value>{0} is successfully edited.</value>
+  </data>
   <data name="Email" xml:space="preserve">
     <value>Email</value>
   </data>
@@ -159,11 +168,23 @@
   <data name="MessageSent" xml:space="preserve">
     <value>Message sent.</value>
   </data>
+  <data name="NotFound" xml:space="preserve">
+    <value>{0} not found.</value>
+  </data>
+  <data name="NotFound2" xml:space="preserve">
+    <value>{0} not found.</value>
+  </data>
+  <data name="NotFound3" xml:space="preserve">
+    <value>{0} not found.</value>
+  </data>
   <data name="Region" xml:space="preserve">
     <value>Region</value>
   </data>
   <data name="Required" xml:space="preserve">
     <value>This field is required.</value>
+  </data>
+  <data name="SocialMedia" xml:space="preserve">
+    <value>Social media</value>
   </data>
   <data name="SomethingWentWrong" xml:space="preserve">
     <value>Something went wrong.</value>

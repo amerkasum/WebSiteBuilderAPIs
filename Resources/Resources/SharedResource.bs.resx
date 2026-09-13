@@ -141,6 +141,15 @@
   <data name="Deleted2" xml:space="preserve">
     <value>{0} je uspješno izbrisana.</value>
   </data>
+  <data name="Edited" xml:space="preserve">
+    <value>{0} je uspješno dodan.</value>
+  </data>
+  <data name="Edited2" xml:space="preserve">
+    <value>{0} je uspješno dodana.</value>
+  </data>
+  <data name="Edited3" xml:space="preserve">
+    <value>{0} je uspješno dodana.</value>
+  </data>
   <data name="Email" xml:space="preserve">
     <value>Email</value>
   </data>
@@ -159,11 +168,23 @@
   <data name="MessageSent" xml:space="preserve">
     <value>Poruka je poslana.</value>
   </data>
+  <data name="NotFound" xml:space="preserve">
+    <value>{0} nije pronađen.</value>
+  </data>
+  <data name="NotFound2" xml:space="preserve">
+    <value>{0} nije pronađena.</value>
+  </data>
+  <data name="NotFound3" xml:space="preserve">
+    <value>{0} nije pronađeno.</value>
+  </data>
   <data name="Region" xml:space="preserve">
     <value>Regija</value>
   </data>
   <data name="Required" xml:space="preserve">
     <value>Ovo polje je obavezno.</value>
+  </data>
+  <data name="SocialMedia" xml:space="preserve">
+    <value>Društvena mreža</value>
   </data>
   <data name="SomethingWentWrong" xml:space="preserve">
     <value>Nešto je krenulo po zlu.</value>

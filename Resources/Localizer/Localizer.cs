@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -34,6 +35,13 @@ namespace Resources.Localizer
         public string YearsOld => _localizer["YearsOld"];
         public string User => _localizer["User"];
         public string Email => _localizer["Email"];
+        public string SocialMedia => _localizer["SocialMedia"];
+        public string Edited => _localizer["Edited"];
+        public string Edited2 => _localizer["Edited2"];
+        public string Edited3 => _localizer["Edited3"];
+        public string NotFound => _localizer["NotFound"];
+        public string NotFound2 => _localizer["NotFound2"];
+        public string NotFound3 => _localizer["NotFound3"];
         #endregion
     }
 }

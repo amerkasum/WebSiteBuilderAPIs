@@ -42,5 +42,10 @@ namespace Core.Repositories.Repository
                 Icon = x.Icon
             });
         }
+
+        public int GetHighestDisplayOrder()
+        {
+            return _context.SocialMedia.Max(x => x.DisplayOrder);
+        }
     }
 }

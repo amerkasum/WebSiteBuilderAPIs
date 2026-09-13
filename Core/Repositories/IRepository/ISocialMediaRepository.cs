@@ -12,5 +12,6 @@ namespace Core.Repositories.IRepository
     {
         List<SocialMediaDto> GetAll();
         IEnumerable<SocialMediaBasicDto> GetSocialMediaBasic();
+        int GetHighestDisplayOrder();
     }
 }
