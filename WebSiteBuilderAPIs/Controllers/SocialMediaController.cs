@@ -104,14 +104,14 @@ namespace WebSiteBuilderAPIs.Controllers
             {
                 var socialMedia = UnitOfWork.SocialMedia.GetById(id);
 
-                if(socialMedia != null)
-                {
-                    UnitOfWork.SocialMedia.Remove(socialMedia);
-                    UnitOfWork.SaveChanges();
+                if(socialMedia == null)
+                    return BadRequest(new { success = false, message = string.Format(Localizer.NotFound2, Localizer.SocialMedia) });
 
-                    return Ok(new { success = true, message = string.Format(Localizer.Deleted2, Localizer.SocialMedia) });
-                }
-                return BadRequest(new { success = false, message = string.Format(Localizer.NotFound2, Localizer.SocialMedia) });
+                UnitOfWork.SocialMedia.Remove(socialMedia);
+                UnitOfWork.SaveChanges();
+
+                return Ok(new { success = true, message = string.Format(Localizer.Deleted2, Localizer.SocialMedia) });
+                
             }
             catch(Exception e)
             {

@@ -106,6 +106,15 @@ namespace Resources.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Contact type.
+        /// </summary>
+        internal static string ContactType {
+            get {
+                return ResourceManager.GetString("ContactType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Country.
         /// </summary>
         internal static string Country {

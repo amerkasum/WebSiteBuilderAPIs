@@ -132,6 +132,9 @@
   <data name="City" xml:space="preserve">
     <value>City</value>
   </data>
+  <data name="ContactType" xml:space="preserve">
+    <value>Contact type</value>
+  </data>
   <data name="Country" xml:space="preserve">
     <value>Country</value>
   </data>

@@ -132,6 +132,9 @@
   <data name="City" xml:space="preserve">
     <value>Grad</value>
   </data>
+  <data name="ContactType" xml:space="preserve">
+    <value>Vrsta kontakta</value>
+  </data>
   <data name="Country" xml:space="preserve">
     <value>Država</value>
   </data>
