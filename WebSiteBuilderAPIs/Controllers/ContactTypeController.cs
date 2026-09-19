@@ -50,8 +50,8 @@ namespace WebSiteBuilderAPIs.Controllers
 
                 return Ok(new { success = true, message = string.Format(Localizer.Added, Localizer.ContactType) });
             }
-            catch {
-                throw;
+            catch (Exception e) {
+                return StatusCode(500, new { success = false, message = string.Format(Localizer.SomethingWentWrong, e.Message) });
             }
         }
 
@@ -68,6 +68,9 @@ namespace WebSiteBuilderAPIs.Controllers
 
                 var contactType = UnitOfWork.ContactType.GetById(model.Id);
 
+                if(contactType == null)
+                    return BadRequest(new { success = false, message = string.Format(Localizer.NotFound, Localizer.ContactType) });
+
                 contactType.Name = model.Name;
                 contactType.Code = model.Code;
 
@@ -76,9 +79,9 @@ namespace WebSiteBuilderAPIs.Controllers
 
                 return Ok(new { success = true, message = string.Format(Localizer.Edited, Localizer.ContactType) });
             }
-            catch
+            catch (Exception e)
             {
-                throw;
+                return StatusCode(500, new { success = false, message = string.Format(Localizer.SomethingWentWrong, e.Message) });
             }
             
         }
@@ -98,9 +101,9 @@ namespace WebSiteBuilderAPIs.Controllers
 
                 return Ok(new { success = true, message = string.Format(Localizer.Deleted, Localizer.ContactType) });
             }
-            catch
+            catch (Exception e)
             {
-                throw;
+                return StatusCode(500, new { success = false, message = string.Format(Localizer.SomethingWentWrong, e.Message) });
             }
         }
     }

@@ -77,7 +77,7 @@ namespace WebSiteBuilderAPIs.Controllers
             catch (Exception e)
             {
                 UnitOfWork.RollBack();
-                return BadRequest(new { success = false, message = Localizer.InternalServerError });
+                return StatusCode(500, new { success = false, message = string.Format(Localizer.SomethingWentWrong, e.Message) });
             }
         }
 
@@ -100,7 +100,7 @@ namespace WebSiteBuilderAPIs.Controllers
             }
             catch(Exception e)
             {
-                return BadRequest(new { success = false, message = Localizer.InternalServerError });
+                return StatusCode(500, new { success = false, message = string.Format(Localizer.SomethingWentWrong, e.Message) });
             }
         }
     }

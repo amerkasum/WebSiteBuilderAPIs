@@ -54,9 +54,9 @@ namespace WebSiteBuilderAPIs.Controllers
                 }
                 return Ok(new { success = true, message = Localizer.MessageSent });
             }
-            catch(Exception ex)
+            catch(Exception e)
             {
-                throw ex;
+                return StatusCode(500, new { success = false, message = string.Format(Localizer.SomethingWentWrong, e.Message) });
             }        
         }
 

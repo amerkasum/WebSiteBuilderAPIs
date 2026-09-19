@@ -20,6 +20,7 @@ namespace Resources.Localizer
         public string MessageSent => _localizer["MessageSent"];
         public string Added => _localizer["Added"];
         public string Added2 => _localizer["Added2"];
+        public string Added3 => _localizer["Added3"];
         public string Deleted => _localizer["Deleted"];
         public string Deleted2 => _localizer["Deleted2"];
         public string Required => _localizer["Required"];
@@ -43,6 +44,7 @@ namespace Resources.Localizer
         public string NotFound2 => _localizer["NotFound2"];
         public string NotFound3 => _localizer["NotFound3"];
         public string ContactType => _localizer["ContactType"];
+        public string BusinessType => _localizer["BusinessType"];
         #endregion
     }
 }

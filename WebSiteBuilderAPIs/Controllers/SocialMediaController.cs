@@ -55,15 +55,15 @@ namespace WebSiteBuilderAPIs.Controllers
                 UnitOfWork.SocialMedia.Add(socialMedia);
                 UnitOfWork.SaveChanges();
 
-                return Ok(new { success = true, message = string.Format(Localizer.Added, Localizer.SocialMedia) });
+                return Ok(new { success = true, message = string.Format(Localizer.Added2, Localizer.SocialMedia) });
             }
             catch(Exception e)
             {
-                throw e;
+                return StatusCode(500, new { success = false, message = string.Format(Localizer.SomethingWentWrong, e.Message) });
             }
         }
 
-        [HttpPatch(nameof(Edit))]
+        [HttpPut(nameof(Edit))]
         public IActionResult Edit(SocialMediaViewModel model)
         {
             try
@@ -75,25 +75,25 @@ namespace WebSiteBuilderAPIs.Controllers
 
                 var socialMedia = UnitOfWork.SocialMedia.GetById(model.Id);
 
-                if(socialMedia != null)
-                {
-                    socialMedia.Name = model.Name;
-                    socialMedia.Icon = model.Icon;
-                    socialMedia.Code = model.Code;
-                    socialMedia.Color = model.Color;
-                    socialMedia.DisplayOrder = model.DisplayOrder;
+                if(socialMedia == null)
+                    return BadRequest(new { success = false, message = string.Format(Localizer.NotFound2, Localizer.SocialMedia) });
 
-                    UnitOfWork.SocialMedia.Update(socialMedia);
-                    UnitOfWork.SaveChanges();
+                socialMedia.Name = model.Name;
+                socialMedia.Icon = model.Icon;
+                socialMedia.Code = model.Code;
+                socialMedia.Color = model.Color;
+                socialMedia.DisplayOrder = model.DisplayOrder;
 
-                    return Ok(new { success = true, message = string.Format(Localizer.Edited2, Localizer.SocialMedia) });
-                }
+                UnitOfWork.SocialMedia.Update(socialMedia);
+                UnitOfWork.SaveChanges();
 
-                return BadRequest(new { success = false, message = string.Format(Localizer.NotFound2, Localizer.SocialMedia) });
+                return Ok(new { success = true, message = string.Format(Localizer.Edited2, Localizer.SocialMedia) });
+
+                
             }
             catch (Exception e)
             {
-                throw e;
+                return StatusCode(500, new { success = false, message = string.Format(Localizer.SomethingWentWrong, e.Message) });
             }
         }
 
@@ -115,11 +115,8 @@ namespace WebSiteBuilderAPIs.Controllers
             }
             catch(Exception e)
             {
-                throw e;
+                return StatusCode(500, new { success = false, message = string.Format(Localizer.SomethingWentWrong, e.Message) });
             }
         }
-
-
-
     }
 }

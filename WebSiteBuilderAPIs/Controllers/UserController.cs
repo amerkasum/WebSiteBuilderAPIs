@@ -133,12 +133,12 @@ namespace WebSiteBuilderAPIs.Controllers
 
                     return Ok(new { success = true, message = string.Format(Localizer.Added, Localizer.User)});
                 }
-                return BadRequest(new { success = false, ModelState} );
+                return BadRequest(new { success = false, message = ModelState.Values.SelectMany(x => x.Errors).SelectMany(x => x.ErrorMessage).ToList() } );
             }
             catch(Exception e)
             {
                 UnitOfWork.RollBack();
-                return BadRequest(new { success = false, message = Localizer.SomethingWentWrong });
+                return StatusCode(500, new { success = false, message = string.Format(Localizer.SomethingWentWrong, e.Message) });
             }
         }
     }

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Domain.ViewModels
 {
-    public class ContactTypeViewModel
+    public class BusinessTypeViewModel
     {
         public int Id { get; set; }
         [Required(ErrorMessage = ValidationMessage.Required)]
