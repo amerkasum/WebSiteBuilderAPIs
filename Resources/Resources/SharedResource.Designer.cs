@@ -196,6 +196,15 @@ namespace Resources.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Gender.
+        /// </summary>
+        internal static string Gender {
+            get {
+                return ResourceManager.GetString("Gender", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to A server error occured..
         /// </summary>
         internal static string InternalServerError {
@@ -268,6 +277,15 @@ namespace Resources.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Reason.
+        /// </summary>
+        internal static string Reason {
+            get {
+                return ResourceManager.GetString("Reason", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Region.
         /// </summary>
         internal static string Region {
@@ -282,6 +300,15 @@ namespace Resources.Resources {
         internal static string Required {
             get {
                 return ResourceManager.GetString("Required", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Role.
+        /// </summary>
+        internal static string Role {
+            get {
+                return ResourceManager.GetString("Role", resourceCulture);
             }
         }
         

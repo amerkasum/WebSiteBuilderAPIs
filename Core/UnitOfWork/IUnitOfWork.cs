@@ -26,6 +26,7 @@ namespace Core.UnitOfWork
         IUserActivityRepository UserActivity { get; }
         IContactTypeRepository ContactType { get; }
         IBusinessTypeRepository BusinessType { get; }
+        IMessageUsReasonRepository MessageUsReason { get; }
         #endregion
 
         int SaveChanges();

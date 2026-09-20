@@ -162,6 +162,9 @@
   <data name="Email" xml:space="preserve">
     <value>Email</value>
   </data>
+  <data name="Gender" xml:space="preserve">
+    <value>Gender</value>
+  </data>
   <data name="InternalServerError" xml:space="preserve">
     <value>A server error occured.</value>
   </data>
@@ -186,11 +189,17 @@
   <data name="NotFound3" xml:space="preserve">
     <value>{0} not found.</value>
   </data>
+  <data name="Reason" xml:space="preserve">
+    <value>Reason</value>
+  </data>
   <data name="Region" xml:space="preserve">
     <value>Region</value>
   </data>
   <data name="Required" xml:space="preserve">
     <value>This field is required.</value>
+  </data>
+  <data name="Role" xml:space="preserve">
+    <value>Role</value>
   </data>
   <data name="SocialMedia" xml:space="preserve">
     <value>Social media</value>

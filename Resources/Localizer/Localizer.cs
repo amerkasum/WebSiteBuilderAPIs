@@ -45,6 +45,9 @@ namespace Resources.Localizer
         public string NotFound3 => _localizer["NotFound3"];
         public string ContactType => _localizer["ContactType"];
         public string BusinessType => _localizer["BusinessType"];
+        public string Gender => _localizer["Gender"];
+        public string Role => _localizer["Role"];
+        public string Reason => _localizer["Reason"];
         #endregion
     }
 }

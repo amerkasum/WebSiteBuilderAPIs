@@ -119,10 +119,10 @@ namespace Core.EF.Seed
             );
 
             modelBuilder.Entity<MessageUsReason>().HasData(
-                new MessageUsReason { Id = 1, Name = "Info", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
-                new MessageUsReason { Id = 2, Name = "Order", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
-                new MessageUsReason { Id = 3, Name = "Complain", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
-                new MessageUsReason { Id = 4, Name = "Suggest", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false }
+                new MessageUsReason { Id = 1, Name = "Info", Code = "INFO", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new MessageUsReason { Id = 2, Name = "Order", Code = "ORDER", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new MessageUsReason { Id = 3, Name = "Complain", Code = "COMPLAIN", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new MessageUsReason { Id = 4, Name = "Suggest", Code = "SUGGEST", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false }
             );
 
             modelBuilder.Entity<Role>().HasData(

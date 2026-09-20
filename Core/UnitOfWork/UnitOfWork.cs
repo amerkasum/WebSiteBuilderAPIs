@@ -29,6 +29,7 @@ namespace Core.UnitOfWork
         public IUserActivityRepository UserActivity => new UserActivityRepository(_context);
         public IContactTypeRepository ContactType => new ContactTypeRepository(_context);
         public IBusinessTypeRepository BusinessType => new BusinessTypeRepository(_context);
+        public IMessageUsReasonRepository MessageUsReason => new MessageUsReasonRepository(_context);
 
         #endregion
         public UnitOfWork(ApplicationDbContext context)

@@ -162,6 +162,9 @@
   <data name="Email" xml:space="preserve">
     <value>Email</value>
   </data>
+  <data name="Gender" xml:space="preserve">
+    <value>Spol</value>
+  </data>
   <data name="InternalServerError" xml:space="preserve">
     <value>Došlo je do greške na serveru. </value>
   </data>
@@ -186,11 +189,17 @@
   <data name="NotFound3" xml:space="preserve">
     <value>{0} nije pronađeno.</value>
   </data>
+  <data name="Reason" xml:space="preserve">
+    <value>Razlog</value>
+  </data>
   <data name="Region" xml:space="preserve">
     <value>Regija</value>
   </data>
   <data name="Required" xml:space="preserve">
     <value>Ovo polje je obavezno.</value>
+  </data>
+  <data name="Role" xml:space="preserve">
+    <value>Uloga</value>
   </data>
   <data name="SocialMedia" xml:space="preserve">
     <value>Društvena mreža</value>
