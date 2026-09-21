@@ -27,6 +27,8 @@ namespace Core.UnitOfWork
         IContactTypeRepository ContactType { get; }
         IBusinessTypeRepository BusinessType { get; }
         IMessageUsReasonRepository MessageUsReason { get; }
+        IFeedbackRepository Feedback { get; }
+        IComponentTypeRepository ComponentType { get; }
         #endregion
 
         int SaveChanges();

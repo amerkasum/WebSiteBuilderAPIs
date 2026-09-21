@@ -23,6 +23,7 @@ namespace Resources.Localizer
         public string Added3 => _localizer["Added3"];
         public string Deleted => _localizer["Deleted"];
         public string Deleted2 => _localizer["Deleted2"];
+        public string Deleted3 => _localizer["Deleted3"];
         public string Required => _localizer["Required"];
         public string InvalidEmail => _localizer["InvalidEmail"];
         public string InternalServerError => _localizer["InternalServerError"];
@@ -48,6 +49,8 @@ namespace Resources.Localizer
         public string Gender => _localizer["Gender"];
         public string Role => _localizer["Role"];
         public string Reason => _localizer["Reason"];
+        public string Feedback => _localizer["Feedback"];
+        public string ComponentType => _localizer["ComponentType"];
         #endregion
     }
 }

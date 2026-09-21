@@ -16,6 +16,7 @@ namespace Domain.Entities.System
         public User User { get; set; }
         public int UserId { get; set; }
         public string Message { get; set; }
+        public int Rating { get; set; }
         public DateTime CreatedDateTime { get; set; }
         public DateTime? ModifiedDateTime { get; set; }
         public DateTime? DeletedDateTime { get; set; }

@@ -14,6 +14,7 @@ namespace Core.Services
         public static void AddCustomServices(this IServiceCollection services)
         {
             services.AddTransient<IUserService, UserService>();
+            services.AddTransient<IComponentTypeService, ComponentTypeService>();
         }
     }
 }

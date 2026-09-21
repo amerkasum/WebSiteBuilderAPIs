@@ -138,6 +138,9 @@
   <data name="City" xml:space="preserve">
     <value>Grad</value>
   </data>
+  <data name="ComponentType" xml:space="preserve">
+    <value>Vrsta komponente</value>
+  </data>
   <data name="ContactType" xml:space="preserve">
     <value>Vrsta kontakta</value>
   </data>
@@ -150,6 +153,9 @@
   <data name="Deleted2" xml:space="preserve">
     <value>{0} je uspješno izbrisana.</value>
   </data>
+  <data name="Deleted3" xml:space="preserve">
+    <value>{0} je uspješno izbrisanao.</value>
+  </data>
   <data name="Edited" xml:space="preserve">
     <value>{0} je uspješno dodan.</value>
   </data>
@@ -161,6 +167,9 @@
   </data>
   <data name="Email" xml:space="preserve">
     <value>Email</value>
+  </data>
+  <data name="Feedback" xml:space="preserve">
+    <value>Povratna informacija</value>
   </data>
   <data name="Gender" xml:space="preserve">
     <value>Spol</value>

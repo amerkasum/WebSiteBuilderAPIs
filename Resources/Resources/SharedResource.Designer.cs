@@ -124,6 +124,15 @@ namespace Resources.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Component type.
+        /// </summary>
+        internal static string ComponentType {
+            get {
+                return ResourceManager.GetString("ComponentType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Contact type.
         /// </summary>
         internal static string ContactType {
@@ -160,6 +169,15 @@ namespace Resources.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} is deleted successfully..
+        /// </summary>
+        internal static string Deleted3 {
+            get {
+                return ResourceManager.GetString("Deleted3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0} is successfully edited..
         /// </summary>
         internal static string Edited {
@@ -192,6 +210,15 @@ namespace Resources.Resources {
         internal static string Email {
             get {
                 return ResourceManager.GetString("Email", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Feedback.
+        /// </summary>
+        internal static string Feedback {
+            get {
+                return ResourceManager.GetString("Feedback", resourceCulture);
             }
         }
         

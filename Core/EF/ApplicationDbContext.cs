@@ -42,10 +42,14 @@ namespace Core.EF
 
             foreach (var entry in ChangeTracker.Entries().Where(e => e.State == EntityState.Modified))
             {
-                if (!entry.Property("IsDeleted").IsModified)
-                {
-                    entry.Property("ModifiedDateTime").CurrentValue = DateTime.Now;
-                }
+               var isDeletedModified = entry.Property("IsDeleted").IsModified;
+               var isDeletedDateTimeModified = entry.Property("DeletedDateTime").IsModified;
+
+               if(!isDeletedDateTimeModified && !isDeletedDateTimeModified)
+               {
+                   entry.Property("ModifiedDateTime").CurrentValue = DateTime.Now;
+               }
+               
             }
 
             return base.SaveChanges();

@@ -159,7 +159,11 @@ namespace Core.Repositories.Repository
             try
             {
                 table.Attach(t);
-                _context.Entry(t).State = EntityState.Modified;
+                var entry = _context.Entry(t);
+                entry.State = EntityState.Modified;
+                //myb works
+                entry.Property(x => x.IsDeleted).IsModified = false;
+                entry.Property(x => x.DeletedDateTime).IsModified = false;
             }
             catch
             {
