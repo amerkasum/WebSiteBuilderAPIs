@@ -13,8 +13,17 @@ namespace Core.Services
     {
         public static void AddCustomServices(this IServiceCollection services)
         {
-            services.AddTransient<IUserService, UserService>();
+
+            services.AddTransient<IBusinessTypeService, BusinessTypeService>();
             services.AddTransient<IComponentTypeService, ComponentTypeService>();
+            services.AddTransient<IContactTypeService, ContactTypeService>();
+            services.AddTransient<IFeedbackService, FeedbackService>();
+            services.AddTransient<IGenderService,  GenderService>();
+            services.AddTransient<IMessageUsReasonService, MessageUsReasonService>();
+            services.AddTransient<IMessageUsService, MessageUsService>();
+            services.AddTransient<IRoleService, RoleService>();
+            services.AddTransient<ISocialMediaService, SocialMediaService>();
+            services.AddTransient<IUserService, UserService>();
         }
     }
 }

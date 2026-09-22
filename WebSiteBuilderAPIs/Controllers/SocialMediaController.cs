@@ -1,4 +1,6 @@
-﻿using Core.UnitOfWork;
+﻿using Core.Services.IService;
+using Core.Services.Service;
+using Core.UnitOfWork;
 using Domain.DTO;
 using Domain.Entities.System;
 using Domain.ViewModels;
@@ -13,10 +15,12 @@ namespace WebSiteBuilderAPIs.Controllers
     {
         private readonly IUnitOfWork UnitOfWork;
         private readonly Localizer Localizer;
-        public SocialMediaController(IUnitOfWork unitOfWork, Localizer localizer)
+        private readonly ISocialMediaService SocialMediaService;
+        public SocialMediaController(IUnitOfWork unitOfWork, Localizer localizer, ISocialMediaService socialMediaService)
         {
             this.UnitOfWork = unitOfWork;
             this.Localizer = localizer;
+            this.SocialMediaService = socialMediaService;
         }
 
         [HttpGet(nameof(GetAll))]
@@ -34,26 +38,12 @@ namespace WebSiteBuilderAPIs.Controllers
         [HttpPost(nameof(Add))]
         public IActionResult Add(SocialMediaViewModel model)
         {
+            if (!ModelState.IsValid)
+                return BadRequest(new { success = false, message = ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage).ToList() });
+
             try
             {
-                if(!ModelState.IsValid)
-                {
-                    return BadRequest(new { success = false, message = ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage).ToList() });
-                }
-
-                var socialMedia = new SocialMedia
-                {
-                    Name = model.Name,
-                    Icon = model.Icon,
-                    Code = model.Code,
-                    Color = model.Color
-                };
-
-                var highestDisplayOrder = UnitOfWork.SocialMedia.GetHighestDisplayOrder();
-                socialMedia.DisplayOrder = highestDisplayOrder + 1;
-
-                UnitOfWork.SocialMedia.Add(socialMedia);
-                UnitOfWork.SaveChanges();
+                var socialMedia = SocialMediaService.Add(model);
 
                 return Ok(new { success = true, message = string.Format(Localizer.Added2, Localizer.SocialMedia) });
             }
@@ -66,30 +56,17 @@ namespace WebSiteBuilderAPIs.Controllers
         [HttpPut(nameof(Edit))]
         public IActionResult Edit(SocialMediaViewModel model)
         {
+            if (!ModelState.IsValid)
+                return BadRequest(new { success = false, message = ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage).ToList() });
+
             try
             {
-                if (!ModelState.IsValid)
-                {
-                    return BadRequest(new { success = false, message = ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage).ToList() });
-                }
-
-                var socialMedia = UnitOfWork.SocialMedia.GetById(model.Id);
-
-                if(socialMedia == null)
-                    return BadRequest(new { success = false, message = string.Format(Localizer.NotFound2, Localizer.SocialMedia) });
-
-                socialMedia.Name = model.Name;
-                socialMedia.Icon = model.Icon;
-                socialMedia.Code = model.Code;
-                socialMedia.Color = model.Color;
-                socialMedia.DisplayOrder = model.DisplayOrder;
-
-                UnitOfWork.SocialMedia.Update(socialMedia);
-                UnitOfWork.SaveChanges();
-
-                return Ok(new { success = true, message = string.Format(Localizer.Edited2, Localizer.SocialMedia) });
-
-                
+                var socialMedia = SocialMediaService.Edit(model);
+                return Ok(new { success = true, message = string.Format(Localizer.Edited2, Localizer.SocialMedia) });            
+            }
+            catch(KeyNotFoundException)
+            {
+                return BadRequest(new { success = false, message = string.Format(Localizer.NotFound, Localizer.SocialMedia) });
             }
             catch (Exception e)
             {
@@ -102,18 +79,14 @@ namespace WebSiteBuilderAPIs.Controllers
         {
             try
             {
-                var socialMedia = UnitOfWork.SocialMedia.GetById(id);
-
-                if(socialMedia == null)
-                    return BadRequest(new { success = false, message = string.Format(Localizer.NotFound2, Localizer.SocialMedia) });
-
-                UnitOfWork.SocialMedia.Remove(socialMedia);
-                UnitOfWork.SaveChanges();
-
+                SocialMediaService.Delete(id);
                 return Ok(new { success = true, message = string.Format(Localizer.Deleted2, Localizer.SocialMedia) });
-                
             }
-            catch(Exception e)
+            catch (KeyNotFoundException)
+            {
+                return BadRequest(new { success = false, message = string.Format(Localizer.NotFound, Localizer.SocialMedia) });
+            }
+            catch (Exception e)
             {
                 return StatusCode(500, new { success = false, message = string.Format(Localizer.SomethingWentWrong, e.Message) });
             }

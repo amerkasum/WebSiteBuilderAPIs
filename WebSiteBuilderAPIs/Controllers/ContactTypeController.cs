@@ -1,4 +1,5 @@
-﻿using Core.UnitOfWork;
+﻿using Core.Services.IService;
+using Core.UnitOfWork;
 using Domain.Entities.System;
 using Domain.ViewModels;
 using Microsoft.AspNetCore.Mvc;
@@ -16,10 +17,12 @@ namespace WebSiteBuilderAPIs.Controllers
     {
         private readonly UnitOfWork UnitOfWork;
         private readonly Localizer Localizer;
-        public ContactTypeController(UnitOfWork unitOfWork, Localizer localizer)
+        private readonly IContactTypeService ContactTypeService;
+        public ContactTypeController(UnitOfWork unitOfWork, Localizer localizer, IContactTypeService contactTypeService)
         {
             this.UnitOfWork = unitOfWork;
             this.Localizer = localizer;
+            this.ContactTypeService = contactTypeService;
         }
 
         [HttpGet(nameof(GetAll))]
@@ -39,14 +42,7 @@ namespace WebSiteBuilderAPIs.Controllers
                     return BadRequest(new { success = false, message = ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage).ToList() });
                 }
 
-                var contactType = new ContactType
-                {
-                    Name = model.Name,
-                    Code = model.Code
-                };
-
-                UnitOfWork.ContactType.Add(contactType);
-                UnitOfWork.SaveChanges();
+                var contactType = ContactTypeService.Add(model);
 
                 return Ok(new { success = true, message = string.Format(Localizer.Added, Localizer.ContactType) });
             }
@@ -66,18 +62,12 @@ namespace WebSiteBuilderAPIs.Controllers
                     return BadRequest(new { success = false, message = ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage).ToList() });
                 }
 
-                var contactType = UnitOfWork.ContactType.GetById(model.Id);
-
-                if(contactType == null)
-                    return BadRequest(new { success = false, message = string.Format(Localizer.NotFound, Localizer.ContactType) });
-
-                contactType.Name = model.Name;
-                contactType.Code = model.Code;
-
-                UnitOfWork.ContactType.Update(contactType);
-                UnitOfWork.SaveChanges();
-
+                var contactType = ContactTypeService.Edit(model);
                 return Ok(new { success = true, message = string.Format(Localizer.Edited, Localizer.ContactType) });
+            }
+            catch (KeyNotFoundException)
+            {
+                return BadRequest(new { success = false, message = string.Format(Localizer.NotFound, Localizer.ContactType) });
             }
             catch (Exception e)
             {
@@ -91,15 +81,13 @@ namespace WebSiteBuilderAPIs.Controllers
         {
             try
             {
-                var contactType = UnitOfWork.ContactType.GetById(id);
-
-                if (contactType == null)
-                    return BadRequest(new { success = false, message = string.Format(Localizer.NotFound, Localizer.ContactType) });
-
-                UnitOfWork.ContactType.Remove(contactType);
-                UnitOfWork.SaveChanges();
+                ContactTypeService.Delete(id);
 
                 return Ok(new { success = true, message = string.Format(Localizer.Deleted, Localizer.ContactType) });
+            }
+            catch(KeyNotFoundException)
+            {
+                return BadRequest(new { success = false, message = string.Format(Localizer.NotFound, Localizer.ContactType) });
             }
             catch (Exception e)
             {

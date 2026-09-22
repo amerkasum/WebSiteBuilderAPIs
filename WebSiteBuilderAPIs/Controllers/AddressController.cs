@@ -81,7 +81,7 @@ namespace WebSiteBuilderAPIs.Controllers
             }
         }
 
-        [HttpDelete(nameof(Delete))]
+        [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
             try

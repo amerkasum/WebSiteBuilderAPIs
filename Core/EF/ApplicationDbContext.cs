@@ -41,6 +41,7 @@ namespace Core.EF
             }
 
             foreach (var entry in ChangeTracker.Entries().Where(e => e.State == EntityState.Modified))
+            
             {
                var isDeletedModified = entry.Property("IsDeleted").IsModified;
                var isDeletedDateTimeModified = entry.Property("DeletedDateTime").IsModified;

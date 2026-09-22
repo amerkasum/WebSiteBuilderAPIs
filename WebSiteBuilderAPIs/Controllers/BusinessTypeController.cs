@@ -1,4 +1,5 @@
-﻿using Core.UnitOfWork;
+﻿using Core.Services.IService;
+using Core.UnitOfWork;
 using Domain.Entities.WebSiteBuilder;
 using Domain.ViewModels;
 using Microsoft.AspNetCore.Http;
@@ -13,10 +14,12 @@ namespace WebSiteBuilderAPIs.Controllers
     {
         private readonly IUnitOfWork UnitOfWork;
         private readonly Localizer Localizer;
-        public BusinessTypeController(IUnitOfWork unitOfWork, Localizer localizer)
+        private readonly IBusinessTypeService BusinessTypeService;
+        public BusinessTypeController(IUnitOfWork unitOfWork, Localizer localizer, IBusinessTypeService businessTypeService)
         {
             this.UnitOfWork = unitOfWork;
             this.Localizer = localizer;
+            this.BusinessTypeService = businessTypeService;
         }
 
         [HttpGet(nameof(GetAll))]
@@ -33,14 +36,7 @@ namespace WebSiteBuilderAPIs.Controllers
 
             try
             {
-                var businessType = new BusinessType
-                {
-                    Name = model.Name,
-                    Code = model.Code
-                };
-
-                UnitOfWork.BusinessType.Add(businessType);
-                UnitOfWork.SaveChanges();
+                var businessType = BusinessTypeService.Add(model);
 
                 return Ok(new { success = true, message = string.Format(Localizer.Added, Localizer.BusinessType) });
             }
@@ -58,18 +54,13 @@ namespace WebSiteBuilderAPIs.Controllers
 
             try
             {
-                var businessType = UnitOfWork.BusinessType.GetById(model.Id);
-
-                if (businessType == null)
-                    return BadRequest(new { success = false, message = string.Format(Localizer.NotFound, Localizer.BusinessType) });
-
-                businessType.Name = model.Name;
-                businessType.Code = model.Code;
-
-                UnitOfWork.BusinessType.Update(businessType);
-                UnitOfWork.SaveChanges();
+                var businessType = BusinessTypeService.Edit(model);
 
                 return Ok(new { success = true, message = string.Format(Localizer.Edited, Localizer.BusinessType) });
+            }
+            catch(KeyNotFoundException)
+            {
+                return BadRequest(new { success = false, message = string.Format(Localizer.NotFound, Localizer.BusinessType) });
             }
             catch(Exception e)
             {
@@ -82,15 +73,13 @@ namespace WebSiteBuilderAPIs.Controllers
         {
             try
             {
-                var businessType = UnitOfWork.BusinessType.GetById(id);
-
-                if (businessType == null)
-                    return BadRequest(new { success = true, message = string.Format(Localizer.NotFound, Localizer.BusinessType) });
-
-                UnitOfWork.BusinessType.Remove(businessType);
-                UnitOfWork.SaveChanges();
+                BusinessTypeService.Delete(id);
 
                 return Ok(new { success = true, message = string.Format(Localizer.Deleted, Localizer.BusinessType) });
+            }
+            catch(KeyNotFoundException)
+            {
+                return BadRequest(new { success = false, message = string.Format(Localizer.NotFound, Localizer.BusinessType) });
             }
             catch(Exception e)
             {

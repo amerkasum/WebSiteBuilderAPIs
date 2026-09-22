@@ -22,14 +22,14 @@ namespace Core.Repositories.Repository
         public List<MessageUsDto> GetAllWithParameters(string? senderEmail, int? messageUsReasonId, DateTime? dateFrom, DateTime? dateTo)
         {
             var result = _context.MessageUs.Include(x => x.MessageUsReason).Where(x => 
-            (string.IsNullOrWhiteSpace(senderEmail) || x.SenderEmail.ToLower() == senderEmail.ToLower())
+            (string.IsNullOrWhiteSpace(senderEmail) || x.EmailSender.ToLower() == senderEmail.ToLower())
             && (!messageUsReasonId.HasValue || x.MessageUsReasonId == messageUsReasonId.Value)
             && ((!dateFrom.HasValue || x.CreatedDateTime >= dateFrom.Value) && (!dateTo.HasValue || x.CreatedDateTime <= dateTo.Value))).Select(x => new MessageUsDto
             {
                 Id = x.Id, 
                 Message = x.Message,
                 CreatedDateTime = x.CreatedDateTime,
-                SenderEmail = x.SenderEmail,
+                SenderEmail = x.EmailSender,
                 MessageUsReason = x.MessageUsReason.Name
             }).ToList();
 

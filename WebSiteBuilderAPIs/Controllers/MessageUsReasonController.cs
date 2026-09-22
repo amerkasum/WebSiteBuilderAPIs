@@ -1,4 +1,6 @@
-﻿using Core.UnitOfWork;
+﻿using Core.Services.IService;
+using Core.Services.Service;
+using Core.UnitOfWork;
 using Domain.Entities.System;
 using Domain.ViewModels;
 using Microsoft.AspNetCore.Http;
@@ -13,10 +15,12 @@ namespace WebSiteBuilderAPIs.Controllers
     {
         private readonly IUnitOfWork UnitOfWork;
         private readonly Localizer Localizer;
-        public MessageUsReasonController(IUnitOfWork unitOfWork, Localizer localizer)
+        private readonly IMessageUsReasonService MessageUsReasonService;
+        public MessageUsReasonController(IUnitOfWork unitOfWork, Localizer localizer, IMessageUsReasonService messageUsReasonService)
         {
             this.UnitOfWork = unitOfWork;
             this.Localizer = localizer;
+            this.MessageUsReasonService = messageUsReasonService;
         }
 
         [HttpGet(nameof(GetAll))]
@@ -33,14 +37,7 @@ namespace WebSiteBuilderAPIs.Controllers
 
             try
             {
-                var messageUsreason = new MessageUsReason
-                {
-                    Name = model.Name,
-                    Code = model.Code
-                };
-
-                UnitOfWork.MessageUsReason.Add(messageUsreason);
-                UnitOfWork.SaveChanges();
+                var messageUsreason = MessageUsReasonService.Add(model);
 
                 return Ok(new { success = true, message = string.Format(Localizer.Added, Localizer.Reason) });
             }
@@ -58,18 +55,13 @@ namespace WebSiteBuilderAPIs.Controllers
 
             try
             {
-                var messageUsReason = UnitOfWork.MessageUsReason.GetById(model.Id);
-
-                if (messageUsReason == null)
-                    return BadRequest(new { success = false, message = string.Format(Localizer.NotFound, Localizer.Reason) });
-
-                messageUsReason.Name = model.Name;
-                messageUsReason.Code = model.Code;
-
-                UnitOfWork.MessageUsReason.Update(messageUsReason);
-                UnitOfWork.SaveChanges();
+                var messageUsReason = MessageUsReasonService.Edit(model);
 
                 return Ok(new { success = true, message = string.Format(Localizer.Edited, Localizer.Reason) });
+            }
+            catch(KeyNotFoundException)
+            {
+                return BadRequest(new { success = false, message = string.Format(Localizer.NotFound, Localizer.Reason) });
             }
             catch (Exception e)
             {
@@ -82,15 +74,13 @@ namespace WebSiteBuilderAPIs.Controllers
         {
             try
             {
-                var messageUsReason = UnitOfWork.MessageUsReason.GetById(id);
-
-                if (messageUsReason == null)
-                    return BadRequest(new { success = false, message = string.Format(Localizer.NotFound, Localizer.Reason) });
-
-                UnitOfWork.MessageUsReason.Remove(messageUsReason);
-                UnitOfWork.SaveChanges();
+                MessageUsReasonService.Delete(id);
 
                 return Ok(new { success= false, message = string.Format(Localizer.Deleted, Localizer.Reason) });
+            }
+            catch (KeyNotFoundException)
+            {
+                return BadRequest(new { success = false, message = string.Format(Localizer.NotFound, Localizer.Reason) });
             }
             catch (Exception e)
             {

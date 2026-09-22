@@ -186,6 +186,9 @@
   <data name="Location" xml:space="preserve">
     <value>Lokacija</value>
   </data>
+  <data name="Message" xml:space="preserve">
+    <value>Poruka</value>
+  </data>
   <data name="MessageSent" xml:space="preserve">
     <value>Poruka je poslana.</value>
   </data>

@@ -186,6 +186,9 @@
   <data name="Location" xml:space="preserve">
     <value>Location</value>
   </data>
+  <data name="Message" xml:space="preserve">
+    <value>Message</value>
+  </data>
   <data name="MessageSent" xml:space="preserve">
     <value>Message sent.</value>
   </data>

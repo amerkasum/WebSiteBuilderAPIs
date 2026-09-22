@@ -51,6 +51,7 @@ namespace Resources.Localizer
         public string Reason => _localizer["Reason"];
         public string Feedback => _localizer["Feedback"];
         public string ComponentType => _localizer["ComponentType"];
+        public string Message => _localizer["Message"];
         #endregion
     }
 }

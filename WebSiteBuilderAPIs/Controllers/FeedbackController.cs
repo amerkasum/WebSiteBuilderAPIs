@@ -1,4 +1,5 @@
-﻿using Core.UnitOfWork;
+﻿using Core.Services.IService;
+using Core.UnitOfWork;
 using Domain.DTO;
 using Domain.Entities.System;
 using Domain.ViewModels;
@@ -18,10 +19,12 @@ namespace WebSiteBuilderAPIs.Controllers
     {
         private readonly IUnitOfWork UnitOfWork;
         private readonly Localizer Localizer;
-        public FeedbackController(IUnitOfWork unitOfWork, Localizer localizer)
+        private readonly IFeedbackService FeedbackService;
+        public FeedbackController(IUnitOfWork unitOfWork, Localizer localizer, IFeedbackService feedbackService)
         {
             this.UnitOfWork = unitOfWork;
             this.Localizer = localizer;
+            this.FeedbackService = feedbackService;
         }
 
         [HttpGet(nameof(GetAll))]
@@ -44,15 +47,7 @@ namespace WebSiteBuilderAPIs.Controllers
 
             try
             {
-                var feedback = new Feedback
-                {
-                    UserId = model.UserId,
-                    Message = model.Message,
-                    Rating = model.Rating
-                };
-
-                UnitOfWork.Feedback.Add(feedback);
-                UnitOfWork.SaveChanges();
+                var feedback = FeedbackService.Add(model);
 
                 return Ok(new { success = true, message = string.Format(Localizer.Added2, Localizer.Feedback) });
             }
@@ -68,21 +63,17 @@ namespace WebSiteBuilderAPIs.Controllers
             if (!ModelState.IsValid)
                 return BadRequest(new { success= false, message = ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage).ToList() });
 
-            //TODO: Authorization, only logged user can chane its own feedback!
+            //TODO: Authorization, only logged user can change its own feedback!
 
             try
             {
-                var feedback = UnitOfWork.Feedback.GetById(model.Id);
-                if (feedback == null)
-                    return BadRequest(new { success = false, message = string.Format(Localizer.NotFound2, Localizer.Feedback) });
-
-                feedback.Message = model.Message;
-                feedback.Rating = model.Rating;
-
-                UnitOfWork.Feedback.Update(feedback);
-                UnitOfWork.SaveChanges();
+                var feedback = FeedbackService.Edit(model);
 
                 return Ok(new { success = true, message = string.Format(Localizer.Edited2, Localizer.Feedback) });
+            }
+            catch (KeyNotFoundException)
+            {
+                return BadRequest(new { success = false, message = string.Format(Localizer.NotFound, Localizer.Feedback) });
             }
             catch (Exception e)
             {
@@ -96,17 +87,15 @@ namespace WebSiteBuilderAPIs.Controllers
             try
 
             {
-                var feedback = UnitOfWork.Feedback.GetById(id);
-
-                if (feedback == null)
-                    return BadRequest(new { success = false, message = string.Format(Localizer.NotFound2, Localizer.Feedback) });
-
-                UnitOfWork.Feedback.Remove(feedback);
-                UnitOfWork.SaveChanges();
+                FeedbackService.Delete(id);
 
                 return Ok(new { success = true, message = string.Format(Localizer.Deleted2, Localizer.Feedback) });
             }
-            catch(Exception e)
+            catch (KeyNotFoundException)
+            {
+                return BadRequest(new { success = false, message = string.Format(Localizer.NotFound, Localizer.Feedback) });
+            }
+            catch (Exception e)
             {
                 return StatusCode(500, new { success = false, message = string.Format(Localizer.SomethingWentWrong, e.Message) });
             }

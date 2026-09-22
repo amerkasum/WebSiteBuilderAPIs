@@ -1,4 +1,5 @@
-﻿using Core.UnitOfWork;
+﻿using Core.Services.IService;
+using Core.UnitOfWork;
 using Domain.Entities.System;
 using Domain.ViewModels;
 using Microsoft.AspNetCore.Http;
@@ -15,10 +16,12 @@ namespace WebSiteBuilderAPIs.Controllers
     {
         private readonly IUnitOfWork UnitOfWork;
         private readonly Localizer Localizer;
-        public GenderController(IUnitOfWork unitOfWork, Localizer localizer)
+        private readonly IGenderService GenderService;
+        public GenderController(IUnitOfWork unitOfWork, Localizer localizer, IGenderService genderService)
         {
             this.UnitOfWork = unitOfWork;
             this.Localizer = localizer;
+            this.GenderService = genderService;
         }
 
         [HttpGet(nameof(GetAll))]
@@ -35,14 +38,7 @@ namespace WebSiteBuilderAPIs.Controllers
 
             try
             {
-                var gender = new Gender
-                {
-                    Name = model.Name,
-                    Code = model.Code
-                };
-
-                UnitOfWork.Gender.Add(gender);
-                UnitOfWork.SaveChanges();
+                var gender = GenderService.Add(model);
 
                 return Ok(new { success = true, message = string.Format(Localizer.Added, Localizer.Gender) });
             }
@@ -60,18 +56,13 @@ namespace WebSiteBuilderAPIs.Controllers
 
             try
             {
-                var gender = UnitOfWork.Gender.GetById(model.Id);
-
-                if (gender == null)
-                    return BadRequest(new { success = false, message = string.Format(Localizer.NotFound, Localizer.Gender) });
-
-                gender.Name = model.Name;
-                gender.Code = model.Code;
-
-                UnitOfWork.Gender.Update(gender);
-                UnitOfWork.SaveChanges();
+                var gender = GenderService.Edit(model);
 
                 return Ok(new { success = false, message = string.Format(Localizer.Edited, Localizer.Gender) });
+            }
+            catch(KeyNotFoundException)
+            {
+                return BadRequest(new { success = false, message = string.Format(Localizer.NotFound, Localizer.Gender) });
             }
             catch(Exception e)
             {
@@ -84,15 +75,13 @@ namespace WebSiteBuilderAPIs.Controllers
         {
             try
             {
-                var gender = UnitOfWork.Gender.GetById(id);
-
-                if (gender == null)
-                    return BadRequest(new { success = false, message = string.Format(Localizer.NotFound, Localizer.Gender) });
-
-                UnitOfWork.Gender.Remove(gender);
-                UnitOfWork.SaveChanges();
+                GenderService.Delete(id);
 
                 return Ok(new { success = true, message = string.Format(Localizer.Deleted, Localizer.Gender) });
+            }
+            catch(KeyNotFoundException)
+            {
+                return BadRequest(new { success = false, message = string.Format(Localizer.NotFound, Localizer.Gender) });
             }
             catch(Exception e)
             {

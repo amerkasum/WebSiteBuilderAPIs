@@ -1,4 +1,5 @@
-﻿using Core.UnitOfWork;
+﻿using Core.Services.IService;
+using Core.UnitOfWork;
 using Domain.Entities.System;
 using Domain.ViewModels;
 using Microsoft.AspNetCore.Http;
@@ -13,10 +14,12 @@ namespace WebSiteBuilderAPIs.Controllers
     {
         private readonly IUnitOfWork UnitOfWork;
         private readonly Localizer Localizer;
-        public RoleController(IUnitOfWork unitOfWork, Localizer localizer)
+        private readonly IRoleService RoleService;
+        public RoleController(IUnitOfWork unitOfWork, Localizer localizer, IRoleService roleService)
         {
             this.UnitOfWork = unitOfWork;
             this.Localizer = localizer;
+            this.RoleService = roleService;
         }
 
         [HttpGet(nameof(GetAll))]
@@ -26,23 +29,16 @@ namespace WebSiteBuilderAPIs.Controllers
         }
 
         [HttpPost(nameof(Add))]
-        public IActionResult Add(GenderViewModel model)
+        public IActionResult Add(RoleViewModel model)
         {
             if(!ModelState.IsValid)
                 return BadRequest(new { success= false, message = ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage).ToList() });
 
             try
             {
-                var gender = new Gender
-                {
-                    Name = model.Name,
-                    Code = model.Code
-                };
+                var role = RoleService.Add(model);
 
-                UnitOfWork.Gender.Add(gender);
-                UnitOfWork.SaveChanges();
-
-                return Ok(new { success = false, message = string.Format(Localizer.Added, Localizer.Gender) });
+                return Ok(new { success = false, message = string.Format(Localizer.Added, Localizer.Role) });
             }
             catch(Exception e)
             {
@@ -51,22 +47,20 @@ namespace WebSiteBuilderAPIs.Controllers
         }
 
         [HttpPut(nameof(Edit))]
-        public IActionResult Edit(GenderViewModel model)
+        public IActionResult Edit(RoleViewModel model)
         {
             if (!ModelState.IsValid)
                 return BadRequest(new { success = false, message = ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage).ToList() });
 
             try
             {
-                var gender = UnitOfWork.Gender.GetById(model.Id);
+                var role = RoleService.Edit(model);
 
-                if (gender == null)
-                    return BadRequest(new { success = false, message = string.Format(Localizer.NotFound, Localizer.Gender) });
-
-                gender.Name = model.Name;
-                gender.Code = model.Code;
-
-                return Ok(new { success = true, message = string.Format(Localizer.Edited, Localizer.Gender) });
+                return Ok(new { success = true, message = string.Format(Localizer.Edited, Localizer.Role) });
+            }
+            catch(KeyNotFoundException)
+            {
+                return BadRequest(new { success = false, message = string.Format(Localizer.NotFound, Localizer.Role) });
             }
             catch(Exception e)
             {
@@ -79,15 +73,12 @@ namespace WebSiteBuilderAPIs.Controllers
         {
             try
             {
-                var gender = UnitOfWork.Gender.GetById(id);
-
-                if (gender == null)
-                    return BadRequest(new { success = false, message = string.Format(Localizer.NotFound, Localizer.Gender) });
-
-                UnitOfWork.Gender.Remove(gender);
-                UnitOfWork.SaveChanges();
-
-                return Ok(new { success = true, message = string.Format(Localizer.Deleted, Localizer.Gender) });
+                RoleService.Delete(id);
+                return Ok(new { success = true, message = string.Format(Localizer.Deleted, Localizer.Role) });
+            }
+            catch(KeyNotFoundException)
+            {
+                return BadRequest(new { success = false, message = string.Format(Localizer.NotFound, Localizer.Role) });
             }
             catch(Exception e)
             {

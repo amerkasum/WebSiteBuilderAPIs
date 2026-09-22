@@ -11,7 +11,7 @@ namespace Domain.Entities.System
     public class MessageUs : IEntity
     {
         public int Id { get; set;  }
-        public string SenderEmail { get; set; }
+        public string EmailSender { get; set; }
         public string Message { get; set; }
         [ForeignKey(nameof(MessageUsReasonId))]
         public MessageUsReason MessageUsReason { get; set; }

@@ -11,6 +11,7 @@ namespace Domain.ViewModels
 {
     public class MessageUsViewModel
     {
+        public int Id { get; set; }
         [EmailAddress(ErrorMessage = ValidationMessage.InvalidEmail)]
         [Required(ErrorMessage = ValidationMessage.Required)]
         public string EmailSender { get; set; }
