@@ -8,16 +8,14 @@ using System.Threading.Tasks;
 
 namespace Domain.ViewModels
 {
-    public class LocationViewModel
+    public class UserSocialMediaViewModel
     {
+        public int Id { get; set; }
         [Required(ErrorMessage = ValidationMessage.Required)]
-        public string Address { get; set; }
+        public int UserId { get; set; }
         [Required(ErrorMessage = ValidationMessage.Required)]
-        public string City { get; set; }
+        public int SocialMediaId { get; set; }
         [Required(ErrorMessage = ValidationMessage.Required)]
-        public string PttCode { get; set; }
-        [Required(ErrorMessage = ValidationMessage.Required)]
-        public int RegionId { get; set; }
-        public bool IsPrimary { get; set; }
+        public string Link { get; set; }
     }
 }

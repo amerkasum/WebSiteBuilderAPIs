@@ -76,6 +76,7 @@ namespace Core.EF
         public DbSet<ContactType> ContactTypes { get; set; }
         public DbSet<Address> Addresses { get; set; }
         public DbSet<Gender> Genders { get; set; }
+        public DbSet<UserResidence> UserResidences { get; set; }
         #endregion
 
     }

@@ -24,6 +24,7 @@ namespace Core.Services
             services.AddTransient<IRoleService, RoleService>();
             services.AddTransient<ISocialMediaService, SocialMediaService>();
             services.AddTransient<IUserService, UserService>();
+            services.AddTransient<IUserSocialMediaService, UserSocialMediaService>();
         }
     }
 }

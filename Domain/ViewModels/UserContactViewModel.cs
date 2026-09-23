@@ -8,7 +8,10 @@ namespace Domain.ViewModels
 {
     public class UserContactViewModel
     {
-        public string Value { get; set; }
+        public int Id { get; set; }
+        public int UserId { get; set; }
         public int ContactTypeId { get; set; }
+        public string Value { get; set; }
+        
     }
 }

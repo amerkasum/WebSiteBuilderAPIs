@@ -29,6 +29,7 @@ namespace Core.UnitOfWork
         IMessageUsReasonRepository MessageUsReason { get; }
         IFeedbackRepository Feedback { get; }
         IComponentTypeRepository ComponentType { get; }
+        IUserResidenceRepository UserResidence { get; }
         #endregion
 
         int SaveChanges();

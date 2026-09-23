@@ -7,8 +7,7 @@ using System.Threading.Tasks;
 
 namespace Core.Repositories.IRepository
 {
-    public interface IUserSocialMediaRepository : IRepository<UserSocialMedia>
+    public interface IUserResidenceRepository : IRepository<UserResidence>
     {
-        List<UserSocialMedia> GetByUserId(int userId);
     }
 }

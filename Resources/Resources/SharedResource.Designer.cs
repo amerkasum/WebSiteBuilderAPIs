@@ -394,6 +394,15 @@ namespace Resources.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to User contact.
+        /// </summary>
+        internal static string UserContact {
+            get {
+                return ResourceManager.GetString("UserContact", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0} years old.
         /// </summary>
         internal static string YearsOld {

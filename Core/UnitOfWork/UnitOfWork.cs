@@ -32,6 +32,7 @@ namespace Core.UnitOfWork
         public IMessageUsReasonRepository MessageUsReason => new MessageUsReasonRepository(_context);
         public IFeedbackRepository Feedback => new FeedbackRepository(_context);
         public IComponentTypeRepository ComponentType => new ComponentTypeRepository(_context);
+        public IUserResidenceRepository UserResidence => new UserResidenceRepository(_context);
 
         #endregion
         public UnitOfWork(ApplicationDbContext context)

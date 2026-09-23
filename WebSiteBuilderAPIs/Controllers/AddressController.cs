@@ -1,4 +1,5 @@
-﻿using Core.UnitOfWork;
+﻿using Core.Services.IService;
+using Core.UnitOfWork;
 using Domain.DTO;
 using Domain.Entities.Location;
 using Domain.ViewModels;
@@ -15,11 +16,13 @@ namespace WebSiteBuilderAPIs.Controllers
     {
         private readonly IUnitOfWork UnitOfWork;
         private readonly Localizer Localizer;
+        private readonly IAddressService AddressService;
 
-        public AddressController(IUnitOfWork unitOfWork, Localizer localizer)
+        public AddressController(IUnitOfWork unitOfWork, Localizer localizer, IAddressService addressService)
         {
             this.UnitOfWork = unitOfWork;
             this.Localizer = localizer;
+            this.AddressService = addressService;
         }
 
         [HttpGet(nameof(GetAll))]
@@ -31,48 +34,14 @@ namespace WebSiteBuilderAPIs.Controllers
         [HttpPost(nameof(Add))]
         public IActionResult Add(LocationViewModel model)
         {
-            try
+            if (!ModelState.IsValid)
+                return BadRequest(new { success = false, message = ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage).ToList() });
+
+            try 
             {
-                if (ModelState.IsValid)
-                {
-                    UnitOfWork.BeginTransaction();
-                    var cityExist = UnitOfWork.City.DoesCityExist(model.CityName, model.PttCode);
-                    var city = new City();
+                var address = AddressService.Add(model);
 
-                    if (!cityExist)
-                    {
-                        city = new City
-                        {
-                            Name = model.CityName,
-                            PttCode = model.PttCode,
-                            RegionId = model.RegionId
-                        };
-                        UnitOfWork.City.Add(city);
-                        UnitOfWork.SaveChanges();
-                    }
-                    else
-                    {
-                        city = UnitOfWork.City.GetByName(model.CityName);
-                    }
-
-                    var addressExist = UnitOfWork.Address.DoesAddressExist(model.AddressName);
-
-                    if(!addressExist)
-                    {
-                        var address = new Address
-                        {
-                            Name = model.AddressName,
-                            CityId = city.Id
-                        };
-                        UnitOfWork.Address.Add(address);
-                        UnitOfWork.SaveChanges();
-                    }
-                    UnitOfWork.Commit();
-
-
-                    return Ok(new { success = true, message = addressExist && cityExist ? Localizer.AlreadyExist:  string.Format(Localizer.Added, Localizer.Location) });
-                }
-                return BadRequest(new { success = false, message = ModelState });
+                return Ok(new { success = false, message = string.Format(Localizer.Added2, Localizer.Address) });
             }
             catch (Exception e)
             {
@@ -86,17 +55,13 @@ namespace WebSiteBuilderAPIs.Controllers
         {
             try
             {
-                var address = UnitOfWork.Address.GetById(id);
+                AddressService.Delete(id);
 
-                if (address != null)
-                {
-                    UnitOfWork.Address.Remove(address);
-                    UnitOfWork.SaveChanges();
-
-                    return Ok(new { success = true, message = string.Format(Localizer.Deleted, Localizer.Location) });
-                }
-
-                return BadRequest(new { success = false, message = Localizer.SomethingWentWrong });
+                return Ok(new { success = true, message = string.Format(Localizer.Deleted, Localizer.Location) });  
+            }
+            catch (KeyNotFoundException)
+            {
+                return BadRequest(new { success = false, message = string.Format(Localizer.NotFound2, Localizer.Address) });
             }
             catch(Exception e)
             {

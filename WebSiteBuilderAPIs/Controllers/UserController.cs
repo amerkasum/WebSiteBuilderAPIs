@@ -1,4 +1,5 @@
 ﻿using Core.Services.IService;
+using Core.Services.Service;
 using Core.UnitOfWork;
 using Domain.DTO;
 using Domain.Entities.Location;
@@ -15,11 +16,18 @@ namespace WebSiteBuilderAPIs.Controllers
         private readonly IUnitOfWork UnitOfWork;
         private readonly Localizer Localizer;
         private readonly IUserService UserService;
-        public UserController(IUnitOfWork unitOfwork, Localizer localizer, IUserService userService)
+        private readonly IAddressService AddressService;
+        private readonly IUserContactService UserContactService;
+        private readonly IUserResidenceService UserResidenceService;
+        public UserController(IUnitOfWork unitOfwork, Localizer localizer, IUserService userService, IAddressService addressService,
+            IUserContactService usercontactService, IUserResidenceService userResidenceService)
         {
             this.UnitOfWork = unitOfwork;
             this.Localizer = localizer;
             this.UserService = userService;
+            this.AddressService = addressService;
+            this.UserContactService = usercontactService;
+            this.UserResidenceService = userResidenceService;
         }
 
         [HttpGet(nameof(GetUsersWithParameters))]
@@ -31,14 +39,18 @@ namespace WebSiteBuilderAPIs.Controllers
         [HttpPost(nameof(Add))]
         public IActionResult Add([FromBody]UserViewModel model)
         {
+            if (!ModelState.IsValid)
+                return BadRequest(new { success = false, message = ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage).ToList() });
+
+            if(UnitOfWork.User.DoesEmailAlreadyExist(model.Email))
+                return BadRequest(new { success = false, message = string.Format(Localizer.AlreadyExist, Localizer.Email) });
+
             try
             {
-                if (UnitOfWork.User.DoesEmailAlreadyExist(model.Email))
-                    return BadRequest(new { success = false, message = string.Format(Localizer.AlreadyExist, Localizer.Email) });
-
                 if (ModelState.IsValid)
                 {
                     UnitOfWork.BeginTransaction();
+                    //TODO UserService
                     var user = new User
                     {
                         FirstName = model.FirstName,
@@ -54,6 +66,7 @@ namespace WebSiteBuilderAPIs.Controllers
                     UnitOfWork.User.Add(user);
                     UnitOfWork.SaveChanges();
 
+                    //TODO: UserRoleService
                     var userRole = new UserRole
                     {
                         UserId = user.Id,
@@ -64,7 +77,7 @@ namespace WebSiteBuilderAPIs.Controllers
                     UnitOfWork.SaveChanges();
 
                     List<UserContact> userContacts = new List<UserContact>();
-                    
+                    //TODO: implementirati dodavanje vise kontakta i dodati kredencijalni mejl kao dodatni kontakt u UserContactService
                     model.UserContacts.ForEach(x =>
                     {
                         var userContact = new UserContact
@@ -86,47 +99,17 @@ namespace WebSiteBuilderAPIs.Controllers
                     UnitOfWork.UserContact.AddRange(userContacts);
                     UnitOfWork.SaveChanges();
 
-                    UserResidenceDto userResidence = new UserResidenceDto
-                    {
-                        Address = model.Address,
-                        City = model.City,
-                        RegionId = model.RegionId,
-                        CountryId = model.CountryId
-                    };
-
                     #region UserResidence
 
-                    var cityExist = UnitOfWork.City.DoesCityExist(model.City, model.PttCode);
-                    var city = new City();
+                    var address = AddressService.Add(model.UserLocation);
 
-                    if (!cityExist)
+                    model.UserResidence = new UserResidenceViewModel
                     {
-                        city = new City
-                        {
-                            Name = model.City,
-                            PttCode = model.PttCode,
-                            RegionId = model.RegionId
-                        };
-                        UnitOfWork.City.Add(city);
-                        UnitOfWork.SaveChanges();
-                    }
-                    else
-                    {
-                        city = UnitOfWork.City.GetByName(model.City);
-                    }
-
-                    var addressExist = UnitOfWork.Address.DoesAddressExist(model.Address);
-
-                    if (!addressExist)
-                    {
-                        var address = new Address
-                        {
-                            Name = model.Address,
-                            CityId = city.Id
-                        };
-                        UnitOfWork.Address.Add(address);
-                        UnitOfWork.SaveChanges();
-                    }
+                        UserId = user.Id,
+                        AddressId = address.Id,
+                        IsPrimary = model.UserLocation.IsPrimary
+                    };
+                    var userResidence = UserResidenceService.Add(model.UserResidence);              
                     #endregion
 
                     UnitOfWork.Commit();

@@ -228,6 +228,9 @@
   <data name="User" xml:space="preserve">
     <value>User</value>
   </data>
+  <data name="UserContact" xml:space="preserve">
+    <value>User contact</value>
+  </data>
   <data name="YearsOld" xml:space="preserve">
     <value>{0} years old</value>
   </data>

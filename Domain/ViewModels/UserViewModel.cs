@@ -26,16 +26,8 @@ namespace Domain.ViewModels
         public DateTime BirthDate { get; set; }
         [Required(ErrorMessage = ValidationMessage.Required)]
         public int RoleId { get; set; }
-        [Required(ErrorMessage = ValidationMessage.Required)]
-        public string Address { get; set; }
-        [Required(ErrorMessage = ValidationMessage.Required)]
-        public string City { get; set; }
-        [Required(ErrorMessage = ValidationMessage.Required)]
-        public string PttCode { get; set; }
-        [Required(ErrorMessage = ValidationMessage.Required)]
-        public int CountryId { get; set; }
-        [Required(ErrorMessage = ValidationMessage.Required)]
-        public int RegionId { get; set; }
+        public LocationViewModel UserLocation { get; set; }
+        public UserResidenceViewModel UserResidence { get; set; }
         public string? ImageUrl { get; set; }
         public List<UserContactViewModel> UserContacts { get; set; }
     }
