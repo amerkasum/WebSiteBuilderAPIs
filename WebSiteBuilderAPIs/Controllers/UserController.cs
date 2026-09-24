@@ -19,8 +19,9 @@ namespace WebSiteBuilderAPIs.Controllers
         private readonly IAddressService AddressService;
         private readonly IUserContactService UserContactService;
         private readonly IUserResidenceService UserResidenceService;
+        private readonly IUserRoleService UserRoleService; 
         public UserController(IUnitOfWork unitOfwork, Localizer localizer, IUserService userService, IAddressService addressService,
-            IUserContactService usercontactService, IUserResidenceService userResidenceService)
+            IUserContactService usercontactService, IUserResidenceService userResidenceService, IUserRoleService userRoleService)
         {
             this.UnitOfWork = unitOfwork;
             this.Localizer = localizer;
@@ -28,6 +29,7 @@ namespace WebSiteBuilderAPIs.Controllers
             this.AddressService = addressService;
             this.UserContactService = usercontactService;
             this.UserResidenceService = userResidenceService;
+            this.UserRoleService = userRoleService;
         }
 
         [HttpGet(nameof(GetUsersWithParameters))]
@@ -67,14 +69,13 @@ namespace WebSiteBuilderAPIs.Controllers
                     UnitOfWork.SaveChanges();
 
                     //TODO: UserRoleService
-                    var userRole = new UserRole
+                    UserRoleViewModel userRoleModel = new UserRoleViewModel
                     {
                         UserId = user.Id,
                         RoleId = model.RoleId
                     };
 
-                    UnitOfWork.UserRole.Add(userRole);
-                    UnitOfWork.SaveChanges();
+                    var userRole = UserRoleService.Add(userRoleModel);
 
                     List<UserContact> userContacts = new List<UserContact>();
                     //TODO: implementirati dodavanje vise kontakta i dodati kredencijalni mejl kao dodatni kontakt u UserContactService
