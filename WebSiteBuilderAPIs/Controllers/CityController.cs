@@ -33,12 +33,12 @@ namespace WebSiteBuilderAPIs.Controllers
             {
                 if(ModelState.IsValid)
                 {
-                    var cityExist = UnitOfWork.City.DoesCityExist(model.CityName, model.PttCode);
+                    var cityExist = UnitOfWork.City.DoesCityExist(model.City, model.PttCode);
                     if(!cityExist)
                     {
                         var city = new City
                         {
-                            Name = model.CityName,
+                            Name = model.City,
                             PttCode = model.PttCode,
                             RegionId = model.RegionId
                         };

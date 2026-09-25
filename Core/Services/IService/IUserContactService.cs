@@ -10,6 +10,7 @@ namespace Core.Services.IService
 {
     public interface IUserContactService
     {
+        List<UserContact> HandleUserContacts(List<UserContactViewModel> model, int userId, string email);
         UserContact Add(UserContactViewModel model);
         UserContact Edit(UserContactViewModel model);
         void Delete(int id);

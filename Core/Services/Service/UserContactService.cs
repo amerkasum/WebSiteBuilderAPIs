@@ -2,6 +2,8 @@
 using Core.UnitOfWork;
 using Domain.Entities.Personal;
 using Domain.ViewModels;
+using Helpers.Helpers;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -61,6 +63,32 @@ namespace Core.Services.Service
             UnitOfWork.SaveChanges();
         }
 
-        
+        public List<UserContact> HandleUserContacts(List<UserContactViewModel> userContactsModel, int userId, string email)
+        {
+            List<UserContact> userContacts = new List<UserContact>();
+            userContactsModel.Add(new UserContactViewModel
+            {
+                UserId = userId,
+                ContactTypeId = (int)Enumerations.ContactTypes.EMAIL,
+                Value = email
+            });
+
+            userContactsModel.ForEach(x => 
+            {
+                var userContact = new UserContact
+                {
+                    UserId = userId,
+                    ContactTypeId = x.ContactTypeId,
+                    Value = x.Value
+                };
+
+                userContacts.Add(userContact);
+            });
+
+            UnitOfWork.UserContact.AddRange(userContacts);
+            UnitOfWork.SaveChanges();
+
+            return userContacts;
+        }
     }
 }

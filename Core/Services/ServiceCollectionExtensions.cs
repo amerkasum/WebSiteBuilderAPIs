@@ -13,7 +13,7 @@ namespace Core.Services
     {
         public static void AddCustomServices(this IServiceCollection services)
         {
-
+            services.AddTransient<IAddressService, AddressService>();
             services.AddTransient<IBusinessTypeService, BusinessTypeService>();
             services.AddTransient<IComponentTypeService, ComponentTypeService>();
             services.AddTransient<IContactTypeService, ContactTypeService>();
@@ -25,6 +25,10 @@ namespace Core.Services
             services.AddTransient<ISocialMediaService, SocialMediaService>();
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<IUserSocialMediaService, UserSocialMediaService>();
+            services.AddTransient<IUserRoleService, UserRoleService>();
+            services.AddTransient<IUserResidenceService, UserResidenceService>();
+            services.AddTransient<IUserContactService, UserContactService>();
+                
         }
     }
 }
