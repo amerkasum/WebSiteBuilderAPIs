@@ -55,7 +55,6 @@ namespace Core.Services.Service
             try
             {
                 UnitOfWork.BeginTransaction();
-                //TODO UserService
                 var user = new User
                 {
                     FirstName = model.FirstName,
@@ -71,7 +70,6 @@ namespace Core.Services.Service
                 UnitOfWork.User.Add(user);
                 UnitOfWork.SaveChanges();
 
-                //TODO: UserRoleService
                 UserRoleViewModel userRoleModel = new UserRoleViewModel
                 {
                     UserId = user.Id,
@@ -118,13 +116,13 @@ namespace Core.Services.Service
                     UnitOfWork.SaveChanges();
                 }
 
-                model.UserResidence = new UserResidenceViewModel
+                var userResidenceVM = new UserResidenceViewModel
                 {
                     UserId = user.Id,
                     AddressId = address.Id,
                     IsPrimary = model.UserLocation.IsPrimary
                 };
-                var userResidence = UserResidenceService.Add(model.UserResidence);
+                var userResidence = UserResidenceService.Add(userResidenceVM);
                 #endregion
 
                 UnitOfWork.Commit();

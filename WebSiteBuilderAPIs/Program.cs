@@ -1,12 +1,17 @@
 using Core.EF;
+using Core.Services;
 using Core.UnitOfWork;
+using Domain.Entities.Jwt;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Localization;
+using Microsoft.IdentityModel.Tokens;
 using Resources;
 using Resources.Localizer;
 using System.Globalization;
-using Core.Services;
+using System.Text;
+using System.Text.Json;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -41,6 +46,53 @@ builder.Services.AddCors(options =>
     });
 });
 
+builder.Services.Configure<JwtSettings>(builder.Configuration.GetSection("Jwt"));
+var jwtSettings = builder.Configuration.GetSection("Jwt").Get<JwtSettings>();
+
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+}).AddJwtBearer(options =>
+{
+    options.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateIssuer = true,
+        ValidateAudience = true,
+        ValidateLifetime = true,
+        ValidateIssuerSigningKey = true,
+
+        ValidIssuer = jwtSettings.Issuer,
+        ValidAudience = jwtSettings.Audience,
+
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings.Key))
+    };
+
+    options.Events = new JwtBearerEvents
+    {
+        OnChallenge = context =>
+        {
+            context.HandleResponse();
+
+            context.Response.StatusCode = StatusCodes.Status401Unauthorized;
+            context.Response.ContentType = "application/json";
+
+            var Localizer = context.HttpContext
+            .RequestServices
+            .GetRequiredService<Localizer>();
+
+            return context.Response.WriteAsync(
+                JsonSerializer.Serialize(new
+                {
+                    success = false,
+                    message = Localizer.Unauthorized
+                }));
+        }
+    };
+});
+
+builder.Services.AddAuthorization();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -63,6 +115,7 @@ app.UseHttpsRedirection();
 
 app.UseCors("AllowReactApp");
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

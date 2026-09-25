@@ -147,6 +147,9 @@
   <data name="Country" xml:space="preserve">
     <value>Country</value>
   </data>
+  <data name="Currency" xml:space="preserve">
+    <value>Currency</value>
+  </data>
   <data name="Deleted" xml:space="preserve">
     <value>{0} is deleted successfully.</value>
   </data>
@@ -218,6 +221,9 @@
   </data>
   <data name="SomethingWentWrong" xml:space="preserve">
     <value>Something went wrong: {0}</value>
+  </data>
+  <data name="Unauthorized" xml:space="preserve">
+    <value>401 Unauthorized</value>
   </data>
   <data name="Updated" xml:space="preserve">
     <value>{0} is updated successfully.</value>

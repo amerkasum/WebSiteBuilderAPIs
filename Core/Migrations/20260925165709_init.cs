@@ -453,61 +453,92 @@ namespace Core.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "UserResidences",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserId = table.Column<int>(type: "int", nullable: false),
+                    AddressId = table.Column<int>(type: "int", nullable: false),
+                    IsPrimary = table.Column<bool>(type: "bit", nullable: false),
+                    CreatedDateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ModifiedDateTime = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    DeletedDateTime = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_UserResidences", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_UserResidences_Addresses_AddressId",
+                        column: x => x.AddressId,
+                        principalTable: "Addresses",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_UserResidences_Users_UserId",
+                        column: x => x.UserId,
+                        principalTable: "Users",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.InsertData(
                 table: "BusinessTypes",
                 columns: new[] { "Id", "Code", "CreatedDateTime", "DeletedDateTime", "IsDeleted", "ModifiedDateTime", "Name" },
                 values: new object[,]
                 {
-                    { 1, "RESTAURANT", new DateTime(2026, 9, 23, 0, 31, 47, 120, DateTimeKind.Local).AddTicks(4594), null, false, null, "Restaurant" },
-                    { 2, "CAFE", new DateTime(2026, 9, 23, 0, 31, 47, 120, DateTimeKind.Local).AddTicks(4615), null, false, null, "Cafe" },
-                    { 3, "BAKERY", new DateTime(2026, 9, 23, 0, 31, 47, 120, DateTimeKind.Local).AddTicks(4621), null, false, null, "Bakery" },
-                    { 4, "FAST_FOOD", new DateTime(2026, 9, 23, 0, 31, 47, 120, DateTimeKind.Local).AddTicks(4626), null, false, null, "Fast Food" },
-                    { 5, "HOTEL", new DateTime(2026, 9, 23, 0, 31, 47, 120, DateTimeKind.Local).AddTicks(4639), null, false, null, "Hotel" },
-                    { 6, "APARTMENT_RENTAL", new DateTime(2026, 9, 23, 0, 31, 47, 120, DateTimeKind.Local).AddTicks(4698), null, false, null, "Apartment Rental" },
-                    { 7, "TRAVEL_AGENCY", new DateTime(2026, 9, 23, 0, 31, 47, 120, DateTimeKind.Local).AddTicks(4705), null, false, null, "Travel Agency" },
-                    { 8, "TOUR_GUIDE", new DateTime(2026, 9, 23, 0, 31, 47, 120, DateTimeKind.Local).AddTicks(4711), null, false, null, "Tour Guide" },
-                    { 9, "CAR_RENTAL", new DateTime(2026, 9, 23, 0, 31, 47, 120, DateTimeKind.Local).AddTicks(4716), null, false, null, "Car Rental" },
-                    { 10, "AUTO_REPAIR", new DateTime(2026, 9, 23, 0, 31, 47, 120, DateTimeKind.Local).AddTicks(4722), null, false, null, "Auto Repair" },
-                    { 11, "CAR_DEALERSHIP", new DateTime(2026, 9, 23, 0, 31, 47, 120, DateTimeKind.Local).AddTicks(4727), null, false, null, "Car Dealership" },
-                    { 12, "TAXI_SERVICE", new DateTime(2026, 9, 23, 0, 31, 47, 120, DateTimeKind.Local).AddTicks(4732), null, false, null, "Taxi Service" },
-                    { 13, "MOVING_COMPANY", new DateTime(2026, 9, 23, 0, 31, 47, 120, DateTimeKind.Local).AddTicks(4736), null, false, null, "Moving Company" },
-                    { 14, "CONSTRUCTION_COMPANY", new DateTime(2026, 9, 23, 0, 31, 47, 120, DateTimeKind.Local).AddTicks(4741), null, false, null, "Construction Company" },
-                    { 15, "ARCHITECTURE_STUDIO", new DateTime(2026, 9, 23, 0, 31, 47, 120, DateTimeKind.Local).AddTicks(4745), null, false, null, "Architecture Studio" },
-                    { 16, "INTERIOR_DESIGN", new DateTime(2026, 9, 23, 0, 31, 47, 120, DateTimeKind.Local).AddTicks(4750), null, false, null, "Interior Design" },
-                    { 17, "REAL_ESTATE_AGENCY", new DateTime(2026, 9, 23, 0, 31, 47, 120, DateTimeKind.Local).AddTicks(4754), null, false, null, "Real Estate Agency" },
-                    { 18, "LAW_FIRM", new DateTime(2026, 9, 23, 0, 31, 47, 120, DateTimeKind.Local).AddTicks(4759), null, false, null, "Law Firm" },
-                    { 19, "ACCOUNTING_FIRM", new DateTime(2026, 9, 23, 0, 31, 47, 120, DateTimeKind.Local).AddTicks(4763), null, false, null, "Accounting Firm" },
-                    { 20, "INSURANCE_AGENCY", new DateTime(2026, 9, 23, 0, 31, 47, 120, DateTimeKind.Local).AddTicks(4768), null, false, null, "Insurance Agency" },
-                    { 21, "BANK", new DateTime(2026, 9, 23, 0, 31, 47, 120, DateTimeKind.Local).AddTicks(4773), null, false, null, "Bank" },
-                    { 22, "FINANCIAL_ADVISOR", new DateTime(2026, 9, 23, 0, 31, 47, 120, DateTimeKind.Local).AddTicks(4777), null, false, null, "Financial Advisor" },
-                    { 23, "MEDICAL_CLINIC", new DateTime(2026, 9, 23, 0, 31, 47, 120, DateTimeKind.Local).AddTicks(4782), null, false, null, "Medical Clinic" },
-                    { 24, "DENTAL_CLINIC", new DateTime(2026, 9, 23, 0, 31, 47, 120, DateTimeKind.Local).AddTicks(4787), null, false, null, "Dental Clinic" },
-                    { 25, "PHARMACY", new DateTime(2026, 9, 23, 0, 31, 47, 120, DateTimeKind.Local).AddTicks(4791), null, false, null, "Pharmacy" },
-                    { 26, "VETERINARY_CLINIC", new DateTime(2026, 9, 23, 0, 31, 47, 120, DateTimeKind.Local).AddTicks(4795), null, false, null, "Veterinary Clinic" },
-                    { 27, "FITNESS_GYM", new DateTime(2026, 9, 23, 0, 31, 47, 120, DateTimeKind.Local).AddTicks(4800), null, false, null, "Fitness Gym" },
-                    { 28, "PERSONAL_TRAINER", new DateTime(2026, 9, 23, 0, 31, 47, 120, DateTimeKind.Local).AddTicks(4804), null, false, null, "Personal Trainer" },
-                    { 29, "YOGA_STUDIO", new DateTime(2026, 9, 23, 0, 31, 47, 120, DateTimeKind.Local).AddTicks(4808), null, false, null, "Yoga Studio" },
-                    { 30, "BEAUTY_SALON", new DateTime(2026, 9, 23, 0, 31, 47, 120, DateTimeKind.Local).AddTicks(4814), null, false, null, "Beauty Salon" },
-                    { 31, "BARBER_SHOP", new DateTime(2026, 9, 23, 0, 31, 47, 120, DateTimeKind.Local).AddTicks(4818), null, false, null, "Barber Shop" },
-                    { 32, "SPA", new DateTime(2026, 9, 23, 0, 31, 47, 120, DateTimeKind.Local).AddTicks(4822), null, false, null, "Spa" },
-                    { 33, "TATTOO_STUDIO", new DateTime(2026, 9, 23, 0, 31, 47, 120, DateTimeKind.Local).AddTicks(4827), null, false, null, "Tattoo Studio" },
-                    { 34, "PHOTOGRAPHER", new DateTime(2026, 9, 23, 0, 31, 47, 120, DateTimeKind.Local).AddTicks(4832), null, false, null, "Photographer" },
-                    { 35, "VIDEOGRAPHER", new DateTime(2026, 9, 23, 0, 31, 47, 120, DateTimeKind.Local).AddTicks(4836), null, false, null, "Videographer" },
-                    { 36, "GRAPHIC_DESIGNER", new DateTime(2026, 9, 23, 0, 31, 47, 120, DateTimeKind.Local).AddTicks(4841), null, false, null, "Graphic Designer" },
-                    { 37, "WEB_DESIGN_AGENCY", new DateTime(2026, 9, 23, 0, 31, 47, 120, DateTimeKind.Local).AddTicks(4846), null, false, null, "Web Design Agency" },
-                    { 38, "SOFTWARE_COMPANY", new DateTime(2026, 9, 23, 0, 31, 47, 120, DateTimeKind.Local).AddTicks(4851), null, false, null, "Software Company" },
-                    { 39, "IT_SERVICES", new DateTime(2026, 9, 23, 0, 31, 47, 120, DateTimeKind.Local).AddTicks(4855), null, false, null, "IT Services" },
-                    { 40, "CYBERSECURITY_COMPANY", new DateTime(2026, 9, 23, 0, 31, 47, 120, DateTimeKind.Local).AddTicks(4860), null, false, null, "Cybersecurity Company" },
-                    { 41, "MARKETING_AGENCY", new DateTime(2026, 9, 23, 0, 31, 47, 120, DateTimeKind.Local).AddTicks(4864), null, false, null, "Marketing Agency" },
-                    { 42, "SEO_AGENCY", new DateTime(2026, 9, 23, 0, 31, 47, 120, DateTimeKind.Local).AddTicks(4956), null, false, null, "SEO Agency" },
-                    { 43, "DIGITAL_AGENCY", new DateTime(2026, 9, 23, 0, 31, 47, 120, DateTimeKind.Local).AddTicks(4966), null, false, null, "Digital Agency" },
-                    { 44, "FREELANCER", new DateTime(2026, 9, 23, 0, 31, 47, 120, DateTimeKind.Local).AddTicks(4971), null, false, null, "Freelancer" },
-                    { 45, "PORTFOLIO", new DateTime(2026, 9, 23, 0, 31, 47, 120, DateTimeKind.Local).AddTicks(4976), null, false, null, "Portfolio" },
-                    { 46, "PERSONAL_WEBSITE", new DateTime(2026, 9, 23, 0, 31, 47, 120, DateTimeKind.Local).AddTicks(4982), null, false, null, "Personal Website" },
-                    { 47, "BLOGGER", new DateTime(2026, 9, 23, 0, 31, 47, 120, DateTimeKind.Local).AddTicks(4986), null, false, null, "Blogger" },
-                    { 48, "INFLUENCER", new DateTime(2026, 9, 23, 0, 31, 47, 120, DateTimeKind.Local).AddTicks(4991), null, false, null, "Influencer" },
-                    { 49, "MUSICIAN", new DateTime(2026, 9, 23, 0, 31, 47, 120, DateTimeKind.Local).AddTicks(4996), null, false, null, "Musician" },
-                    { 50, "DJ", new DateTime(2026, 9, 23, 0, 31, 47, 120, DateTimeKind.Local).AddTicks(5000), null, false, null, "DJ" }
+                    { 1, "RESTAURANT", new DateTime(2026, 9, 25, 18, 57, 6, 559, DateTimeKind.Local).AddTicks(135), null, false, null, "Restaurant" },
+                    { 2, "CAFE", new DateTime(2026, 9, 25, 18, 57, 6, 559, DateTimeKind.Local).AddTicks(152), null, false, null, "Cafe" },
+                    { 3, "BAKERY", new DateTime(2026, 9, 25, 18, 57, 6, 559, DateTimeKind.Local).AddTicks(158), null, false, null, "Bakery" },
+                    { 4, "FAST_FOOD", new DateTime(2026, 9, 25, 18, 57, 6, 559, DateTimeKind.Local).AddTicks(164), null, false, null, "Fast Food" },
+                    { 5, "HOTEL", new DateTime(2026, 9, 25, 18, 57, 6, 559, DateTimeKind.Local).AddTicks(172), null, false, null, "Hotel" },
+                    { 6, "APARTMENT_RENTAL", new DateTime(2026, 9, 25, 18, 57, 6, 559, DateTimeKind.Local).AddTicks(210), null, false, null, "Apartment Rental" },
+                    { 7, "TRAVEL_AGENCY", new DateTime(2026, 9, 25, 18, 57, 6, 559, DateTimeKind.Local).AddTicks(216), null, false, null, "Travel Agency" },
+                    { 8, "TOUR_GUIDE", new DateTime(2026, 9, 25, 18, 57, 6, 559, DateTimeKind.Local).AddTicks(220), null, false, null, "Tour Guide" },
+                    { 9, "CAR_RENTAL", new DateTime(2026, 9, 25, 18, 57, 6, 559, DateTimeKind.Local).AddTicks(224), null, false, null, "Car Rental" },
+                    { 10, "AUTO_REPAIR", new DateTime(2026, 9, 25, 18, 57, 6, 559, DateTimeKind.Local).AddTicks(228), null, false, null, "Auto Repair" },
+                    { 11, "CAR_DEALERSHIP", new DateTime(2026, 9, 25, 18, 57, 6, 559, DateTimeKind.Local).AddTicks(232), null, false, null, "Car Dealership" },
+                    { 12, "TAXI_SERVICE", new DateTime(2026, 9, 25, 18, 57, 6, 559, DateTimeKind.Local).AddTicks(236), null, false, null, "Taxi Service" },
+                    { 13, "MOVING_COMPANY", new DateTime(2026, 9, 25, 18, 57, 6, 559, DateTimeKind.Local).AddTicks(240), null, false, null, "Moving Company" },
+                    { 14, "CONSTRUCTION_COMPANY", new DateTime(2026, 9, 25, 18, 57, 6, 559, DateTimeKind.Local).AddTicks(244), null, false, null, "Construction Company" },
+                    { 15, "ARCHITECTURE_STUDIO", new DateTime(2026, 9, 25, 18, 57, 6, 559, DateTimeKind.Local).AddTicks(247), null, false, null, "Architecture Studio" },
+                    { 16, "INTERIOR_DESIGN", new DateTime(2026, 9, 25, 18, 57, 6, 559, DateTimeKind.Local).AddTicks(251), null, false, null, "Interior Design" },
+                    { 17, "REAL_ESTATE_AGENCY", new DateTime(2026, 9, 25, 18, 57, 6, 559, DateTimeKind.Local).AddTicks(257), null, false, null, "Real Estate Agency" },
+                    { 18, "LAW_FIRM", new DateTime(2026, 9, 25, 18, 57, 6, 559, DateTimeKind.Local).AddTicks(261), null, false, null, "Law Firm" },
+                    { 19, "ACCOUNTING_FIRM", new DateTime(2026, 9, 25, 18, 57, 6, 559, DateTimeKind.Local).AddTicks(265), null, false, null, "Accounting Firm" },
+                    { 20, "INSURANCE_AGENCY", new DateTime(2026, 9, 25, 18, 57, 6, 559, DateTimeKind.Local).AddTicks(269), null, false, null, "Insurance Agency" },
+                    { 21, "BANK", new DateTime(2026, 9, 25, 18, 57, 6, 559, DateTimeKind.Local).AddTicks(273), null, false, null, "Bank" },
+                    { 22, "FINANCIAL_ADVISOR", new DateTime(2026, 9, 25, 18, 57, 6, 559, DateTimeKind.Local).AddTicks(276), null, false, null, "Financial Advisor" },
+                    { 23, "MEDICAL_CLINIC", new DateTime(2026, 9, 25, 18, 57, 6, 559, DateTimeKind.Local).AddTicks(280), null, false, null, "Medical Clinic" },
+                    { 24, "DENTAL_CLINIC", new DateTime(2026, 9, 25, 18, 57, 6, 559, DateTimeKind.Local).AddTicks(284), null, false, null, "Dental Clinic" },
+                    { 25, "PHARMACY", new DateTime(2026, 9, 25, 18, 57, 6, 559, DateTimeKind.Local).AddTicks(288), null, false, null, "Pharmacy" },
+                    { 26, "VETERINARY_CLINIC", new DateTime(2026, 9, 25, 18, 57, 6, 559, DateTimeKind.Local).AddTicks(292), null, false, null, "Veterinary Clinic" },
+                    { 27, "FITNESS_GYM", new DateTime(2026, 9, 25, 18, 57, 6, 559, DateTimeKind.Local).AddTicks(296), null, false, null, "Fitness Gym" },
+                    { 28, "PERSONAL_TRAINER", new DateTime(2026, 9, 25, 18, 57, 6, 559, DateTimeKind.Local).AddTicks(300), null, false, null, "Personal Trainer" },
+                    { 29, "YOGA_STUDIO", new DateTime(2026, 9, 25, 18, 57, 6, 559, DateTimeKind.Local).AddTicks(304), null, false, null, "Yoga Studio" },
+                    { 30, "BEAUTY_SALON", new DateTime(2026, 9, 25, 18, 57, 6, 559, DateTimeKind.Local).AddTicks(310), null, false, null, "Beauty Salon" },
+                    { 31, "BARBER_SHOP", new DateTime(2026, 9, 25, 18, 57, 6, 559, DateTimeKind.Local).AddTicks(313), null, false, null, "Barber Shop" },
+                    { 32, "SPA", new DateTime(2026, 9, 25, 18, 57, 6, 559, DateTimeKind.Local).AddTicks(317), null, false, null, "Spa" },
+                    { 33, "TATTOO_STUDIO", new DateTime(2026, 9, 25, 18, 57, 6, 559, DateTimeKind.Local).AddTicks(321), null, false, null, "Tattoo Studio" },
+                    { 34, "PHOTOGRAPHER", new DateTime(2026, 9, 25, 18, 57, 6, 559, DateTimeKind.Local).AddTicks(325), null, false, null, "Photographer" },
+                    { 35, "VIDEOGRAPHER", new DateTime(2026, 9, 25, 18, 57, 6, 559, DateTimeKind.Local).AddTicks(329), null, false, null, "Videographer" },
+                    { 36, "GRAPHIC_DESIGNER", new DateTime(2026, 9, 25, 18, 57, 6, 559, DateTimeKind.Local).AddTicks(332), null, false, null, "Graphic Designer" },
+                    { 37, "WEB_DESIGN_AGENCY", new DateTime(2026, 9, 25, 18, 57, 6, 559, DateTimeKind.Local).AddTicks(336), null, false, null, "Web Design Agency" },
+                    { 38, "SOFTWARE_COMPANY", new DateTime(2026, 9, 25, 18, 57, 6, 559, DateTimeKind.Local).AddTicks(340), null, false, null, "Software Company" },
+                    { 39, "IT_SERVICES", new DateTime(2026, 9, 25, 18, 57, 6, 559, DateTimeKind.Local).AddTicks(344), null, false, null, "IT Services" },
+                    { 40, "CYBERSECURITY_COMPANY", new DateTime(2026, 9, 25, 18, 57, 6, 559, DateTimeKind.Local).AddTicks(349), null, false, null, "Cybersecurity Company" },
+                    { 41, "MARKETING_AGENCY", new DateTime(2026, 9, 25, 18, 57, 6, 559, DateTimeKind.Local).AddTicks(352), null, false, null, "Marketing Agency" },
+                    { 42, "SEO_AGENCY", new DateTime(2026, 9, 25, 18, 57, 6, 559, DateTimeKind.Local).AddTicks(356), null, false, null, "SEO Agency" },
+                    { 43, "DIGITAL_AGENCY", new DateTime(2026, 9, 25, 18, 57, 6, 559, DateTimeKind.Local).AddTicks(362), null, false, null, "Digital Agency" },
+                    { 44, "FREELANCER", new DateTime(2026, 9, 25, 18, 57, 6, 559, DateTimeKind.Local).AddTicks(366), null, false, null, "Freelancer" },
+                    { 45, "PORTFOLIO", new DateTime(2026, 9, 25, 18, 57, 6, 559, DateTimeKind.Local).AddTicks(369), null, false, null, "Portfolio" },
+                    { 46, "PERSONAL_WEBSITE", new DateTime(2026, 9, 25, 18, 57, 6, 559, DateTimeKind.Local).AddTicks(373), null, false, null, "Personal Website" },
+                    { 47, "BLOGGER", new DateTime(2026, 9, 25, 18, 57, 6, 559, DateTimeKind.Local).AddTicks(378), null, false, null, "Blogger" },
+                    { 48, "INFLUENCER", new DateTime(2026, 9, 25, 18, 57, 6, 559, DateTimeKind.Local).AddTicks(382), null, false, null, "Influencer" },
+                    { 49, "MUSICIAN", new DateTime(2026, 9, 25, 18, 57, 6, 559, DateTimeKind.Local).AddTicks(386), null, false, null, "Musician" },
+                    { 50, "DJ", new DateTime(2026, 9, 25, 18, 57, 6, 559, DateTimeKind.Local).AddTicks(390), null, false, null, "DJ" }
                 });
 
             migrationBuilder.InsertData(
@@ -515,31 +546,31 @@ namespace Core.Migrations
                 columns: new[] { "Id", "Code", "CreatedDateTime", "DeletedDateTime", "IsDeleted", "ModifiedDateTime", "Name" },
                 values: new object[,]
                 {
-                    { 1, "NAVBAR", new DateTime(2026, 9, 23, 0, 31, 47, 120, DateTimeKind.Local).AddTicks(4031), null, false, null, "Navbar" },
-                    { 2, "HERO", new DateTime(2026, 9, 23, 0, 31, 47, 120, DateTimeKind.Local).AddTicks(4104), null, false, null, "Hero" },
-                    { 3, "ABOUT", new DateTime(2026, 9, 23, 0, 31, 47, 120, DateTimeKind.Local).AddTicks(4110), null, false, null, "About" },
-                    { 4, "SERVICES", new DateTime(2026, 9, 23, 0, 31, 47, 120, DateTimeKind.Local).AddTicks(4114), null, false, null, "Services" },
-                    { 5, "FEATURES", new DateTime(2026, 9, 23, 0, 31, 47, 120, DateTimeKind.Local).AddTicks(4119), null, false, null, "Features" },
-                    { 6, "PORTFOLIO", new DateTime(2026, 9, 23, 0, 31, 47, 120, DateTimeKind.Local).AddTicks(4145), null, false, null, "Portfolio" },
-                    { 7, "GALLERY", new DateTime(2026, 9, 23, 0, 31, 47, 120, DateTimeKind.Local).AddTicks(4163), null, false, null, "Gallery" },
-                    { 8, "TESTIMONIALS", new DateTime(2026, 9, 23, 0, 31, 47, 120, DateTimeKind.Local).AddTicks(4169), null, false, null, "Testimonials" },
-                    { 9, "PRICING", new DateTime(2026, 9, 23, 0, 31, 47, 120, DateTimeKind.Local).AddTicks(4173), null, false, null, "Pricing" },
-                    { 10, "FAQ", new DateTime(2026, 9, 23, 0, 31, 47, 120, DateTimeKind.Local).AddTicks(4178), null, false, null, "FAQ" },
-                    { 11, "CONTACT", new DateTime(2026, 9, 23, 0, 31, 47, 120, DateTimeKind.Local).AddTicks(4188), null, false, null, "Contact" },
-                    { 12, "FOOTER", new DateTime(2026, 9, 23, 0, 31, 47, 120, DateTimeKind.Local).AddTicks(4193), null, false, null, "Footer" },
-                    { 13, "TEAM", new DateTime(2026, 9, 23, 0, 31, 47, 120, DateTimeKind.Local).AddTicks(4197), null, false, null, "Team" },
-                    { 14, "CLIENTS", new DateTime(2026, 9, 23, 0, 31, 47, 120, DateTimeKind.Local).AddTicks(4202), null, false, null, "Clients" },
-                    { 15, "STATISTICS", new DateTime(2026, 9, 23, 0, 31, 47, 120, DateTimeKind.Local).AddTicks(4207), null, false, null, "Statistics" },
-                    { 16, "SKILLS", new DateTime(2026, 9, 23, 0, 31, 47, 120, DateTimeKind.Local).AddTicks(4234), null, false, null, "Skills" },
-                    { 17, "EXPERIENCE", new DateTime(2026, 9, 23, 0, 31, 47, 120, DateTimeKind.Local).AddTicks(4241), null, false, null, "Experience" },
-                    { 18, "EDUCATION", new DateTime(2026, 9, 23, 0, 31, 47, 120, DateTimeKind.Local).AddTicks(4246), null, false, null, "Education" },
-                    { 19, "BLOG", new DateTime(2026, 9, 23, 0, 31, 47, 120, DateTimeKind.Local).AddTicks(4251), null, false, null, "Blog" },
-                    { 20, "NEWSLETTER", new DateTime(2026, 9, 23, 0, 31, 47, 120, DateTimeKind.Local).AddTicks(4258), null, false, null, "Newsletter" },
-                    { 21, "CTA", new DateTime(2026, 9, 23, 0, 31, 47, 120, DateTimeKind.Local).AddTicks(4263), null, false, null, "Call To Action" },
-                    { 22, "VIDEO", new DateTime(2026, 9, 23, 0, 31, 47, 120, DateTimeKind.Local).AddTicks(4268), null, false, null, "Video" },
-                    { 23, "PROCESS", new DateTime(2026, 9, 23, 0, 31, 47, 120, DateTimeKind.Local).AddTicks(4272), null, false, null, "Process" },
-                    { 24, "TECHNOLOGIES", new DateTime(2026, 9, 23, 0, 31, 47, 120, DateTimeKind.Local).AddTicks(4277), null, false, null, "Technologies" },
-                    { 25, "AWARDS", new DateTime(2026, 9, 23, 0, 31, 47, 120, DateTimeKind.Local).AddTicks(4282), null, false, null, "Awards" }
+                    { 1, "NAVBAR", new DateTime(2026, 9, 25, 18, 57, 6, 558, DateTimeKind.Local).AddTicks(9651), null, false, null, "Navbar" },
+                    { 2, "HERO", new DateTime(2026, 9, 25, 18, 57, 6, 558, DateTimeKind.Local).AddTicks(9722), null, false, null, "Hero" },
+                    { 3, "ABOUT", new DateTime(2026, 9, 25, 18, 57, 6, 558, DateTimeKind.Local).AddTicks(9729), null, false, null, "About" },
+                    { 4, "SERVICES", new DateTime(2026, 9, 25, 18, 57, 6, 558, DateTimeKind.Local).AddTicks(9733), null, false, null, "Services" },
+                    { 5, "FEATURES", new DateTime(2026, 9, 25, 18, 57, 6, 558, DateTimeKind.Local).AddTicks(9737), null, false, null, "Features" },
+                    { 6, "PORTFOLIO", new DateTime(2026, 9, 25, 18, 57, 6, 558, DateTimeKind.Local).AddTicks(9750), null, false, null, "Portfolio" },
+                    { 7, "GALLERY", new DateTime(2026, 9, 25, 18, 57, 6, 558, DateTimeKind.Local).AddTicks(9765), null, false, null, "Gallery" },
+                    { 8, "TESTIMONIALS", new DateTime(2026, 9, 25, 18, 57, 6, 558, DateTimeKind.Local).AddTicks(9769), null, false, null, "Testimonials" },
+                    { 9, "PRICING", new DateTime(2026, 9, 25, 18, 57, 6, 558, DateTimeKind.Local).AddTicks(9773), null, false, null, "Pricing" },
+                    { 10, "FAQ", new DateTime(2026, 9, 25, 18, 57, 6, 558, DateTimeKind.Local).AddTicks(9777), null, false, null, "FAQ" },
+                    { 11, "CONTACT", new DateTime(2026, 9, 25, 18, 57, 6, 558, DateTimeKind.Local).AddTicks(9787), null, false, null, "Contact" },
+                    { 12, "FOOTER", new DateTime(2026, 9, 25, 18, 57, 6, 558, DateTimeKind.Local).AddTicks(9791), null, false, null, "Footer" },
+                    { 13, "TEAM", new DateTime(2026, 9, 25, 18, 57, 6, 558, DateTimeKind.Local).AddTicks(9796), null, false, null, "Team" },
+                    { 14, "CLIENTS", new DateTime(2026, 9, 25, 18, 57, 6, 558, DateTimeKind.Local).AddTicks(9800), null, false, null, "Clients" },
+                    { 15, "STATISTICS", new DateTime(2026, 9, 25, 18, 57, 6, 558, DateTimeKind.Local).AddTicks(9804), null, false, null, "Statistics" },
+                    { 16, "SKILLS", new DateTime(2026, 9, 25, 18, 57, 6, 558, DateTimeKind.Local).AddTicks(9833), null, false, null, "Skills" },
+                    { 17, "EXPERIENCE", new DateTime(2026, 9, 25, 18, 57, 6, 558, DateTimeKind.Local).AddTicks(9840), null, false, null, "Experience" },
+                    { 18, "EDUCATION", new DateTime(2026, 9, 25, 18, 57, 6, 558, DateTimeKind.Local).AddTicks(9844), null, false, null, "Education" },
+                    { 19, "BLOG", new DateTime(2026, 9, 25, 18, 57, 6, 558, DateTimeKind.Local).AddTicks(9848), null, false, null, "Blog" },
+                    { 20, "NEWSLETTER", new DateTime(2026, 9, 25, 18, 57, 6, 558, DateTimeKind.Local).AddTicks(9853), null, false, null, "Newsletter" },
+                    { 21, "CTA", new DateTime(2026, 9, 25, 18, 57, 6, 558, DateTimeKind.Local).AddTicks(9857), null, false, null, "Call To Action" },
+                    { 22, "VIDEO", new DateTime(2026, 9, 25, 18, 57, 6, 558, DateTimeKind.Local).AddTicks(9861), null, false, null, "Video" },
+                    { 23, "PROCESS", new DateTime(2026, 9, 25, 18, 57, 6, 558, DateTimeKind.Local).AddTicks(9865), null, false, null, "Process" },
+                    { 24, "TECHNOLOGIES", new DateTime(2026, 9, 25, 18, 57, 6, 558, DateTimeKind.Local).AddTicks(9869), null, false, null, "Technologies" },
+                    { 25, "AWARDS", new DateTime(2026, 9, 25, 18, 57, 6, 558, DateTimeKind.Local).AddTicks(9873), null, false, null, "Awards" }
                 });
 
             migrationBuilder.InsertData(
@@ -547,8 +578,8 @@ namespace Core.Migrations
                 columns: new[] { "Id", "Code", "CreatedDateTime", "DeletedDateTime", "IsDeleted", "ModifiedDateTime", "Name" },
                 values: new object[,]
                 {
-                    { 1, "EMAIL", new DateTime(2026, 9, 23, 0, 31, 47, 120, DateTimeKind.Local).AddTicks(5561), null, false, null, "Email" },
-                    { 2, "PHONE_NUMBER", new DateTime(2026, 9, 23, 0, 31, 47, 120, DateTimeKind.Local).AddTicks(5572), null, false, null, "Phonenumber" }
+                    { 1, "EMAIL", new DateTime(2026, 9, 25, 18, 57, 6, 559, DateTimeKind.Local).AddTicks(932), null, false, null, "Email" },
+                    { 2, "PHONE_NUMBER", new DateTime(2026, 9, 25, 18, 57, 6, 559, DateTimeKind.Local).AddTicks(941), null, false, null, "Phonenumber" }
                 });
 
             migrationBuilder.InsertData(
@@ -763,9 +794,9 @@ namespace Core.Migrations
                 columns: new[] { "Id", "Code", "CreatedDateTime", "DeletedDateTime", "IsDeleted", "ModifiedDateTime", "Name" },
                 values: new object[,]
                 {
-                    { 1, "M", new DateTime(2026, 9, 23, 0, 31, 47, 120, DateTimeKind.Local).AddTicks(5486), null, false, null, "Male" },
-                    { 2, "F", new DateTime(2026, 9, 23, 0, 31, 47, 120, DateTimeKind.Local).AddTicks(5497), null, false, null, "Female" },
-                    { 3, "PNTS", new DateTime(2026, 9, 23, 0, 31, 47, 120, DateTimeKind.Local).AddTicks(5502), null, false, null, "Prefer not to say" }
+                    { 1, "M", new DateTime(2026, 9, 25, 18, 57, 6, 559, DateTimeKind.Local).AddTicks(861), null, false, null, "Male" },
+                    { 2, "F", new DateTime(2026, 9, 25, 18, 57, 6, 559, DateTimeKind.Local).AddTicks(871), null, false, null, "Female" },
+                    { 3, "PNTS", new DateTime(2026, 9, 25, 18, 57, 6, 559, DateTimeKind.Local).AddTicks(875), null, false, null, "Prefer not to say" }
                 });
 
             migrationBuilder.InsertData(
@@ -773,10 +804,10 @@ namespace Core.Migrations
                 columns: new[] { "Id", "Code", "CreatedDateTime", "DeletedDateTime", "IsDeleted", "ModifiedDateTime", "Name" },
                 values: new object[,]
                 {
-                    { 1, "INFO", new DateTime(2026, 9, 23, 0, 31, 47, 120, DateTimeKind.Local).AddTicks(5316), null, false, null, "Info" },
-                    { 2, "ORDER", new DateTime(2026, 9, 23, 0, 31, 47, 120, DateTimeKind.Local).AddTicks(5328), null, false, null, "Order" },
-                    { 3, "COMPLAIN", new DateTime(2026, 9, 23, 0, 31, 47, 120, DateTimeKind.Local).AddTicks(5334), null, false, null, "Complain" },
-                    { 4, "SUGGEST", new DateTime(2026, 9, 23, 0, 31, 47, 120, DateTimeKind.Local).AddTicks(5339), null, false, null, "Suggest" }
+                    { 1, "INFO", new DateTime(2026, 9, 25, 18, 57, 6, 559, DateTimeKind.Local).AddTicks(709), null, false, null, "Info" },
+                    { 2, "ORDER", new DateTime(2026, 9, 25, 18, 57, 6, 559, DateTimeKind.Local).AddTicks(718), null, false, null, "Order" },
+                    { 3, "COMPLAIN", new DateTime(2026, 9, 25, 18, 57, 6, 559, DateTimeKind.Local).AddTicks(723), null, false, null, "Complain" },
+                    { 4, "SUGGEST", new DateTime(2026, 9, 25, 18, 57, 6, 559, DateTimeKind.Local).AddTicks(727), null, false, null, "Suggest" }
                 });
 
             migrationBuilder.InsertData(
@@ -784,8 +815,8 @@ namespace Core.Migrations
                 columns: new[] { "Id", "Code", "CreatedDateTime", "DeletedDateTime", "IsDeleted", "ModifiedDateTime", "Name" },
                 values: new object[,]
                 {
-                    { 1, "ADMIN", new DateTime(2026, 9, 23, 0, 31, 47, 120, DateTimeKind.Local).AddTicks(5412), null, false, null, "Admin" },
-                    { 2, "USER", new DateTime(2026, 9, 23, 0, 31, 47, 120, DateTimeKind.Local).AddTicks(5423), null, false, null, "User" }
+                    { 1, "ADMIN", new DateTime(2026, 9, 25, 18, 57, 6, 559, DateTimeKind.Local).AddTicks(793), null, false, null, "Admin" },
+                    { 2, "USER", new DateTime(2026, 9, 25, 18, 57, 6, 559, DateTimeKind.Local).AddTicks(802), null, false, null, "User" }
                 });
 
             migrationBuilder.InsertData(
@@ -793,26 +824,26 @@ namespace Core.Migrations
                 columns: new[] { "Id", "Code", "Color", "CreatedDateTime", "DeletedDateTime", "DisplayOrder", "Icon", "IsDeleted", "ModifiedDateTime", "Name" },
                 values: new object[,]
                 {
-                    { 1, "FACEBOOK", "#1877F2", new DateTime(2026, 9, 23, 0, 31, 47, 120, DateTimeKind.Local).AddTicks(5132), null, 1, "fa-brands fa-facebook", false, null, "Facebook" },
-                    { 2, "INSTAGRAM", "#E4405F", new DateTime(2026, 9, 23, 0, 31, 47, 120, DateTimeKind.Local).AddTicks(5143), null, 2, "fa-brands fa-instagram", false, null, "Instagram" },
-                    { 3, "LINKEDIN", "#0A66C2", new DateTime(2026, 9, 23, 0, 31, 47, 120, DateTimeKind.Local).AddTicks(5148), null, 3, "fa-brands fa-linkedin", false, null, "LinkedIn" },
-                    { 4, "X-TWITTER", "#000000", new DateTime(2026, 9, 23, 0, 31, 47, 120, DateTimeKind.Local).AddTicks(5153), null, 4, "fa-brands fa-x-twitter", false, null, "X" },
-                    { 5, "YOUTUBE", "#FF0000", new DateTime(2026, 9, 23, 0, 31, 47, 120, DateTimeKind.Local).AddTicks(5158), null, 5, "fa-brands fa-youtube", false, null, "YouTube" },
-                    { 6, "TIKTOK", "#000000", new DateTime(2026, 9, 23, 0, 31, 47, 120, DateTimeKind.Local).AddTicks(5163), null, 6, "fa-brands fa-tiktok", false, null, "TikTok" },
-                    { 7, "WHATSAPP", "#25D366", new DateTime(2026, 9, 23, 0, 31, 47, 120, DateTimeKind.Local).AddTicks(5167), null, 7, "fa-brands fa-whatsapp", false, null, "WhatsApp" },
-                    { 8, "TELEGRAM", "#26A5E4", new DateTime(2026, 9, 23, 0, 31, 47, 120, DateTimeKind.Local).AddTicks(5171), null, 8, "fa-brands fa-telegram", false, null, "Telegram" },
-                    { 9, "DISCORD", "#5865F2", new DateTime(2026, 9, 23, 0, 31, 47, 120, DateTimeKind.Local).AddTicks(5176), null, 9, "fa-brands fa-discord", false, null, "Discord" },
-                    { 10, "GITHUB", "#181717", new DateTime(2026, 9, 23, 0, 31, 47, 120, DateTimeKind.Local).AddTicks(5182), null, 10, "fa-brands fa-github", false, null, "GitHub" },
-                    { 11, "GITLAB", "#FC6D26", new DateTime(2026, 9, 23, 0, 31, 47, 120, DateTimeKind.Local).AddTicks(5186), null, 11, "fa-brands fa-gitlab", false, null, "GitLab" },
-                    { 12, "PINTEREST", "#E60023", new DateTime(2026, 9, 23, 0, 31, 47, 120, DateTimeKind.Local).AddTicks(5190), null, 12, "fa-brands fa-pinterest", false, null, "Pinterest" },
-                    { 13, "SNAPCHAT", "#FFFC00", new DateTime(2026, 9, 23, 0, 31, 47, 120, DateTimeKind.Local).AddTicks(5195), null, 13, "fa-brands fa-snapchat", false, null, "Snapchat" },
-                    { 14, "DRIBBBLE", "#EA4C89", new DateTime(2026, 9, 23, 0, 31, 47, 120, DateTimeKind.Local).AddTicks(5199), null, 14, "fa-brands fa-dribbble", false, null, "Dribbble" },
-                    { 15, "BEHANCE", "#1769FF", new DateTime(2026, 9, 23, 0, 31, 47, 120, DateTimeKind.Local).AddTicks(5204), null, 15, "fa-brands fa-behance", false, null, "Behance" },
-                    { 16, "MEDIUM", "#000000", new DateTime(2026, 9, 23, 0, 31, 47, 120, DateTimeKind.Local).AddTicks(5208), null, 16, "fa-brands fa-medium", false, null, "Medium" },
-                    { 17, "REDDIT", "#FF4500", new DateTime(2026, 9, 23, 0, 31, 47, 120, DateTimeKind.Local).AddTicks(5213), null, 17, "fa-brands fa-reddit", false, null, "Reddit" },
-                    { 18, "TWITCH", "#9146FF", new DateTime(2026, 9, 23, 0, 31, 47, 120, DateTimeKind.Local).AddTicks(5217), null, 18, "fa-brands fa-twitch", false, null, "Twitch" },
-                    { 19, "SPOTIFY", "#1DB954", new DateTime(2026, 9, 23, 0, 31, 47, 120, DateTimeKind.Local).AddTicks(5222), null, 19, "fa-brands fa-spotify", false, null, "Spotify" },
-                    { 20, "THREADS", "#000000", new DateTime(2026, 9, 23, 0, 31, 47, 120, DateTimeKind.Local).AddTicks(5226), null, 20, "fa-brands fa-threads", false, null, "Threads" }
+                    { 1, "FACEBOOK", "#1877F2", new DateTime(2026, 9, 25, 18, 57, 6, 559, DateTimeKind.Local).AddTicks(540), null, 1, "fa-brands fa-facebook", false, null, "Facebook" },
+                    { 2, "INSTAGRAM", "#E4405F", new DateTime(2026, 9, 25, 18, 57, 6, 559, DateTimeKind.Local).AddTicks(550), null, 2, "fa-brands fa-instagram", false, null, "Instagram" },
+                    { 3, "LINKEDIN", "#0A66C2", new DateTime(2026, 9, 25, 18, 57, 6, 559, DateTimeKind.Local).AddTicks(555), null, 3, "fa-brands fa-linkedin", false, null, "LinkedIn" },
+                    { 4, "X-TWITTER", "#000000", new DateTime(2026, 9, 25, 18, 57, 6, 559, DateTimeKind.Local).AddTicks(559), null, 4, "fa-brands fa-x-twitter", false, null, "X" },
+                    { 5, "YOUTUBE", "#FF0000", new DateTime(2026, 9, 25, 18, 57, 6, 559, DateTimeKind.Local).AddTicks(563), null, 5, "fa-brands fa-youtube", false, null, "YouTube" },
+                    { 6, "TIKTOK", "#000000", new DateTime(2026, 9, 25, 18, 57, 6, 559, DateTimeKind.Local).AddTicks(569), null, 6, "fa-brands fa-tiktok", false, null, "TikTok" },
+                    { 7, "WHATSAPP", "#25D366", new DateTime(2026, 9, 25, 18, 57, 6, 559, DateTimeKind.Local).AddTicks(573), null, 7, "fa-brands fa-whatsapp", false, null, "WhatsApp" },
+                    { 8, "TELEGRAM", "#26A5E4", new DateTime(2026, 9, 25, 18, 57, 6, 559, DateTimeKind.Local).AddTicks(577), null, 8, "fa-brands fa-telegram", false, null, "Telegram" },
+                    { 9, "DISCORD", "#5865F2", new DateTime(2026, 9, 25, 18, 57, 6, 559, DateTimeKind.Local).AddTicks(581), null, 9, "fa-brands fa-discord", false, null, "Discord" },
+                    { 10, "GITHUB", "#181717", new DateTime(2026, 9, 25, 18, 57, 6, 559, DateTimeKind.Local).AddTicks(585), null, 10, "fa-brands fa-github", false, null, "GitHub" },
+                    { 11, "GITLAB", "#FC6D26", new DateTime(2026, 9, 25, 18, 57, 6, 559, DateTimeKind.Local).AddTicks(589), null, 11, "fa-brands fa-gitlab", false, null, "GitLab" },
+                    { 12, "PINTEREST", "#E60023", new DateTime(2026, 9, 25, 18, 57, 6, 559, DateTimeKind.Local).AddTicks(593), null, 12, "fa-brands fa-pinterest", false, null, "Pinterest" },
+                    { 13, "SNAPCHAT", "#FFFC00", new DateTime(2026, 9, 25, 18, 57, 6, 559, DateTimeKind.Local).AddTicks(597), null, 13, "fa-brands fa-snapchat", false, null, "Snapchat" },
+                    { 14, "DRIBBBLE", "#EA4C89", new DateTime(2026, 9, 25, 18, 57, 6, 559, DateTimeKind.Local).AddTicks(601), null, 14, "fa-brands fa-dribbble", false, null, "Dribbble" },
+                    { 15, "BEHANCE", "#1769FF", new DateTime(2026, 9, 25, 18, 57, 6, 559, DateTimeKind.Local).AddTicks(605), null, 15, "fa-brands fa-behance", false, null, "Behance" },
+                    { 16, "MEDIUM", "#000000", new DateTime(2026, 9, 25, 18, 57, 6, 559, DateTimeKind.Local).AddTicks(609), null, 16, "fa-brands fa-medium", false, null, "Medium" },
+                    { 17, "REDDIT", "#FF4500", new DateTime(2026, 9, 25, 18, 57, 6, 559, DateTimeKind.Local).AddTicks(614), null, 17, "fa-brands fa-reddit", false, null, "Reddit" },
+                    { 18, "TWITCH", "#9146FF", new DateTime(2026, 9, 25, 18, 57, 6, 559, DateTimeKind.Local).AddTicks(617), null, 18, "fa-brands fa-twitch", false, null, "Twitch" },
+                    { 19, "SPOTIFY", "#1DB954", new DateTime(2026, 9, 25, 18, 57, 6, 559, DateTimeKind.Local).AddTicks(621), null, 19, "fa-brands fa-spotify", false, null, "Spotify" },
+                    { 20, "THREADS", "#000000", new DateTime(2026, 9, 25, 18, 57, 6, 559, DateTimeKind.Local).AddTicks(625), null, 20, "fa-brands fa-threads", false, null, "Threads" }
                 });
 
             migrationBuilder.InsertData(
@@ -3854,6 +3885,16 @@ namespace Core.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_UserResidences_AddressId",
+                table: "UserResidences",
+                column: "AddressId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_UserResidences_UserId",
+                table: "UserResidences",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_UserRoles_RoleId",
                 table: "UserRoles",
                 column: "RoleId");
@@ -3893,9 +3934,6 @@ namespace Core.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Addresses");
-
-            migrationBuilder.DropTable(
                 name: "BusinessTypes");
 
             migrationBuilder.DropTable(
@@ -3911,6 +3949,9 @@ namespace Core.Migrations
                 name: "UserContacts");
 
             migrationBuilder.DropTable(
+                name: "UserResidences");
+
+            migrationBuilder.DropTable(
                 name: "UserRoles");
 
             migrationBuilder.DropTable(
@@ -3920,13 +3961,13 @@ namespace Core.Migrations
                 name: "UserSocialMedia");
 
             migrationBuilder.DropTable(
-                name: "Cities");
-
-            migrationBuilder.DropTable(
                 name: "MessageUsReasons");
 
             migrationBuilder.DropTable(
                 name: "ContactTypes");
+
+            migrationBuilder.DropTable(
+                name: "Addresses");
 
             migrationBuilder.DropTable(
                 name: "Roles");
@@ -3941,10 +3982,13 @@ namespace Core.Migrations
                 name: "Users");
 
             migrationBuilder.DropTable(
-                name: "Regions");
+                name: "Cities");
 
             migrationBuilder.DropTable(
                 name: "Genders");
+
+            migrationBuilder.DropTable(
+                name: "Regions");
 
             migrationBuilder.DropTable(
                 name: "Countries");

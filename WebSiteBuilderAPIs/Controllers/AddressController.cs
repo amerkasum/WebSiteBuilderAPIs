@@ -3,6 +3,7 @@ using Core.UnitOfWork;
 using Domain.DTO;
 using Domain.Entities.Location;
 using Domain.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Scaffolding.Metadata;
@@ -12,6 +13,7 @@ namespace WebSiteBuilderAPIs.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class AddressController : ControllerBase
     {
         private readonly IUnitOfWork UnitOfWork;

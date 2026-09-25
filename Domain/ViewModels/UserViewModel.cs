@@ -27,7 +27,6 @@ namespace Domain.ViewModels
         [Required(ErrorMessage = ValidationMessage.Required)]
         public int RoleId { get; set; }
         public LocationViewModel UserLocation { get; set; }
-        public UserResidenceViewModel UserResidence { get; set; }
         public string? ImageUrl { get; set; }
         public List<UserContactViewModel> UserContacts { get; set; }
     }

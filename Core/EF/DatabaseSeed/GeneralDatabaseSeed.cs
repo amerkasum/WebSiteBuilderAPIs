@@ -140,6 +140,13 @@ namespace Core.EF.Seed
                 new ContactType { Id = 1, Name = "Email", Code = "EMAIL", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
                 new ContactType { Id = 2, Name = "Phonenumber", Code = "PHONE_NUMBER", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false }
             );
+
+            modelBuilder.Entity<Currency>().HasData(
+                new Currency { Id = 1, Name = "Euro", Code = "EUR", Symbol = "€", DecimalPlaces = 2, CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new Currency { Id = 2, Name = "Dollar", Code = "USD", Symbol = "$", DecimalPlaces = 2, CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new Currency { Id = 3, Name = "Konvertibilna marka", Code = "BAM", Symbol = "KM", DecimalPlaces = 2, CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new Currency { Id = 4, Name = "Srpski dinar", Code = "RSD", Symbol = "din.", DecimalPlaces = 2, CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false }
+            );
         }
     }
 }

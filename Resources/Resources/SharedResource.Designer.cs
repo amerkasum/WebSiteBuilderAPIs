@@ -151,6 +151,15 @@ namespace Resources.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Currency.
+        /// </summary>
+        internal static string Currency {
+            get {
+                return ResourceManager.GetString("Currency", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0} is deleted successfully..
         /// </summary>
         internal static string Deleted {
@@ -363,6 +372,15 @@ namespace Resources.Resources {
         internal static string SomethingWentWrong {
             get {
                 return ResourceManager.GetString("SomethingWentWrong", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 401 Unauthorized.
+        /// </summary>
+        internal static string Unauthorized {
+            get {
+                return ResourceManager.GetString("Unauthorized", resourceCulture);
             }
         }
         

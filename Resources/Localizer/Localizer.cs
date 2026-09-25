@@ -53,6 +53,8 @@ namespace Resources.Localizer
         public string ComponentType => _localizer["ComponentType"];
         public string Message => _localizer["Message"];
         public string UserContact => _localizer["UserContact"];
+        public string Currency => _localizer["Currency"];
+        public string Unauthorized => _localizer["Unauthorized"];
         #endregion
     }
 }

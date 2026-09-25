@@ -77,6 +77,7 @@ namespace Core.EF
         public DbSet<Address> Addresses { get; set; }
         public DbSet<Gender> Genders { get; set; }
         public DbSet<UserResidence> UserResidences { get; set; }
+        public DbSet<Currency> Currencies { get; set; }
         #endregion
 
     }

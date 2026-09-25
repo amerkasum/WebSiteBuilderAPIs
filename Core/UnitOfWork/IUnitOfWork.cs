@@ -30,6 +30,7 @@ namespace Core.UnitOfWork
         IFeedbackRepository Feedback { get; }
         IComponentTypeRepository ComponentType { get; }
         IUserResidenceRepository UserResidence { get; }
+        ICurrencyRepository Currency { get; }
         #endregion
 
         int SaveChanges();
