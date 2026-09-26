@@ -376,6 +376,15 @@ namespace Resources.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Successful login..
+        /// </summary>
+        internal static string SuccessfulLogIn {
+            get {
+                return ResourceManager.GetString("SuccessfulLogIn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 401 Unauthorized.
         /// </summary>
         internal static string Unauthorized {

@@ -20,6 +20,7 @@ namespace Domain.Entities.Personal
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Password { get; set; }
+        public string PasswordSalt { get; set; }
         [ForeignKey(nameof(GenderId))]
         public Gender Gender { get; set; }
         public int GenderId { get; set; }

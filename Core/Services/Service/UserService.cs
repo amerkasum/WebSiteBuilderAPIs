@@ -1,15 +1,21 @@
 ﻿using Core.Services.IService;
 using Core.UnitOfWork;
 using Domain.DTO;
+using Domain.Entities.Jwt;
 using Domain.Entities.Location;
 using Domain.Entities.Personal;
+using Domain.Entities.System;
 using Domain.ViewModels;
 using Helpers.Helpers;
+using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using Resources.Localizer;
 using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -23,8 +29,10 @@ namespace Core.Services.Service
         private readonly IUserContactService UserContactService;
         private readonly IUserResidenceService UserResidenceService;
         private readonly IUserRoleService UserRoleService;
+        public readonly IConfiguration Configuration;
         public UserService(IUnitOfWork unitOfWork, Localizer localizer, IAddressService addressService,
-            IUserContactService usercontactService, IUserResidenceService userResidenceService, IUserRoleService userRoleService)
+            IUserContactService usercontactService, IUserResidenceService userResidenceService, IUserRoleService userRoleService,
+            IConfiguration configuration)
         {
             this.UnitOfWork = unitOfWork;
             this.Localizer = localizer;
@@ -32,6 +40,7 @@ namespace Core.Services.Service
             this.UserContactService = usercontactService;
             this.UserResidenceService = userResidenceService;
             this.UserRoleService = userRoleService;
+            this.Configuration = configuration;
         }
         public IEnumerable<UserDto> GetUsersWithParameters(string fullName)
         {
@@ -55,13 +64,16 @@ namespace Core.Services.Service
             try
             {
                 UnitOfWork.BeginTransaction();
+
+                var passwordSalt = PasswordHelper.GenerateRandomSalt();
                 var user = new User
                 {
                     FirstName = model.FirstName,
                     LastName = model.LastName,
                     Username = model.FirstName.ToLower() + "." + model.LastName.ToLower(),
                     Email = model.Email,
-                    Password = PasswordHelper.GenerateHash(model.Password, PasswordHelper.GenerateRandomSalt()),
+                    PasswordSalt = passwordSalt,
+                    Password = PasswordHelper.GenerateHash(model.Password, passwordSalt),
                     GenderId = model.GenderId,
                     BirthDate = model.BirthDate,
                     ImageUrl = model.ImageUrl
@@ -134,6 +146,71 @@ namespace Core.Services.Service
                 UnitOfWork.RollBack();
                 throw;
             }
+        }
+
+        private (string Token, DateTime ExpiresAt) GenerateToken(User user, Role role)
+        {
+            var jwtSettings = Configuration
+                .GetSection("Jwt")
+                .Get<JwtSettings>();
+
+            var expiresAt = DateTime.UtcNow.AddMinutes(jwtSettings.ExpiresInMinutes);
+
+            var claims = new List<Claim>
+            {
+                new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
+                new Claim(ClaimTypes.Email, user.Email),
+                new Claim(ClaimTypes.Role, role.Name)
+            };
+
+            var key = new SymmetricSecurityKey(
+                Encoding.UTF8.GetBytes(jwtSettings.Key));
+
+            var credentials = new SigningCredentials(
+                key,
+                SecurityAlgorithms.HmacSha256);
+
+            var token = new JwtSecurityToken(
+                issuer: jwtSettings.Issuer,
+                audience: jwtSettings.Audience,
+                claims: claims,
+                expires: DateTime.UtcNow.AddMinutes(
+                    jwtSettings.ExpiresInMinutes),
+                signingCredentials: credentials
+            );
+
+            var tokenString = new JwtSecurityTokenHandler().WriteToken(token);
+            return (tokenString, expiresAt);
+        }
+
+        public LogInResponseDto LogIn(LogInViewModel model)
+        {
+            var user = UnitOfWork.User.GetByEmail(model.Email);
+
+            if (user == null)
+                throw new KeyNotFoundException();
+
+            var role = UnitOfWork.Role.GetByUserId(user.Id);
+
+            var generatePassword = PasswordHelper.GenerateHash(model.Password, user.PasswordSalt);
+
+            if (user.Password != generatePassword)
+                throw new UnauthorizedAccessException();
+
+
+            var tokenResult = GenerateToken(user, role);
+
+            return new LogInResponseDto
+            {
+                UserId = user.Id,
+                FullName = $"{user.FirstName} {user.LastName}",
+                Email = user.Email,
+                Username = user.Username,
+                Role = role.Name,
+                RoleId = role.Id,
+                Token = tokenResult.Token,
+                ExpiresAt = tokenResult.ExpiresAt
+            };
         }
     }
 }

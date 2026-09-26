@@ -48,5 +48,10 @@ namespace Core.Repositories.Repository
             return _context.UserContacts.Where(x => x.ContactTypeId == (int)Enumerations.ContactTypes.EMAIL).Any(x => x.Value == email);
         }
 
+        public User GetByEmail(string email) 
+        {
+            return _context.Users.FirstOrDefault(x => x.Email == email && !x.IsDeleted);
+        }
+
     }
 }

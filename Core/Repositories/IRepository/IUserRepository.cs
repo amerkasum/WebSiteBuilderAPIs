@@ -12,5 +12,6 @@ namespace Core.Repositories.IRepository
     {
         List<UserDto> GetUsersWithParameters(string fullName);
         bool DoesEmailAlreadyExist(string email);
+        User GetByEmail(string email);
     }
 }

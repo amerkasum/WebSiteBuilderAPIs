@@ -222,6 +222,9 @@
   <data name="SomethingWentWrong" xml:space="preserve">
     <value>Something went wrong: {0}</value>
   </data>
+  <data name="SuccessfulLogIn" xml:space="preserve">
+    <value>Successful login.</value>
+  </data>
   <data name="Unauthorized" xml:space="preserve">
     <value>401 Unauthorized</value>
   </data>

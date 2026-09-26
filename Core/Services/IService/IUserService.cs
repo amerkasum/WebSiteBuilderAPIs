@@ -1,4 +1,5 @@
 ﻿using Domain.DTO;
+using Domain.Entities.Jwt;
 using Domain.Entities.Personal;
 using Domain.ViewModels;
 using System;
@@ -13,5 +14,6 @@ namespace Core.Services.IService
     {
         IEnumerable<UserDto> GetUsersWithParameters(string fullName);
         User Add(UserViewModel model);
+        LogInResponseDto LogIn(LogInViewModel model);
     }
 }

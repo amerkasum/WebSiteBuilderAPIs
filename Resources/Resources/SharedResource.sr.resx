@@ -222,6 +222,9 @@
   <data name="SomethingWentWrong" xml:space="preserve">
     <value>Nešto je krenulo po zlu: {0}</value>
   </data>
+  <data name="SuccessfulLogIn" xml:space="preserve">
+    <value>Uspešna prijava.</value>
+  </data>
   <data name="Unauthorized" xml:space="preserve">
     <value>401 Unauthorized</value>
   </data>

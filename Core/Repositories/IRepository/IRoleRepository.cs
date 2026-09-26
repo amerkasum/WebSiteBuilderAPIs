@@ -9,5 +9,6 @@ namespace Core.Repositories.IRepository
 {
     public interface IRoleRepository : IRepository<Role>
     {
+        Role GetByUserId(int userId);
     }
 }

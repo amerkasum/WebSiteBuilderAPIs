@@ -55,6 +55,7 @@ namespace Resources.Localizer
         public string UserContact => _localizer["UserContact"];
         public string Currency => _localizer["Currency"];
         public string Unauthorized => _localizer["Unauthorized"];
+        public string SuccessfulLogIn => _localizer["SuccessfulLogIn"];
         #endregion
     }
 }

@@ -6,11 +6,14 @@ using Domain.Entities.Location;
 using Domain.Entities.Personal;
 using Domain.ViewModels;
 using Helpers.Helpers;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Resources.Localizer;
 
 namespace WebSiteBuilderAPIs.Controllers
 {
+    [Route("api/[controller]")]
+    [Authorize]
     public class UserController : Controller
     {
         private readonly IUnitOfWork UnitOfWork;
@@ -46,6 +49,33 @@ namespace WebSiteBuilderAPIs.Controllers
                 return Ok(new { success = true, message = string.Format(Localizer.Added, Localizer.User)});   
             }
             catch(Exception e)
+            {
+                return StatusCode(500, new { success = false, message = string.Format(Localizer.SomethingWentWrong, e.Message) });
+            }
+        }
+
+        [AllowAnonymous]
+        [HttpPost(nameof(LogIn))]
+        public IActionResult LogIn(LogInViewModel model)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(new { success= false, message = ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage).ToList() });
+
+            try
+            {
+                var response = UserService.LogIn(model);
+
+                return Ok(new { success = true, message = Localizer.SuccessfulLogIn, data = response });
+            }
+            catch (UnauthorizedAccessException)
+            {
+                return BadRequest(new { success = false, message = Localizer.Unauthorized });
+            }
+            catch (KeyNotFoundException)
+            {
+                return BadRequest(new { success = false, message = string.Format(Localizer.NotFound, Localizer.User) });
+            }
+            catch (Exception e)
             {
                 return StatusCode(500, new { success = false, message = string.Format(Localizer.SomethingWentWrong, e.Message) });
             }
