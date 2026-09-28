@@ -3,6 +3,7 @@ using Core.UnitOfWork;
 using Domain.DTO;
 using Domain.Entities.System;
 using Domain.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Razor.TagHelpers;
@@ -15,6 +16,7 @@ namespace WebSiteBuilderAPIs.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class FeedbackController : ControllerBase
     {
         private readonly IUnitOfWork UnitOfWork;

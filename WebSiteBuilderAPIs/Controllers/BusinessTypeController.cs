@@ -1,7 +1,10 @@
 ﻿using Core.Services.IService;
 using Core.UnitOfWork;
+using Domain.DTO;
 using Domain.Entities.WebSiteBuilder;
+using Domain.Requests;
 using Domain.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Resources.Localizer;
@@ -10,6 +13,7 @@ namespace WebSiteBuilderAPIs.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class BusinessTypeController : ControllerBase
     {
         private readonly IUnitOfWork UnitOfWork;
@@ -22,10 +26,10 @@ namespace WebSiteBuilderAPIs.Controllers
             this.BusinessTypeService = businessTypeService;
         }
 
-        [HttpGet(nameof(GetAll))]
-        public IEnumerable<BusinessType> GetAll()
+        [HttpGet(nameof(Get))]
+        public IEnumerable<BasicSearchResponse> Get([FromQuery] BasicSearchRequest model)
         {
-            return UnitOfWork.BusinessType.GetAll();
+            return BusinessTypeService.Get(model);
         }
 
         [HttpPost(nameof(Add))]

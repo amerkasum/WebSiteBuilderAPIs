@@ -15,6 +15,7 @@ namespace Domain.Entities.System
         public string Icon { get; set; }
         public string Color { get; set; }
         public int DisplayOrder { get; set; }
+        public string Description { get; set; }
         public DateTime CreatedDateTime { get; set; }
         public DateTime? ModifiedDateTime { get; set; }
         public DateTime? DeletedDateTime { get; set; }

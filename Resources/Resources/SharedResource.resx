@@ -138,6 +138,9 @@
   <data name="City" xml:space="preserve">
     <value>City</value>
   </data>
+  <data name="Claim" xml:space="preserve">
+    <value>Claim</value>
+  </data>
   <data name="ComponentType" xml:space="preserve">
     <value>Component type</value>
   </data>
@@ -215,6 +218,9 @@
   </data>
   <data name="Role" xml:space="preserve">
     <value>Role</value>
+  </data>
+  <data name="RoleClaim" xml:space="preserve">
+    <value>Role claim</value>
   </data>
   <data name="SocialMedia" xml:space="preserve">
     <value>Social media</value>

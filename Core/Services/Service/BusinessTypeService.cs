@@ -1,6 +1,8 @@
 ﻿using Core.Services.IService;
 using Core.UnitOfWork;
+using Domain.DTO;
 using Domain.Entities.WebSiteBuilder;
+using Domain.Requests;
 using Domain.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -16,6 +18,13 @@ namespace Core.Services.Service
         public BusinessTypeService(IUnitOfWork unitOfWork)
         {
             this.UnitOfWork = unitOfWork;
+        }
+
+        public IEnumerable<BasicSearchResponse> Get(BasicSearchRequest model)
+        {
+            model.Search = model?.Search?.Trim();
+            var result = UnitOfWork.BusinessType.Get(model);
+            return result;
         }
 
         public BusinessType Add(BusinessTypeViewModel model)
@@ -59,7 +68,5 @@ namespace Core.Services.Service
             UnitOfWork.BusinessType.Remove(businessType);
             UnitOfWork.SaveChanges();
         }
-
-        
     }
 }

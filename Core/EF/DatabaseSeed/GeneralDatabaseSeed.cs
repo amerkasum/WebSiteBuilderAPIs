@@ -1,4 +1,5 @@
 ﻿using Domain.Entities.Location;
+using Domain.Entities.Personal;
 using Domain.Entities.System;
 using Domain.Entities.WebSiteBuilder;
 using Microsoft.EntityFrameworkCore;
@@ -12,140 +13,193 @@ namespace Core.EF.Seed
 {
     public static class GeneralDatabaseSeed
     {
-        public static void Seed(ModelBuilder modelBuilder) {
+        public static void Seed(ModelBuilder modelBuilder)
+        {
 
             modelBuilder.Entity<ComponentType>().HasData(
-                new ComponentType { Id = 1, Name = "Navbar", Code = "NAVBAR", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
-                new ComponentType { Id = 2, Name = "Hero", Code = "HERO", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
-                new ComponentType { Id = 3, Name = "About", Code = "ABOUT", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
-                new ComponentType { Id = 4, Name = "Services", Code = "SERVICES", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
-                new ComponentType { Id = 5, Name = "Features", Code = "FEATURES", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
-                new ComponentType { Id = 6, Name = "Portfolio", Code = "PORTFOLIO", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
-                new ComponentType { Id = 7, Name = "Gallery", Code = "GALLERY", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
-                new ComponentType { Id = 8, Name = "Testimonials", Code = "TESTIMONIALS", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
-                new ComponentType { Id = 9, Name = "Pricing", Code = "PRICING", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
-                new ComponentType { Id = 10, Name = "FAQ", Code = "FAQ", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
-                new ComponentType { Id = 11, Name = "Contact", Code = "CONTACT", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
-                new ComponentType { Id = 12, Name = "Footer", Code = "FOOTER", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
-                new ComponentType { Id = 13, Name = "Team", Code = "TEAM", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
-                new ComponentType { Id = 14, Name = "Clients", Code = "CLIENTS", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
-                new ComponentType { Id = 15, Name = "Statistics", Code = "STATISTICS", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
-                new ComponentType { Id = 16, Name = "Skills", Code = "SKILLS", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
-                new ComponentType { Id = 17, Name = "Experience", Code = "EXPERIENCE", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
-                new ComponentType { Id = 18, Name = "Education", Code = "EDUCATION", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
-                new ComponentType { Id = 19, Name = "Blog", Code = "BLOG", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
-                new ComponentType { Id = 20, Name = "Newsletter", Code = "NEWSLETTER", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
-                new ComponentType { Id = 21, Name = "Call To Action", Code = "CTA", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
-                new ComponentType { Id = 22, Name = "Video", Code = "VIDEO", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
-                new ComponentType { Id = 23, Name = "Process", Code = "PROCESS", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
-                new ComponentType { Id = 24, Name = "Technologies", Code = "TECHNOLOGIES", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
-                new ComponentType { Id = 25, Name = "Awards", Code = "AWARDS", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false }
+               new ComponentType { Id = 1, Name = "Navbar", Code = "NAVBAR", Description = "Website navigation bar used to provide links to the main pages and sections.", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+               new ComponentType { Id = 2, Name = "Hero", Code = "HERO", Description = "Prominent introductory section that presents the main message, title, and call to action.", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+               new ComponentType { Id = 3, Name = "About", Code = "ABOUT", Description = "Section used to introduce a business, organization, person, or project.", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+               new ComponentType { Id = 4, Name = "Services", Code = "SERVICES", Description = "Section that presents the services or solutions offered by a business or organization.", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+               new ComponentType { Id = 5, Name = "Features", Code = "FEATURES", Description = "Section that highlights the key features, benefits, or capabilities of a product or service.", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+               new ComponentType { Id = 6, Name = "Portfolio", Code = "PORTFOLIO", Description = "Section used to showcase completed projects, work samples, or professional achievements.", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+               new ComponentType { Id = 7, Name = "Gallery", Code = "GALLERY", Description = "Visual section used to display a collection of images or other media.", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+               new ComponentType { Id = 8, Name = "Testimonials", Code = "TESTIMONIALS", Description = "Section that displays customer or client reviews, opinions, and experiences.", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+               new ComponentType { Id = 9, Name = "Pricing", Code = "PRICING", Description = "Section used to present products, services, packages, or subscription plans together with their prices.", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+               new ComponentType { Id = 10, Name = "FAQ", Code = "FAQ", Description = "Section containing frequently asked questions and their answers.", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+               new ComponentType { Id = 11, Name = "Contact", Code = "CONTACT", Description = "Section that provides contact information and allows visitors to get in touch.", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+               new ComponentType { Id = 12, Name = "Footer", Code = "FOOTER", Description = "Bottom section of a website containing additional navigation, contact information, legal links, and other details.", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+               new ComponentType { Id = 13, Name = "Team", Code = "TEAM", Description = "Section used to introduce team members, employees, or staff.", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+               new ComponentType { Id = 14, Name = "Clients", Code = "CLIENTS", Description = "Section used to showcase clients, customers, partners, or companies that work with the business.", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+               new ComponentType { Id = 15, Name = "Statistics", Code = "STATISTICS", Description = "Section used to present important business statistics, numbers, metrics, or achievements.", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+               new ComponentType { Id = 16, Name = "Skills", Code = "SKILLS", Description = "Section used to present professional skills, competencies, technologies, or areas of expertise.", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+               new ComponentType { Id = 17, Name = "Experience", Code = "EXPERIENCE", Description = "Section used to display professional experience, employment history, or previous positions.", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+               new ComponentType { Id = 18, Name = "Education", Code = "EDUCATION", Description = "Section used to present educational background, degrees, certifications, or academic achievements.", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+               new ComponentType { Id = 19, Name = "Blog", Code = "BLOG", Description = "Section used to display articles, news, posts, and other written content.", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+               new ComponentType { Id = 20, Name = "Newsletter", Code = "NEWSLETTER", Description = "Section that allows visitors to subscribe to a newsletter or receive updates.", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+               new ComponentType { Id = 21, Name = "Call To Action", Code = "CTA", Description = "Section designed to encourage visitors to perform a specific action, such as contacting the business, purchasing a product, or signing up.", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+               new ComponentType { Id = 22, Name = "Video", Code = "VIDEO", Description = "Section used to display promotional, informational, or presentation videos.", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+               new ComponentType { Id = 23, Name = "Process", Code = "PROCESS", Description = "Section that explains the steps, stages, or workflow involved in delivering a product or service.", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+               new ComponentType { Id = 24, Name = "Technologies", Code = "TECHNOLOGIES", Description = "Section used to showcase technologies, tools, frameworks, or platforms used by a business or professional.", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+               new ComponentType { Id = 25, Name = "Awards", Code = "AWARDS", Description = "Section used to showcase awards, recognitions, certificates, or professional achievements.", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false }
             );
 
             modelBuilder.Entity<BusinessType>().HasData(
-                new BusinessType { Id = 1, Name = "Restaurant", Code = "RESTAURANT", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
-                new BusinessType { Id = 2, Name = "Cafe", Code = "CAFE", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
-                new BusinessType { Id = 3, Name = "Bakery", Code = "BAKERY", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
-                new BusinessType { Id = 4, Name = "Fast Food", Code = "FAST_FOOD", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
-                new BusinessType { Id = 5, Name = "Hotel", Code = "HOTEL", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
-                new BusinessType { Id = 6, Name = "Apartment Rental", Code = "APARTMENT_RENTAL", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
-                new BusinessType { Id = 7, Name = "Travel Agency", Code = "TRAVEL_AGENCY", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
-                new BusinessType { Id = 8, Name = "Tour Guide", Code = "TOUR_GUIDE", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
-                new BusinessType { Id = 9, Name = "Car Rental", Code = "CAR_RENTAL", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
-                new BusinessType { Id = 10, Name = "Auto Repair", Code = "AUTO_REPAIR", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
-                new BusinessType { Id = 11, Name = "Car Dealership", Code = "CAR_DEALERSHIP", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
-                new BusinessType { Id = 12, Name = "Taxi Service", Code = "TAXI_SERVICE", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
-                new BusinessType { Id = 13, Name = "Moving Company", Code = "MOVING_COMPANY", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
-                new BusinessType { Id = 14, Name = "Construction Company", Code = "CONSTRUCTION_COMPANY", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
-                new BusinessType { Id = 15, Name = "Architecture Studio", Code = "ARCHITECTURE_STUDIO", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
-                new BusinessType { Id = 16, Name = "Interior Design", Code = "INTERIOR_DESIGN", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
-                new BusinessType { Id = 17, Name = "Real Estate Agency", Code = "REAL_ESTATE_AGENCY", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
-                new BusinessType { Id = 18, Name = "Law Firm", Code = "LAW_FIRM", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
-                new BusinessType { Id = 19, Name = "Accounting Firm", Code = "ACCOUNTING_FIRM", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
-                new BusinessType { Id = 20, Name = "Insurance Agency", Code = "INSURANCE_AGENCY", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
-                new BusinessType { Id = 21, Name = "Bank", Code = "BANK", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
-                new BusinessType { Id = 22, Name = "Financial Advisor", Code = "FINANCIAL_ADVISOR", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
-                new BusinessType { Id = 23, Name = "Medical Clinic", Code = "MEDICAL_CLINIC", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
-                new BusinessType { Id = 24, Name = "Dental Clinic", Code = "DENTAL_CLINIC", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
-                new BusinessType { Id = 25, Name = "Pharmacy", Code = "PHARMACY", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
-                new BusinessType { Id = 26, Name = "Veterinary Clinic", Code = "VETERINARY_CLINIC", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
-                new BusinessType { Id = 27, Name = "Fitness Gym", Code = "FITNESS_GYM", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
-                new BusinessType { Id = 28, Name = "Personal Trainer", Code = "PERSONAL_TRAINER", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
-                new BusinessType { Id = 29, Name = "Yoga Studio", Code = "YOGA_STUDIO", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
-                new BusinessType { Id = 30, Name = "Beauty Salon", Code = "BEAUTY_SALON", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
-                new BusinessType { Id = 31, Name = "Barber Shop", Code = "BARBER_SHOP", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
-                new BusinessType { Id = 32, Name = "Spa", Code = "SPA", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
-                new BusinessType { Id = 33, Name = "Tattoo Studio", Code = "TATTOO_STUDIO", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
-                new BusinessType { Id = 34, Name = "Photographer", Code = "PHOTOGRAPHER", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
-                new BusinessType { Id = 35, Name = "Videographer", Code = "VIDEOGRAPHER", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
-                new BusinessType { Id = 36, Name = "Graphic Designer", Code = "GRAPHIC_DESIGNER", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
-                new BusinessType { Id = 37, Name = "Web Design Agency", Code = "WEB_DESIGN_AGENCY", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
-                new BusinessType { Id = 38, Name = "Software Company", Code = "SOFTWARE_COMPANY", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
-                new BusinessType { Id = 39, Name = "IT Services", Code = "IT_SERVICES", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
-                new BusinessType { Id = 40, Name = "Cybersecurity Company", Code = "CYBERSECURITY_COMPANY", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
-                new BusinessType { Id = 41, Name = "Marketing Agency", Code = "MARKETING_AGENCY", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
-                new BusinessType { Id = 42, Name = "SEO Agency", Code = "SEO_AGENCY", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
-                new BusinessType { Id = 43, Name = "Digital Agency", Code = "DIGITAL_AGENCY", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
-                new BusinessType { Id = 44, Name = "Freelancer", Code = "FREELANCER", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
-                new BusinessType { Id = 45, Name = "Portfolio", Code = "PORTFOLIO", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
-                new BusinessType { Id = 46, Name = "Personal Website", Code = "PERSONAL_WEBSITE", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
-                new BusinessType { Id = 47, Name = "Blogger", Code = "BLOGGER", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
-                new BusinessType { Id = 48, Name = "Influencer", Code = "INFLUENCER", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
-                new BusinessType { Id = 49, Name = "Musician", Code = "MUSICIAN", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
-                new BusinessType { Id = 50, Name = "DJ", Code = "DJ", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false }
+                new BusinessType { Id = 1, Name = "Restaurant", Code = "RESTAURANT", Description = "Business that prepares and serves meals and beverages to customers.", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new BusinessType { Id = 2, Name = "Cafe", Code = "CAFE", Description = "Business that serves coffee, beverages, snacks, and light meals.", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new BusinessType { Id = 3, Name = "Bakery", Code = "BAKERY", Description = "Business that produces and sells bread, pastries, cakes, and other baked goods.", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new BusinessType { Id = 4, Name = "Fast Food", Code = "FAST_FOOD", Description = "Business that provides quickly prepared meals and takeaway food.", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new BusinessType { Id = 5, Name = "Hotel", Code = "HOTEL", Description = "Business that provides accommodation and hospitality services to guests.", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new BusinessType { Id = 6, Name = "Apartment Rental", Code = "APARTMENT_RENTAL", Description = "Business that provides apartments or residential properties for short-term or long-term rental.", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new BusinessType { Id = 7, Name = "Travel Agency", Code = "TRAVEL_AGENCY", Description = "Business that organizes and sells travel arrangements, tours, transportation, and accommodation.", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new BusinessType { Id = 8, Name = "Tour Guide", Code = "TOUR_GUIDE", Description = "Professional service that provides guided tours and information about destinations and attractions.", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new BusinessType { Id = 9, Name = "Car Rental", Code = "CAR_RENTAL", Description = "Business that provides vehicles for temporary rental to individuals or organizations.", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new BusinessType { Id = 10, Name = "Auto Repair", Code = "AUTO_REPAIR", Description = "Business that provides maintenance, diagnostics, and repair services for vehicles.", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new BusinessType { Id = 11, Name = "Car Dealership", Code = "CAR_DEALERSHIP", Description = "Business that sells new or used vehicles and may provide related automotive services.", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new BusinessType { Id = 12, Name = "Taxi Service", Code = "TAXI_SERVICE", Description = "Transportation business that provides passenger transportation using taxis or similar vehicles.", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new BusinessType { Id = 13, Name = "Moving Company", Code = "MOVING_COMPANY", Description = "Business that provides residential or commercial moving and relocation services.", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new BusinessType { Id = 14, Name = "Construction Company", Code = "CONSTRUCTION_COMPANY", Description = "Business that provides construction, building, renovation, and related services.", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new BusinessType { Id = 15, Name = "Architecture Studio", Code = "ARCHITECTURE_STUDIO", Description = "Professional business that provides architectural design, planning, and consulting services.", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new BusinessType { Id = 16, Name = "Interior Design", Code = "INTERIOR_DESIGN", Description = "Business that provides interior planning, decoration, and design services for residential or commercial spaces.", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new BusinessType { Id = 17, Name = "Real Estate Agency", Code = "REAL_ESTATE_AGENCY", Description = "Business that provides services for buying, selling, renting, and managing real estate properties.", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new BusinessType { Id = 18, Name = "Law Firm", Code = "LAW_FIRM", Description = "Professional legal business that provides legal advice, representation, and related services.", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new BusinessType { Id = 19, Name = "Accounting Firm", Code = "ACCOUNTING_FIRM", Description = "Professional business that provides accounting, bookkeeping, tax, and financial reporting services.", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new BusinessType { Id = 20, Name = "Insurance Agency", Code = "INSURANCE_AGENCY", Description = "Business that provides insurance products, policies, advice, and related services.", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new BusinessType { Id = 21, Name = "Bank", Code = "BANK", Description = "Financial institution that provides banking, payment, lending, savings, and other financial services.", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new BusinessType { Id = 22, Name = "Financial Advisor", Code = "FINANCIAL_ADVISOR", Description = "Professional service that provides financial planning, investment advice, and wealth management guidance.", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new BusinessType { Id = 23, Name = "Medical Clinic", Code = "MEDICAL_CLINIC", Description = "Healthcare facility that provides medical examinations, consultations, treatments, and related services.", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new BusinessType { Id = 24, Name = "Dental Clinic", Code = "DENTAL_CLINIC", Description = "Healthcare business that provides dental examinations, treatments, and oral health services.", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new BusinessType { Id = 25, Name = "Pharmacy", Code = "PHARMACY", Description = "Healthcare business that dispenses medicines and provides pharmaceutical products and services.", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new BusinessType { Id = 26, Name = "Veterinary Clinic", Code = "VETERINARY_CLINIC", Description = "Healthcare facility that provides medical care, treatment, and preventive services for animals.", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new BusinessType { Id = 27, Name = "Fitness Gym", Code = "FITNESS_GYM", Description = "Fitness facility that provides exercise equipment, workout programs, and fitness services.", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new BusinessType { Id = 28, Name = "Personal Trainer", Code = "PERSONAL_TRAINER", Description = "Fitness professional who provides personalized exercise programs, training, and fitness guidance.", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new BusinessType { Id = 29, Name = "Yoga Studio", Code = "YOGA_STUDIO", Description = "Fitness and wellness business that provides yoga classes, sessions, and related activities.", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new BusinessType { Id = 30, Name = "Beauty Salon", Code = "BEAUTY_SALON", Description = "Beauty business that provides hair, skincare, makeup, and other personal care services.", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new BusinessType { Id = 31, Name = "Barber Shop", Code = "BARBER_SHOP", Description = "Business that provides haircuts, beard grooming, shaving, and other men's grooming services.", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new BusinessType { Id = 32, Name = "Spa", Code = "SPA", Description = "Wellness business that provides relaxation, beauty, massage, and personal care treatments.", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new BusinessType { Id = 33, Name = "Tattoo Studio", Code = "TATTOO_STUDIO", Description = "Studio that provides tattoo design and body art services.", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new BusinessType { Id = 34, Name = "Photographer", Code = "PHOTOGRAPHER", Description = "Professional service that provides photography for events, products, portraits, and other purposes.", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new BusinessType { Id = 35, Name = "Videographer", Code = "VIDEOGRAPHER", Description = "Professional service that provides video production, filming, editing, and related services.", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new BusinessType { Id = 36, Name = "Graphic Designer", Code = "GRAPHIC_DESIGNER", Description = "Professional service that creates visual designs, branding materials, illustrations, and digital graphics.", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new BusinessType { Id = 37, Name = "Web Design Agency", Code = "WEB_DESIGN_AGENCY", Description = "Business that designs and develops websites and digital user experiences for clients.", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new BusinessType { Id = 38, Name = "Software Company", Code = "SOFTWARE_COMPANY", Description = "Technology business that develops, sells, or maintains software products and applications.", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new BusinessType { Id = 39, Name = "IT Services", Code = "IT_SERVICES", Description = "Technology business that provides information technology support, consulting, infrastructure, and related services.", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new BusinessType { Id = 40, Name = "Cybersecurity Company", Code = "CYBERSECURITY_COMPANY", Description = "Technology business that provides cybersecurity products, assessments, protection, and security services.", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new BusinessType { Id = 41, Name = "Marketing Agency", Code = "MARKETING_AGENCY", Description = "Business that provides marketing strategy, advertising, branding, and promotional services.", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new BusinessType { Id = 42, Name = "SEO Agency", Code = "SEO_AGENCY", Description = "Digital marketing business that helps improve website visibility and rankings in search engines.", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new BusinessType { Id = 43, Name = "Digital Agency", Code = "DIGITAL_AGENCY", Description = "Agency that provides digital services such as web development, marketing, design, and online strategy.", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new BusinessType { Id = 44, Name = "Freelancer", Code = "FREELANCER", Description = "Independent professional who provides specialized services to clients on a project or contract basis.", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new BusinessType { Id = 45, Name = "Portfolio", Code = "PORTFOLIO", Description = "Website or professional presence designed to showcase a person's work, projects, skills, and achievements.", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new BusinessType { Id = 46, Name = "Personal Website", Code = "PERSONAL_WEBSITE", Description = "Website created to present personal information, interests, skills, experience, or professional activities.", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new BusinessType { Id = 47, Name = "Blogger", Code = "BLOGGER", Description = "Individual or business that regularly creates and publishes written or multimedia blog content.", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new BusinessType { Id = 48, Name = "Influencer", Code = "INFLUENCER", Description = "Individual who creates online content and engages an audience through social media or other digital platforms.", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new BusinessType { Id = 49, Name = "Musician", Code = "MUSICIAN", Description = "Individual or business involved in creating, performing, recording, or promoting music.", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new BusinessType { Id = 50, Name = "DJ", Code = "DJ", Description = "Professional who selects, mixes, and performs recorded music for events, venues, or audiences.", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false }
             );
 
             modelBuilder.Entity<SocialMedia>().HasData(
-                new SocialMedia { Id = 1, Name = "Facebook", Code = "FACEBOOK", Icon = "fa-brands fa-facebook", Color = "#1877F2", DisplayOrder = 1, CreatedDateTime = DateTime.Now, IsDeleted = false },
-                new SocialMedia { Id = 2, Name = "Instagram", Code = "INSTAGRAM", Icon = "fa-brands fa-instagram", Color = "#E4405F", DisplayOrder = 2, CreatedDateTime = DateTime.Now, IsDeleted = false },
-                new SocialMedia { Id = 3, Name = "LinkedIn", Code = "LINKEDIN", Icon = "fa-brands fa-linkedin", Color = "#0A66C2", DisplayOrder = 3, CreatedDateTime = DateTime.Now, IsDeleted = false },
-                new SocialMedia { Id = 4, Name = "X", Code = "X-TWITTER", Icon = "fa-brands fa-x-twitter", Color = "#000000", DisplayOrder = 4, CreatedDateTime = DateTime.Now, IsDeleted = false },
-                new SocialMedia { Id = 5, Name = "YouTube", Code = "YOUTUBE", Icon = "fa-brands fa-youtube", Color = "#FF0000", DisplayOrder = 5, CreatedDateTime = DateTime.Now, IsDeleted = false },
-                new SocialMedia { Id = 6, Name = "TikTok", Code = "TIKTOK", Icon = "fa-brands fa-tiktok", Color = "#000000", DisplayOrder = 6, CreatedDateTime = DateTime.Now, IsDeleted = false },
-                new SocialMedia { Id = 7, Name = "WhatsApp", Code = "WHATSAPP", Icon = "fa-brands fa-whatsapp", Color = "#25D366", DisplayOrder = 7, CreatedDateTime = DateTime.Now, IsDeleted = false },
-                new SocialMedia { Id = 8, Name = "Telegram", Code = "TELEGRAM", Icon = "fa-brands fa-telegram", Color = "#26A5E4", DisplayOrder = 8, CreatedDateTime = DateTime.Now, IsDeleted = false },
-                new SocialMedia { Id = 9, Name = "Discord", Code = "DISCORD", Icon = "fa-brands fa-discord", Color = "#5865F2", DisplayOrder = 9, CreatedDateTime = DateTime.Now, IsDeleted = false },
-                new SocialMedia { Id = 10, Name = "GitHub", Code = "GITHUB", Icon = "fa-brands fa-github", Color = "#181717", DisplayOrder = 10, CreatedDateTime = DateTime.Now, IsDeleted = false },
-                new SocialMedia { Id = 11, Name = "GitLab", Code = "GITLAB", Icon = "fa-brands fa-gitlab", Color = "#FC6D26", DisplayOrder = 11, CreatedDateTime = DateTime.Now, IsDeleted = false },
-                new SocialMedia { Id = 12, Name = "Pinterest", Code = "PINTEREST", Icon = "fa-brands fa-pinterest", Color = "#E60023", DisplayOrder = 12, CreatedDateTime = DateTime.Now, IsDeleted = false },
-                new SocialMedia { Id = 13, Name = "Snapchat", Code = "SNAPCHAT", Icon = "fa-brands fa-snapchat", Color = "#FFFC00", DisplayOrder = 13, CreatedDateTime = DateTime.Now, IsDeleted = false },
-                new SocialMedia { Id = 14, Name = "Dribbble", Code = "DRIBBBLE", Icon = "fa-brands fa-dribbble", Color = "#EA4C89", DisplayOrder = 14, CreatedDateTime = DateTime.Now, IsDeleted = false },
-                new SocialMedia { Id = 15, Name = "Behance", Code = "BEHANCE", Icon = "fa-brands fa-behance", Color = "#1769FF", DisplayOrder = 15, CreatedDateTime = DateTime.Now, IsDeleted = false },
-                new SocialMedia { Id = 16, Name = "Medium", Code = "MEDIUM", Icon = "fa-brands fa-medium", Color = "#000000", DisplayOrder = 16, CreatedDateTime = DateTime.Now, IsDeleted = false },
-                new SocialMedia { Id = 17, Name = "Reddit", Code = "REDDIT", Icon = "fa-brands fa-reddit", Color = "#FF4500", DisplayOrder = 17, CreatedDateTime = DateTime.Now, IsDeleted = false },
-                new SocialMedia { Id = 18, Name = "Twitch", Code = "TWITCH", Icon = "fa-brands fa-twitch", Color = "#9146FF", DisplayOrder = 18, CreatedDateTime = DateTime.Now, IsDeleted = false },
-                new SocialMedia { Id = 19, Name = "Spotify", Code = "SPOTIFY", Icon = "fa-brands fa-spotify", Color = "#1DB954", DisplayOrder = 19, CreatedDateTime = DateTime.Now, IsDeleted = false },
-                new SocialMedia { Id = 20, Name = "Threads", Code = "THREADS", Icon = "fa-brands fa-threads", Color = "#000000", DisplayOrder = 20, CreatedDateTime = DateTime.Now, IsDeleted = false }
+                new SocialMedia { Id = 1, Name = "Facebook", Code = "FACEBOOK", Icon = "fa-brands fa-facebook", Color = "#1877F2", Description = "Social media platform used for connecting with people, sharing content, and promoting businesses.", DisplayOrder = 1, CreatedDateTime = DateTime.Now, IsDeleted = false },
+                new SocialMedia { Id = 2, Name = "Instagram", Code = "INSTAGRAM", Icon = "fa-brands fa-instagram", Color = "#E4405F", Description = "Visual social media platform focused on sharing photos, videos, stories, and other visual content.", DisplayOrder = 2, CreatedDateTime = DateTime.Now, IsDeleted = false },
+                new SocialMedia { Id = 3, Name = "LinkedIn", Code = "LINKEDIN", Icon = "fa-brands fa-linkedin", Color = "#0A66C2", Description = "Professional social network used for business networking, career development, and professional content.", DisplayOrder = 3, CreatedDateTime = DateTime.Now, IsDeleted = false },
+                new SocialMedia { Id = 4, Name = "X", Code = "X-TWITTER", Icon = "fa-brands fa-x-twitter", Color = "#000000", Description = "Social media platform used for sharing short posts, news, opinions, and real-time updates.", DisplayOrder = 4, CreatedDateTime = DateTime.Now, IsDeleted = false },
+                new SocialMedia { Id = 5, Name = "YouTube", Code = "YOUTUBE", Icon = "fa-brands fa-youtube", Color = "#FF0000", Description = "Video-sharing platform used to publish, watch, and share video content.", DisplayOrder = 5, CreatedDateTime = DateTime.Now, IsDeleted = false },
+                new SocialMedia { Id = 6, Name = "TikTok", Code = "TIKTOK", Icon = "fa-brands fa-tiktok", Color = "#000000", Description = "Short-form video platform focused on entertainment, trends, and user-generated content.", DisplayOrder = 6, CreatedDateTime = DateTime.Now, IsDeleted = false },
+                new SocialMedia { Id = 7, Name = "WhatsApp", Code = "WHATSAPP", Icon = "fa-brands fa-whatsapp", Color = "#25D366", Description = "Messaging platform used for instant messages, voice calls, video calls, and sharing media.", DisplayOrder = 7, CreatedDateTime = DateTime.Now, IsDeleted = false },
+                new SocialMedia { Id = 8, Name = "Telegram", Code = "TELEGRAM", Icon = "fa-brands fa-telegram", Color = "#26A5E4", Description = "Messaging platform that supports conversations, groups, channels, file sharing, and multimedia.", DisplayOrder = 8, CreatedDateTime = DateTime.Now, IsDeleted = false },
+                new SocialMedia { Id = 9, Name = "Discord", Code = "DISCORD", Icon = "fa-brands fa-discord", Color = "#5865F2", Description = "Communication platform focused on communities, messaging, voice communication, and online collaboration.", DisplayOrder = 9, CreatedDateTime = DateTime.Now, IsDeleted = false },
+                new SocialMedia { Id = 10, Name = "GitHub", Code = "GITHUB", Icon = "fa-brands fa-github", Color = "#181717", Description = "Development platform used for hosting, managing, collaborating on, and sharing source code.", DisplayOrder = 10, CreatedDateTime = DateTime.Now, IsDeleted = false },
+                new SocialMedia { Id = 11, Name = "GitLab", Code = "GITLAB", Icon = "fa-brands fa-gitlab", Color = "#FC6D26", Description = "DevOps and software development platform used for source code management and collaboration.", DisplayOrder = 11, CreatedDateTime = DateTime.Now, IsDeleted = false },
+                new SocialMedia { Id = 12, Name = "Pinterest", Code = "PINTEREST", Icon = "fa-brands fa-pinterest", Color = "#E60023", Description = "Visual discovery platform used to find, organize, and share ideas, images, and inspiration.", DisplayOrder = 12, CreatedDateTime = DateTime.Now, IsDeleted = false },
+                new SocialMedia { Id = 13, Name = "Snapchat", Code = "SNAPCHAT", Icon = "fa-brands fa-snapchat", Color = "#FFFC00", Description = "Social media and messaging platform focused on photos, videos, stories, and temporary content.", DisplayOrder = 13, CreatedDateTime = DateTime.Now, IsDeleted = false },
+                new SocialMedia { Id = 14, Name = "Dribbble", Code = "DRIBBBLE", Icon = "fa-brands fa-dribbble", Color = "#EA4C89", Description = "Online platform where designers showcase their creative work, designs, and portfolios.", DisplayOrder = 14, CreatedDateTime = DateTime.Now, IsDeleted = false },
+                new SocialMedia { Id = 15, Name = "Behance", Code = "BEHANCE", Icon = "fa-brands fa-behance", Color = "#1769FF", Description = "Creative platform used by designers and artists to showcase and discover creative projects.", DisplayOrder = 15, CreatedDateTime = DateTime.Now, IsDeleted = false },
+                new SocialMedia { Id = 16, Name = "Medium", Code = "MEDIUM", Icon = "fa-brands fa-medium", Color = "#000000", Description = "Online publishing platform used to write, publish, and discover articles and stories.", DisplayOrder = 16, CreatedDateTime = DateTime.Now, IsDeleted = false },
+                new SocialMedia { Id = 17, Name = "Reddit", Code = "REDDIT", Icon = "fa-brands fa-reddit", Color = "#FF4500", Description = "Community-based platform where users discuss topics, share content, and participate in online communities.", DisplayOrder = 17, CreatedDateTime = DateTime.Now, IsDeleted = false },
+                new SocialMedia { Id = 18, Name = "Twitch", Code = "TWITCH", Icon = "fa-brands fa-twitch", Color = "#9146FF", Description = "Live streaming platform primarily used for gaming, entertainment, creative content, and live interaction.", DisplayOrder = 18, CreatedDateTime = DateTime.Now, IsDeleted = false },
+                new SocialMedia { Id = 19, Name = "Spotify", Code = "SPOTIFY", Icon = "fa-brands fa-spotify", Color = "#1DB954", Description = "Digital music and audio streaming platform used to share and discover music, podcasts, and other audio content.", DisplayOrder = 19, CreatedDateTime = DateTime.Now, IsDeleted = false },
+                new SocialMedia { Id = 20, Name = "Threads", Code = "THREADS", Icon = "fa-brands fa-threads", Color = "#000000", Description = "Social media platform focused on text-based conversations, discussions, and sharing updates.", DisplayOrder = 20, CreatedDateTime = DateTime.Now, IsDeleted = false }
             );
 
             modelBuilder.Entity<MessageUsReason>().HasData(
-                new MessageUsReason { Id = 1, Name = "Info", Code = "INFO", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
-                new MessageUsReason { Id = 2, Name = "Order", Code = "ORDER", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
-                new MessageUsReason { Id = 3, Name = "Complain", Code = "COMPLAIN", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
-                new MessageUsReason { Id = 4, Name = "Suggest", Code = "SUGGEST", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false }
+                new MessageUsReason { Id = 1, Name = "Info", Code = "INFO", Description = "General information and inquiries.", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new MessageUsReason { Id = 2, Name = "Order", Code = "ORDER", Description = "Questions or inquiries related to orders.", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new MessageUsReason { Id = 3, Name = "Complain", Code = "COMPLAIN", Description = "Complaints about products, services, or orders.", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new MessageUsReason { Id = 4, Name = "Suggest", Code = "SUGGEST", Description = "Suggestions, ideas, or feedback for improvement.", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false }
             );
 
             modelBuilder.Entity<Role>().HasData(
-                new Role { Id = 1, Name = "Admin", Code = "ADMIN", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
-                new Role { Id = 2, Name = "User", Code = "USER", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false }
+                new Role { Id = 1, Name = "Admin", Code = "ADMIN", Description = "Administrator with full access to the system.", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new Role { Id = 2, Name = "User", Code = "USER", Description = "Standard user with access to regular system features.", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false }
             );
 
             modelBuilder.Entity<Gender>().HasData(
-                new Gender { Id = 1, Name = "Male", Code = "M", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
-                new Gender { Id = 2, Name = "Female", Code = "F", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
-                new Gender { Id = 3, Name = "Prefer not to say", Code = "PNTS", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false }
+                new Gender { Id = 1, Name = "Male", Code = "M", Description = "Male gender.", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new Gender { Id = 2, Name = "Female", Code = "F", Description = "Female gender.", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new Gender { Id = 3, Name = "Prefer not to say", Code = "PNTS", Description = "The user prefers not to disclose their gender.", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false }
             );
 
             modelBuilder.Entity<ContactType>().HasData(
-                new ContactType { Id = 1, Name = "Email", Code = "EMAIL", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
-                new ContactType { Id = 2, Name = "Phonenumber", Code = "PHONE_NUMBER", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false }
+                new ContactType { Id = 1, Name = "Email", Code = "EMAIL", Description = "Email contact type.", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new ContactType { Id = 2, Name = "Phone Number", Code = "PHONE_NUMBER", Description = "Phone number contact type.", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false }
             );
 
             modelBuilder.Entity<Currency>().HasData(
-                new Currency { Id = 1, Name = "Euro", Code = "EUR", Symbol = "€", DecimalPlaces = 2, CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
-                new Currency { Id = 2, Name = "Dollar", Code = "USD", Symbol = "$", DecimalPlaces = 2, CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
-                new Currency { Id = 3, Name = "Konvertibilna marka", Code = "BAM", Symbol = "KM", DecimalPlaces = 2, CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
-                new Currency { Id = 4, Name = "Srpski dinar", Code = "RSD", Symbol = "din.", DecimalPlaces = 2, CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false }
+                new Currency { Id = 1, Name = "Euro", Code = "EUR", Symbol = "€", Description = "Euro currency.", DecimalPlaces = 2, CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new Currency { Id = 2, Name = "Dollar", Code = "USD", Symbol = "$", Description = "US Dollar currency.", DecimalPlaces = 2, CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new Currency { Id = 3, Name = "Konvertibilna marka", Code = "BAM", Symbol = "KM", Description = "Bosnia and Herzegovina Convertible Mark currency.", DecimalPlaces = 2, CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new Currency { Id = 4, Name = "Srpski dinar", Code = "RSD", Symbol = "din.", Description = "Serbian Dinar currency.", DecimalPlaces = 2, CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false }
+            );
+
+            modelBuilder.Entity<Claim>().HasData(
+                new Claim { Id = 1, Name = "Create", Code = "CREATE", Description = "Claim for creating entities.", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new Claim { Id = 2, Name = "Read", Code = "READ", Description = "Claim for reading entities.", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new Claim { Id = 3, Name = "Update", Code = "UPDATE", Description = "Claim for updating entities.", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new Claim { Id = 4, Name = "Delete", Code = "DELETE", Description = "Claim for deleting entities.", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false }
+            );
+
+            modelBuilder.Entity<RoleClaim>().HasData(
+                new RoleClaim { Id = 1, RoleId = 1, ClaimId = 1, CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new RoleClaim { Id = 2, RoleId = 1, ClaimId = 2, CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new RoleClaim { Id = 3, RoleId = 1, ClaimId = 3, CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new RoleClaim { Id = 4, RoleId = 1, ClaimId = 4, CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new RoleClaim { Id = 5, RoleId = 2, ClaimId = 1, CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new RoleClaim { Id = 6, RoleId = 2, ClaimId = 2, CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new RoleClaim { Id = 7, RoleId = 2, ClaimId = 3, CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new RoleClaim { Id = 8, RoleId = 2, ClaimId = 4, CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false }
+            );
+
+            //ADMIN
+            modelBuilder.Entity<User>().HasData(
+                new User
+                {
+                    Id = 1,
+                    FirstName = "Admin",
+                    LastName = "Admin",
+                    Email = "admin@admin.com",
+                    Username = "admin",
+                    Password = "admin123", // In a real application, you should hash the password,
+                    PasswordSalt = "salt",
+                    GenderId = 1,
+                    BirthDate = new DateTime(1990, 1, 1),
+                    ImageUrl = null,
+                    CreatedDateTime = DateTime.Now,
+                    ModifiedDateTime = null,
+                    DeletedDateTime = null,
+                    IsDeleted = false,
+                }
+             );
+
+            modelBuilder.Entity<UserRole>().HasData(
+                new UserRole
+                {
+                    Id = 1,
+                    UserId = 1,
+                    RoleId = 1,
+                    CreatedDateTime = DateTime.Now,
+                    ModifiedDateTime = null,
+                    DeletedDateTime = null,
+                    IsDeleted = false,
+                }
             );
         }
     }

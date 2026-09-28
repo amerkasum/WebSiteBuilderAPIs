@@ -138,6 +138,9 @@
   <data name="City" xml:space="preserve">
     <value>Grad</value>
   </data>
+  <data name="Claim" xml:space="preserve">
+    <value>Tvrdnja</value>
+  </data>
   <data name="ComponentType" xml:space="preserve">
     <value>Vrsta komponente</value>
   </data>
@@ -215,6 +218,9 @@
   </data>
   <data name="Role" xml:space="preserve">
     <value>Uloga</value>
+  </data>
+  <data name="RoleClaim" xml:space="preserve">
+    <value>Tvrdnja o ulozi</value>
   </data>
   <data name="SocialMedia" xml:space="preserve">
     <value>Društvena mreža</value>

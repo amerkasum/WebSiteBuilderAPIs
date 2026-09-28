@@ -1,4 +1,6 @@
-﻿using Domain.Entities.System;
+﻿using Domain.DTO;
+using Domain.Entities.System;
+using Domain.Requests;
 using Domain.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -10,6 +12,7 @@ namespace Core.Services.IService
 {
     public interface ICurrencyService
     {
+        IEnumerable<CurrencyDto> Get(BasicSearchRequest model);
         Currency Add(CurrencyViewModel model);
         Currency Edit(CurrencyViewModel model);
         void Delete(int id);

@@ -1,7 +1,11 @@
 ﻿using Core.Services.IService;
+using Core.Services.Service;
 using Core.UnitOfWork;
+using Domain.DTO;
 using Domain.Entities.System;
+using Domain.Requests;
 using Domain.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Identity.Client;
 using Microsoft.OpenApi.Services;
@@ -13,22 +17,23 @@ namespace WebSiteBuilderAPIs.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class ContactTypeController : ControllerBase
     {
-        private readonly UnitOfWork UnitOfWork;
+        private readonly IUnitOfWork UnitOfWork;
         private readonly Localizer Localizer;
         private readonly IContactTypeService ContactTypeService;
-        public ContactTypeController(UnitOfWork unitOfWork, Localizer localizer, IContactTypeService contactTypeService)
+        public ContactTypeController(IUnitOfWork unitOfWork, Localizer localizer, IContactTypeService contactTypeService)
         {
             this.UnitOfWork = unitOfWork;
             this.Localizer = localizer;
             this.ContactTypeService = contactTypeService;
         }
 
-        [HttpGet(nameof(GetAll))]
-        public IEnumerable<ContactType> GetAll()
+        [HttpGet(nameof(Get))]
+        public IEnumerable<BasicSearchResponse> Get([FromQuery] BasicSearchRequest model)
         {
-            return UnitOfWork.ContactType.GetAll();
+            return ContactTypeService.Get(model);
         }
 
 

@@ -34,6 +34,8 @@ namespace Core.UnitOfWork
         public IComponentTypeRepository ComponentType => new ComponentTypeRepository(_context);
         public IUserResidenceRepository UserResidence => new UserResidenceRepository(_context);
         public ICurrencyRepository Currency => new CurrencyRepository(_context);
+        public IClaimRepository Claim => new ClaimRepository(_context);
+        public IRoleClaimRepository RoleClaim => new RoleClaimRepository(_context);
 
         #endregion
         public UnitOfWork(ApplicationDbContext context)

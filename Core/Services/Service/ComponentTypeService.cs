@@ -1,6 +1,8 @@
 ﻿using Core.Services.IService;
 using Core.UnitOfWork;
+using Domain.DTO;
 using Domain.Entities.WebSiteBuilder;
+using Domain.Requests;
 using Domain.ViewModels;
 using Microsoft.EntityFrameworkCore.Query.SqlExpressions;
 using System;
@@ -18,6 +20,13 @@ namespace Core.Services.Service
         public ComponentTypeService(IUnitOfWork unitOfWork)
         {
             this.UnitOfWork = unitOfWork;
+        }
+
+        public IEnumerable<BasicSearchResponse> Get(BasicSearchRequest model)
+        {
+            model.Search = model?.Search?.Trim();
+            var result = UnitOfWork.ComponentType.Get(model);
+            return result;
         }
 
         public ComponentType Add(ComponentTypeViewModel model)

@@ -1,8 +1,11 @@
 ﻿using Core.Services.IService;
 using Core.Services.Service;
 using Core.UnitOfWork;
+using Domain.DTO;
 using Domain.Entities.System;
+using Domain.Requests;
 using Domain.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Resources.Localizer;
@@ -11,6 +14,7 @@ namespace WebSiteBuilderAPIs.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class MessageUsReasonController : ControllerBase
     {
         private readonly IUnitOfWork UnitOfWork;
@@ -23,10 +27,10 @@ namespace WebSiteBuilderAPIs.Controllers
             this.MessageUsReasonService = messageUsReasonService;
         }
 
-        [HttpGet(nameof(GetAll))]
-        public IEnumerable<MessageUsReason> GetAll()
+        [HttpGet(nameof(Get))]
+        public IEnumerable<BasicSearchResponse> Get([FromQuery] BasicSearchRequest model)
         {
-            return UnitOfWork.MessageUsReason.GetAll();
+            return MessageUsReasonService.Get(model);
         }
 
         [HttpPost(nameof(Add))]

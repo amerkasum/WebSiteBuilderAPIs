@@ -31,6 +31,8 @@ namespace Core.UnitOfWork
         IComponentTypeRepository ComponentType { get; }
         IUserResidenceRepository UserResidence { get; }
         ICurrencyRepository Currency { get; }
+        IClaimRepository Claim { get; }
+        IRoleClaimRepository RoleClaim { get; }
         #endregion
 
         int SaveChanges();

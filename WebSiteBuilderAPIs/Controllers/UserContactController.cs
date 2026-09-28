@@ -2,6 +2,7 @@
 using Core.UnitOfWork;
 using Domain.Entities.Personal;
 using Domain.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Resources.Localizer;
@@ -10,6 +11,7 @@ namespace WebSiteBuilderAPIs.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class UserContactController : ControllerBase
     {
         private readonly IUnitOfWork UnitOfWork;

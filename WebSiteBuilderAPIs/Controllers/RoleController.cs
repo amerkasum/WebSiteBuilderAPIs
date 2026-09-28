@@ -1,7 +1,11 @@
 ﻿using Core.Services.IService;
+using Core.Services.Service;
 using Core.UnitOfWork;
+using Domain.DTO;
 using Domain.Entities.System;
+using Domain.Requests;
 using Domain.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Resources.Localizer;
@@ -10,6 +14,7 @@ namespace WebSiteBuilderAPIs.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class RoleController : ControllerBase
     {
         private readonly IUnitOfWork UnitOfWork;
@@ -22,10 +27,10 @@ namespace WebSiteBuilderAPIs.Controllers
             this.RoleService = roleService;
         }
 
-        [HttpGet(nameof(GetAll))]
-        public IEnumerable<Role> GetAll()
+        [HttpGet(nameof(Get))]
+        public IEnumerable<BasicSearchResponse> Get([FromQuery] BasicSearchRequest model)
         {
-            return UnitOfWork.Role.GetAll();
+            return RoleService.Get(model);
         }
 
         [HttpPost(nameof(Add))]
@@ -38,7 +43,7 @@ namespace WebSiteBuilderAPIs.Controllers
             {
                 var role = RoleService.Add(model);
 
-                return Ok(new { success = false, message = string.Format(Localizer.Added, Localizer.Role) });
+                return Ok(new { success = true, message = string.Format(Localizer.Added, Localizer.Role) });
             }
             catch(Exception e)
             {

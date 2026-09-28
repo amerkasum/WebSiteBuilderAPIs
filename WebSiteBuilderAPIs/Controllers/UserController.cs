@@ -13,6 +13,7 @@ using Resources.Localizer;
 namespace WebSiteBuilderAPIs.Controllers
 {
     [Route("api/[controller]")]
+    [ApiController]
     [Authorize]
     public class UserController : Controller
     {

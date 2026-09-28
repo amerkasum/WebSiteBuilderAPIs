@@ -1,7 +1,11 @@
 ﻿using Core.Services.IService;
+using Core.Services.Service;
 using Core.UnitOfWork;
+using Domain.DTO;
 using Domain.Entities.WebSiteBuilder;
+using Domain.Requests;
 using Domain.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Resources.Localizer;
@@ -10,6 +14,7 @@ namespace WebSiteBuilderAPIs.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class ComponentTypeController : ControllerBase
     {
         private readonly IUnitOfWork UnitOfWork;
@@ -22,10 +27,10 @@ namespace WebSiteBuilderAPIs.Controllers
             this.ComponentTypeService = componentTypeService;
         }
 
-        [HttpGet(nameof(GetAll))]
-        public IEnumerable<ComponentType> GetAll()
+        [HttpGet(nameof(Get))]
+        public IEnumerable<BasicSearchResponse> Get([FromQuery] BasicSearchRequest model)
         {
-            return UnitOfWork.ComponentType.GetAll();
+            return ComponentTypeService.Get(model);
         }
 
         [HttpPost(nameof(Add))]

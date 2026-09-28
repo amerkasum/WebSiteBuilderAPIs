@@ -3,7 +3,9 @@ using Core.Services.Service;
 using Core.UnitOfWork;
 using Domain.DTO;
 using Domain.Entities.System;
+using Domain.Requests;
 using Domain.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Resources.Localizer;
 
@@ -11,6 +13,7 @@ namespace WebSiteBuilderAPIs.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class SocialMediaController : Controller
     {
         private readonly IUnitOfWork UnitOfWork;
@@ -23,10 +26,10 @@ namespace WebSiteBuilderAPIs.Controllers
             this.SocialMediaService = socialMediaService;
         }
 
-        [HttpGet(nameof(GetAll))]
-        public IEnumerable<SocialMediaDto> GetAll()
+        [HttpGet(nameof(Get))]
+        public IEnumerable<BasicSearchResponse> Get([FromQuery] BasicSearchRequest model)
         {
-            return UnitOfWork.SocialMedia.GetAll();
+            return SocialMediaService.Get(model);
         }
 
         [HttpGet(nameof(GetSocialMediaBasic))]

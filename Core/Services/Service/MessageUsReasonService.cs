@@ -1,6 +1,8 @@
 ﻿using Core.Services.IService;
 using Core.UnitOfWork;
+using Domain.DTO;
 using Domain.Entities.System;
+using Domain.Requests;
 using Domain.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -17,6 +19,14 @@ namespace Core.Services.Service
         {
             this.UnitOfWork = unitOfWork;
         }
+
+        public IEnumerable<BasicSearchResponse> Get(BasicSearchRequest model)
+        {
+            model.Search = model?.Search?.Trim();
+            var result = UnitOfWork.MessageUsReason.Get(model);
+            return result;
+        }
+
         public MessageUsReason Add(MessageUsReasonViewModel model)
         {
             var messageUsReason = new MessageUsReason

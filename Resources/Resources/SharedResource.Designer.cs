@@ -22,7 +22,7 @@ namespace Resources.Resources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "18.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class SharedResource {
+    public class SharedResource {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace Resources.Resources {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Resources.Resources.SharedResource", typeof(SharedResource).Assembly);
@@ -51,7 +51,7 @@ namespace Resources.Resources {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -63,7 +63,7 @@ namespace Resources.Resources {
         /// <summary>
         ///   Looks up a localized string similar to {0} is successfully added..
         /// </summary>
-        internal static string Added {
+        public static string Added {
             get {
                 return ResourceManager.GetString("Added", resourceCulture);
             }
@@ -72,7 +72,7 @@ namespace Resources.Resources {
         /// <summary>
         ///   Looks up a localized string similar to {0} is successfully added..
         /// </summary>
-        internal static string Added2 {
+        public static string Added2 {
             get {
                 return ResourceManager.GetString("Added2", resourceCulture);
             }
@@ -81,7 +81,7 @@ namespace Resources.Resources {
         /// <summary>
         ///   Looks up a localized string similar to {0} is successfully added..
         /// </summary>
-        internal static string Added3 {
+        public static string Added3 {
             get {
                 return ResourceManager.GetString("Added3", resourceCulture);
             }
@@ -90,7 +90,7 @@ namespace Resources.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Address.
         /// </summary>
-        internal static string Address {
+        public static string Address {
             get {
                 return ResourceManager.GetString("Address", resourceCulture);
             }
@@ -99,7 +99,7 @@ namespace Resources.Resources {
         /// <summary>
         ///   Looks up a localized string similar to {0} already exist..
         /// </summary>
-        internal static string AlreadyExist {
+        public static string AlreadyExist {
             get {
                 return ResourceManager.GetString("AlreadyExist", resourceCulture);
             }
@@ -108,7 +108,7 @@ namespace Resources.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Business type.
         /// </summary>
-        internal static string BusinessType {
+        public static string BusinessType {
             get {
                 return ResourceManager.GetString("BusinessType", resourceCulture);
             }
@@ -117,16 +117,25 @@ namespace Resources.Resources {
         /// <summary>
         ///   Looks up a localized string similar to City.
         /// </summary>
-        internal static string City {
+        public static string City {
             get {
                 return ResourceManager.GetString("City", resourceCulture);
             }
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Claim.
+        /// </summary>
+        public static string Claim {
+            get {
+                return ResourceManager.GetString("Claim", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Component type.
         /// </summary>
-        internal static string ComponentType {
+        public static string ComponentType {
             get {
                 return ResourceManager.GetString("ComponentType", resourceCulture);
             }
@@ -135,7 +144,7 @@ namespace Resources.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Contact type.
         /// </summary>
-        internal static string ContactType {
+        public static string ContactType {
             get {
                 return ResourceManager.GetString("ContactType", resourceCulture);
             }
@@ -144,7 +153,7 @@ namespace Resources.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Country.
         /// </summary>
-        internal static string Country {
+        public static string Country {
             get {
                 return ResourceManager.GetString("Country", resourceCulture);
             }
@@ -153,7 +162,7 @@ namespace Resources.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Currency.
         /// </summary>
-        internal static string Currency {
+        public static string Currency {
             get {
                 return ResourceManager.GetString("Currency", resourceCulture);
             }
@@ -162,7 +171,7 @@ namespace Resources.Resources {
         /// <summary>
         ///   Looks up a localized string similar to {0} is deleted successfully..
         /// </summary>
-        internal static string Deleted {
+        public static string Deleted {
             get {
                 return ResourceManager.GetString("Deleted", resourceCulture);
             }
@@ -171,7 +180,7 @@ namespace Resources.Resources {
         /// <summary>
         ///   Looks up a localized string similar to {0} is deleted successfully..
         /// </summary>
-        internal static string Deleted2 {
+        public static string Deleted2 {
             get {
                 return ResourceManager.GetString("Deleted2", resourceCulture);
             }
@@ -180,7 +189,7 @@ namespace Resources.Resources {
         /// <summary>
         ///   Looks up a localized string similar to {0} is deleted successfully..
         /// </summary>
-        internal static string Deleted3 {
+        public static string Deleted3 {
             get {
                 return ResourceManager.GetString("Deleted3", resourceCulture);
             }
@@ -189,7 +198,7 @@ namespace Resources.Resources {
         /// <summary>
         ///   Looks up a localized string similar to {0} is successfully edited..
         /// </summary>
-        internal static string Edited {
+        public static string Edited {
             get {
                 return ResourceManager.GetString("Edited", resourceCulture);
             }
@@ -198,7 +207,7 @@ namespace Resources.Resources {
         /// <summary>
         ///   Looks up a localized string similar to {0} is successfully edited..
         /// </summary>
-        internal static string Edited2 {
+        public static string Edited2 {
             get {
                 return ResourceManager.GetString("Edited2", resourceCulture);
             }
@@ -207,7 +216,7 @@ namespace Resources.Resources {
         /// <summary>
         ///   Looks up a localized string similar to {0} is successfully edited..
         /// </summary>
-        internal static string Edited3 {
+        public static string Edited3 {
             get {
                 return ResourceManager.GetString("Edited3", resourceCulture);
             }
@@ -216,7 +225,7 @@ namespace Resources.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Email.
         /// </summary>
-        internal static string Email {
+        public static string Email {
             get {
                 return ResourceManager.GetString("Email", resourceCulture);
             }
@@ -225,7 +234,7 @@ namespace Resources.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Feedback.
         /// </summary>
-        internal static string Feedback {
+        public static string Feedback {
             get {
                 return ResourceManager.GetString("Feedback", resourceCulture);
             }
@@ -234,7 +243,7 @@ namespace Resources.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Gender.
         /// </summary>
-        internal static string Gender {
+        public static string Gender {
             get {
                 return ResourceManager.GetString("Gender", resourceCulture);
             }
@@ -243,7 +252,7 @@ namespace Resources.Resources {
         /// <summary>
         ///   Looks up a localized string similar to A server error occured..
         /// </summary>
-        internal static string InternalServerError {
+        public static string InternalServerError {
             get {
                 return ResourceManager.GetString("InternalServerError", resourceCulture);
             }
@@ -252,7 +261,7 @@ namespace Resources.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Email address is not valid..
         /// </summary>
-        internal static string InvalidEmail {
+        public static string InvalidEmail {
             get {
                 return ResourceManager.GetString("InvalidEmail", resourceCulture);
             }
@@ -261,7 +270,7 @@ namespace Resources.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Phone number is invalid..
         /// </summary>
-        internal static string InvalidPhonenNmber {
+        public static string InvalidPhonenNmber {
             get {
                 return ResourceManager.GetString("InvalidPhonenNmber", resourceCulture);
             }
@@ -270,7 +279,7 @@ namespace Resources.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Location.
         /// </summary>
-        internal static string Location {
+        public static string Location {
             get {
                 return ResourceManager.GetString("Location", resourceCulture);
             }
@@ -279,7 +288,7 @@ namespace Resources.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Message.
         /// </summary>
-        internal static string Message {
+        public static string Message {
             get {
                 return ResourceManager.GetString("Message", resourceCulture);
             }
@@ -288,7 +297,7 @@ namespace Resources.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Message sent..
         /// </summary>
-        internal static string MessageSent {
+        public static string MessageSent {
             get {
                 return ResourceManager.GetString("MessageSent", resourceCulture);
             }
@@ -297,7 +306,7 @@ namespace Resources.Resources {
         /// <summary>
         ///   Looks up a localized string similar to {0} not found..
         /// </summary>
-        internal static string NotFound {
+        public static string NotFound {
             get {
                 return ResourceManager.GetString("NotFound", resourceCulture);
             }
@@ -306,7 +315,7 @@ namespace Resources.Resources {
         /// <summary>
         ///   Looks up a localized string similar to {0} not found..
         /// </summary>
-        internal static string NotFound2 {
+        public static string NotFound2 {
             get {
                 return ResourceManager.GetString("NotFound2", resourceCulture);
             }
@@ -315,7 +324,7 @@ namespace Resources.Resources {
         /// <summary>
         ///   Looks up a localized string similar to {0} not found..
         /// </summary>
-        internal static string NotFound3 {
+        public static string NotFound3 {
             get {
                 return ResourceManager.GetString("NotFound3", resourceCulture);
             }
@@ -324,7 +333,7 @@ namespace Resources.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Reason.
         /// </summary>
-        internal static string Reason {
+        public static string Reason {
             get {
                 return ResourceManager.GetString("Reason", resourceCulture);
             }
@@ -333,7 +342,7 @@ namespace Resources.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Region.
         /// </summary>
-        internal static string Region {
+        public static string Region {
             get {
                 return ResourceManager.GetString("Region", resourceCulture);
             }
@@ -342,7 +351,7 @@ namespace Resources.Resources {
         /// <summary>
         ///   Looks up a localized string similar to This field is required..
         /// </summary>
-        internal static string Required {
+        public static string Required {
             get {
                 return ResourceManager.GetString("Required", resourceCulture);
             }
@@ -351,16 +360,25 @@ namespace Resources.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Role.
         /// </summary>
-        internal static string Role {
+        public static string Role {
             get {
                 return ResourceManager.GetString("Role", resourceCulture);
             }
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Role claim.
+        /// </summary>
+        public static string RoleClaim {
+            get {
+                return ResourceManager.GetString("RoleClaim", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Social media.
         /// </summary>
-        internal static string SocialMedia {
+        public static string SocialMedia {
             get {
                 return ResourceManager.GetString("SocialMedia", resourceCulture);
             }
@@ -369,7 +387,7 @@ namespace Resources.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Something went wrong: {0}.
         /// </summary>
-        internal static string SomethingWentWrong {
+        public static string SomethingWentWrong {
             get {
                 return ResourceManager.GetString("SomethingWentWrong", resourceCulture);
             }
@@ -378,7 +396,7 @@ namespace Resources.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Successful login..
         /// </summary>
-        internal static string SuccessfulLogIn {
+        public static string SuccessfulLogIn {
             get {
                 return ResourceManager.GetString("SuccessfulLogIn", resourceCulture);
             }
@@ -387,7 +405,7 @@ namespace Resources.Resources {
         /// <summary>
         ///   Looks up a localized string similar to 401 Unauthorized.
         /// </summary>
-        internal static string Unauthorized {
+        public static string Unauthorized {
             get {
                 return ResourceManager.GetString("Unauthorized", resourceCulture);
             }
@@ -396,7 +414,7 @@ namespace Resources.Resources {
         /// <summary>
         ///   Looks up a localized string similar to {0} is updated successfully..
         /// </summary>
-        internal static string Updated {
+        public static string Updated {
             get {
                 return ResourceManager.GetString("Updated", resourceCulture);
             }
@@ -405,7 +423,7 @@ namespace Resources.Resources {
         /// <summary>
         ///   Looks up a localized string similar to {0} is updated successfully..
         /// </summary>
-        internal static string Updated2 {
+        public static string Updated2 {
             get {
                 return ResourceManager.GetString("Updated2", resourceCulture);
             }
@@ -414,7 +432,7 @@ namespace Resources.Resources {
         /// <summary>
         ///   Looks up a localized string similar to User.
         /// </summary>
-        internal static string User {
+        public static string User {
             get {
                 return ResourceManager.GetString("User", resourceCulture);
             }
@@ -423,7 +441,7 @@ namespace Resources.Resources {
         /// <summary>
         ///   Looks up a localized string similar to User contact.
         /// </summary>
-        internal static string UserContact {
+        public static string UserContact {
             get {
                 return ResourceManager.GetString("UserContact", resourceCulture);
             }
@@ -432,7 +450,7 @@ namespace Resources.Resources {
         /// <summary>
         ///   Looks up a localized string similar to {0} years old.
         /// </summary>
-        internal static string YearsOld {
+        public static string YearsOld {
             get {
                 return ResourceManager.GetString("YearsOld", resourceCulture);
             }

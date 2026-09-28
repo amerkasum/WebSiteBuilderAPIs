@@ -78,6 +78,8 @@ namespace Core.EF
         public DbSet<Gender> Genders { get; set; }
         public DbSet<UserResidence> UserResidences { get; set; }
         public DbSet<Currency> Currencies { get; set; }
+        public DbSet<Claim> Claim { get; set; }
+        public DbSet<RoleClaim> RoleClaim { get; set; }
         #endregion
 
     }
