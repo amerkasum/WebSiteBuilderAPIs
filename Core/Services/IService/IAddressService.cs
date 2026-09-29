@@ -12,6 +12,7 @@ namespace Core.Services.IService
 {
     public interface IAddressService
     {
+        IEnumerable<LocationDto> Get(BasicSearchRequest model);
         Address Add(LocationViewModel model);
         Address Edit(LocationViewModel model);
         void Delete(int id);

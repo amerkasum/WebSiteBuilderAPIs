@@ -2,6 +2,7 @@
 using Core.UnitOfWork;
 using Domain.DTO;
 using Domain.Entities.System;
+using Domain.Requests;
 using Domain.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -29,10 +30,10 @@ namespace WebSiteBuilderAPIs.Controllers
             this.FeedbackService = feedbackService;
         }
 
-        [HttpGet(nameof(GetAll))]
-        public IEnumerable<FeedbackDto> GetAll()
+        [HttpGet(nameof(Get))]
+        public IEnumerable<FeedbackDto> Get([FromQuery] BasicSearchRequest model)
         {
-            return UnitOfWork.Feedback.GetAll();
+            return FeedbackService.Get(model);
         }
 
         [HttpGet(nameof(GetByUserId))]

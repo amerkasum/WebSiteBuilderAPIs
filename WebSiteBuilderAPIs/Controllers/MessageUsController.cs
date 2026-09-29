@@ -2,6 +2,7 @@
 using Core.UnitOfWork;
 using Domain.DTO;
 using Domain.Entities.System;
+using Domain.Requests;
 using Domain.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -28,16 +29,10 @@ namespace WebSiteBuilderAPIs.Controllers
             this.MessageUsService = messageUsService;
         }
 
-        [HttpGet(nameof(GetAll))]
-        public IEnumerable<MessageUs> GetAll()
+        [HttpGet(nameof(Get))]
+        public IEnumerable<MessageUsDto> Get([FromQuery] MessageUsRequest model)
         {
-            return UnitOfWork.MessageUs.GetAll();
-        }
-
-        [HttpGet(nameof(GetallWithParameters))]
-        public List<MessageUsDto> GetallWithParameters(string? senderEmail, int? messageUsReasonId, DateTime? dateFrom, DateTime? dateTo)
-        {
-            return UnitOfWork.MessageUs.GetAllWithParameters(senderEmail, messageUsReasonId, dateFrom, dateTo).ToList();
+            return MessageUsService.Get(model);
         }
 
         [HttpPost(nameof(Add))]

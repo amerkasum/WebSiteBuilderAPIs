@@ -1,6 +1,8 @@
 ﻿using Core.Services.IService;
 using Core.UnitOfWork;
+using Domain.DTO;
 using Domain.Entities.System;
+using Domain.Requests;
 using Domain.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -58,6 +60,11 @@ namespace Core.Services.Service
 
             UnitOfWork.MessageUs.Remove(messageUs);
             UnitOfWork.SaveChanges();
+        }
+
+        public IEnumerable<MessageUsDto> Get(MessageUsRequest model)
+        {
+            return UnitOfWork.MessageUs.Get(model);
         }
     }
 }

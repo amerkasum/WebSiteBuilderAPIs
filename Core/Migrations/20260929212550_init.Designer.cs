@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Core.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20260928223439_init")]
+    [Migration("20260929212550_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -25800,7 +25800,7 @@ namespace Core.Migrations
                         {
                             Id = 1,
                             BirthDate = new DateTime(1990, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedDateTime = new DateTime(2026, 9, 29, 0, 34, 36, 448, DateTimeKind.Local).AddTicks(6044),
+                            CreatedDateTime = new DateTime(2026, 9, 29, 23, 25, 47, 19, DateTimeKind.Local).AddTicks(9584),
                             Email = "admin@admin.com",
                             FirstName = "Admin",
                             GenderId = 1,
@@ -25809,6 +25809,20 @@ namespace Core.Migrations
                             Password = "admin123",
                             PasswordSalt = "salt",
                             Username = "admin"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            BirthDate = new DateTime(1990, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedDateTime = new DateTime(2026, 9, 29, 23, 25, 47, 19, DateTimeKind.Local).AddTicks(9776),
+                            Email = "user@user.com",
+                            FirstName = "User",
+                            GenderId = 1,
+                            IsDeleted = false,
+                            LastName = "User",
+                            Password = "user123",
+                            PasswordSalt = "salt",
+                            Username = "user"
                         });
                 });
 
@@ -25927,10 +25941,18 @@ namespace Core.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDateTime = new DateTime(2026, 9, 29, 0, 34, 36, 448, DateTimeKind.Local).AddTicks(6124),
+                            CreatedDateTime = new DateTime(2026, 9, 29, 23, 25, 47, 19, DateTimeKind.Local).AddTicks(9673),
                             IsDeleted = false,
                             RoleId = 1,
                             UserId = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreatedDateTime = new DateTime(2026, 9, 29, 23, 25, 47, 19, DateTimeKind.Local).AddTicks(9846),
+                            IsDeleted = false,
+                            RoleId = 2,
+                            UserId = 2
                         });
                 });
 
@@ -26049,7 +26071,7 @@ namespace Core.Migrations
                         {
                             Id = 1,
                             Code = "CREATE",
-                            CreatedDateTime = new DateTime(2026, 9, 29, 0, 34, 36, 448, DateTimeKind.Local).AddTicks(5799),
+                            CreatedDateTime = new DateTime(2026, 9, 29, 23, 25, 47, 19, DateTimeKind.Local).AddTicks(8847),
                             Description = "Claim for creating entities.",
                             IsDeleted = false,
                             Name = "Create"
@@ -26058,7 +26080,7 @@ namespace Core.Migrations
                         {
                             Id = 2,
                             Code = "READ",
-                            CreatedDateTime = new DateTime(2026, 9, 29, 0, 34, 36, 448, DateTimeKind.Local).AddTicks(5814),
+                            CreatedDateTime = new DateTime(2026, 9, 29, 23, 25, 47, 19, DateTimeKind.Local).AddTicks(8864),
                             Description = "Claim for reading entities.",
                             IsDeleted = false,
                             Name = "Read"
@@ -26067,7 +26089,7 @@ namespace Core.Migrations
                         {
                             Id = 3,
                             Code = "UPDATE",
-                            CreatedDateTime = new DateTime(2026, 9, 29, 0, 34, 36, 448, DateTimeKind.Local).AddTicks(5820),
+                            CreatedDateTime = new DateTime(2026, 9, 29, 23, 25, 47, 19, DateTimeKind.Local).AddTicks(8871),
                             Description = "Claim for updating entities.",
                             IsDeleted = false,
                             Name = "Update"
@@ -26076,7 +26098,7 @@ namespace Core.Migrations
                         {
                             Id = 4,
                             Code = "DELETE",
-                            CreatedDateTime = new DateTime(2026, 9, 29, 0, 34, 36, 448, DateTimeKind.Local).AddTicks(5825),
+                            CreatedDateTime = new DateTime(2026, 9, 29, 23, 25, 47, 19, DateTimeKind.Local).AddTicks(8879),
                             Description = "Claim for deleting entities.",
                             IsDeleted = false,
                             Name = "Delete"
@@ -26124,7 +26146,7 @@ namespace Core.Migrations
                         {
                             Id = 1,
                             Code = "EMAIL",
-                            CreatedDateTime = new DateTime(2026, 9, 29, 0, 34, 36, 448, DateTimeKind.Local).AddTicks(5541),
+                            CreatedDateTime = new DateTime(2026, 9, 29, 23, 25, 47, 19, DateTimeKind.Local).AddTicks(8640),
                             Description = "Email contact type.",
                             IsDeleted = false,
                             Name = "Email"
@@ -26133,7 +26155,7 @@ namespace Core.Migrations
                         {
                             Id = 2,
                             Code = "PHONE_NUMBER",
-                            CreatedDateTime = new DateTime(2026, 9, 29, 0, 34, 36, 448, DateTimeKind.Local).AddTicks(5554),
+                            CreatedDateTime = new DateTime(2026, 9, 29, 23, 25, 47, 19, DateTimeKind.Local).AddTicks(8651),
                             Description = "Phone number contact type.",
                             IsDeleted = false,
                             Name = "Phone Number"
@@ -26188,7 +26210,7 @@ namespace Core.Migrations
                         {
                             Id = 1,
                             Code = "EUR",
-                            CreatedDateTime = new DateTime(2026, 9, 29, 0, 34, 36, 448, DateTimeKind.Local).AddTicks(5622),
+                            CreatedDateTime = new DateTime(2026, 9, 29, 23, 25, 47, 19, DateTimeKind.Local).AddTicks(8743),
                             DecimalPlaces = 2,
                             Description = "Euro currency.",
                             IsDeleted = false,
@@ -26199,7 +26221,7 @@ namespace Core.Migrations
                         {
                             Id = 2,
                             Code = "USD",
-                            CreatedDateTime = new DateTime(2026, 9, 29, 0, 34, 36, 448, DateTimeKind.Local).AddTicks(5711),
+                            CreatedDateTime = new DateTime(2026, 9, 29, 23, 25, 47, 19, DateTimeKind.Local).AddTicks(8763),
                             DecimalPlaces = 2,
                             Description = "US Dollar currency.",
                             IsDeleted = false,
@@ -26210,7 +26232,7 @@ namespace Core.Migrations
                         {
                             Id = 3,
                             Code = "BAM",
-                            CreatedDateTime = new DateTime(2026, 9, 29, 0, 34, 36, 448, DateTimeKind.Local).AddTicks(5724),
+                            CreatedDateTime = new DateTime(2026, 9, 29, 23, 25, 47, 19, DateTimeKind.Local).AddTicks(8768),
                             DecimalPlaces = 2,
                             Description = "Bosnia and Herzegovina Convertible Mark currency.",
                             IsDeleted = false,
@@ -26221,7 +26243,7 @@ namespace Core.Migrations
                         {
                             Id = 4,
                             Code = "RSD",
-                            CreatedDateTime = new DateTime(2026, 9, 29, 0, 34, 36, 448, DateTimeKind.Local).AddTicks(5731),
+                            CreatedDateTime = new DateTime(2026, 9, 29, 23, 25, 47, 19, DateTimeKind.Local).AddTicks(8772),
                             DecimalPlaces = 2,
                             Description = "Serbian Dinar currency.",
                             IsDeleted = false,
@@ -26265,6 +26287,143 @@ namespace Core.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Feedback");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedDateTime = new DateTime(2026, 9, 29, 23, 25, 47, 19, DateTimeKind.Local).AddTicks(9183),
+                            IsDeleted = false,
+                            Message = "Excellent service!",
+                            Rating = 5,
+                            UserId = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreatedDateTime = new DateTime(2026, 9, 29, 23, 25, 47, 19, DateTimeKind.Local).AddTicks(9198),
+                            IsDeleted = false,
+                            Message = "Good experience overall.",
+                            Rating = 4,
+                            UserId = 2
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CreatedDateTime = new DateTime(2026, 9, 29, 23, 25, 47, 19, DateTimeKind.Local).AddTicks(9207),
+                            IsDeleted = false,
+                            Message = "Average service.",
+                            Rating = 3,
+                            UserId = 1
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CreatedDateTime = new DateTime(2026, 9, 29, 23, 25, 47, 19, DateTimeKind.Local).AddTicks(9215),
+                            IsDeleted = false,
+                            Message = "Not satisfied with the service.",
+                            Rating = 2,
+                            UserId = 2
+                        },
+                        new
+                        {
+                            Id = 5,
+                            CreatedDateTime = new DateTime(2026, 9, 29, 23, 25, 47, 19, DateTimeKind.Local).AddTicks(9222),
+                            IsDeleted = false,
+                            Message = "Very poor experience.",
+                            Rating = 1,
+                            UserId = 1
+                        },
+                        new
+                        {
+                            Id = 6,
+                            CreatedDateTime = new DateTime(2026, 9, 29, 23, 25, 47, 19, DateTimeKind.Local).AddTicks(9229),
+                            IsDeleted = false,
+                            Message = "Odlična usluga, sve je bilo brzo i profesionalno.",
+                            Rating = 5,
+                            UserId = 1
+                        },
+                        new
+                        {
+                            Id = 7,
+                            CreatedDateTime = new DateTime(2026, 9, 29, 23, 25, 47, 19, DateTimeKind.Local).AddTicks(9236),
+                            IsDeleted = false,
+                            Message = "Veoma sam zadovoljan uslugom. Sve preporuke!",
+                            Rating = 5,
+                            UserId = 2
+                        },
+                        new
+                        {
+                            Id = 8,
+                            CreatedDateTime = new DateTime(2026, 9, 29, 23, 25, 47, 19, DateTimeKind.Local).AddTicks(9243),
+                            IsDeleted = false,
+                            Message = "Dobra usluga i ljubazno osoblje.",
+                            Rating = 4,
+                            UserId = 1
+                        },
+                        new
+                        {
+                            Id = 9,
+                            CreatedDateTime = new DateTime(2026, 9, 29, 23, 25, 47, 19, DateTimeKind.Local).AddTicks(9251),
+                            IsDeleted = false,
+                            Message = "Sve je prošlo kako treba, nemam zamjerki.",
+                            Rating = 4,
+                            UserId = 1
+                        },
+                        new
+                        {
+                            Id = 10,
+                            CreatedDateTime = new DateTime(2026, 9, 29, 23, 25, 47, 19, DateTimeKind.Local).AddTicks(9258),
+                            IsDeleted = false,
+                            Message = "Odlična komunikacija i veoma brzo riješena moja zahtjev.",
+                            Rating = 5,
+                            UserId = 2
+                        },
+                        new
+                        {
+                            Id = 11,
+                            CreatedDateTime = new DateTime(2026, 9, 29, 23, 25, 47, 19, DateTimeKind.Local).AddTicks(9265),
+                            IsDeleted = false,
+                            Message = "Usluga je bila korektna, ali može biti malo brža.",
+                            Rating = 3,
+                            UserId = 1
+                        },
+                        new
+                        {
+                            Id = 12,
+                            CreatedDateTime = new DateTime(2026, 9, 29, 23, 25, 47, 19, DateTimeKind.Local).AddTicks(9272),
+                            IsDeleted = false,
+                            Message = "Jako dobro iskustvo. Profesionalno i pouzdano.",
+                            Rating = 5,
+                            UserId = 2
+                        },
+                        new
+                        {
+                            Id = 13,
+                            CreatedDateTime = new DateTime(2026, 9, 29, 23, 25, 47, 19, DateTimeKind.Local).AddTicks(9281),
+                            IsDeleted = false,
+                            Message = "Sve je bilo u redu i prema dogovoru.",
+                            Rating = 4,
+                            UserId = 1
+                        },
+                        new
+                        {
+                            Id = 14,
+                            CreatedDateTime = new DateTime(2026, 9, 29, 23, 25, 47, 19, DateTimeKind.Local).AddTicks(9289),
+                            IsDeleted = false,
+                            Message = "Nisam potpuno zadovoljan iskustvom.",
+                            Rating = 2,
+                            UserId = 2
+                        },
+                        new
+                        {
+                            Id = 15,
+                            CreatedDateTime = new DateTime(2026, 9, 29, 23, 25, 47, 19, DateTimeKind.Local).AddTicks(9297),
+                            IsDeleted = false,
+                            Message = "Odličan odnos prema korisnicima. Sve preporuke.",
+                            Rating = 5,
+                            UserId = 2
+                        });
                 });
 
             modelBuilder.Entity("Domain.Entities.System.Gender", b =>
@@ -26308,7 +26467,7 @@ namespace Core.Migrations
                         {
                             Id = 1,
                             Code = "M",
-                            CreatedDateTime = new DateTime(2026, 9, 29, 0, 34, 36, 448, DateTimeKind.Local).AddTicks(5447),
+                            CreatedDateTime = new DateTime(2026, 9, 29, 23, 25, 47, 19, DateTimeKind.Local).AddTicks(8553),
                             Description = "Male gender.",
                             IsDeleted = false,
                             Name = "Male"
@@ -26317,7 +26476,7 @@ namespace Core.Migrations
                         {
                             Id = 2,
                             Code = "F",
-                            CreatedDateTime = new DateTime(2026, 9, 29, 0, 34, 36, 448, DateTimeKind.Local).AddTicks(5459),
+                            CreatedDateTime = new DateTime(2026, 9, 29, 23, 25, 47, 19, DateTimeKind.Local).AddTicks(8564),
                             Description = "Female gender.",
                             IsDeleted = false,
                             Name = "Female"
@@ -26326,7 +26485,7 @@ namespace Core.Migrations
                         {
                             Id = 3,
                             Code = "PNTS",
-                            CreatedDateTime = new DateTime(2026, 9, 29, 0, 34, 36, 448, DateTimeKind.Local).AddTicks(5467),
+                            CreatedDateTime = new DateTime(2026, 9, 29, 23, 25, 47, 19, DateTimeKind.Local).AddTicks(8570),
                             Description = "The user prefers not to disclose their gender.",
                             IsDeleted = false,
                             Name = "Prefer not to say"
@@ -26369,6 +26528,98 @@ namespace Core.Migrations
                     b.HasIndex("MessageUsReasonId");
 
                     b.ToTable("MessageUs");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedDateTime = new DateTime(2026, 9, 29, 23, 25, 47, 19, DateTimeKind.Local).AddTicks(9408),
+                            EmailSender = "amer.kasum@gmail.com",
+                            IsDeleted = false,
+                            Message = "Imam pitanje u vezi vaše usluge.",
+                            MessageUsReasonId = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreatedDateTime = new DateTime(2026, 9, 29, 23, 25, 47, 19, DateTimeKind.Local).AddTicks(9422),
+                            EmailSender = "test.user@gmail.com",
+                            IsDeleted = false,
+                            Message = "Zanima me više informacija o vašim uslugama.",
+                            MessageUsReasonId = 2
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CreatedDateTime = new DateTime(2026, 9, 29, 23, 25, 47, 19, DateTimeKind.Local).AddTicks(9430),
+                            EmailSender = "john.doe@gmail.com",
+                            IsDeleted = false,
+                            Message = "Molim vas za dodatne informacije.",
+                            MessageUsReasonId = 3
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CreatedDateTime = new DateTime(2026, 9, 29, 23, 25, 47, 19, DateTimeKind.Local).AddTicks(9436),
+                            EmailSender = "info@example.com",
+                            IsDeleted = false,
+                            Message = "Želio bih prijaviti problem sa aplikacijom.",
+                            MessageUsReasonId = 4
+                        },
+                        new
+                        {
+                            Id = 5,
+                            CreatedDateTime = new DateTime(2026, 9, 29, 23, 25, 47, 19, DateTimeKind.Local).AddTicks(9443),
+                            EmailSender = "customer@gmail.com",
+                            IsDeleted = false,
+                            Message = "Kada mogu očekivati odgovor na moj zahtjev?",
+                            MessageUsReasonId = 1
+                        },
+                        new
+                        {
+                            Id = 6,
+                            CreatedDateTime = new DateTime(2026, 9, 29, 23, 25, 47, 19, DateTimeKind.Local).AddTicks(9451),
+                            EmailSender = "contact@example.com",
+                            IsDeleted = false,
+                            Message = "Imam prijedlog za poboljšanje vaše aplikacije.",
+                            MessageUsReasonId = 2
+                        },
+                        new
+                        {
+                            Id = 7,
+                            CreatedDateTime = new DateTime(2026, 9, 29, 23, 25, 47, 19, DateTimeKind.Local).AddTicks(9456),
+                            EmailSender = "user.test@gmail.com",
+                            IsDeleted = false,
+                            Message = "Aplikacija mi prikazuje grešku prilikom prijave.",
+                            MessageUsReasonId = 4
+                        },
+                        new
+                        {
+                            Id = 8,
+                            CreatedDateTime = new DateTime(2026, 9, 29, 23, 25, 47, 19, DateTimeKind.Local).AddTicks(9463),
+                            EmailSender = "example.user@gmail.com",
+                            IsDeleted = false,
+                            Message = "Želio bih saznati više o vašim mogućnostima.",
+                            MessageUsReasonId = 3
+                        },
+                        new
+                        {
+                            Id = 9,
+                            CreatedDateTime = new DateTime(2026, 9, 29, 23, 25, 47, 19, DateTimeKind.Local).AddTicks(9471),
+                            EmailSender = "test@example.com",
+                            IsDeleted = false,
+                            Message = "Molim vas da me kontaktirate kada budete u mogućnosti.",
+                            MessageUsReasonId = 1
+                        },
+                        new
+                        {
+                            Id = 10,
+                            CreatedDateTime = new DateTime(2026, 9, 29, 23, 25, 47, 19, DateTimeKind.Local).AddTicks(9478),
+                            EmailSender = "client@gmail.com",
+                            IsDeleted = false,
+                            Message = "Imam nekoliko pitanja prije korištenja usluge.",
+                            MessageUsReasonId = 2
+                        });
                 });
 
             modelBuilder.Entity("Domain.Entities.System.MessageUsReason", b =>
@@ -26412,7 +26663,7 @@ namespace Core.Migrations
                         {
                             Id = 1,
                             Code = "INFO",
-                            CreatedDateTime = new DateTime(2026, 9, 29, 0, 34, 36, 448, DateTimeKind.Local).AddTicks(5256),
+                            CreatedDateTime = new DateTime(2026, 9, 29, 23, 25, 47, 19, DateTimeKind.Local).AddTicks(8346),
                             Description = "General information and inquiries.",
                             IsDeleted = false,
                             Name = "Info"
@@ -26421,7 +26672,7 @@ namespace Core.Migrations
                         {
                             Id = 2,
                             Code = "ORDER",
-                            CreatedDateTime = new DateTime(2026, 9, 29, 0, 34, 36, 448, DateTimeKind.Local).AddTicks(5270),
+                            CreatedDateTime = new DateTime(2026, 9, 29, 23, 25, 47, 19, DateTimeKind.Local).AddTicks(8360),
                             Description = "Questions or inquiries related to orders.",
                             IsDeleted = false,
                             Name = "Order"
@@ -26430,7 +26681,7 @@ namespace Core.Migrations
                         {
                             Id = 3,
                             Code = "COMPLAIN",
-                            CreatedDateTime = new DateTime(2026, 9, 29, 0, 34, 36, 448, DateTimeKind.Local).AddTicks(5277),
+                            CreatedDateTime = new DateTime(2026, 9, 29, 23, 25, 47, 19, DateTimeKind.Local).AddTicks(8365),
                             Description = "Complaints about products, services, or orders.",
                             IsDeleted = false,
                             Name = "Complain"
@@ -26439,7 +26690,7 @@ namespace Core.Migrations
                         {
                             Id = 4,
                             Code = "SUGGEST",
-                            CreatedDateTime = new DateTime(2026, 9, 29, 0, 34, 36, 448, DateTimeKind.Local).AddTicks(5281),
+                            CreatedDateTime = new DateTime(2026, 9, 29, 23, 25, 47, 19, DateTimeKind.Local).AddTicks(8373),
                             Description = "Suggestions, ideas, or feedback for improvement.",
                             IsDeleted = false,
                             Name = "Suggest"
@@ -26487,7 +26738,7 @@ namespace Core.Migrations
                         {
                             Id = 1,
                             Code = "ADMIN",
-                            CreatedDateTime = new DateTime(2026, 9, 29, 0, 34, 36, 448, DateTimeKind.Local).AddTicks(5361),
+                            CreatedDateTime = new DateTime(2026, 9, 29, 23, 25, 47, 19, DateTimeKind.Local).AddTicks(8456),
                             Description = "Administrator with full access to the system.",
                             IsDeleted = false,
                             Name = "Admin"
@@ -26496,7 +26747,7 @@ namespace Core.Migrations
                         {
                             Id = 2,
                             Code = "USER",
-                            CreatedDateTime = new DateTime(2026, 9, 29, 0, 34, 36, 448, DateTimeKind.Local).AddTicks(5373),
+                            CreatedDateTime = new DateTime(2026, 9, 29, 23, 25, 47, 19, DateTimeKind.Local).AddTicks(8469),
                             Description = "Standard user with access to regular system features.",
                             IsDeleted = false,
                             Name = "User"
@@ -26542,7 +26793,7 @@ namespace Core.Migrations
                         {
                             Id = 1,
                             ClaimId = 1,
-                            CreatedDateTime = new DateTime(2026, 9, 29, 0, 34, 36, 448, DateTimeKind.Local).AddTicks(5896),
+                            CreatedDateTime = new DateTime(2026, 9, 29, 23, 25, 47, 19, DateTimeKind.Local).AddTicks(9031),
                             IsDeleted = false,
                             RoleId = 1
                         },
@@ -26550,7 +26801,7 @@ namespace Core.Migrations
                         {
                             Id = 2,
                             ClaimId = 2,
-                            CreatedDateTime = new DateTime(2026, 9, 29, 0, 34, 36, 448, DateTimeKind.Local).AddTicks(5908),
+                            CreatedDateTime = new DateTime(2026, 9, 29, 23, 25, 47, 19, DateTimeKind.Local).AddTicks(9046),
                             IsDeleted = false,
                             RoleId = 1
                         },
@@ -26558,7 +26809,7 @@ namespace Core.Migrations
                         {
                             Id = 3,
                             ClaimId = 3,
-                            CreatedDateTime = new DateTime(2026, 9, 29, 0, 34, 36, 448, DateTimeKind.Local).AddTicks(5916),
+                            CreatedDateTime = new DateTime(2026, 9, 29, 23, 25, 47, 19, DateTimeKind.Local).AddTicks(9053),
                             IsDeleted = false,
                             RoleId = 1
                         },
@@ -26566,7 +26817,7 @@ namespace Core.Migrations
                         {
                             Id = 4,
                             ClaimId = 4,
-                            CreatedDateTime = new DateTime(2026, 9, 29, 0, 34, 36, 448, DateTimeKind.Local).AddTicks(5921),
+                            CreatedDateTime = new DateTime(2026, 9, 29, 23, 25, 47, 19, DateTimeKind.Local).AddTicks(9061),
                             IsDeleted = false,
                             RoleId = 1
                         },
@@ -26574,7 +26825,7 @@ namespace Core.Migrations
                         {
                             Id = 5,
                             ClaimId = 1,
-                            CreatedDateTime = new DateTime(2026, 9, 29, 0, 34, 36, 448, DateTimeKind.Local).AddTicks(5926),
+                            CreatedDateTime = new DateTime(2026, 9, 29, 23, 25, 47, 19, DateTimeKind.Local).AddTicks(9069),
                             IsDeleted = false,
                             RoleId = 2
                         },
@@ -26582,7 +26833,7 @@ namespace Core.Migrations
                         {
                             Id = 6,
                             ClaimId = 2,
-                            CreatedDateTime = new DateTime(2026, 9, 29, 0, 34, 36, 448, DateTimeKind.Local).AddTicks(5933),
+                            CreatedDateTime = new DateTime(2026, 9, 29, 23, 25, 47, 19, DateTimeKind.Local).AddTicks(9076),
                             IsDeleted = false,
                             RoleId = 2
                         },
@@ -26590,7 +26841,7 @@ namespace Core.Migrations
                         {
                             Id = 7,
                             ClaimId = 3,
-                            CreatedDateTime = new DateTime(2026, 9, 29, 0, 34, 36, 448, DateTimeKind.Local).AddTicks(5937),
+                            CreatedDateTime = new DateTime(2026, 9, 29, 23, 25, 47, 19, DateTimeKind.Local).AddTicks(9083),
                             IsDeleted = false,
                             RoleId = 2
                         },
@@ -26598,7 +26849,7 @@ namespace Core.Migrations
                         {
                             Id = 8,
                             ClaimId = 4,
-                            CreatedDateTime = new DateTime(2026, 9, 29, 0, 34, 36, 448, DateTimeKind.Local).AddTicks(5942),
+                            CreatedDateTime = new DateTime(2026, 9, 29, 23, 25, 47, 19, DateTimeKind.Local).AddTicks(9091),
                             IsDeleted = false,
                             RoleId = 2
                         });
@@ -26688,7 +26939,7 @@ namespace Core.Migrations
                             Id = 1,
                             Code = "FACEBOOK",
                             Color = "#1877F2",
-                            CreatedDateTime = new DateTime(2026, 9, 29, 0, 34, 36, 448, DateTimeKind.Local).AddTicks(5025),
+                            CreatedDateTime = new DateTime(2026, 9, 29, 23, 25, 47, 19, DateTimeKind.Local).AddTicks(8115),
                             Description = "Social media platform used for connecting with people, sharing content, and promoting businesses.",
                             DisplayOrder = 1,
                             Icon = "fa-brands fa-facebook",
@@ -26700,7 +26951,7 @@ namespace Core.Migrations
                             Id = 2,
                             Code = "INSTAGRAM",
                             Color = "#E4405F",
-                            CreatedDateTime = new DateTime(2026, 9, 29, 0, 34, 36, 448, DateTimeKind.Local).AddTicks(5039),
+                            CreatedDateTime = new DateTime(2026, 9, 29, 23, 25, 47, 19, DateTimeKind.Local).AddTicks(8131),
                             Description = "Visual social media platform focused on sharing photos, videos, stories, and other visual content.",
                             DisplayOrder = 2,
                             Icon = "fa-brands fa-instagram",
@@ -26712,7 +26963,7 @@ namespace Core.Migrations
                             Id = 3,
                             Code = "LINKEDIN",
                             Color = "#0A66C2",
-                            CreatedDateTime = new DateTime(2026, 9, 29, 0, 34, 36, 448, DateTimeKind.Local).AddTicks(5046),
+                            CreatedDateTime = new DateTime(2026, 9, 29, 23, 25, 47, 19, DateTimeKind.Local).AddTicks(8136),
                             Description = "Professional social network used for business networking, career development, and professional content.",
                             DisplayOrder = 3,
                             Icon = "fa-brands fa-linkedin",
@@ -26724,7 +26975,7 @@ namespace Core.Migrations
                             Id = 4,
                             Code = "X-TWITTER",
                             Color = "#000000",
-                            CreatedDateTime = new DateTime(2026, 9, 29, 0, 34, 36, 448, DateTimeKind.Local).AddTicks(5052),
+                            CreatedDateTime = new DateTime(2026, 9, 29, 23, 25, 47, 19, DateTimeKind.Local).AddTicks(8141),
                             Description = "Social media platform used for sharing short posts, news, opinions, and real-time updates.",
                             DisplayOrder = 4,
                             Icon = "fa-brands fa-x-twitter",
@@ -26736,7 +26987,7 @@ namespace Core.Migrations
                             Id = 5,
                             Code = "YOUTUBE",
                             Color = "#FF0000",
-                            CreatedDateTime = new DateTime(2026, 9, 29, 0, 34, 36, 448, DateTimeKind.Local).AddTicks(5057),
+                            CreatedDateTime = new DateTime(2026, 9, 29, 23, 25, 47, 19, DateTimeKind.Local).AddTicks(8146),
                             Description = "Video-sharing platform used to publish, watch, and share video content.",
                             DisplayOrder = 5,
                             Icon = "fa-brands fa-youtube",
@@ -26748,7 +26999,7 @@ namespace Core.Migrations
                             Id = 6,
                             Code = "TIKTOK",
                             Color = "#000000",
-                            CreatedDateTime = new DateTime(2026, 9, 29, 0, 34, 36, 448, DateTimeKind.Local).AddTicks(5072),
+                            CreatedDateTime = new DateTime(2026, 9, 29, 23, 25, 47, 19, DateTimeKind.Local).AddTicks(8150),
                             Description = "Short-form video platform focused on entertainment, trends, and user-generated content.",
                             DisplayOrder = 6,
                             Icon = "fa-brands fa-tiktok",
@@ -26760,7 +27011,7 @@ namespace Core.Migrations
                             Id = 7,
                             Code = "WHATSAPP",
                             Color = "#25D366",
-                            CreatedDateTime = new DateTime(2026, 9, 29, 0, 34, 36, 448, DateTimeKind.Local).AddTicks(5078),
+                            CreatedDateTime = new DateTime(2026, 9, 29, 23, 25, 47, 19, DateTimeKind.Local).AddTicks(8160),
                             Description = "Messaging platform used for instant messages, voice calls, video calls, and sharing media.",
                             DisplayOrder = 7,
                             Icon = "fa-brands fa-whatsapp",
@@ -26772,7 +27023,7 @@ namespace Core.Migrations
                             Id = 8,
                             Code = "TELEGRAM",
                             Color = "#26A5E4",
-                            CreatedDateTime = new DateTime(2026, 9, 29, 0, 34, 36, 448, DateTimeKind.Local).AddTicks(5083),
+                            CreatedDateTime = new DateTime(2026, 9, 29, 23, 25, 47, 19, DateTimeKind.Local).AddTicks(8165),
                             Description = "Messaging platform that supports conversations, groups, channels, file sharing, and multimedia.",
                             DisplayOrder = 8,
                             Icon = "fa-brands fa-telegram",
@@ -26784,7 +27035,7 @@ namespace Core.Migrations
                             Id = 9,
                             Code = "DISCORD",
                             Color = "#5865F2",
-                            CreatedDateTime = new DateTime(2026, 9, 29, 0, 34, 36, 448, DateTimeKind.Local).AddTicks(5089),
+                            CreatedDateTime = new DateTime(2026, 9, 29, 23, 25, 47, 19, DateTimeKind.Local).AddTicks(8173),
                             Description = "Communication platform focused on communities, messaging, voice communication, and online collaboration.",
                             DisplayOrder = 9,
                             Icon = "fa-brands fa-discord",
@@ -26796,7 +27047,7 @@ namespace Core.Migrations
                             Id = 10,
                             Code = "GITHUB",
                             Color = "#181717",
-                            CreatedDateTime = new DateTime(2026, 9, 29, 0, 34, 36, 448, DateTimeKind.Local).AddTicks(5094),
+                            CreatedDateTime = new DateTime(2026, 9, 29, 23, 25, 47, 19, DateTimeKind.Local).AddTicks(8178),
                             Description = "Development platform used for hosting, managing, collaborating on, and sharing source code.",
                             DisplayOrder = 10,
                             Icon = "fa-brands fa-github",
@@ -26808,7 +27059,7 @@ namespace Core.Migrations
                             Id = 11,
                             Code = "GITLAB",
                             Color = "#FC6D26",
-                            CreatedDateTime = new DateTime(2026, 9, 29, 0, 34, 36, 448, DateTimeKind.Local).AddTicks(5100),
+                            CreatedDateTime = new DateTime(2026, 9, 29, 23, 25, 47, 19, DateTimeKind.Local).AddTicks(8182),
                             Description = "DevOps and software development platform used for source code management and collaboration.",
                             DisplayOrder = 11,
                             Icon = "fa-brands fa-gitlab",
@@ -26820,7 +27071,7 @@ namespace Core.Migrations
                             Id = 12,
                             Code = "PINTEREST",
                             Color = "#E60023",
-                            CreatedDateTime = new DateTime(2026, 9, 29, 0, 34, 36, 448, DateTimeKind.Local).AddTicks(5106),
+                            CreatedDateTime = new DateTime(2026, 9, 29, 23, 25, 47, 19, DateTimeKind.Local).AddTicks(8187),
                             Description = "Visual discovery platform used to find, organize, and share ideas, images, and inspiration.",
                             DisplayOrder = 12,
                             Icon = "fa-brands fa-pinterest",
@@ -26832,7 +27083,7 @@ namespace Core.Migrations
                             Id = 13,
                             Code = "SNAPCHAT",
                             Color = "#FFFC00",
-                            CreatedDateTime = new DateTime(2026, 9, 29, 0, 34, 36, 448, DateTimeKind.Local).AddTicks(5111),
+                            CreatedDateTime = new DateTime(2026, 9, 29, 23, 25, 47, 19, DateTimeKind.Local).AddTicks(8195),
                             Description = "Social media and messaging platform focused on photos, videos, stories, and temporary content.",
                             DisplayOrder = 13,
                             Icon = "fa-brands fa-snapchat",
@@ -26844,7 +27095,7 @@ namespace Core.Migrations
                             Id = 14,
                             Code = "DRIBBBLE",
                             Color = "#EA4C89",
-                            CreatedDateTime = new DateTime(2026, 9, 29, 0, 34, 36, 448, DateTimeKind.Local).AddTicks(5117),
+                            CreatedDateTime = new DateTime(2026, 9, 29, 23, 25, 47, 19, DateTimeKind.Local).AddTicks(8203),
                             Description = "Online platform where designers showcase their creative work, designs, and portfolios.",
                             DisplayOrder = 14,
                             Icon = "fa-brands fa-dribbble",
@@ -26856,7 +27107,7 @@ namespace Core.Migrations
                             Id = 15,
                             Code = "BEHANCE",
                             Color = "#1769FF",
-                            CreatedDateTime = new DateTime(2026, 9, 29, 0, 34, 36, 448, DateTimeKind.Local).AddTicks(5123),
+                            CreatedDateTime = new DateTime(2026, 9, 29, 23, 25, 47, 19, DateTimeKind.Local).AddTicks(8208),
                             Description = "Creative platform used by designers and artists to showcase and discover creative projects.",
                             DisplayOrder = 15,
                             Icon = "fa-brands fa-behance",
@@ -26868,7 +27119,7 @@ namespace Core.Migrations
                             Id = 16,
                             Code = "MEDIUM",
                             Color = "#000000",
-                            CreatedDateTime = new DateTime(2026, 9, 29, 0, 34, 36, 448, DateTimeKind.Local).AddTicks(5128),
+                            CreatedDateTime = new DateTime(2026, 9, 29, 23, 25, 47, 19, DateTimeKind.Local).AddTicks(8214),
                             Description = "Online publishing platform used to write, publish, and discover articles and stories.",
                             DisplayOrder = 16,
                             Icon = "fa-brands fa-medium",
@@ -26880,7 +27131,7 @@ namespace Core.Migrations
                             Id = 17,
                             Code = "REDDIT",
                             Color = "#FF4500",
-                            CreatedDateTime = new DateTime(2026, 9, 29, 0, 34, 36, 448, DateTimeKind.Local).AddTicks(5134),
+                            CreatedDateTime = new DateTime(2026, 9, 29, 23, 25, 47, 19, DateTimeKind.Local).AddTicks(8221),
                             Description = "Community-based platform where users discuss topics, share content, and participate in online communities.",
                             DisplayOrder = 17,
                             Icon = "fa-brands fa-reddit",
@@ -26892,7 +27143,7 @@ namespace Core.Migrations
                             Id = 18,
                             Code = "TWITCH",
                             Color = "#9146FF",
-                            CreatedDateTime = new DateTime(2026, 9, 29, 0, 34, 36, 448, DateTimeKind.Local).AddTicks(5140),
+                            CreatedDateTime = new DateTime(2026, 9, 29, 23, 25, 47, 19, DateTimeKind.Local).AddTicks(8228),
                             Description = "Live streaming platform primarily used for gaming, entertainment, creative content, and live interaction.",
                             DisplayOrder = 18,
                             Icon = "fa-brands fa-twitch",
@@ -26904,7 +27155,7 @@ namespace Core.Migrations
                             Id = 19,
                             Code = "SPOTIFY",
                             Color = "#1DB954",
-                            CreatedDateTime = new DateTime(2026, 9, 29, 0, 34, 36, 448, DateTimeKind.Local).AddTicks(5145),
+                            CreatedDateTime = new DateTime(2026, 9, 29, 23, 25, 47, 19, DateTimeKind.Local).AddTicks(8234),
                             Description = "Digital music and audio streaming platform used to share and discover music, podcasts, and other audio content.",
                             DisplayOrder = 19,
                             Icon = "fa-brands fa-spotify",
@@ -26916,7 +27167,7 @@ namespace Core.Migrations
                             Id = 20,
                             Code = "THREADS",
                             Color = "#000000",
-                            CreatedDateTime = new DateTime(2026, 9, 29, 0, 34, 36, 448, DateTimeKind.Local).AddTicks(5151),
+                            CreatedDateTime = new DateTime(2026, 9, 29, 23, 25, 47, 19, DateTimeKind.Local).AddTicks(8241),
                             Description = "Social media platform focused on text-based conversations, discussions, and sharing updates.",
                             DisplayOrder = 20,
                             Icon = "fa-brands fa-threads",
@@ -26966,7 +27217,7 @@ namespace Core.Migrations
                         {
                             Id = 1,
                             Code = "RESTAURANT",
-                            CreatedDateTime = new DateTime(2026, 9, 29, 0, 34, 36, 448, DateTimeKind.Local).AddTicks(4294),
+                            CreatedDateTime = new DateTime(2026, 9, 29, 23, 25, 47, 19, DateTimeKind.Local).AddTicks(7408),
                             Description = "Business that prepares and serves meals and beverages to customers.",
                             IsDeleted = false,
                             Name = "Restaurant"
@@ -26975,7 +27226,7 @@ namespace Core.Migrations
                         {
                             Id = 2,
                             Code = "CAFE",
-                            CreatedDateTime = new DateTime(2026, 9, 29, 0, 34, 36, 448, DateTimeKind.Local).AddTicks(4317),
+                            CreatedDateTime = new DateTime(2026, 9, 29, 23, 25, 47, 19, DateTimeKind.Local).AddTicks(7436),
                             Description = "Business that serves coffee, beverages, snacks, and light meals.",
                             IsDeleted = false,
                             Name = "Cafe"
@@ -26984,7 +27235,7 @@ namespace Core.Migrations
                         {
                             Id = 3,
                             Code = "BAKERY",
-                            CreatedDateTime = new DateTime(2026, 9, 29, 0, 34, 36, 448, DateTimeKind.Local).AddTicks(4325),
+                            CreatedDateTime = new DateTime(2026, 9, 29, 23, 25, 47, 19, DateTimeKind.Local).AddTicks(7445),
                             Description = "Business that produces and sells bread, pastries, cakes, and other baked goods.",
                             IsDeleted = false,
                             Name = "Bakery"
@@ -26993,7 +27244,7 @@ namespace Core.Migrations
                         {
                             Id = 4,
                             Code = "FAST_FOOD",
-                            CreatedDateTime = new DateTime(2026, 9, 29, 0, 34, 36, 448, DateTimeKind.Local).AddTicks(4331),
+                            CreatedDateTime = new DateTime(2026, 9, 29, 23, 25, 47, 19, DateTimeKind.Local).AddTicks(7453),
                             Description = "Business that provides quickly prepared meals and takeaway food.",
                             IsDeleted = false,
                             Name = "Fast Food"
@@ -27002,7 +27253,7 @@ namespace Core.Migrations
                         {
                             Id = 5,
                             Code = "HOTEL",
-                            CreatedDateTime = new DateTime(2026, 9, 29, 0, 34, 36, 448, DateTimeKind.Local).AddTicks(4342),
+                            CreatedDateTime = new DateTime(2026, 9, 29, 23, 25, 47, 19, DateTimeKind.Local).AddTicks(7466),
                             Description = "Business that provides accommodation and hospitality services to guests.",
                             IsDeleted = false,
                             Name = "Hotel"
@@ -27011,7 +27262,7 @@ namespace Core.Migrations
                         {
                             Id = 6,
                             Code = "APARTMENT_RENTAL",
-                            CreatedDateTime = new DateTime(2026, 9, 29, 0, 34, 36, 448, DateTimeKind.Local).AddTicks(4402),
+                            CreatedDateTime = new DateTime(2026, 9, 29, 23, 25, 47, 19, DateTimeKind.Local).AddTicks(7532),
                             Description = "Business that provides apartments or residential properties for short-term or long-term rental.",
                             IsDeleted = false,
                             Name = "Apartment Rental"
@@ -27020,7 +27271,7 @@ namespace Core.Migrations
                         {
                             Id = 7,
                             Code = "TRAVEL_AGENCY",
-                            CreatedDateTime = new DateTime(2026, 9, 29, 0, 34, 36, 448, DateTimeKind.Local).AddTicks(4414),
+                            CreatedDateTime = new DateTime(2026, 9, 29, 23, 25, 47, 19, DateTimeKind.Local).AddTicks(7543),
                             Description = "Business that organizes and sells travel arrangements, tours, transportation, and accommodation.",
                             IsDeleted = false,
                             Name = "Travel Agency"
@@ -27029,7 +27280,7 @@ namespace Core.Migrations
                         {
                             Id = 8,
                             Code = "TOUR_GUIDE",
-                            CreatedDateTime = new DateTime(2026, 9, 29, 0, 34, 36, 448, DateTimeKind.Local).AddTicks(4421),
+                            CreatedDateTime = new DateTime(2026, 9, 29, 23, 25, 47, 19, DateTimeKind.Local).AddTicks(7551),
                             Description = "Professional service that provides guided tours and information about destinations and attractions.",
                             IsDeleted = false,
                             Name = "Tour Guide"
@@ -27038,7 +27289,7 @@ namespace Core.Migrations
                         {
                             Id = 9,
                             Code = "CAR_RENTAL",
-                            CreatedDateTime = new DateTime(2026, 9, 29, 0, 34, 36, 448, DateTimeKind.Local).AddTicks(4428),
+                            CreatedDateTime = new DateTime(2026, 9, 29, 23, 25, 47, 19, DateTimeKind.Local).AddTicks(7559),
                             Description = "Business that provides vehicles for temporary rental to individuals or organizations.",
                             IsDeleted = false,
                             Name = "Car Rental"
@@ -27047,7 +27298,7 @@ namespace Core.Migrations
                         {
                             Id = 10,
                             Code = "AUTO_REPAIR",
-                            CreatedDateTime = new DateTime(2026, 9, 29, 0, 34, 36, 448, DateTimeKind.Local).AddTicks(4434),
+                            CreatedDateTime = new DateTime(2026, 9, 29, 23, 25, 47, 19, DateTimeKind.Local).AddTicks(7565),
                             Description = "Business that provides maintenance, diagnostics, and repair services for vehicles.",
                             IsDeleted = false,
                             Name = "Auto Repair"
@@ -27056,7 +27307,7 @@ namespace Core.Migrations
                         {
                             Id = 11,
                             Code = "CAR_DEALERSHIP",
-                            CreatedDateTime = new DateTime(2026, 9, 29, 0, 34, 36, 448, DateTimeKind.Local).AddTicks(4439),
+                            CreatedDateTime = new DateTime(2026, 9, 29, 23, 25, 47, 19, DateTimeKind.Local).AddTicks(7573),
                             Description = "Business that sells new or used vehicles and may provide related automotive services.",
                             IsDeleted = false,
                             Name = "Car Dealership"
@@ -27065,7 +27316,7 @@ namespace Core.Migrations
                         {
                             Id = 12,
                             Code = "TAXI_SERVICE",
-                            CreatedDateTime = new DateTime(2026, 9, 29, 0, 34, 36, 448, DateTimeKind.Local).AddTicks(4445),
+                            CreatedDateTime = new DateTime(2026, 9, 29, 23, 25, 47, 19, DateTimeKind.Local).AddTicks(7581),
                             Description = "Transportation business that provides passenger transportation using taxis or similar vehicles.",
                             IsDeleted = false,
                             Name = "Taxi Service"
@@ -27074,7 +27325,7 @@ namespace Core.Migrations
                         {
                             Id = 13,
                             Code = "MOVING_COMPANY",
-                            CreatedDateTime = new DateTime(2026, 9, 29, 0, 34, 36, 448, DateTimeKind.Local).AddTicks(4453),
+                            CreatedDateTime = new DateTime(2026, 9, 29, 23, 25, 47, 19, DateTimeKind.Local).AddTicks(7588),
                             Description = "Business that provides residential or commercial moving and relocation services.",
                             IsDeleted = false,
                             Name = "Moving Company"
@@ -27083,7 +27334,7 @@ namespace Core.Migrations
                         {
                             Id = 14,
                             Code = "CONSTRUCTION_COMPANY",
-                            CreatedDateTime = new DateTime(2026, 9, 29, 0, 34, 36, 448, DateTimeKind.Local).AddTicks(4458),
+                            CreatedDateTime = new DateTime(2026, 9, 29, 23, 25, 47, 19, DateTimeKind.Local).AddTicks(7596),
                             Description = "Business that provides construction, building, renovation, and related services.",
                             IsDeleted = false,
                             Name = "Construction Company"
@@ -27092,7 +27343,7 @@ namespace Core.Migrations
                         {
                             Id = 15,
                             Code = "ARCHITECTURE_STUDIO",
-                            CreatedDateTime = new DateTime(2026, 9, 29, 0, 34, 36, 448, DateTimeKind.Local).AddTicks(4464),
+                            CreatedDateTime = new DateTime(2026, 9, 29, 23, 25, 47, 19, DateTimeKind.Local).AddTicks(7603),
                             Description = "Professional business that provides architectural design, planning, and consulting services.",
                             IsDeleted = false,
                             Name = "Architecture Studio"
@@ -27101,7 +27352,7 @@ namespace Core.Migrations
                         {
                             Id = 16,
                             Code = "INTERIOR_DESIGN",
-                            CreatedDateTime = new DateTime(2026, 9, 29, 0, 34, 36, 448, DateTimeKind.Local).AddTicks(4470),
+                            CreatedDateTime = new DateTime(2026, 9, 29, 23, 25, 47, 19, DateTimeKind.Local).AddTicks(7611),
                             Description = "Business that provides interior planning, decoration, and design services for residential or commercial spaces.",
                             IsDeleted = false,
                             Name = "Interior Design"
@@ -27110,7 +27361,7 @@ namespace Core.Migrations
                         {
                             Id = 17,
                             Code = "REAL_ESTATE_AGENCY",
-                            CreatedDateTime = new DateTime(2026, 9, 29, 0, 34, 36, 448, DateTimeKind.Local).AddTicks(4478),
+                            CreatedDateTime = new DateTime(2026, 9, 29, 23, 25, 47, 19, DateTimeKind.Local).AddTicks(7619),
                             Description = "Business that provides services for buying, selling, renting, and managing real estate properties.",
                             IsDeleted = false,
                             Name = "Real Estate Agency"
@@ -27119,7 +27370,7 @@ namespace Core.Migrations
                         {
                             Id = 18,
                             Code = "LAW_FIRM",
-                            CreatedDateTime = new DateTime(2026, 9, 29, 0, 34, 36, 448, DateTimeKind.Local).AddTicks(4485),
+                            CreatedDateTime = new DateTime(2026, 9, 29, 23, 25, 47, 19, DateTimeKind.Local).AddTicks(7626),
                             Description = "Professional legal business that provides legal advice, representation, and related services.",
                             IsDeleted = false,
                             Name = "Law Firm"
@@ -27128,7 +27379,7 @@ namespace Core.Migrations
                         {
                             Id = 19,
                             Code = "ACCOUNTING_FIRM",
-                            CreatedDateTime = new DateTime(2026, 9, 29, 0, 34, 36, 448, DateTimeKind.Local).AddTicks(4490),
+                            CreatedDateTime = new DateTime(2026, 9, 29, 23, 25, 47, 19, DateTimeKind.Local).AddTicks(7634),
                             Description = "Professional business that provides accounting, bookkeeping, tax, and financial reporting services.",
                             IsDeleted = false,
                             Name = "Accounting Firm"
@@ -27137,7 +27388,7 @@ namespace Core.Migrations
                         {
                             Id = 20,
                             Code = "INSURANCE_AGENCY",
-                            CreatedDateTime = new DateTime(2026, 9, 29, 0, 34, 36, 448, DateTimeKind.Local).AddTicks(4497),
+                            CreatedDateTime = new DateTime(2026, 9, 29, 23, 25, 47, 19, DateTimeKind.Local).AddTicks(7641),
                             Description = "Business that provides insurance products, policies, advice, and related services.",
                             IsDeleted = false,
                             Name = "Insurance Agency"
@@ -27146,7 +27397,7 @@ namespace Core.Migrations
                         {
                             Id = 21,
                             Code = "BANK",
-                            CreatedDateTime = new DateTime(2026, 9, 29, 0, 34, 36, 448, DateTimeKind.Local).AddTicks(4502),
+                            CreatedDateTime = new DateTime(2026, 9, 29, 23, 25, 47, 19, DateTimeKind.Local).AddTicks(7649),
                             Description = "Financial institution that provides banking, payment, lending, savings, and other financial services.",
                             IsDeleted = false,
                             Name = "Bank"
@@ -27155,7 +27406,7 @@ namespace Core.Migrations
                         {
                             Id = 22,
                             Code = "FINANCIAL_ADVISOR",
-                            CreatedDateTime = new DateTime(2026, 9, 29, 0, 34, 36, 448, DateTimeKind.Local).AddTicks(4507),
+                            CreatedDateTime = new DateTime(2026, 9, 29, 23, 25, 47, 19, DateTimeKind.Local).AddTicks(7657),
                             Description = "Professional service that provides financial planning, investment advice, and wealth management guidance.",
                             IsDeleted = false,
                             Name = "Financial Advisor"
@@ -27164,7 +27415,7 @@ namespace Core.Migrations
                         {
                             Id = 23,
                             Code = "MEDICAL_CLINIC",
-                            CreatedDateTime = new DateTime(2026, 9, 29, 0, 34, 36, 448, DateTimeKind.Local).AddTicks(4513),
+                            CreatedDateTime = new DateTime(2026, 9, 29, 23, 25, 47, 19, DateTimeKind.Local).AddTicks(7664),
                             Description = "Healthcare facility that provides medical examinations, consultations, treatments, and related services.",
                             IsDeleted = false,
                             Name = "Medical Clinic"
@@ -27173,7 +27424,7 @@ namespace Core.Migrations
                         {
                             Id = 24,
                             Code = "DENTAL_CLINIC",
-                            CreatedDateTime = new DateTime(2026, 9, 29, 0, 34, 36, 448, DateTimeKind.Local).AddTicks(4519),
+                            CreatedDateTime = new DateTime(2026, 9, 29, 23, 25, 47, 19, DateTimeKind.Local).AddTicks(7669),
                             Description = "Healthcare business that provides dental examinations, treatments, and oral health services.",
                             IsDeleted = false,
                             Name = "Dental Clinic"
@@ -27182,7 +27433,7 @@ namespace Core.Migrations
                         {
                             Id = 25,
                             Code = "PHARMACY",
-                            CreatedDateTime = new DateTime(2026, 9, 29, 0, 34, 36, 448, DateTimeKind.Local).AddTicks(4525),
+                            CreatedDateTime = new DateTime(2026, 9, 29, 23, 25, 47, 19, DateTimeKind.Local).AddTicks(7677),
                             Description = "Healthcare business that dispenses medicines and provides pharmaceutical products and services.",
                             IsDeleted = false,
                             Name = "Pharmacy"
@@ -27191,7 +27442,7 @@ namespace Core.Migrations
                         {
                             Id = 26,
                             Code = "VETERINARY_CLINIC",
-                            CreatedDateTime = new DateTime(2026, 9, 29, 0, 34, 36, 448, DateTimeKind.Local).AddTicks(4531),
+                            CreatedDateTime = new DateTime(2026, 9, 29, 23, 25, 47, 19, DateTimeKind.Local).AddTicks(7684),
                             Description = "Healthcare facility that provides medical care, treatment, and preventive services for animals.",
                             IsDeleted = false,
                             Name = "Veterinary Clinic"
@@ -27200,7 +27451,7 @@ namespace Core.Migrations
                         {
                             Id = 27,
                             Code = "FITNESS_GYM",
-                            CreatedDateTime = new DateTime(2026, 9, 29, 0, 34, 36, 448, DateTimeKind.Local).AddTicks(4538),
+                            CreatedDateTime = new DateTime(2026, 9, 29, 23, 25, 47, 19, DateTimeKind.Local).AddTicks(7693),
                             Description = "Fitness facility that provides exercise equipment, workout programs, and fitness services.",
                             IsDeleted = false,
                             Name = "Fitness Gym"
@@ -27209,7 +27460,7 @@ namespace Core.Migrations
                         {
                             Id = 28,
                             Code = "PERSONAL_TRAINER",
-                            CreatedDateTime = new DateTime(2026, 9, 29, 0, 34, 36, 448, DateTimeKind.Local).AddTicks(4545),
+                            CreatedDateTime = new DateTime(2026, 9, 29, 23, 25, 47, 19, DateTimeKind.Local).AddTicks(7701),
                             Description = "Fitness professional who provides personalized exercise programs, training, and fitness guidance.",
                             IsDeleted = false,
                             Name = "Personal Trainer"
@@ -27218,7 +27469,7 @@ namespace Core.Migrations
                         {
                             Id = 29,
                             Code = "YOGA_STUDIO",
-                            CreatedDateTime = new DateTime(2026, 9, 29, 0, 34, 36, 448, DateTimeKind.Local).AddTicks(4553),
+                            CreatedDateTime = new DateTime(2026, 9, 29, 23, 25, 47, 19, DateTimeKind.Local).AddTicks(7709),
                             Description = "Fitness and wellness business that provides yoga classes, sessions, and related activities.",
                             IsDeleted = false,
                             Name = "Yoga Studio"
@@ -27227,7 +27478,7 @@ namespace Core.Migrations
                         {
                             Id = 30,
                             Code = "BEAUTY_SALON",
-                            CreatedDateTime = new DateTime(2026, 9, 29, 0, 34, 36, 448, DateTimeKind.Local).AddTicks(4561),
+                            CreatedDateTime = new DateTime(2026, 9, 29, 23, 25, 47, 19, DateTimeKind.Local).AddTicks(7716),
                             Description = "Beauty business that provides hair, skincare, makeup, and other personal care services.",
                             IsDeleted = false,
                             Name = "Beauty Salon"
@@ -27236,7 +27487,7 @@ namespace Core.Migrations
                         {
                             Id = 31,
                             Code = "BARBER_SHOP",
-                            CreatedDateTime = new DateTime(2026, 9, 29, 0, 34, 36, 448, DateTimeKind.Local).AddTicks(4568),
+                            CreatedDateTime = new DateTime(2026, 9, 29, 23, 25, 47, 19, DateTimeKind.Local).AddTicks(7724),
                             Description = "Business that provides haircuts, beard grooming, shaving, and other men's grooming services.",
                             IsDeleted = false,
                             Name = "Barber Shop"
@@ -27245,7 +27496,7 @@ namespace Core.Migrations
                         {
                             Id = 32,
                             Code = "SPA",
-                            CreatedDateTime = new DateTime(2026, 9, 29, 0, 34, 36, 448, DateTimeKind.Local).AddTicks(4575),
+                            CreatedDateTime = new DateTime(2026, 9, 29, 23, 25, 47, 19, DateTimeKind.Local).AddTicks(7732),
                             Description = "Wellness business that provides relaxation, beauty, massage, and personal care treatments.",
                             IsDeleted = false,
                             Name = "Spa"
@@ -27254,7 +27505,7 @@ namespace Core.Migrations
                         {
                             Id = 33,
                             Code = "TATTOO_STUDIO",
-                            CreatedDateTime = new DateTime(2026, 9, 29, 0, 34, 36, 448, DateTimeKind.Local).AddTicks(4583),
+                            CreatedDateTime = new DateTime(2026, 9, 29, 23, 25, 47, 19, DateTimeKind.Local).AddTicks(7739),
                             Description = "Studio that provides tattoo design and body art services.",
                             IsDeleted = false,
                             Name = "Tattoo Studio"
@@ -27263,7 +27514,7 @@ namespace Core.Migrations
                         {
                             Id = 34,
                             Code = "PHOTOGRAPHER",
-                            CreatedDateTime = new DateTime(2026, 9, 29, 0, 34, 36, 448, DateTimeKind.Local).AddTicks(4589),
+                            CreatedDateTime = new DateTime(2026, 9, 29, 23, 25, 47, 19, DateTimeKind.Local).AddTicks(7747),
                             Description = "Professional service that provides photography for events, products, portraits, and other purposes.",
                             IsDeleted = false,
                             Name = "Photographer"
@@ -27272,7 +27523,7 @@ namespace Core.Migrations
                         {
                             Id = 35,
                             Code = "VIDEOGRAPHER",
-                            CreatedDateTime = new DateTime(2026, 9, 29, 0, 34, 36, 448, DateTimeKind.Local).AddTicks(4596),
+                            CreatedDateTime = new DateTime(2026, 9, 29, 23, 25, 47, 19, DateTimeKind.Local).AddTicks(7754),
                             Description = "Professional service that provides video production, filming, editing, and related services.",
                             IsDeleted = false,
                             Name = "Videographer"
@@ -27281,7 +27532,7 @@ namespace Core.Migrations
                         {
                             Id = 36,
                             Code = "GRAPHIC_DESIGNER",
-                            CreatedDateTime = new DateTime(2026, 9, 29, 0, 34, 36, 448, DateTimeKind.Local).AddTicks(4604),
+                            CreatedDateTime = new DateTime(2026, 9, 29, 23, 25, 47, 19, DateTimeKind.Local).AddTicks(7762),
                             Description = "Professional service that creates visual designs, branding materials, illustrations, and digital graphics.",
                             IsDeleted = false,
                             Name = "Graphic Designer"
@@ -27290,7 +27541,7 @@ namespace Core.Migrations
                         {
                             Id = 37,
                             Code = "WEB_DESIGN_AGENCY",
-                            CreatedDateTime = new DateTime(2026, 9, 29, 0, 34, 36, 448, DateTimeKind.Local).AddTicks(4611),
+                            CreatedDateTime = new DateTime(2026, 9, 29, 23, 25, 47, 19, DateTimeKind.Local).AddTicks(7769),
                             Description = "Business that designs and develops websites and digital user experiences for clients.",
                             IsDeleted = false,
                             Name = "Web Design Agency"
@@ -27299,7 +27550,7 @@ namespace Core.Migrations
                         {
                             Id = 38,
                             Code = "SOFTWARE_COMPANY",
-                            CreatedDateTime = new DateTime(2026, 9, 29, 0, 34, 36, 448, DateTimeKind.Local).AddTicks(4779),
+                            CreatedDateTime = new DateTime(2026, 9, 29, 23, 25, 47, 19, DateTimeKind.Local).AddTicks(7776),
                             Description = "Technology business that develops, sells, or maintains software products and applications.",
                             IsDeleted = false,
                             Name = "Software Company"
@@ -27308,7 +27559,7 @@ namespace Core.Migrations
                         {
                             Id = 39,
                             Code = "IT_SERVICES",
-                            CreatedDateTime = new DateTime(2026, 9, 29, 0, 34, 36, 448, DateTimeKind.Local).AddTicks(4794),
+                            CreatedDateTime = new DateTime(2026, 9, 29, 23, 25, 47, 19, DateTimeKind.Local).AddTicks(7784),
                             Description = "Technology business that provides information technology support, consulting, infrastructure, and related services.",
                             IsDeleted = false,
                             Name = "IT Services"
@@ -27317,7 +27568,7 @@ namespace Core.Migrations
                         {
                             Id = 40,
                             Code = "CYBERSECURITY_COMPANY",
-                            CreatedDateTime = new DateTime(2026, 9, 29, 0, 34, 36, 448, DateTimeKind.Local).AddTicks(4805),
+                            CreatedDateTime = new DateTime(2026, 9, 29, 23, 25, 47, 19, DateTimeKind.Local).AddTicks(7792),
                             Description = "Technology business that provides cybersecurity products, assessments, protection, and security services.",
                             IsDeleted = false,
                             Name = "Cybersecurity Company"
@@ -27326,7 +27577,7 @@ namespace Core.Migrations
                         {
                             Id = 41,
                             Code = "MARKETING_AGENCY",
-                            CreatedDateTime = new DateTime(2026, 9, 29, 0, 34, 36, 448, DateTimeKind.Local).AddTicks(4813),
+                            CreatedDateTime = new DateTime(2026, 9, 29, 23, 25, 47, 19, DateTimeKind.Local).AddTicks(7799),
                             Description = "Business that provides marketing strategy, advertising, branding, and promotional services.",
                             IsDeleted = false,
                             Name = "Marketing Agency"
@@ -27335,7 +27586,7 @@ namespace Core.Migrations
                         {
                             Id = 42,
                             Code = "SEO_AGENCY",
-                            CreatedDateTime = new DateTime(2026, 9, 29, 0, 34, 36, 448, DateTimeKind.Local).AddTicks(4821),
+                            CreatedDateTime = new DateTime(2026, 9, 29, 23, 25, 47, 19, DateTimeKind.Local).AddTicks(7807),
                             Description = "Digital marketing business that helps improve website visibility and rankings in search engines.",
                             IsDeleted = false,
                             Name = "SEO Agency"
@@ -27344,7 +27595,7 @@ namespace Core.Migrations
                         {
                             Id = 43,
                             Code = "DIGITAL_AGENCY",
-                            CreatedDateTime = new DateTime(2026, 9, 29, 0, 34, 36, 448, DateTimeKind.Local).AddTicks(4826),
+                            CreatedDateTime = new DateTime(2026, 9, 29, 23, 25, 47, 19, DateTimeKind.Local).AddTicks(7814),
                             Description = "Agency that provides digital services such as web development, marketing, design, and online strategy.",
                             IsDeleted = false,
                             Name = "Digital Agency"
@@ -27353,7 +27604,7 @@ namespace Core.Migrations
                         {
                             Id = 44,
                             Code = "FREELANCER",
-                            CreatedDateTime = new DateTime(2026, 9, 29, 0, 34, 36, 448, DateTimeKind.Local).AddTicks(4832),
+                            CreatedDateTime = new DateTime(2026, 9, 29, 23, 25, 47, 19, DateTimeKind.Local).AddTicks(7821),
                             Description = "Independent professional who provides specialized services to clients on a project or contract basis.",
                             IsDeleted = false,
                             Name = "Freelancer"
@@ -27362,7 +27613,7 @@ namespace Core.Migrations
                         {
                             Id = 45,
                             Code = "PORTFOLIO",
-                            CreatedDateTime = new DateTime(2026, 9, 29, 0, 34, 36, 448, DateTimeKind.Local).AddTicks(4838),
+                            CreatedDateTime = new DateTime(2026, 9, 29, 23, 25, 47, 19, DateTimeKind.Local).AddTicks(7829),
                             Description = "Website or professional presence designed to showcase a person's work, projects, skills, and achievements.",
                             IsDeleted = false,
                             Name = "Portfolio"
@@ -27371,7 +27622,7 @@ namespace Core.Migrations
                         {
                             Id = 46,
                             Code = "PERSONAL_WEBSITE",
-                            CreatedDateTime = new DateTime(2026, 9, 29, 0, 34, 36, 448, DateTimeKind.Local).AddTicks(4844),
+                            CreatedDateTime = new DateTime(2026, 9, 29, 23, 25, 47, 19, DateTimeKind.Local).AddTicks(7836),
                             Description = "Website created to present personal information, interests, skills, experience, or professional activities.",
                             IsDeleted = false,
                             Name = "Personal Website"
@@ -27380,7 +27631,7 @@ namespace Core.Migrations
                         {
                             Id = 47,
                             Code = "BLOGGER",
-                            CreatedDateTime = new DateTime(2026, 9, 29, 0, 34, 36, 448, DateTimeKind.Local).AddTicks(4849),
+                            CreatedDateTime = new DateTime(2026, 9, 29, 23, 25, 47, 19, DateTimeKind.Local).AddTicks(7844),
                             Description = "Individual or business that regularly creates and publishes written or multimedia blog content.",
                             IsDeleted = false,
                             Name = "Blogger"
@@ -27389,7 +27640,7 @@ namespace Core.Migrations
                         {
                             Id = 48,
                             Code = "INFLUENCER",
-                            CreatedDateTime = new DateTime(2026, 9, 29, 0, 34, 36, 448, DateTimeKind.Local).AddTicks(4856),
+                            CreatedDateTime = new DateTime(2026, 9, 29, 23, 25, 47, 19, DateTimeKind.Local).AddTicks(7851),
                             Description = "Individual who creates online content and engages an audience through social media or other digital platforms.",
                             IsDeleted = false,
                             Name = "Influencer"
@@ -27398,7 +27649,7 @@ namespace Core.Migrations
                         {
                             Id = 49,
                             Code = "MUSICIAN",
-                            CreatedDateTime = new DateTime(2026, 9, 29, 0, 34, 36, 448, DateTimeKind.Local).AddTicks(4862),
+                            CreatedDateTime = new DateTime(2026, 9, 29, 23, 25, 47, 19, DateTimeKind.Local).AddTicks(7859),
                             Description = "Individual or business involved in creating, performing, recording, or promoting music.",
                             IsDeleted = false,
                             Name = "Musician"
@@ -27407,7 +27658,7 @@ namespace Core.Migrations
                         {
                             Id = 50,
                             Code = "DJ",
-                            CreatedDateTime = new DateTime(2026, 9, 29, 0, 34, 36, 448, DateTimeKind.Local).AddTicks(4868),
+                            CreatedDateTime = new DateTime(2026, 9, 29, 23, 25, 47, 19, DateTimeKind.Local).AddTicks(7941),
                             Description = "Professional who selects, mixes, and performs recorded music for events, venues, or audiences.",
                             IsDeleted = false,
                             Name = "DJ"
@@ -27455,7 +27706,7 @@ namespace Core.Migrations
                         {
                             Id = 1,
                             Code = "NAVBAR",
-                            CreatedDateTime = new DateTime(2026, 9, 29, 0, 34, 36, 448, DateTimeKind.Local).AddTicks(3638),
+                            CreatedDateTime = new DateTime(2026, 9, 29, 23, 25, 47, 19, DateTimeKind.Local).AddTicks(6690),
                             Description = "Website navigation bar used to provide links to the main pages and sections.",
                             IsDeleted = false,
                             Name = "Navbar"
@@ -27464,7 +27715,7 @@ namespace Core.Migrations
                         {
                             Id = 2,
                             Code = "HERO",
-                            CreatedDateTime = new DateTime(2026, 9, 29, 0, 34, 36, 448, DateTimeKind.Local).AddTicks(3717),
+                            CreatedDateTime = new DateTime(2026, 9, 29, 23, 25, 47, 19, DateTimeKind.Local).AddTicks(6765),
                             Description = "Prominent introductory section that presents the main message, title, and call to action.",
                             IsDeleted = false,
                             Name = "Hero"
@@ -27473,7 +27724,7 @@ namespace Core.Migrations
                         {
                             Id = 3,
                             Code = "ABOUT",
-                            CreatedDateTime = new DateTime(2026, 9, 29, 0, 34, 36, 448, DateTimeKind.Local).AddTicks(3724),
+                            CreatedDateTime = new DateTime(2026, 9, 29, 23, 25, 47, 19, DateTimeKind.Local).AddTicks(6773),
                             Description = "Section used to introduce a business, organization, person, or project.",
                             IsDeleted = false,
                             Name = "About"
@@ -27482,7 +27733,7 @@ namespace Core.Migrations
                         {
                             Id = 4,
                             Code = "SERVICES",
-                            CreatedDateTime = new DateTime(2026, 9, 29, 0, 34, 36, 448, DateTimeKind.Local).AddTicks(3729),
+                            CreatedDateTime = new DateTime(2026, 9, 29, 23, 25, 47, 19, DateTimeKind.Local).AddTicks(6779),
                             Description = "Section that presents the services or solutions offered by a business or organization.",
                             IsDeleted = false,
                             Name = "Services"
@@ -27491,7 +27742,7 @@ namespace Core.Migrations
                         {
                             Id = 5,
                             Code = "FEATURES",
-                            CreatedDateTime = new DateTime(2026, 9, 29, 0, 34, 36, 448, DateTimeKind.Local).AddTicks(3734),
+                            CreatedDateTime = new DateTime(2026, 9, 29, 23, 25, 47, 19, DateTimeKind.Local).AddTicks(6786),
                             Description = "Section that highlights the key features, benefits, or capabilities of a product or service.",
                             IsDeleted = false,
                             Name = "Features"
@@ -27500,7 +27751,7 @@ namespace Core.Migrations
                         {
                             Id = 6,
                             Code = "PORTFOLIO",
-                            CreatedDateTime = new DateTime(2026, 9, 29, 0, 34, 36, 448, DateTimeKind.Local).AddTicks(3750),
+                            CreatedDateTime = new DateTime(2026, 9, 29, 23, 25, 47, 19, DateTimeKind.Local).AddTicks(6802),
                             Description = "Section used to showcase completed projects, work samples, or professional achievements.",
                             IsDeleted = false,
                             Name = "Portfolio"
@@ -27509,7 +27760,7 @@ namespace Core.Migrations
                         {
                             Id = 7,
                             Code = "GALLERY",
-                            CreatedDateTime = new DateTime(2026, 9, 29, 0, 34, 36, 448, DateTimeKind.Local).AddTicks(3770),
+                            CreatedDateTime = new DateTime(2026, 9, 29, 23, 25, 47, 19, DateTimeKind.Local).AddTicks(6822),
                             Description = "Visual section used to display a collection of images or other media.",
                             IsDeleted = false,
                             Name = "Gallery"
@@ -27518,7 +27769,7 @@ namespace Core.Migrations
                         {
                             Id = 8,
                             Code = "TESTIMONIALS",
-                            CreatedDateTime = new DateTime(2026, 9, 29, 0, 34, 36, 448, DateTimeKind.Local).AddTicks(3779),
+                            CreatedDateTime = new DateTime(2026, 9, 29, 23, 25, 47, 19, DateTimeKind.Local).AddTicks(6829),
                             Description = "Section that displays customer or client reviews, opinions, and experiences.",
                             IsDeleted = false,
                             Name = "Testimonials"
@@ -27527,7 +27778,7 @@ namespace Core.Migrations
                         {
                             Id = 9,
                             Code = "PRICING",
-                            CreatedDateTime = new DateTime(2026, 9, 29, 0, 34, 36, 448, DateTimeKind.Local).AddTicks(3785),
+                            CreatedDateTime = new DateTime(2026, 9, 29, 23, 25, 47, 19, DateTimeKind.Local).AddTicks(6833),
                             Description = "Section used to present products, services, packages, or subscription plans together with their prices.",
                             IsDeleted = false,
                             Name = "Pricing"
@@ -27536,7 +27787,7 @@ namespace Core.Migrations
                         {
                             Id = 10,
                             Code = "FAQ",
-                            CreatedDateTime = new DateTime(2026, 9, 29, 0, 34, 36, 448, DateTimeKind.Local).AddTicks(3789),
+                            CreatedDateTime = new DateTime(2026, 9, 29, 23, 25, 47, 19, DateTimeKind.Local).AddTicks(6838),
                             Description = "Section containing frequently asked questions and their answers.",
                             IsDeleted = false,
                             Name = "FAQ"
@@ -27545,7 +27796,7 @@ namespace Core.Migrations
                         {
                             Id = 11,
                             Code = "CONTACT",
-                            CreatedDateTime = new DateTime(2026, 9, 29, 0, 34, 36, 448, DateTimeKind.Local).AddTicks(3801),
+                            CreatedDateTime = new DateTime(2026, 9, 29, 23, 25, 47, 19, DateTimeKind.Local).AddTicks(6850),
                             Description = "Section that provides contact information and allows visitors to get in touch.",
                             IsDeleted = false,
                             Name = "Contact"
@@ -27554,7 +27805,7 @@ namespace Core.Migrations
                         {
                             Id = 12,
                             Code = "FOOTER",
-                            CreatedDateTime = new DateTime(2026, 9, 29, 0, 34, 36, 448, DateTimeKind.Local).AddTicks(3807),
+                            CreatedDateTime = new DateTime(2026, 9, 29, 23, 25, 47, 19, DateTimeKind.Local).AddTicks(6856),
                             Description = "Bottom section of a website containing additional navigation, contact information, legal links, and other details.",
                             IsDeleted = false,
                             Name = "Footer"
@@ -27563,7 +27814,7 @@ namespace Core.Migrations
                         {
                             Id = 13,
                             Code = "TEAM",
-                            CreatedDateTime = new DateTime(2026, 9, 29, 0, 34, 36, 448, DateTimeKind.Local).AddTicks(3812),
+                            CreatedDateTime = new DateTime(2026, 9, 29, 23, 25, 47, 19, DateTimeKind.Local).AddTicks(6864),
                             Description = "Section used to introduce team members, employees, or staff.",
                             IsDeleted = false,
                             Name = "Team"
@@ -27572,7 +27823,7 @@ namespace Core.Migrations
                         {
                             Id = 14,
                             Code = "CLIENTS",
-                            CreatedDateTime = new DateTime(2026, 9, 29, 0, 34, 36, 448, DateTimeKind.Local).AddTicks(3818),
+                            CreatedDateTime = new DateTime(2026, 9, 29, 23, 25, 47, 19, DateTimeKind.Local).AddTicks(6872),
                             Description = "Section used to showcase clients, customers, partners, or companies that work with the business.",
                             IsDeleted = false,
                             Name = "Clients"
@@ -27581,7 +27832,7 @@ namespace Core.Migrations
                         {
                             Id = 15,
                             Code = "STATISTICS",
-                            CreatedDateTime = new DateTime(2026, 9, 29, 0, 34, 36, 448, DateTimeKind.Local).AddTicks(3822),
+                            CreatedDateTime = new DateTime(2026, 9, 29, 23, 25, 47, 19, DateTimeKind.Local).AddTicks(6880),
                             Description = "Section used to present important business statistics, numbers, metrics, or achievements.",
                             IsDeleted = false,
                             Name = "Statistics"
@@ -27590,7 +27841,7 @@ namespace Core.Migrations
                         {
                             Id = 16,
                             Code = "SKILLS",
-                            CreatedDateTime = new DateTime(2026, 9, 29, 0, 34, 36, 448, DateTimeKind.Local).AddTicks(3859),
+                            CreatedDateTime = new DateTime(2026, 9, 29, 23, 25, 47, 19, DateTimeKind.Local).AddTicks(6934),
                             Description = "Section used to present professional skills, competencies, technologies, or areas of expertise.",
                             IsDeleted = false,
                             Name = "Skills"
@@ -27599,7 +27850,7 @@ namespace Core.Migrations
                         {
                             Id = 17,
                             Code = "EXPERIENCE",
-                            CreatedDateTime = new DateTime(2026, 9, 29, 0, 34, 36, 448, DateTimeKind.Local).AddTicks(3867),
+                            CreatedDateTime = new DateTime(2026, 9, 29, 23, 25, 47, 19, DateTimeKind.Local).AddTicks(6943),
                             Description = "Section used to display professional experience, employment history, or previous positions.",
                             IsDeleted = false,
                             Name = "Experience"
@@ -27608,7 +27859,7 @@ namespace Core.Migrations
                         {
                             Id = 18,
                             Code = "EDUCATION",
-                            CreatedDateTime = new DateTime(2026, 9, 29, 0, 34, 36, 448, DateTimeKind.Local).AddTicks(3873),
+                            CreatedDateTime = new DateTime(2026, 9, 29, 23, 25, 47, 19, DateTimeKind.Local).AddTicks(6949),
                             Description = "Section used to present educational background, degrees, certifications, or academic achievements.",
                             IsDeleted = false,
                             Name = "Education"
@@ -27617,7 +27868,7 @@ namespace Core.Migrations
                         {
                             Id = 19,
                             Code = "BLOG",
-                            CreatedDateTime = new DateTime(2026, 9, 29, 0, 34, 36, 448, DateTimeKind.Local).AddTicks(3878),
+                            CreatedDateTime = new DateTime(2026, 9, 29, 23, 25, 47, 19, DateTimeKind.Local).AddTicks(6954),
                             Description = "Section used to display articles, news, posts, and other written content.",
                             IsDeleted = false,
                             Name = "Blog"
@@ -27626,7 +27877,7 @@ namespace Core.Migrations
                         {
                             Id = 20,
                             Code = "NEWSLETTER",
-                            CreatedDateTime = new DateTime(2026, 9, 29, 0, 34, 36, 448, DateTimeKind.Local).AddTicks(3885),
+                            CreatedDateTime = new DateTime(2026, 9, 29, 23, 25, 47, 19, DateTimeKind.Local).AddTicks(6959),
                             Description = "Section that allows visitors to subscribe to a newsletter or receive updates.",
                             IsDeleted = false,
                             Name = "Newsletter"
@@ -27635,7 +27886,7 @@ namespace Core.Migrations
                         {
                             Id = 21,
                             Code = "CTA",
-                            CreatedDateTime = new DateTime(2026, 9, 29, 0, 34, 36, 448, DateTimeKind.Local).AddTicks(3891),
+                            CreatedDateTime = new DateTime(2026, 9, 29, 23, 25, 47, 19, DateTimeKind.Local).AddTicks(6965),
                             Description = "Section designed to encourage visitors to perform a specific action, such as contacting the business, purchasing a product, or signing up.",
                             IsDeleted = false,
                             Name = "Call To Action"
@@ -27644,7 +27895,7 @@ namespace Core.Migrations
                         {
                             Id = 22,
                             Code = "VIDEO",
-                            CreatedDateTime = new DateTime(2026, 9, 29, 0, 34, 36, 448, DateTimeKind.Local).AddTicks(3896),
+                            CreatedDateTime = new DateTime(2026, 9, 29, 23, 25, 47, 19, DateTimeKind.Local).AddTicks(6970),
                             Description = "Section used to display promotional, informational, or presentation videos.",
                             IsDeleted = false,
                             Name = "Video"
@@ -27653,7 +27904,7 @@ namespace Core.Migrations
                         {
                             Id = 23,
                             Code = "PROCESS",
-                            CreatedDateTime = new DateTime(2026, 9, 29, 0, 34, 36, 448, DateTimeKind.Local).AddTicks(3902),
+                            CreatedDateTime = new DateTime(2026, 9, 29, 23, 25, 47, 19, DateTimeKind.Local).AddTicks(6974),
                             Description = "Section that explains the steps, stages, or workflow involved in delivering a product or service.",
                             IsDeleted = false,
                             Name = "Process"
@@ -27662,7 +27913,7 @@ namespace Core.Migrations
                         {
                             Id = 24,
                             Code = "TECHNOLOGIES",
-                            CreatedDateTime = new DateTime(2026, 9, 29, 0, 34, 36, 448, DateTimeKind.Local).AddTicks(3907),
+                            CreatedDateTime = new DateTime(2026, 9, 29, 23, 25, 47, 19, DateTimeKind.Local).AddTicks(6979),
                             Description = "Section used to showcase technologies, tools, frameworks, or platforms used by a business or professional.",
                             IsDeleted = false,
                             Name = "Technologies"
@@ -27671,7 +27922,7 @@ namespace Core.Migrations
                         {
                             Id = 25,
                             Code = "AWARDS",
-                            CreatedDateTime = new DateTime(2026, 9, 29, 0, 34, 36, 448, DateTimeKind.Local).AddTicks(3912),
+                            CreatedDateTime = new DateTime(2026, 9, 29, 23, 25, 47, 19, DateTimeKind.Local).AddTicks(6984),
                             Description = "Section used to showcase awards, recognitions, certificates, or professional achievements.",
                             IsDeleted = false,
                             Name = "Awards"

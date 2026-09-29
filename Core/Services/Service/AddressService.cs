@@ -1,6 +1,8 @@
 ﻿using Core.Services.IService;
 using Core.UnitOfWork;
+using Domain.DTO;
 using Domain.Entities.Location;
+using Domain.Requests;
 using Domain.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -16,6 +18,12 @@ namespace Core.Services.Service
         public AddressService(IUnitOfWork unitOfWork)
         {
             this.UnitOfWork = unitOfWork;
+        }
+
+        public IEnumerable<LocationDto> Get(BasicSearchRequest model)
+        {
+            model.Search = model.Search?.Trim();
+            return UnitOfWork.Address.Get(model);
         }
 
         public Address Add(LocationViewModel model)

@@ -11,6 +11,7 @@ namespace Domain.DTO
         public int Id { get; set; }
         public string SenderEmail { get; set; }
         public string Message { get; set; }
+        public int MessageUsReasonId { get; set; }
         public string MessageUsReason { get; set; } 
         public DateTime CreatedDateTime { get; set; }
     }

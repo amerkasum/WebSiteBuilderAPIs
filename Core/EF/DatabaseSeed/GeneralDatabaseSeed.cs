@@ -168,6 +168,54 @@ namespace Core.EF.Seed
                 new RoleClaim { Id = 8, RoleId = 2, ClaimId = 4, CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false }
             );
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            //test data, delete later
+
+            modelBuilder.Entity<Feedback>().HasData(
+                new Feedback { Id = 1, UserId = 1, Rating = 5, Message = "Excellent service!", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new Feedback { Id = 2, UserId = 2, Rating = 4, Message = "Good experience overall.", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new Feedback { Id = 3, UserId = 1, Rating = 3, Message = "Average service.", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new Feedback { Id = 4, UserId = 2, Rating = 2, Message = "Not satisfied with the service.", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new Feedback { Id = 5, UserId = 1, Rating = 1, Message = "Very poor experience.", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new Feedback { Id = 6, UserId = 1, Message = "Odlična usluga, sve je bilo brzo i profesionalno.", Rating = 5, CreatedDateTime = DateTime.Now, IsDeleted = false },
+                new Feedback { Id = 7, UserId = 2, Message = "Veoma sam zadovoljan uslugom. Sve preporuke!", Rating = 5, CreatedDateTime = DateTime.Now, IsDeleted = false },
+                new Feedback { Id = 8, UserId = 1, Message = "Dobra usluga i ljubazno osoblje.", Rating = 4, CreatedDateTime = DateTime.Now, IsDeleted = false },
+                new Feedback { Id = 9, UserId = 1, Message = "Sve je prošlo kako treba, nemam zamjerki.", Rating = 4, CreatedDateTime = DateTime.Now, IsDeleted = false },
+                new Feedback { Id = 10, UserId = 2, Message = "Odlična komunikacija i veoma brzo riješena moja zahtjev.", Rating = 5, CreatedDateTime = DateTime.Now, IsDeleted = false },
+                new Feedback { Id = 11, UserId = 1, Message = "Usluga je bila korektna, ali može biti malo brža.", Rating = 3, CreatedDateTime = DateTime.Now, IsDeleted = false },
+                new Feedback { Id = 12, UserId = 2, Message = "Jako dobro iskustvo. Profesionalno i pouzdano.", Rating = 5, CreatedDateTime = DateTime.Now, IsDeleted = false },
+                new Feedback { Id = 13, UserId = 1, Message = "Sve je bilo u redu i prema dogovoru.", Rating = 4, CreatedDateTime = DateTime.Now, IsDeleted = false },
+                new Feedback { Id = 14, UserId = 2, Message = "Nisam potpuno zadovoljan iskustvom.", Rating = 2, CreatedDateTime = DateTime.Now, IsDeleted = false },
+                new Feedback { Id = 15, UserId = 2, Message = "Odličan odnos prema korisnicima. Sve preporuke.", Rating = 5, CreatedDateTime = DateTime.Now, IsDeleted = false }
+            );
+
+
+            modelBuilder.Entity<MessageUs>().HasData(
+                new MessageUs { Id = 1, EmailSender = "amer.kasum@gmail.com", Message = "Imam pitanje u vezi vaše usluge.", MessageUsReasonId = 1, CreatedDateTime = DateTime.Now, IsDeleted = false },
+                new MessageUs { Id = 2, EmailSender = "test.user@gmail.com", Message = "Zanima me više informacija o vašim uslugama.", MessageUsReasonId = 2, CreatedDateTime = DateTime.Now, IsDeleted = false },
+                new MessageUs { Id = 3, EmailSender = "john.doe@gmail.com", Message = "Molim vas za dodatne informacije.", MessageUsReasonId = 3, CreatedDateTime = DateTime.Now, IsDeleted = false },
+                new MessageUs { Id = 4, EmailSender = "info@example.com", Message = "Želio bih prijaviti problem sa aplikacijom.", MessageUsReasonId = 4, CreatedDateTime = DateTime.Now, IsDeleted = false },
+                new MessageUs { Id = 5, EmailSender = "customer@gmail.com", Message = "Kada mogu očekivati odgovor na moj zahtjev?", MessageUsReasonId = 1, CreatedDateTime = DateTime.Now, IsDeleted = false },
+                new MessageUs { Id = 6, EmailSender = "contact@example.com", Message = "Imam prijedlog za poboljšanje vaše aplikacije.", MessageUsReasonId = 2, CreatedDateTime = DateTime.Now, IsDeleted = false },
+                new MessageUs { Id = 7, EmailSender = "user.test@gmail.com", Message = "Aplikacija mi prikazuje grešku prilikom prijave.", MessageUsReasonId = 4, CreatedDateTime = DateTime.Now, IsDeleted = false },
+                new MessageUs { Id = 8, EmailSender = "example.user@gmail.com", Message = "Želio bih saznati više o vašim mogućnostima.", MessageUsReasonId = 3, CreatedDateTime = DateTime.Now, IsDeleted = false },
+                new MessageUs { Id = 9, EmailSender = "test@example.com", Message = "Molim vas da me kontaktirate kada budete u mogućnosti.", MessageUsReasonId = 1, CreatedDateTime = DateTime.Now, IsDeleted = false },
+                new MessageUs { Id = 10, EmailSender = "client@gmail.com", Message = "Imam nekoliko pitanja prije korištenja usluge.", MessageUsReasonId = 2, CreatedDateTime = DateTime.Now, IsDeleted = false }
+            );
+
             //ADMIN
             modelBuilder.Entity<User>().HasData(
                 new User
@@ -195,6 +243,40 @@ namespace Core.EF.Seed
                     Id = 1,
                     UserId = 1,
                     RoleId = 1,
+                    CreatedDateTime = DateTime.Now,
+                    ModifiedDateTime = null,
+                    DeletedDateTime = null,
+                    IsDeleted = false,
+                }
+            );
+
+            //USER
+            modelBuilder.Entity<User>().HasData(
+                new User
+                {
+                    Id = 2,
+                    FirstName = "User",
+                    LastName = "User",
+                    Email = "user@user.com",
+                    Username = "user",
+                    Password = "user123", // In a real application, you should hash the password,
+                    PasswordSalt = "salt",
+                    GenderId = 1,
+                    BirthDate = new DateTime(1990, 1, 1),
+                    ImageUrl = null,
+                    CreatedDateTime = DateTime.Now,
+                    ModifiedDateTime = null,
+                    DeletedDateTime = null,
+                    IsDeleted = false,
+                }
+             );
+
+            modelBuilder.Entity<UserRole>().HasData(
+                new UserRole
+                {
+                    Id = 2,
+                    UserId = 2,
+                    RoleId = 2,
                     CreatedDateTime = DateTime.Now,
                     ModifiedDateTime = null,
                     DeletedDateTime = null,

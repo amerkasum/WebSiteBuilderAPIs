@@ -2,6 +2,7 @@
 using Core.Repositories.IRepository;
 using Domain.DTO;
 using Domain.Entities.Location;
+using Domain.Requests;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -17,10 +18,17 @@ namespace Core.Repositories.Repository
         {
         }
 
-        public IEnumerable<LocationDto> GetAll()
+        public bool DoesAddressExist(string name)
         {
-            return _context.Addresses.Include(x => x.City).ThenInclude(x => x.Region).ThenInclude(x => x.Country)
-                .Where(x => !x.IsDeleted && x.City.RegionId == x.City.Region.Id && x.City.Region.CountryId == x.City.Region.Country.Id)
+            return _context.Addresses.Any(x => x.Name.ToLower().Equals(name.ToLower()));
+        }
+
+        public IEnumerable<LocationDto> Get(BasicSearchRequest model)
+        {
+            var result = _context.Addresses.Include(x => x.City).ThenInclude(x => x.Region).ThenInclude(x => x.Country)
+                .Where(x => (string.IsNullOrEmpty(model.Search) || (x.Name.Contains(model.Search) || x.City.Name.Contains(model.Search) ||
+                            x.City.Region.Name.Contains(model.Search) || x.City.Region.Country.Name.Contains(model.Search))) &&
+                            (!x.IsDeleted && x.City.RegionId == x.City.Region.Id && x.City.Region.CountryId == x.City.Region.Country.Id))
                 .Select(x => new LocationDto
                 {
                     Id = x.Id,
@@ -31,11 +39,7 @@ namespace Core.Repositories.Repository
                     Country = x.City.Region.Country.Name,
                     CountryIso = x.City.Region.Country.Iso
                 }).AsEnumerable();
-        }
-
-        public bool DoesAddressExist(string name)
-        {
-            return _context.Addresses.Any(x => x.Name.ToLower().Equals(name.ToLower()));
+            return result;
         }
     }
 }

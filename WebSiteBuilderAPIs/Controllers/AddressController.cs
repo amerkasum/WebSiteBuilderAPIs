@@ -2,6 +2,7 @@
 using Core.UnitOfWork;
 using Domain.DTO;
 using Domain.Entities.Location;
+using Domain.Requests;
 using Domain.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -27,10 +28,10 @@ namespace WebSiteBuilderAPIs.Controllers
             this.AddressService = addressService;
         }
 
-        [HttpGet(nameof(GetAll))]
-        public IEnumerable<LocationDto> GetAll()
+        [HttpGet(nameof(Get))]
+        public IEnumerable<LocationDto> Get([FromQuery] BasicSearchRequest model)
         {
-            return UnitOfWork.Address.GetAll();
+            return AddressService.Get(model);
         }
 
         [HttpPost(nameof(Add))]

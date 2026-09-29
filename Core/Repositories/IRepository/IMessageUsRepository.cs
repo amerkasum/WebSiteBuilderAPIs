@@ -1,5 +1,6 @@
 ﻿using Domain.DTO;
 using Domain.Entities.System;
+using Domain.Requests;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,6 @@ namespace Core.Repositories.IRepository
 {
     public interface IMessageUsRepository : IRepository<MessageUs>
     {
-        List<MessageUsDto> GetAllWithParameters(string senderEmail, int? messageUsReasonId, DateTime? dateFrom, DateTime? dateTo);
+        List<MessageUsDto> Get(MessageUsRequest model);
     }
 }

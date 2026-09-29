@@ -1,5 +1,7 @@
-﻿using Domain.Entities.Personal;
+﻿using Domain.DTO;
+using Domain.Entities.Personal;
 using Domain.Entities.System;
+using Domain.Requests;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,5 +12,6 @@ namespace Core.Repositories.IRepository
 {
     public interface IUserRoleRepository : IRepository<UserRole>
     {
+        IEnumerable<UserRoleDto> Get(UserRoleRequest model);
     }
 }

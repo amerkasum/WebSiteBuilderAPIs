@@ -1,6 +1,8 @@
 ﻿using Core.Services.IService;
 using Core.UnitOfWork;
+using Domain.DTO;
 using Domain.Entities.System;
+using Domain.Requests;
 using Domain.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -16,6 +18,12 @@ namespace Core.Services.Service
         public FeedbackService(IUnitOfWork unitOfwork)
         {
             this.UnitOfWork = unitOfwork;
+        }
+
+        public IEnumerable<FeedbackDto> Get(BasicSearchRequest model)
+        {
+            model.Search = model?.Search?.Trim();
+            return UnitOfWork.Feedback.Get(model);
         }
 
         public Feedback Add(FeedbackViewModel model)
@@ -59,7 +67,5 @@ namespace Core.Services.Service
             UnitOfWork.Feedback.Remove(feedback);
             UnitOfWork.SaveChanges();
         }
-
-        
     }
 }

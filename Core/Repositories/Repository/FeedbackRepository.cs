@@ -2,6 +2,9 @@
 using Core.Repositories.IRepository;
 using Domain.DTO;
 using Domain.Entities.System;
+using Domain.Requests;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,12 +34,14 @@ namespace Core.Repositories.Repository
             return feebacks;
         }
 
-        public IEnumerable<FeedbackDto> GetAll()
+        public IEnumerable<FeedbackDto> Get(BasicSearchRequest model)
         {
-            return _context.Feedback.Select(x => new FeedbackDto
+            return _context.Feedback.Include(x => x.User).Where(x => !x.IsDeleted 
+                            && (string.IsNullOrEmpty(model.Search) || (x.Message.Contains(model.Search) || x.User.FirstName.Contains(model.Search) || x.User.LastName.Contains(model.Search)))).Select(x => new FeedbackDto
             {
                 Id = x.Id,
                 UserId = x.UserId,
+                FullName = $"{x.User.FirstName} {x.User.LastName}",
                 Message = x.Message,
                 Rating = x.Rating
             }).AsEnumerable();

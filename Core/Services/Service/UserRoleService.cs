@@ -1,6 +1,8 @@
 ﻿using Core.Services.IService;
 using Core.UnitOfWork;
+using Domain.DTO;
 using Domain.Entities.Personal;
+using Domain.Requests;
 using Domain.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -16,6 +18,12 @@ namespace Core.Services.Service
         public UserRoleService(IUnitOfWork unitOfWork)
         {
             this.UnitOfWork = unitOfWork;
+        }
+
+        public IEnumerable<UserRoleDto> Get(UserRoleRequest model)
+        {
+            model.Search = model.Search?.Trim();
+            return UnitOfWork.UserRole.Get(model);
         }
         public UserRole Add(UserRoleViewModel model)
         {
@@ -58,6 +66,5 @@ namespace Core.Services.Service
             UnitOfWork.SaveChanges();
         }
 
-        
     }
 }
