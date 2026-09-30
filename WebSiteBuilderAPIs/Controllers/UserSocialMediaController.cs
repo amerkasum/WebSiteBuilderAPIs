@@ -1,6 +1,7 @@
 ﻿using Core.Services.IService;
 using Core.UnitOfWork;
 using Domain.DTO;
+using Domain.Requests;
 using Domain.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -25,16 +26,10 @@ namespace WebSiteBuilderAPIs.Controllers
         }
 
 
-        [HttpGet(nameof(GetByUserId))]
-        public List<UserSocialMediaDto> GetByUserId(int userId)
+        [HttpGet(nameof(Get))]
+        public IEnumerable<UserSocialMediaDto> Get([FromQuery] UserSocialMediaRequest model)
         {
-            return UserSocialMediaService.GetByUserId(userId);
-        }
-
-        [HttpGet(nameof(GetAll))]
-        public List<UserSocialMediaDto> GetAll()
-        {
-            return UserSocialMediaService.GetAll();
+            return UserSocialMediaService.Get(model);
         }
 
         [HttpPost(nameof(Add))]

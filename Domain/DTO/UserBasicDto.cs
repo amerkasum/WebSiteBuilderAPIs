@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace Domain.DTO
 {
-    public class UserSocialMediaDto
+    public class UserBasicDto
     {
         public int Id { get; set; }
-        public UserBasicDto User { get; set; }
-        public SocialMediaDto SocialMedia { get; set; }
-        public string Link { get; set; }
+        public string FullName { get; set; }
+        public string Email { get; set; }
+        public string Username { get; set; }
     }
 }

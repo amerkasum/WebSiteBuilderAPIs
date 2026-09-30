@@ -1,4 +1,6 @@
-﻿using Domain.Entities.Personal;
+﻿using Domain.DTO;
+using Domain.Entities.Personal;
+using Domain.Requests;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +11,6 @@ namespace Core.Repositories.IRepository
 {
     public interface IUserSocialMediaRepository : IRepository<UserSocialMedia>
     {
-        List<UserSocialMedia> GetByUserId(int userId);
+        IEnumerable<UserSocialMediaDto> Get(UserSocialMediaRequest model);
     }
 }

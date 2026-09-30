@@ -184,6 +184,8 @@ namespace Core.EF.Seed
 
             //test data, delete later
 
+            
+
             modelBuilder.Entity<Feedback>().HasData(
                 new Feedback { Id = 1, UserId = 1, Rating = 5, Message = "Excellent service!", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
                 new Feedback { Id = 2, UserId = 2, Rating = 4, Message = "Good experience overall.", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
@@ -282,6 +284,19 @@ namespace Core.EF.Seed
                     DeletedDateTime = null,
                     IsDeleted = false,
                 }
+            );
+
+            modelBuilder.Entity<UserSocialMedia>().HasData(
+                new UserSocialMedia { Id = 1, UserId = 1, SocialMediaId = 1, Link = "https://facebook.com/user1", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new UserSocialMedia { Id = 2, UserId = 1, SocialMediaId = 2, Link = "https://instagram.com/user1", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new UserSocialMedia { Id = 3, UserId = 1, SocialMediaId = 3, Link = "https://twitter.com/user1", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new UserSocialMedia { Id = 4, UserId = 1, SocialMediaId = 4, Link = "https://linkedin.com/in/user1", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new UserSocialMedia { Id = 5, UserId = 1, SocialMediaId = 5, Link = "https://github.com/user1", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new UserSocialMedia { Id = 6, UserId = 2, SocialMediaId = 1, Link = "https://facebook.com/user2", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new UserSocialMedia { Id = 7, UserId = 2, SocialMediaId = 2, Link = "https://instagram.com/user2", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new UserSocialMedia { Id = 8, UserId = 2, SocialMediaId = 6, Link = "https://youtube.com/user2", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new UserSocialMedia { Id = 9, UserId = 2, SocialMediaId = 7, Link = "https://tiktok.com/@user2", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new UserSocialMedia { Id = 10, UserId = 2, SocialMediaId = 8, Link = "https://x.com/user2", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false }
             );
         }
     }

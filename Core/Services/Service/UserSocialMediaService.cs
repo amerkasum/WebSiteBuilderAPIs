@@ -2,6 +2,7 @@
 using Core.UnitOfWork;
 using Domain.DTO;
 using Domain.Entities.Personal;
+using Domain.Requests;
 using Domain.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -17,6 +18,12 @@ namespace Core.Services.Service
         public UserSocialMediaService(IUnitOfWork unitOfWork)
         {
             this.UnitOfWork = unitOfWork;
+        }
+
+        public IEnumerable<UserSocialMediaDto> Get(UserSocialMediaRequest model)
+        {
+            model.Search = model.Search?.Trim();
+            return UnitOfWork.UserSocialMedia.Get(model);
         }
 
         public UserSocialMedia Add(UserSocialMediaViewModel model)
@@ -62,40 +69,5 @@ namespace Core.Services.Service
             UnitOfWork.SaveChanges();
         }
 
-        public List<UserSocialMediaDto> GetByUserId(int userId)
-        {
-            var userSocialMedia = UnitOfWork.UserSocialMedia.GetByUserId(userId);
-
-            var userSocialMediaDto = userSocialMedia.Select(x => new UserSocialMediaDto
-            {
-                Id = x.Id,
-                Username = x.User.Username,
-                FullName =  $"{x.User.FirstName} {x.User.LastName}",
-                SocialMediaName = x.SocialMedia.Name,
-                SocialMediaColor = x.SocialMedia.Color,
-                SocialMediaDisplayOrder = x.SocialMedia.DisplayOrder,
-                SocialMediaIcon = x.SocialMedia.Icon
-            }).ToList();
-
-            return userSocialMediaDto;
-        }
-
-        public List<UserSocialMediaDto> GetAll()
-        {
-            var userSocialMedia = UnitOfWork.UserSocialMedia.GetAll();
-
-            var userSocialMediaDto = userSocialMedia.Select(x => new UserSocialMediaDto
-            {
-                Id = x.Id,
-                Username = x.User.Username,
-                FullName = $"{x.User.FirstName} {x.User.LastName}",
-                SocialMediaName = x.SocialMedia.Name,
-                SocialMediaColor = x.SocialMedia.Color,
-                SocialMediaDisplayOrder = x.SocialMedia.DisplayOrder,
-                SocialMediaIcon = x.SocialMedia.Icon
-            }).ToList();
-
-            return userSocialMediaDto;
-        }
     }
 }
