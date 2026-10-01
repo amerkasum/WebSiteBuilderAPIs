@@ -184,7 +184,13 @@ namespace Core.EF.Seed
 
             //test data, delete later
 
-            
+            modelBuilder.Entity<UserContact>().HasData(
+                new UserContact { Id = 1, UserId = 1, ContactTypeId = 1, Value = "061123456", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new UserContact { Id = 2, UserId = 1, ContactTypeId = 2, Value = "amer.kasum@example.com", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new UserContact { Id = 3, UserId = 2, ContactTypeId = 1, Value = "062987654", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new UserContact { Id = 4, UserId = 2, ContactTypeId = 2, Value = "user2@example.com", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false }
+            );
+
 
             modelBuilder.Entity<Feedback>().HasData(
                 new Feedback { Id = 1, UserId = 1, Rating = 5, Message = "Excellent service!", CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },

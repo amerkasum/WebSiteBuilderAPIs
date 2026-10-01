@@ -20,12 +20,10 @@ namespace WebSiteBuilderAPIs.Controllers
     [Authorize]
     public class FeedbackController : ControllerBase
     {
-        private readonly IUnitOfWork UnitOfWork;
         private readonly Localizer Localizer;
         private readonly IFeedbackService FeedbackService;
-        public FeedbackController(IUnitOfWork unitOfWork, Localizer localizer, IFeedbackService feedbackService)
+        public FeedbackController(Localizer localizer, IFeedbackService feedbackService)
         {
-            this.UnitOfWork = unitOfWork;
             this.Localizer = localizer;
             this.FeedbackService = feedbackService;
         }
@@ -34,12 +32,6 @@ namespace WebSiteBuilderAPIs.Controllers
         public IEnumerable<FeedbackDto> Get([FromQuery] BasicSearchRequest model)
         {
             return FeedbackService.Get(model);
-        }
-
-        [HttpGet(nameof(GetByUserId))]
-        public IEnumerable<FeedbackDto> GetByUserId(int userId)
-        {
-            return UnitOfWork.Feedback.GetByUserId(userId);
         }
 
         [HttpPost(nameof(Add))]

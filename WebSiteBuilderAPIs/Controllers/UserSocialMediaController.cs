@@ -15,12 +15,10 @@ namespace WebSiteBuilderAPIs.Controllers
     [Authorize]
     public class UserSocialMediaController : ControllerBase
     {
-        private readonly IUnitOfWork UnitOfWork;
         private readonly Localizer Localizer;
         private readonly IUserSocialMediaService UserSocialMediaService;
-        public UserSocialMediaController(IUnitOfWork unitOfWork, Localizer localizer, IUserSocialMediaService userSocialMediaService)
+        public UserSocialMediaController(Localizer localizer, IUserSocialMediaService userSocialMediaService)
         {
-            this.UnitOfWork = unitOfWork;
             this.Localizer = localizer;
             this.UserSocialMediaService = userSocialMediaService;
         }

@@ -1,4 +1,6 @@
-﻿using Domain.Entities.Personal;
+﻿using Domain.DTO;
+using Domain.Entities.Personal;
+using Domain.Requests;
 using Domain.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -10,6 +12,7 @@ namespace Core.Services.IService
 {
     public interface IUserContactService
     {
+        IEnumerable<UserContactDto> Get(UserContactRequest model);
         List<UserContact> HandleUserContacts(List<UserContactViewModel> model, int userId, string email);
         UserContact Add(UserContactViewModel model);
         UserContact Edit(UserContactViewModel model);

@@ -17,12 +17,10 @@ namespace WebSiteBuilderAPIs.Controllers
     [Authorize]
     public class ComponentTypeController : ControllerBase
     {
-        private readonly IUnitOfWork UnitOfWork;
         private readonly Localizer Localizer;
         private readonly IComponentTypeService ComponentTypeService;
-        public ComponentTypeController(IUnitOfWork unitOfwork, Localizer localizer, IComponentTypeService componentTypeService)
+        public ComponentTypeController(Localizer localizer, IComponentTypeService componentTypeService)
         {
-            this.UnitOfWork = unitOfwork;
             this.Localizer = localizer;
             this.ComponentTypeService = componentTypeService;
         }

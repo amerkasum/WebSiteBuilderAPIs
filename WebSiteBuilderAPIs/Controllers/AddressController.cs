@@ -17,13 +17,11 @@ namespace WebSiteBuilderAPIs.Controllers
     [Authorize]
     public class AddressController : ControllerBase
     {
-        private readonly IUnitOfWork UnitOfWork;
         private readonly Localizer Localizer;
         private readonly IAddressService AddressService;
 
-        public AddressController(IUnitOfWork unitOfWork, Localizer localizer, IAddressService addressService)
+        public AddressController(Localizer localizer, IAddressService addressService)
         {
-            this.UnitOfWork = unitOfWork;
             this.Localizer = localizer;
             this.AddressService = addressService;
         }
@@ -48,7 +46,6 @@ namespace WebSiteBuilderAPIs.Controllers
             }
             catch (Exception e)
             {
-                UnitOfWork.RollBack();
                 return StatusCode(500, new { success = false, message = string.Format(Localizer.SomethingWentWrong, e.Message) });
             }
         }

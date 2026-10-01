@@ -16,12 +16,10 @@ namespace WebSiteBuilderAPIs.Controllers
     [Authorize]
     public class BusinessTypeController : ControllerBase
     {
-        private readonly IUnitOfWork UnitOfWork;
         private readonly Localizer Localizer;
         private readonly IBusinessTypeService BusinessTypeService;
-        public BusinessTypeController(IUnitOfWork unitOfWork, Localizer localizer, IBusinessTypeService businessTypeService)
+        public BusinessTypeController(Localizer localizer, IBusinessTypeService businessTypeService)
         {
-            this.UnitOfWork = unitOfWork;
             this.Localizer = localizer;
             this.BusinessTypeService = businessTypeService;
         }

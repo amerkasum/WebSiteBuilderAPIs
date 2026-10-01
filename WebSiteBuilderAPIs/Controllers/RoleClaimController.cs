@@ -1,6 +1,8 @@
 ﻿using Core.Services.IService;
 using Core.UnitOfWork;
+using Domain.DTO;
 using Domain.Entities.System;
+using Domain.Requests;
 using Domain.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -24,10 +26,10 @@ namespace WebSiteBuilderAPIs.Controllers
             this.RoleClaimService = roleClaimService;
         }
 
-        [HttpGet(nameof(GetAll))]
-        public IEnumerable<RoleClaim> GetAll()
+        [HttpGet(nameof(Get))]
+        public IEnumerable<RoleClaimDto> Get([FromQuery] RoleClaimRequest model)
         {
-            return UnitOfWork.RoleClaim.GetAll();
+            return RoleClaimService.Get(model);
         }
 
         [HttpPost(nameof(Add))]

@@ -19,12 +19,10 @@ namespace WebSiteBuilderAPIs.Controllers
     [Authorize]
     public class GenderController : ControllerBase
     {
-        private readonly IUnitOfWork UnitOfWork;
         private readonly Localizer Localizer;
         private readonly IGenderService GenderService;
-        public GenderController(IUnitOfWork unitOfWork, Localizer localizer, IGenderService genderService)
+        public GenderController(Localizer localizer, IGenderService genderService)
         {
-            this.UnitOfWork = unitOfWork;
             this.Localizer = localizer;
             this.GenderService = genderService;
         }

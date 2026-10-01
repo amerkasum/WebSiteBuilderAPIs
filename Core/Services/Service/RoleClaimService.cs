@@ -1,6 +1,8 @@
 ﻿using Core.Services.IService;
 using Core.UnitOfWork;
+using Domain.DTO;
 using Domain.Entities.System;
+using Domain.Requests;
 using Domain.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -16,6 +18,11 @@ namespace Core.Services.Service
         public RoleClaimService(IUnitOfWork unitOfWork)
         {
             this.UnitOfWork = unitOfWork;
+        }
+
+        public IEnumerable<RoleClaimDto> Get(RoleClaimRequest model)
+        {
+            return UnitOfWork.RoleClaim.Get(model);
         }
 
         public RoleClaim Add(RoleClaimViewModel model)
@@ -57,6 +64,6 @@ namespace Core.Services.Service
 
             UnitOfWork.RoleClaim.Remove(roleClaim);
             UnitOfWork.SaveChanges();
-        }  
+        }
     }
 }

@@ -17,12 +17,10 @@ namespace WebSiteBuilderAPIs.Controllers
     [Authorize]
     public class MessageUsReasonController : ControllerBase
     {
-        private readonly IUnitOfWork UnitOfWork;
         private readonly Localizer Localizer;
         private readonly IMessageUsReasonService MessageUsReasonService;
-        public MessageUsReasonController(IUnitOfWork unitOfWork, Localizer localizer, IMessageUsReasonService messageUsReasonService)
+        public MessageUsReasonController(Localizer localizer, IMessageUsReasonService messageUsReasonService)
         {
-            this.UnitOfWork = unitOfWork;
             this.Localizer = localizer;
             this.MessageUsReasonService = messageUsReasonService;
         }

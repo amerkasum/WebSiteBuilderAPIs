@@ -17,12 +17,10 @@ namespace WebSiteBuilderAPIs.Controllers
     [Authorize]
     public class RoleController : ControllerBase
     {
-        private readonly IUnitOfWork UnitOfWork;
         private readonly Localizer Localizer;
         private readonly IRoleService RoleService;
-        public RoleController(IUnitOfWork unitOfWork, Localizer localizer, IRoleService roleService)
+        public RoleController(Localizer localizer, IRoleService roleService)
         {
-            this.UnitOfWork = unitOfWork;
             this.Localizer = localizer;
             this.RoleService = roleService;
         }

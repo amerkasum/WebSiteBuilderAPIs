@@ -1,6 +1,8 @@
 ﻿using Core.Services.IService;
 using Core.UnitOfWork;
+using Domain.DTO;
 using Domain.Entities.Personal;
+using Domain.Requests;
 using Domain.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -14,20 +16,18 @@ namespace WebSiteBuilderAPIs.Controllers
     [Authorize]
     public class UserContactController : ControllerBase
     {
-        private readonly IUnitOfWork UnitOfWork;
         private readonly Localizer Localizer;
         private readonly IUserContactService UserContactService;
-        public UserContactController(IUnitOfWork unitOfWork, Localizer localizer, IUserContactService userContactService)
+        public UserContactController(Localizer localizer, IUserContactService userContactService)
         {
-            this.UnitOfWork = unitOfWork;
             this.Localizer = localizer;
             this.UserContactService = userContactService;
         }
 
-        [HttpGet(nameof(GetAll))]
-        public IEnumerable<UserContact> GetAll()
+        [HttpGet(nameof(Get))]
+        public IEnumerable<UserContactDto> Get([FromQuery] UserContactRequest model)
         {
-            return UnitOfWork.UserContact.GetAll();
+            return UserContactService.Get(model);
         }
 
         [HttpPost(nameof(Add))]

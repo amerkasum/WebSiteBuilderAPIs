@@ -1,6 +1,8 @@
 ﻿using Core.Services.IService;
 using Core.UnitOfWork;
+using Domain.DTO;
 using Domain.Entities.Personal;
+using Domain.Requests;
 using Domain.ViewModels;
 using Helpers.Helpers;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
@@ -18,6 +20,12 @@ namespace Core.Services.Service
         public UserContactService(IUnitOfWork unitOfWork)
         {
             this.UnitOfWork = unitOfWork;
+        }
+
+        public IEnumerable<UserContactDto> Get(UserContactRequest model)
+        {
+            model.Sreach = model.Sreach?.Trim();
+            return UnitOfWork.UserContact.Get(model);
         }
 
         public UserContact Add(UserContactViewModel model)

@@ -246,6 +246,9 @@
   <data name="UserContact" xml:space="preserve">
     <value>Konakt korisnika</value>
   </data>
+  <data name="UserRole" xml:space="preserve">
+    <value>Korisnička uloga</value>
+  </data>
   <data name="YearsOld" xml:space="preserve">
     <value>{0} godina</value>
   </data>

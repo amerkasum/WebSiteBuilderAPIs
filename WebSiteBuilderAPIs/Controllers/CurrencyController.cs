@@ -17,12 +17,10 @@ namespace WebSiteBuilderAPIs.Controllers
     [Authorize]
     public class CurrencyController : ControllerBase
     {
-        private readonly IUnitOfWork UnitOfWork;
         private readonly Localizer Localizer;
         private readonly ICurrencyService CurrencyService;
-        public CurrencyController(IUnitOfWork unitOfWork, Localizer localizer, ICurrencyService currencyService)
+        public CurrencyController(Localizer localizer, ICurrencyService currencyService)
         {
-            this.UnitOfWork = unitOfWork;
             this.Localizer = localizer;
             this.CurrencyService = currencyService;
         }

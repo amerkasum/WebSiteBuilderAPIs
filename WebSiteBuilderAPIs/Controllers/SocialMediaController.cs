@@ -16,12 +16,10 @@ namespace WebSiteBuilderAPIs.Controllers
     [Authorize]
     public class SocialMediaController : Controller
     {
-        private readonly IUnitOfWork UnitOfWork;
         private readonly Localizer Localizer;
         private readonly ISocialMediaService SocialMediaService;
-        public SocialMediaController(IUnitOfWork unitOfWork, Localizer localizer, ISocialMediaService socialMediaService)
+        public SocialMediaController(Localizer localizer, ISocialMediaService socialMediaService)
         {
-            this.UnitOfWork = unitOfWork;
             this.Localizer = localizer;
             this.SocialMediaService = socialMediaService;
         }
@@ -30,12 +28,6 @@ namespace WebSiteBuilderAPIs.Controllers
         public IEnumerable<BasicSearchResponse> Get([FromQuery] BasicSearchRequest model)
         {
             return SocialMediaService.Get(model);
-        }
-
-        [HttpGet(nameof(GetSocialMediaBasic))]
-        public IEnumerable<SocialMediaBasicDto> GetSocialMediaBasic()
-        {
-            return UnitOfWork.SocialMedia.GetSocialMediaBasic();
         }
 
         [HttpPost(nameof(Add))]

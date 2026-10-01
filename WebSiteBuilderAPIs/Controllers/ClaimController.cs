@@ -17,12 +17,10 @@ namespace WebSiteBuilderAPIs.Controllers
     [Authorize]
     public class ClaimController : ControllerBase
     {
-        private readonly IUnitOfWork UnitOfWork;
         private readonly Localizer Localizer;
         private readonly IClaimService ClaimService;
-        public ClaimController(IUnitOfWork unitOfWork, Localizer localizer, IClaimService claimService)
+        public ClaimController(Localizer localizer, IClaimService claimService)
         {
-            this.UnitOfWork = unitOfWork;
             this.Localizer = localizer;
             this.ClaimService = claimService;
         }

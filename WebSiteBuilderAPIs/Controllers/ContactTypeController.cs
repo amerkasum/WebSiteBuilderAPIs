@@ -20,12 +20,10 @@ namespace WebSiteBuilderAPIs.Controllers
     [Authorize]
     public class ContactTypeController : ControllerBase
     {
-        private readonly IUnitOfWork UnitOfWork;
         private readonly Localizer Localizer;
         private readonly IContactTypeService ContactTypeService;
-        public ContactTypeController(IUnitOfWork unitOfWork, Localizer localizer, IContactTypeService contactTypeService)
+        public ContactTypeController(Localizer localizer, IContactTypeService contactTypeService)
         {
-            this.UnitOfWork = unitOfWork;
             this.Localizer = localizer;
             this.ContactTypeService = contactTypeService;
         }
