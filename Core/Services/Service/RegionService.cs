@@ -22,10 +22,10 @@ namespace Core.Services.Service
             this.UnitOfWork = unitOFWork;
         }
 
-        public async Task<IEnumerable<RegionDto>> Get(RegionRequest model)
+        public IEnumerable<RegionDto> Get(RegionRequest model)
         {
             model.Search = model.Search?.Trim();
-            return await UnitOfWork.Regions.Get(model);
+            return UnitOfWork.Regions.Get(model);
         }
 
         public Region Add(RegionViewModel model)

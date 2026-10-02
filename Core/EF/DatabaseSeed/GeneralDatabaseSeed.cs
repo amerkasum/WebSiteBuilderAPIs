@@ -169,78 +169,78 @@ namespace Core.EF.Seed
             );
 
             modelBuilder.Entity<City>().HasData(
-    new City { Id = 1, Name = "Bihać", PttCode = "77000", RegionId = 1, CreatedDateTime = new DateTime(2026, 1, 1) },
-    new City { Id = 2, Name = "Cazin", PttCode = "77220", RegionId = 1, CreatedDateTime = new DateTime(2026, 1, 1) },
-    new City { Id = 3, Name = "Velika Kladuša", PttCode = "77230", RegionId = 1, CreatedDateTime = new DateTime(2026, 1, 1) },
-    new City { Id = 4, Name = "Bosanska Krupa", PttCode = "77240", RegionId = 1, CreatedDateTime = new DateTime(2026, 1, 1) },
-    new City { Id = 5, Name = "Bužim", PttCode = "77245", RegionId = 1, CreatedDateTime = new DateTime(2026, 1, 1) },
-
-    new City { Id = 6, Name = "Orašje", PttCode = "76270", RegionId = 2, CreatedDateTime = new DateTime(2026, 1, 1) },
-    new City { Id = 7, Name = "Odžak", PttCode = "76290", RegionId = 2, CreatedDateTime = new DateTime(2026, 1, 1) },
-    new City { Id = 8, Name = "Domaljevac", PttCode = "76233", RegionId = 2, CreatedDateTime = new DateTime(2026, 1, 1) },
-    new City { Id = 9, Name = "Tolisa", PttCode = "76273", RegionId = 2, CreatedDateTime = new DateTime(2026, 1, 1) },
-    new City { Id = 10, Name = "Donja Mahala", PttCode = "76273", RegionId = 2, CreatedDateTime = new DateTime(2026, 1, 1) },
-
-    new City { Id = 11, Name = "Tuzla", PttCode = "75000", RegionId = 3, CreatedDateTime = new DateTime(2026, 1, 1) },
-    new City { Id = 12, Name = "Živinice", PttCode = "75270", RegionId = 3, CreatedDateTime = new DateTime(2026, 1, 1) },
-    new City { Id = 13, Name = "Lukavac", PttCode = "75300", RegionId = 3, CreatedDateTime = new DateTime(2026, 1, 1) },
-    new City { Id = 14, Name = "Gračanica", PttCode = "75320", RegionId = 3, CreatedDateTime = new DateTime(2026, 1, 1) },
-    new City { Id = 15, Name = "Srebrenik", PttCode = "75350", RegionId = 3, CreatedDateTime = new DateTime(2026, 1, 1) },
-
-    new City { Id = 16, Name = "Zenica", PttCode = "72000", RegionId = 4, CreatedDateTime = new DateTime(2026, 1, 1) },
-    new City { Id = 17, Name = "Visoko", PttCode = "71300", RegionId = 4, CreatedDateTime = new DateTime(2026, 1, 1) },
-    new City { Id = 18, Name = "Kakanj", PttCode = "72240", RegionId = 4, CreatedDateTime = new DateTime(2026, 1, 1) },
-    new City { Id = 19, Name = "Tešanj", PttCode = "74260", RegionId = 4, CreatedDateTime = new DateTime(2026, 1, 1) },
-    new City { Id = 20, Name = "Zavidovići", PttCode = "72220", RegionId = 4, CreatedDateTime = new DateTime(2026, 1, 1) },
-
-    new City { Id = 21, Name = "Goražde", PttCode = "73000", RegionId = 5, CreatedDateTime = new DateTime(2026, 1, 1) },
-    new City { Id = 22, Name = "Ustikolina", PttCode = "73290", RegionId = 5, CreatedDateTime = new DateTime(2026, 1, 1) },
-    new City { Id = 23, Name = "Prača", PttCode = "73270", RegionId = 5, CreatedDateTime = new DateTime(2026, 1, 1) },
-    new City { Id = 24, Name = "Osanica", PttCode = "73200", RegionId = 5, CreatedDateTime = new DateTime(2026, 1, 1) },
-    new City { Id = 25, Name = "Vitkovići", PttCode = "73100", RegionId = 5, CreatedDateTime = new DateTime(2026, 1, 1) },
-
-    new City { Id = 26, Name = "Travnik", PttCode = "72270", RegionId = 6, CreatedDateTime = new DateTime(2026, 1, 1) },
-    new City { Id = 27, Name = "Bugojno", PttCode = "70230", RegionId = 6, CreatedDateTime = new DateTime(2026, 1, 1) },
-    new City { Id = 28, Name = "Jajce", PttCode = "70101", RegionId = 6, CreatedDateTime = new DateTime(2026, 1, 1) },
-    new City { Id = 29, Name = "Vitez", PttCode = "72250", RegionId = 6, CreatedDateTime = new DateTime(2026, 1, 1) },
-    new City { Id = 30, Name = "Novi Travnik", PttCode = "72290", RegionId = 6, CreatedDateTime = new DateTime(2026, 1, 1) },
-
-    new City { Id = 31, Name = "Mostar", PttCode = "88000", RegionId = 7, CreatedDateTime = new DateTime(2026, 1, 1) },
-    new City { Id = 32, Name = "Čapljina", PttCode = "88300", RegionId = 7, CreatedDateTime = new DateTime(2026, 1, 1) },
-    new City { Id = 33, Name = "Čitluk", PttCode = "88260", RegionId = 7, CreatedDateTime = new DateTime(2026, 1, 1) },
-    new City { Id = 34, Name = "Konjic", PttCode = "88400", RegionId = 7, CreatedDateTime = new DateTime(2026, 1, 1) },
-    new City { Id = 35, Name = "Jablanica", PttCode = "88420", RegionId = 7, CreatedDateTime = new DateTime(2026, 1, 1) },
-
-    new City { Id = 36, Name = "Široki Brijeg", PttCode = "88220", RegionId = 8, CreatedDateTime = new DateTime(2026, 1, 1) },
-    new City { Id = 37, Name = "Ljubuški", PttCode = "88320", RegionId = 8, CreatedDateTime = new DateTime(2026, 1, 1) },
-    new City { Id = 38, Name = "Grude", PttCode = "88340", RegionId = 8, CreatedDateTime = new DateTime(2026, 1, 1) },
-    new City { Id = 39, Name = "Posušje", PttCode = "88240", RegionId = 8, CreatedDateTime = new DateTime(2026, 1, 1) },
-    new City { Id = 40, Name = "Ružici", PttCode = "88340", RegionId = 8, CreatedDateTime = new DateTime(2026, 1, 1) },
-
-    new City { Id = 41, Name = "Sarajevo", PttCode = "71000", RegionId = 9, CreatedDateTime = new DateTime(2026, 1, 1) },
-    new City { Id = 42, Name = "Ilidža", PttCode = "71210", RegionId = 9, CreatedDateTime = new DateTime(2026, 1, 1) },
-    new City { Id = 43, Name = "Hadžići", PttCode = "71240", RegionId = 9, CreatedDateTime = new DateTime(2026, 1, 1) },
-    new City { Id = 44, Name = "Vogošća", PttCode = "71320", RegionId = 9, CreatedDateTime = new DateTime(2026, 1, 1) },
-    new City { Id = 45, Name = "Ilijaš", PttCode = "71380", RegionId = 9, CreatedDateTime = new DateTime(2026, 1, 1) },
-
-    new City { Id = 46, Name = "Livno", PttCode = "80101", RegionId = 10, CreatedDateTime = new DateTime(2026, 1, 1) },
-    new City { Id = 47, Name = "Tomislavgrad", PttCode = "80240", RegionId = 10, CreatedDateTime = new DateTime(2026, 1, 1) },
-    new City { Id = 48, Name = "Glamoč", PttCode = "80230", RegionId = 10, CreatedDateTime = new DateTime(2026, 1, 1) },
-    new City { Id = 49, Name = "Drvar", PttCode = "80260", RegionId = 10, CreatedDateTime = new DateTime(2026, 1, 1) },
-    new City { Id = 50, Name = "Bosansko Grahovo", PttCode = "80270", RegionId = 10, CreatedDateTime = new DateTime(2026, 1, 1) },
-
-    new City { Id = 51, Name = "Banja Luka", PttCode = "78000", RegionId = 11, CreatedDateTime = new DateTime(2026, 1, 1) },
-    new City { Id = 52, Name = "Bijeljina", PttCode = "76300", RegionId = 11, CreatedDateTime = new DateTime(2026, 1, 1) },
-    new City { Id = 53, Name = "Prijedor", PttCode = "79101", RegionId = 11, CreatedDateTime = new DateTime(2026, 1, 1) },
-    new City { Id = 54, Name = "Doboj", PttCode = "74000", RegionId = 11, CreatedDateTime = new DateTime(2026, 1, 1) },
-    new City { Id = 55, Name = "Trebinje", PttCode = "89101", RegionId = 11, CreatedDateTime = new DateTime(2026, 1, 1) },
-
-    new City { Id = 56, Name = "Brčko", PttCode = "76100", RegionId = 12, CreatedDateTime = new DateTime(2026, 1, 1) },
-    new City { Id = 57, Name = "Brezovo Polje", PttCode = "76210", RegionId = 12, CreatedDateTime = new DateTime(2026, 1, 1) },
-    new City { Id = 58, Name = "Maoča", PttCode = "76208", RegionId = 12, CreatedDateTime = new DateTime(2026, 1, 1) },
-    new City { Id = 59, Name = "Ražljevo", PttCode = "76206", RegionId = 12, CreatedDateTime = new DateTime(2026, 1, 1) },
-    new City { Id = 60, Name = "Gornji Rahić", PttCode = "76108", RegionId = 12, CreatedDateTime = new DateTime(2026, 1, 1) }
-);
+                new City { Id = 1, Name = "Bihać", PttCode = "77000", RegionId = 1, CreatedDateTime = new DateTime(2026, 1, 1) },
+                new City { Id = 2, Name = "Cazin", PttCode = "77220", RegionId = 1, CreatedDateTime = new DateTime(2026, 1, 1) },
+                new City { Id = 3, Name = "Velika Kladuša", PttCode = "77230", RegionId = 1, CreatedDateTime = new DateTime(2026, 1, 1) },
+                new City { Id = 4, Name = "Bosanska Krupa", PttCode = "77240", RegionId = 1, CreatedDateTime = new DateTime(2026, 1, 1) },
+                new City { Id = 5, Name = "Bužim", PttCode = "77245", RegionId = 1, CreatedDateTime = new DateTime(2026, 1, 1) },
+            
+                new City { Id = 6, Name = "Orašje", PttCode = "76270", RegionId = 2, CreatedDateTime = new DateTime(2026, 1, 1) },
+                new City { Id = 7, Name = "Odžak", PttCode = "76290", RegionId = 2, CreatedDateTime = new DateTime(2026, 1, 1) },
+                new City { Id = 8, Name = "Domaljevac", PttCode = "76233", RegionId = 2, CreatedDateTime = new DateTime(2026, 1, 1) },
+                new City { Id = 9, Name = "Tolisa", PttCode = "76273", RegionId = 2, CreatedDateTime = new DateTime(2026, 1, 1) },
+                new City { Id = 10, Name = "Donja Mahala", PttCode = "76273", RegionId = 2, CreatedDateTime = new DateTime(2026, 1, 1) },
+            
+                new City { Id = 11, Name = "Tuzla", PttCode = "75000", RegionId = 3, CreatedDateTime = new DateTime(2026, 1, 1) },
+                new City { Id = 12, Name = "Živinice", PttCode = "75270", RegionId = 3, CreatedDateTime = new DateTime(2026, 1, 1) },
+                new City { Id = 13, Name = "Lukavac", PttCode = "75300", RegionId = 3, CreatedDateTime = new DateTime(2026, 1, 1) },
+                new City { Id = 14, Name = "Gračanica", PttCode = "75320", RegionId = 3, CreatedDateTime = new DateTime(2026, 1, 1) },
+                new City { Id = 15, Name = "Srebrenik", PttCode = "75350", RegionId = 3, CreatedDateTime = new DateTime(2026, 1, 1) },
+            
+                new City { Id = 16, Name = "Zenica", PttCode = "72000", RegionId = 4, CreatedDateTime = new DateTime(2026, 1, 1) },
+                new City { Id = 17, Name = "Visoko", PttCode = "71300", RegionId = 4, CreatedDateTime = new DateTime(2026, 1, 1) },
+                new City { Id = 18, Name = "Kakanj", PttCode = "72240", RegionId = 4, CreatedDateTime = new DateTime(2026, 1, 1) },
+                new City { Id = 19, Name = "Tešanj", PttCode = "74260", RegionId = 4, CreatedDateTime = new DateTime(2026, 1, 1) },
+                new City { Id = 20, Name = "Zavidovići", PttCode = "72220", RegionId = 4, CreatedDateTime = new DateTime(2026, 1, 1) },
+            
+                new City { Id = 21, Name = "Goražde", PttCode = "73000", RegionId = 5, CreatedDateTime = new DateTime(2026, 1, 1) },
+                new City { Id = 22, Name = "Ustikolina", PttCode = "73290", RegionId = 5, CreatedDateTime = new DateTime(2026, 1, 1) },
+                new City { Id = 23, Name = "Prača", PttCode = "73270", RegionId = 5, CreatedDateTime = new DateTime(2026, 1, 1) },
+                new City { Id = 24, Name = "Osanica", PttCode = "73200", RegionId = 5, CreatedDateTime = new DateTime(2026, 1, 1) },
+                new City { Id = 25, Name = "Vitkovići", PttCode = "73100", RegionId = 5, CreatedDateTime = new DateTime(2026, 1, 1) },
+            
+                new City { Id = 26, Name = "Travnik", PttCode = "72270", RegionId = 6, CreatedDateTime = new DateTime(2026, 1, 1) },
+                new City { Id = 27, Name = "Bugojno", PttCode = "70230", RegionId = 6, CreatedDateTime = new DateTime(2026, 1, 1) },
+                new City { Id = 28, Name = "Jajce", PttCode = "70101", RegionId = 6, CreatedDateTime = new DateTime(2026, 1, 1) },
+                new City { Id = 29, Name = "Vitez", PttCode = "72250", RegionId = 6, CreatedDateTime = new DateTime(2026, 1, 1) },
+                new City { Id = 30, Name = "Novi Travnik", PttCode = "72290", RegionId = 6, CreatedDateTime = new DateTime(2026, 1, 1) },
+            
+                new City { Id = 31, Name = "Mostar", PttCode = "88000", RegionId = 7, CreatedDateTime = new DateTime(2026, 1, 1) },
+                new City { Id = 32, Name = "Čapljina", PttCode = "88300", RegionId = 7, CreatedDateTime = new DateTime(2026, 1, 1) },
+                new City { Id = 33, Name = "Čitluk", PttCode = "88260", RegionId = 7, CreatedDateTime = new DateTime(2026, 1, 1) },
+                new City { Id = 34, Name = "Konjic", PttCode = "88400", RegionId = 7, CreatedDateTime = new DateTime(2026, 1, 1) },
+                new City { Id = 35, Name = "Jablanica", PttCode = "88420", RegionId = 7, CreatedDateTime = new DateTime(2026, 1, 1) },
+            
+                new City { Id = 36, Name = "Široki Brijeg", PttCode = "88220", RegionId = 8, CreatedDateTime = new DateTime(2026, 1, 1) },
+                new City { Id = 37, Name = "Ljubuški", PttCode = "88320", RegionId = 8, CreatedDateTime = new DateTime(2026, 1, 1) },
+                new City { Id = 38, Name = "Grude", PttCode = "88340", RegionId = 8, CreatedDateTime = new DateTime(2026, 1, 1) },
+                new City { Id = 39, Name = "Posušje", PttCode = "88240", RegionId = 8, CreatedDateTime = new DateTime(2026, 1, 1) },
+                new City { Id = 40, Name = "Ružici", PttCode = "88340", RegionId = 8, CreatedDateTime = new DateTime(2026, 1, 1) },
+            
+                new City { Id = 41, Name = "Sarajevo", PttCode = "71000", RegionId = 9, CreatedDateTime = new DateTime(2026, 1, 1) },
+                new City { Id = 42, Name = "Ilidža", PttCode = "71210", RegionId = 9, CreatedDateTime = new DateTime(2026, 1, 1) },
+                new City { Id = 43, Name = "Hadžići", PttCode = "71240", RegionId = 9, CreatedDateTime = new DateTime(2026, 1, 1) },
+                new City { Id = 44, Name = "Vogošća", PttCode = "71320", RegionId = 9, CreatedDateTime = new DateTime(2026, 1, 1) },
+                new City { Id = 45, Name = "Ilijaš", PttCode = "71380", RegionId = 9, CreatedDateTime = new DateTime(2026, 1, 1) },
+            
+                new City { Id = 46, Name = "Livno", PttCode = "80101", RegionId = 10, CreatedDateTime = new DateTime(2026, 1, 1) },
+                new City { Id = 47, Name = "Tomislavgrad", PttCode = "80240", RegionId = 10, CreatedDateTime = new DateTime(2026, 1, 1) },
+                new City { Id = 48, Name = "Glamoč", PttCode = "80230", RegionId = 10, CreatedDateTime = new DateTime(2026, 1, 1) },
+                new City { Id = 49, Name = "Drvar", PttCode = "80260", RegionId = 10, CreatedDateTime = new DateTime(2026, 1, 1) },
+                new City { Id = 50, Name = "Bosansko Grahovo", PttCode = "80270", RegionId = 10, CreatedDateTime = new DateTime(2026, 1, 1) },
+            
+                new City { Id = 51, Name = "Banja Luka", PttCode = "78000", RegionId = 11, CreatedDateTime = new DateTime(2026, 1, 1) },
+                new City { Id = 52, Name = "Bijeljina", PttCode = "76300", RegionId = 11, CreatedDateTime = new DateTime(2026, 1, 1) },
+                new City { Id = 53, Name = "Prijedor", PttCode = "79101", RegionId = 11, CreatedDateTime = new DateTime(2026, 1, 1) },
+                new City { Id = 54, Name = "Doboj", PttCode = "74000", RegionId = 11, CreatedDateTime = new DateTime(2026, 1, 1) },
+                new City { Id = 55, Name = "Trebinje", PttCode = "89101", RegionId = 11, CreatedDateTime = new DateTime(2026, 1, 1) },
+            
+                new City { Id = 56, Name = "Brčko", PttCode = "76100", RegionId = 12, CreatedDateTime = new DateTime(2026, 1, 1) },
+                new City { Id = 57, Name = "Brezovo Polje", PttCode = "76210", RegionId = 12, CreatedDateTime = new DateTime(2026, 1, 1) },
+                new City { Id = 58, Name = "Maoča", PttCode = "76208", RegionId = 12, CreatedDateTime = new DateTime(2026, 1, 1) },
+                new City { Id = 59, Name = "Ražljevo", PttCode = "76206", RegionId = 12, CreatedDateTime = new DateTime(2026, 1, 1) },
+                new City { Id = 60, Name = "Gornji Rahić", PttCode = "76108", RegionId = 12, CreatedDateTime = new DateTime(2026, 1, 1) }
+            );
 
 
 

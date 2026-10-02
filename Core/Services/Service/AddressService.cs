@@ -51,7 +51,7 @@ namespace Core.Services.Service
                     city = UnitOfWork.City.GetByName(model.City);
                 }
 
-                var addressExist = UnitOfWork.Address.DoesAddressExist(model.Address);
+                var addressExist = UnitOfWork.Address.DoesAddressExist(model.Address, city.Id);
 
                 if (!addressExist)
                 {

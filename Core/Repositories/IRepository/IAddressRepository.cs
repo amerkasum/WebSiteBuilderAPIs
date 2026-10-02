@@ -11,7 +11,7 @@ namespace Core.Repositories.IRepository
 {
     public interface IAddressRepository : IRepository<Address>
     {
-        bool DoesAddressExist(string name);
+        bool DoesAddressExist(string name, int cityId);
         IEnumerable<LocationDto> Get(BasicSearchRequest model);
     }
 }

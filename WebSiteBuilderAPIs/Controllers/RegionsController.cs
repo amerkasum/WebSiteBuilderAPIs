@@ -24,10 +24,10 @@ namespace WebSiteBuilderAPIs.Controllers
             this.Localizer = localizer;
         }
 
-        [HttpGet(nameof(GetAsync))]
-        public async Task<IEnumerable<RegionDto>> GetAsync([FromQuery] RegionRequest model)
+        [HttpGet(nameof(Get))]
+        public IEnumerable<RegionDto> Get([FromQuery] RegionRequest model)
         {
-            return await RegionService.Get(model);
+            return RegionService.Get(model);
         }
 
         [HttpPost(nameof(Add))]

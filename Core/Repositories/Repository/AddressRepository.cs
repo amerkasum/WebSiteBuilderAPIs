@@ -18,9 +18,9 @@ namespace Core.Repositories.Repository
         {
         }
 
-        public bool DoesAddressExist(string name)
+        public bool DoesAddressExist(string name, int cityId)
         {
-            return _context.Addresses.Any(x => x.Name.ToLower().Equals(name.ToLower()));
+            return _context.Addresses.Any(x => x.Name.ToLower().Equals(name.ToLower()) && x.CityId == cityId);
         }
 
         public IEnumerable<LocationDto> Get(BasicSearchRequest model)

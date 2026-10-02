@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace Domain.DTO
 {
-    public class RegionDto
+    public class CountryDto
     {
         public int Id { get; set; }
-        public int CountryId { get; set; }
-        public string Region { get; set; }
+        public string Name { get; set; }
+        public string Iso { get; set; }
     }
 }
