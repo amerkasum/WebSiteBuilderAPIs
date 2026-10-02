@@ -8,7 +8,7 @@ namespace Domain.Requests
 {
     public class RegionRequest
     {
-        public string Search { get; set; }
-        public int CountryId { get; set; }
+        public string? Search { get; set; }
+        public int? CountryId { get; set; }
     }
 }

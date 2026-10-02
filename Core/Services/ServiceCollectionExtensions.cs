@@ -31,6 +31,7 @@ namespace Core.Services
             services.AddTransient<IUserContactService, UserContactService>();
             services.AddTransient<IClaimService, ClaimService>();
             services.AddTransient<IRoleClaimService, RoleClaimService>();
+            services.AddTransient<IRegionService, RegionService>();
                 
         }
     }
