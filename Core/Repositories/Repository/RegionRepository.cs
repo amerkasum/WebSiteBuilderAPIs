@@ -20,12 +20,12 @@ namespace Core.Repositories.Repository
         {
         }
 
-        public IEnumerable<RegionDto> Get(RegionRequest model)
+        public async Task<IEnumerable<RegionDto>> Get(RegionRequest model)
         {
-            var cities = _context.Cities.Include(x => x.Region).ThenInclude(x => x.Country)
-                .Where(x => (!model.CountryId.HasValue || x.Region.Country.Id == x.Id)).ToList();
+            var cities = await _context.Cities.Include(x => x.Region).ThenInclude(x => x.Country)
+                .Where(x => (!model.CountryId.HasValue || x.Region.Country.Id == x.Id)).ToListAsync();
 
-            var result = _context.Regions.Include(x => x.Country)
+            var result = await _context.Regions.Include(x => x.Country)
                 .Where(x => (string.IsNullOrEmpty(model.Search) || x.Name.Contains(model.Search))
                 && (!model.CountryId.HasValue || model.CountryId == x.Country.Id))
                 .Select(x => new RegionDto
@@ -34,7 +34,7 @@ namespace Core.Repositories.Repository
                     CountryId = x.Country.Id,
                     Region = $"{x.Name}, {x.Country.Name}",
                     CitiesCount = cities.Where(x => x.RegionId == x.Id).Count()
-                }).AsEnumerable();
+                }).ToListAsync();
 
             return result;
         }

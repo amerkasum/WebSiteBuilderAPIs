@@ -11,7 +11,7 @@ namespace Core.Repositories.IRepository
 {
     public interface IRegionRepository : IRepository<Region>
     {
-        IEnumerable<RegionDto> Get(RegionRequest model);
+        Task<IEnumerable<RegionDto>> Get(RegionRequest model);
 
     }
 }

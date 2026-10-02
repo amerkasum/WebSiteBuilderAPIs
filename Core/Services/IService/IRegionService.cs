@@ -12,7 +12,7 @@ namespace Core.Services.IService
 {
     public interface IRegionService
     {
-        IEnumerable<RegionDto> Get(RegionRequest model);
+        Task<IEnumerable<RegionDto>> Get(RegionRequest model);
         Region Add(RegionViewModel model);
         Region Edit(RegionViewModel model);
         void Delete(int id);
