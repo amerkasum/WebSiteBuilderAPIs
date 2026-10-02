@@ -8,12 +8,12 @@ using System.Threading.Tasks;
 
 namespace Domain.ViewModels
 {
-    public class UserRoleViewModel
+    public class RegionViewModel
     {
         public int Id { get; set; }
         [Required(ErrorMessage = ValidationMessage.Required)]
-        public int UserId { get; set; }
+        public string Name { get; set; }
         [Required(ErrorMessage = ValidationMessage.Required)]
-        public int RoleId { get; set; }
+        public int CountryId { get; set; }
     }
 }

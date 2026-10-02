@@ -1,8 +1,13 @@
-﻿using Core.UnitOfWork;
+﻿using Core.Services.IService;
+using Core.UnitOfWork;
+using Domain.DTO;
 using Domain.Entities.Location;
+using Domain.Requests;
+using Domain.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Resources.Localizer;
 
 namespace WebSiteBuilderAPIs.Controllers
 {
@@ -11,28 +16,78 @@ namespace WebSiteBuilderAPIs.Controllers
     [Authorize]
     public class RegionsController : ControllerBase
     {
-        private IUnitOfWork UnitOfWork;
-        public RegionsController(IUnitOfWork unitOfWork)
+        private readonly IRegionService RegionService;
+        private readonly Localizer Localizer;
+        public RegionsController(IRegionService regionService, Localizer localizer)
         {
-            this.UnitOfWork = unitOfWork;
+            this.RegionService = regionService;
+            this.Localizer = localizer;
         }
 
-        [HttpGet(nameof(GetAll))]
-        public IEnumerable<Region> GetAll()
+        [HttpGet(nameof(Get))]
+        public IEnumerable<RegionDto> Get([FromQuery] RegionRequest model)
         {
-            return UnitOfWork.Regions.GetAll();
+            return RegionService.Get(model);
         }
 
-        [HttpGet(nameof(GetById))]
-        public Region GetById(int id) 
+        [HttpPost(nameof(Add))]
+        public IActionResult Add(RegionViewModel model)
         {
-            return UnitOfWork.Regions.GetById(id);
+            if (!ModelState.IsValid)
+                return BadRequest(new { success = false, message = ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage).ToList() });
+
+            try
+            {
+                var region = RegionService.Add(model);
+
+                return Ok(new { success = true, message = string.Format(Localizer.Added2, Localizer.Region) });
+            }
+            catch(Exception e)
+            {
+                return StatusCode(500, new { success = false, message = string.Format(Localizer.SomethingWentWrong, e.Message) });
+            }
         }
 
-        [HttpGet(nameof(GetByCountryId))]
-        public IEnumerable<Region> GetByCountryId(int countryId)
+        [HttpPut(nameof(Edit))]
+        public IActionResult Edit(RegionViewModel model)
         {
-            return UnitOfWork.Regions.GetByCountryId(countryId);
+            if (!ModelState.IsValid)
+                return BadRequest(new { success = false, message = ModelState.Values.SelectMany(x => x.Errors).SelectMany(x => x.ErrorMessage).ToList() });
+
+            try
+            {
+                var region = RegionService.Edit(model);
+
+                return Ok(new { success = true, message = string.Format(Localizer.Edited2, Localizer.Region) });
+            }
+            catch(KeyNotFoundException)
+            {
+                return BadRequest(new { success = false, message = string.Format(Localizer.NotFound2, Localizer.Region) });
+            }
+            catch(Exception e)
+            {
+                return StatusCode(500, new { success = false, message = string.Format(Localizer.SomethingWentWrong, e.Message) });
+            }
         }
+
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
+        {
+            try
+            {
+                RegionService.Delete(id);
+
+                return Ok(new { success = true, message = string.Format(Localizer.Deleted2, Localizer.Region) });
+            }
+            catch(KeyNotFoundException)
+            {
+                return BadRequest(new { success = false, message = string.Format(Localizer.NotFound2, Localizer.Region) });
+            }
+            catch(Exception e)
+            {
+                return StatusCode(500, new { success = false, message = string.Format(Localizer.SomethingWentWrong, e.Message) });
+            }
+        }
+
     }
 }
