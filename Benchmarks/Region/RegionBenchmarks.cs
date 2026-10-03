@@ -2,6 +2,7 @@
 using BenchmarkDotNet.Engines;
 using Core.EF;
 using Domain.DTO;
+using Domain.Pagination;
 using Domain.Requests;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -46,7 +47,9 @@ namespace Benchmarks.Region
             model = new RegionRequest
             {
                 Search = null,
-                CountryId = null
+                CountryId = null,
+                PageSize = 100,
+                PageNumber = 1
             };
         }
 
@@ -67,20 +70,30 @@ namespace Benchmarks.Region
         }
 
         [Benchmark]
-        public List<RegionDto> Get_v2()
+        public PaginationResponse<RegionDto> Get()
         {
 
-            var result = _context.Regions.AsNoTracking()
+            var query = _context.Regions.AsNoTracking()
                 .Where(x => (string.IsNullOrEmpty(model.Search) || x.Name.Contains(model.Search))
-                && (!model.CountryId.HasValue || model.CountryId == x.Country.Id))
-                .Select(x => new RegionDto
-                {
-                    Id = x.Id,
-                    CountryId = x.Country.Id,
-                    Region = $"{x.Name} {x.Country.Name}"
-                }).ToList();
+                && (!model.CountryId.HasValue || model.CountryId == x.Country.Id));
 
-            return result;
+            var totalCount = query.Count();
+
+            var result = query.Select(x => new RegionDto
+            {
+                Id = x.Id,
+                CountryId = x.Country.Id,
+                Region = $"{x.Name} {x.Country.Name}"
+            }).OrderBy(x => x.Id).Skip(model.PageSize * (model.PageNumber - 1)).Take(model.PageSize).ToList();
+
+            return new PaginationResponse<RegionDto>
+            {
+                Data = result,
+                PageNumber = model.PageNumber,
+                PageSize = model.PageSize,
+                TotalCount = totalCount,
+                TotalPages = (int)Math.Ceiling((double)totalCount / model.PageSize)
+            };
         }
     }
 }

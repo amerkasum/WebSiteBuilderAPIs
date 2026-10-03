@@ -3,6 +3,7 @@ using Core.Services.IService;
 using Core.UnitOfWork;
 using Domain.DTO;
 using Domain.Entities.Location;
+using Domain.Pagination;
 using Domain.Requests;
 using Domain.ViewModels;
 using Microsoft.EntityFrameworkCore.Query.SqlExpressions;
@@ -22,7 +23,7 @@ namespace Core.Services.Service
             this.UnitOfWork = unitOFWork;
         }
 
-        public IEnumerable<RegionDto> Get(RegionRequest model)
+        public PaginationResponse<RegionDto> Get(RegionRequest model)
         {
             model.Search = model.Search?.Trim();
             return UnitOfWork.Regions.Get(model);

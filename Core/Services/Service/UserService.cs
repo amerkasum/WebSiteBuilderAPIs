@@ -115,7 +115,7 @@ namespace Core.Services.Service
                     city = UnitOfWork.City.GetByName(model.UserLocation.City);
                 }
 
-                var addressExist = UnitOfWork.Address.DoesAddressExist(model.UserLocation.Address);
+                var addressExist = UnitOfWork.Address.DoesAddressExist(model.UserLocation.Address, city.Id);
 
                 if (!addressExist)
                 {

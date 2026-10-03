@@ -1,5 +1,6 @@
 ﻿using Domain.DTO;
 using Domain.Entities.Location;
+using Domain.Pagination;
 using Domain.Requests;
 using System;
 using System.Collections.Generic;
@@ -11,7 +12,7 @@ namespace Core.Repositories.IRepository
 {
     public interface IRegionRepository : IRepository<Region>
     {
-        IEnumerable<RegionDto> Get(RegionRequest model);
+        PaginationResponse<RegionDto> Get(RegionRequest model);
 
     }
 }

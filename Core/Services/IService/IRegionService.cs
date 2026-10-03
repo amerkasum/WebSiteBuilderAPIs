@@ -1,5 +1,6 @@
 ﻿using Domain.DTO;
 using Domain.Entities.Location;
+using Domain.Pagination;
 using Domain.Requests;
 using Domain.ViewModels;
 using System;
@@ -12,7 +13,7 @@ namespace Core.Services.IService
 {
     public interface IRegionService
     {
-        IEnumerable<RegionDto> Get(RegionRequest model);
+        PaginationResponse<RegionDto> Get(RegionRequest model);
         Region Add(RegionViewModel model);
         Region Edit(RegionViewModel model);
         void Delete(int id);

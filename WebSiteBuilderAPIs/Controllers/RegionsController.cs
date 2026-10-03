@@ -2,6 +2,7 @@
 using Core.UnitOfWork;
 using Domain.DTO;
 using Domain.Entities.Location;
+using Domain.Pagination;
 using Domain.Requests;
 using Domain.ViewModels;
 using Microsoft.AspNetCore.Authorization;
@@ -25,7 +26,7 @@ namespace WebSiteBuilderAPIs.Controllers
         }
 
         [HttpGet(nameof(Get))]
-        public IEnumerable<RegionDto> Get([FromQuery] RegionRequest model)
+        public PaginationResponse<RegionDto> Get([FromQuery] RegionRequest model)
         {
             return RegionService.Get(model);
         }
