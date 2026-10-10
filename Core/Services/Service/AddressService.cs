@@ -20,7 +20,7 @@ namespace Core.Services.Service
             this.UnitOfWork = unitOfWork;
         }
 
-        public IEnumerable<LocationDto> Get(BasicSearchRequest model)
+        public IEnumerable<AddressDto> Get(BasicSearchRequest model)
         {
             model.Search = model.Search?.Trim();
             return UnitOfWork.Address.Get(model);

@@ -27,7 +27,7 @@ namespace WebSiteBuilderAPIs.Controllers
         }
 
         [HttpGet(nameof(Get))]
-        public IEnumerable<LocationDto> Get([FromQuery] BasicSearchRequest model)
+        public IEnumerable<AddressDto> Get([FromQuery] BasicSearchRequest model)
         {
             return AddressService.Get(model);
         }

@@ -32,7 +32,8 @@ namespace Core.Services.Service
             var businessType = new BusinessType
             {
                 Name = model.Name,
-                Code = model.Code
+                Code = model.Code,
+                Description = model.Description
             };
 
             UnitOfWork.BusinessType.Add(businessType);
@@ -50,6 +51,7 @@ namespace Core.Services.Service
 
             businessType.Name = model.Name;
             businessType.Code = model.Code;
+            businessType.Description = model.Description;
 
             UnitOfWork.BusinessType.Update(businessType);
             UnitOfWork.SaveChanges();

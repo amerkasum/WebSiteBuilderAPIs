@@ -36,7 +36,7 @@ namespace Core.Repositories.Repository
             {
                 Id = x.Id,
                 CountryId = x.Country.Id,
-                Region = $"{x.Name} {x.Country.Name}"
+                Region = $"{x.Name}, {x.Country.Name}"
             }).OrderBy(x => x.Id).Skip(model.PageSize * (model.PageNumber - 1)).Take(model.PageSize).ToList();
 
             return new PaginationResponse<RegionDto> { Data = result, PageNumber = model.PageNumber, PageSize = model.PageSize, TotalCount = totalCount,

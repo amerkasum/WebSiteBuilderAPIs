@@ -8,14 +8,12 @@ using System.Threading.Tasks;
 
 namespace Domain.ViewModels
 {
-    public class BusinessTypeViewModel
+    public class CountryViewModel
     {
         public int Id { get; set; }
         [Required(ErrorMessage = ValidationMessage.Required)]
         public string Name { get; set; }
         [Required(ErrorMessage = ValidationMessage.Required)]
-        public string Code { get; set; }
-        [Required(ErrorMessage = ValidationMessage.Required)]
-        public string Description { get; set; }
+        public string Iso { get; set; }
     }
 }

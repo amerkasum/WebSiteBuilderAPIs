@@ -17,7 +17,9 @@ namespace Core.Services
             services.AddTransient<IBusinessTypeService, BusinessTypeService>();
             services.AddTransient<IComponentTypeService, ComponentTypeService>();
             services.AddTransient<IContactTypeService, ContactTypeService>();
+            services.AddTransient<ICountryService, CountryService>();
             services.AddTransient<ICurrencyService, CurrencyService>();
+            services.AddTransient<ICityService, CityService>();
             services.AddTransient<IFeedbackService, FeedbackService>();
             services.AddTransient<IGenderService,  GenderService>();
             services.AddTransient<IMessageUsReasonService, MessageUsReasonService>();

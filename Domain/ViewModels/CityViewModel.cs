@@ -8,14 +8,14 @@ using System.Threading.Tasks;
 
 namespace Domain.ViewModels
 {
-    public class BusinessTypeViewModel
+    public class CityViewModel
     {
         public int Id { get; set; }
         [Required(ErrorMessage = ValidationMessage.Required)]
         public string Name { get; set; }
         [Required(ErrorMessage = ValidationMessage.Required)]
-        public string Code { get; set; }
+        public string PttCode { get; set; }
         [Required(ErrorMessage = ValidationMessage.Required)]
-        public string Description { get; set; }
+        public int RegionId { get; set; }
     }
 }

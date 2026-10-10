@@ -2,19 +2,20 @@
 using Domain.Entities.Location;
 using Domain.Pagination;
 using Domain.Requests;
+using Domain.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Core.Repositories.IRepository
+namespace Core.Services.IService
 {
-    public interface ICityRepository : IRepository<City>
+    public interface ICityService
     {
         PaginationResponse<CityDto> Get(CityRequest model);
-        bool DoesCityExist(string name, string pttCode);
-        City GetByName(string name);
-
+        City Add(CityViewModel model);
+        City Edit(CityViewModel model);
+        void Delete(int id);
     }
 }

@@ -3,10 +3,14 @@ using Domain.Entities.Location;
 using Domain.Entities.Personal;
 using Domain.Entities.System;
 using Domain.Entities.WebSiteBuilder;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Routing;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -14,10 +18,13 @@ namespace Core.EF
 {
     public class ApplicationDbContext : DbContext
     {
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
+        private readonly IHttpContextAccessor HttpContextAccessor;
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options, IHttpContextAccessor httpContexAccesor)
             : base(options)
         {
+            this.HttpContextAccessor = httpContexAccesor;
         }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -53,7 +60,77 @@ namespace Core.EF
                
             }
 
-            return base.SaveChanges();
+            var auditEntries = ChangeTracker.Entries()
+                               .Where(e =>
+                                   e.State is EntityState.Added
+                                       or EntityState.Modified
+                                       or EntityState.Deleted)
+                               .Where(e =>
+                                   e.Metadata.GetTableName() != nameof(AuditLog) &&
+                                   e.Metadata.GetTableName() != nameof(AuditLogEntityPropertyChange))
+                               .ToList();
+
+            var result = base.SaveChanges();
+            OnAfterSaveChanges(auditEntries);
+            base.SaveChanges(acceptAllChangesOnSuccess: false);
+
+            ChangeTracker.AcceptAllChanges();
+
+            return result;
+        }
+
+        private void OnAfterSaveChanges(List<EntityEntry> auditEntries)
+        {
+            var httpContext = HttpContextAccessor.HttpContext;
+
+            foreach(var entry in auditEntries)
+            {
+                var model = entry.Metadata.GetTableName();
+
+                //if (entry.State == EntityState.Unchanged)
+                   // continue;
+
+                //if (model == nameof(AuditLog) || model == nameof(AuditLogEntityPropertyChange))
+                  //continue;
+
+                var auditLog = new AuditLog();
+                auditLog.UserId = httpContext?.User?.FindFirstValue(ClaimTypes.NameIdentifier);
+                auditLog.HttpMethod = httpContext?.Request.Method;
+                auditLog.Url = httpContext?.Request.Path.ToString();
+                auditLog.BrowserInfo = httpContext?.Request.Headers["User-Agent"].ToString();
+                auditLog.QueryParameters = httpContext?.Request.QueryString.ToString();
+                auditLog.CreatedDateTime = DateTime.Now;
+
+                var routeData = httpContext.GetRouteData();
+                auditLog.Controller = routeData?.Values["controller"]?.ToString();
+                auditLog.Method = routeData?.Values["action"]?.ToString();
+
+                auditLog.EntityId = entry.OriginalValues[entry.Metadata.FindPrimaryKey()!.Properties.First().Name]!.ToString();
+                auditLog.Table = model;
+
+                AuditLog.Add(auditLog);
+                base.SaveChanges(acceptAllChangesOnSuccess: false);
+
+                foreach(var property in  entry.Properties)
+                {
+                    var propertyName = property.Metadata.Name;
+                    var oldValue = property.OriginalValue?.ToString();
+                    var newValue = property.CurrentValue?.ToString();
+
+                    if(!Equals(oldValue, newValue) && !propertyName.Equals("CreatedDateTime"))
+                    {
+                        var auditEntityPropertyChange = new AuditLogEntityPropertyChange();
+                        auditEntityPropertyChange.Property = propertyName;
+                        auditEntityPropertyChange.OldValue = oldValue;
+                        auditEntityPropertyChange.NewValue = newValue;
+                        auditEntityPropertyChange.AuditLogId = auditLog.Id;
+                        auditEntityPropertyChange.CreatedDateTime = DateTime.Now;
+
+                        AuditLogEntityPropertyChange.Add(auditEntityPropertyChange);
+
+                    }
+                }
+            }
         }
 
         #region DbSets
@@ -78,8 +155,10 @@ namespace Core.EF
         public DbSet<Gender> Genders { get; set; }
         public DbSet<UserResidence> UserResidences { get; set; }
         public DbSet<Currency> Currencies { get; set; }
-        public DbSet<Claim> Claim { get; set; }
+        public DbSet<Domain.Entities.System.Claim> Claim { get; set; }
         public DbSet<RoleClaim> RoleClaim { get; set; }
+        public DbSet<AuditLog> AuditLog { get; set; }
+        public DbSet<AuditLogEntityPropertyChange> AuditLogEntityPropertyChange { get; set; }
         #endregion
 
     }

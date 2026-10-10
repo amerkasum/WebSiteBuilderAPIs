@@ -4,6 +4,7 @@ using Core.EF;
 using Domain.DTO;
 using Domain.Pagination;
 using Domain.Requests;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using System;
@@ -20,6 +21,7 @@ namespace Benchmarks.Region
     {
         private ApplicationDbContext _context = null;
         private RegionRequest model = null;
+        private IHttpContextAccessor httpContextaccessor;
 
         [GlobalSetup]
         public void Setup()
@@ -35,7 +37,7 @@ namespace Benchmarks.Region
                 .UseSqlServer(connectionString)
                 .Options;
 
-            _context = new ApplicationDbContext(options);
+            _context = new ApplicationDbContext(options, httpContextaccessor);
 
             if (!_context.Database.CanConnect())
             {

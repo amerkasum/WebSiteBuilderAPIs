@@ -6,14 +6,12 @@ using System.Threading.Tasks;
 
 namespace Domain.DTO
 {
-    public class LocationDto
+    public class AddressDto
     {
         public int Id { get; set; }
-        public string AddressName { get; set; }
-        public string CityName { get; set; }
-        public string PttCode { get; set; }
+        public string Address { get; set; }
+        public string City { get; set; }
         public string Region { get; set; }
         public string Country { get; set; }
-        public string CountryIso { get; set; }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using BenchmarkDotNet.Running;
+using Benchmarks.Country;
 using Benchmarks.Region;
 using System;
 using System.Collections.Generic;
@@ -12,7 +13,8 @@ namespace Benchmarks
     {
         public static void Main(string[] args)
         {
-            BenchmarkRunner.Run<RegionBenchmarks>();
+            //BenchmarkRunner.Run<RegionBenchmarks>();
+            BenchmarkRunner.Run<CityBenchmark>();
         }       
     }
 }
