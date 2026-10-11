@@ -15,9 +15,11 @@ namespace Core.Services.Service
     public class BusinessTypeService :IBusinessTypeService
     {
         private readonly IUnitOfWork UnitOfWork;
-        public BusinessTypeService(IUnitOfWork unitOfWork)
+        private readonly IAuditLogService AuditLogService;
+        public BusinessTypeService(IUnitOfWork unitOfWork, IAuditLogService auditLogService)
         {
             this.UnitOfWork = unitOfWork;
+            this.AuditLogService = auditLogService;
         }
 
         public IEnumerable<BasicSearchResponse> Get(BasicSearchRequest model)
@@ -42,7 +44,7 @@ namespace Core.Services.Service
             return businessType;
         }
 
-        public BusinessType Edit(BusinessTypeViewModel model)
+        public async Task<BusinessType> Edit(BusinessTypeViewModel model)
         {
             var businessType = UnitOfWork.BusinessType.GetById(model.Id);
 
@@ -54,13 +56,14 @@ namespace Core.Services.Service
             businessType.Description = model.Description;
 
             UnitOfWork.BusinessType.Update(businessType);
-            UnitOfWork.SaveChanges();
+            await AuditLogService.Logger();
+            await UnitOfWork.SaveChangesAsync();
 
             return businessType;
 
         }
 
-        public void Delete(int id)
+        public async Task Delete(int id)
         {
             var businessType = UnitOfWork.BusinessType.GetById(id);
 
@@ -68,7 +71,8 @@ namespace Core.Services.Service
                 throw new KeyNotFoundException();
 
             UnitOfWork.BusinessType.Remove(businessType);
-            UnitOfWork.SaveChanges();
+            await AuditLogService.Logger();
+            await UnitOfWork.SaveChangesAsync();
         }
     }
 }

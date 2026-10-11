@@ -11,6 +11,7 @@ namespace Core.UnitOfWork
     public class UnitOfWork : IUnitOfWork, IDisposable
     {
         private readonly ApplicationDbContext _context;
+        private readonly AuditDbContext _auditContext;
 
         #region Repositories
         public ICountryRepository Countries => new CountryRepository(_context);
@@ -38,9 +39,10 @@ namespace Core.UnitOfWork
         public IRoleClaimRepository RoleClaim => new RoleClaimRepository(_context);
 
         #endregion
-        public UnitOfWork(ApplicationDbContext context)
+        public UnitOfWork(ApplicationDbContext context, AuditDbContext auditContext)
         {
             this._context = context;
+            this._auditContext = auditContext;
         }
 
         //begin, commit, rollback ----> implementirati
@@ -77,7 +79,7 @@ namespace Core.UnitOfWork
             _context.Dispose();
         }
 
-        public async Task CompleteAsync()
+        public async Task SaveChangesAsync()
         {
             await _context.SaveChangesAsync();
         }

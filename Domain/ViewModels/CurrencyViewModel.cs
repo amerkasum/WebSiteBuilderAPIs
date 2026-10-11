@@ -19,5 +19,6 @@ namespace Domain.ViewModels
         public string Symbol { get; set; }
         [Required(ErrorMessage = ValidationMessage.Required)]
         public int DecimalPlaces { get; set; }
+        public string? Description { get; set; }
     }
 }

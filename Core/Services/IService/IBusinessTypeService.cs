@@ -14,7 +14,7 @@ namespace Core.Services.IService
     {
         IEnumerable<BasicSearchResponse> Get(BasicSearchRequest model);
         BusinessType Add(BusinessTypeViewModel model);
-        BusinessType Edit(BusinessTypeViewModel model);
-        void Delete(int id);
+        Task<BusinessType> Edit(BusinessTypeViewModel model);
+        Task Delete(int id);
     }
 }

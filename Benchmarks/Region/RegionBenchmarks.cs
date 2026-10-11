@@ -1,6 +1,7 @@
 ﻿using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Engines;
 using Core.EF;
+using Core.Services;
 using Domain.DTO;
 using Domain.Pagination;
 using Domain.Requests;
@@ -21,7 +22,7 @@ namespace Benchmarks.Region
     {
         private ApplicationDbContext _context = null;
         private RegionRequest model = null;
-        private IHttpContextAccessor httpContextaccessor;
+        private ILoggedUser loggedUser;
 
         [GlobalSetup]
         public void Setup()
@@ -37,7 +38,7 @@ namespace Benchmarks.Region
                 .UseSqlServer(connectionString)
                 .Options;
 
-            _context = new ApplicationDbContext(options, httpContextaccessor);
+            _context = new ApplicationDbContext(options, loggedUser);
 
             if (!_context.Database.CanConnect())
             {

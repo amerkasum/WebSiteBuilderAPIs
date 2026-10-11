@@ -1,6 +1,7 @@
 ﻿using Domain.Entities.IEntities;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
@@ -10,6 +11,7 @@ namespace Domain.Entities.Location
 {
     public class Address : IEntity
     {
+        [Key]
         public int Id { get; set; }
         public string Name { get; set; }
         [ForeignKey(nameof(CityId))]
@@ -18,6 +20,7 @@ namespace Domain.Entities.Location
         public DateTime CreatedDateTime { get; set; }
         public DateTime? ModifiedDateTime { get; set; }
         public DateTime? DeletedDateTime { get; set; }
+        public int? CreatedById { get; set; }
         public bool IsDeleted { get; set; }
     }
 }

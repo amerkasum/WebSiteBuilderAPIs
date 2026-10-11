@@ -1,5 +1,6 @@
 ﻿using BenchmarkDotNet.Attributes;
 using Core.EF;
+using Core.Services;
 using Domain.DTO;
 using Domain.Pagination;
 using Domain.Requests;
@@ -19,7 +20,7 @@ namespace Benchmarks.Country
     {
         private ApplicationDbContext _context = null;
         private CityRequest model = null;
-        private IHttpContextAccessor httpContextaccessor;
+        private ILoggedUser loggedUser;
         [GlobalSetup]
         public void Setup()
         {
@@ -34,7 +35,7 @@ namespace Benchmarks.Country
                 .UseSqlServer(connectionString)
                 .Options;
 
-            _context = new ApplicationDbContext(options, httpContextaccessor);
+            _context = new ApplicationDbContext(options, loggedUser);
 
             if (!_context.Database.CanConnect())
             {

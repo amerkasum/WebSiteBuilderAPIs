@@ -15,7 +15,6 @@ namespace Domain.ViewModels
         public string Name { get; set; }
         [Required(ErrorMessage = ValidationMessage.Required)]
         public string Code { get; set; }
-        [Required(ErrorMessage = ValidationMessage.Required)]
-        public string Description { get; set; }
+        public string? Description { get; set; }
     }
 }

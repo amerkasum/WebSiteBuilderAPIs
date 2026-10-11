@@ -36,7 +36,7 @@ namespace Core.UnitOfWork
         #endregion
 
         int SaveChanges();
-        Task CompleteAsync();
+        Task SaveChangesAsync();
         void BeginTransaction();
         void Commit();
         void RollBack();

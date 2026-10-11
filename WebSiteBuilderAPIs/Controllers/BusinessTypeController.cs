@@ -49,14 +49,14 @@ namespace WebSiteBuilderAPIs.Controllers
         }
 
         [HttpPut(nameof(Edit))]
-        public IActionResult Edit(BusinessTypeViewModel model)
+        public async Task<IActionResult> Edit(BusinessTypeViewModel model)
         {
             if (!ModelState.IsValid)
                 return BadRequest(new { success = false, message = ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage).ToList() });
 
             try
             {
-                var businessType = BusinessTypeService.Edit(model);
+                var businessType = await BusinessTypeService.Edit(model);
 
                 return Ok(new { success = true, message = string.Format(Localizer.Edited, Localizer.BusinessType) });
             }
@@ -71,11 +71,11 @@ namespace WebSiteBuilderAPIs.Controllers
         }
 
         [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
             try
             {
-                BusinessTypeService.Delete(id);
+                await BusinessTypeService.Delete(id);
 
                 return Ok(new { success = true, message = string.Format(Localizer.Deleted, Localizer.BusinessType) });
             }

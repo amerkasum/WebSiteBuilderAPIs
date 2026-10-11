@@ -14,6 +14,7 @@ namespace Core.Repositories.Repository
     public class Repository<T> : IRepository<T> where T : class, IEntity
     {
         public ApplicationDbContext _context;
+        public AuditDbContext _auditContext;
         private DbSet<T> table;
 
         //public Repository()
@@ -26,6 +27,12 @@ namespace Core.Repositories.Repository
         {
             this._context = context;
             table = _context.Set<T>();
+        }
+
+        public Repository(AuditDbContext auditContext)
+        {
+            this._auditContext = auditContext;
+            table = _auditContext.Set<T>();
         }
 
         public bool Any()

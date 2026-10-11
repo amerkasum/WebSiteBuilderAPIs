@@ -20,5 +20,6 @@ namespace Domain.ViewModels
         [Required(ErrorMessage = ValidationMessage.Required)]
         public string Color { get; set; }
         public int DisplayOrder { get; set; }
+        public string? Description { get; set; }
     }
 }

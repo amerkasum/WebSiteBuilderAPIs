@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Domain.Entities.System
 {
-    public record AuditLog :IEntity
+    public record AuditLog : IEntity
     {
         [Key]
         public int Id { get; set; }
@@ -26,6 +26,7 @@ namespace Domain.Entities.System
         public DateTime CreatedDateTime { get; set; }
         public DateTime? ModifiedDateTime { get; set; }
         public DateTime? DeletedDateTime { get; set; }
+        public int? CreatedById { get; set; }
         public bool IsDeleted { get; set; }
     }
 }

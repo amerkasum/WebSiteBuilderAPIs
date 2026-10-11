@@ -2,6 +2,7 @@
 using Domain.Entities.Personal;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
@@ -11,6 +12,7 @@ namespace Domain.Entities.System
 {
     public class Feedback : IEntity
     {
+        [Key]
         public int Id { get; set; }
         [ForeignKey(nameof(UserId))]
         public User User { get; set; }
@@ -20,6 +22,7 @@ namespace Domain.Entities.System
         public DateTime CreatedDateTime { get; set; }
         public DateTime? ModifiedDateTime { get; set; }
         public DateTime? DeletedDateTime { get; set; }
+        public int? CreatedById { get; set; }
         public bool IsDeleted { get; set; }
     }
 }

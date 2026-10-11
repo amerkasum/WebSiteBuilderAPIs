@@ -160,8 +160,9 @@ namespace Core.Services.Service
             {
                 new System.Security.Claims.Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
                 new System.Security.Claims.Claim(ClaimTypes.Email, user.Email),
-                new System.Security.Claims.Claim(ClaimTypes.Role, role.Name)
-};
+                new System.Security.Claims.Claim(ClaimTypes.Role, role.Name),
+                new System.Security.Claims.Claim(ClaimTypes.Name, user.Username)
+            };
 
             var key = new SymmetricSecurityKey(
                 Encoding.UTF8.GetBytes(jwtSettings.Key));

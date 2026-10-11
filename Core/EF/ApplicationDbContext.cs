@@ -1,4 +1,5 @@
 ﻿using Core.EF.Seed;
+using Core.Services;
 using Domain.Entities.Location;
 using Domain.Entities.Personal;
 using Domain.Entities.System;
@@ -10,7 +11,7 @@ using Microsoft.EntityFrameworkCore.ChangeTracking;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Claims;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -18,11 +19,11 @@ namespace Core.EF
 {
     public class ApplicationDbContext : DbContext
     {
-        private readonly IHttpContextAccessor HttpContextAccessor;
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options, IHttpContextAccessor httpContexAccesor)
+        private readonly ILoggedUser LoggedUser;
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options, ILoggedUser loggedUser)
             : base(options)
         {
-            this.HttpContextAccessor = httpContexAccesor;
+            this.LoggedUser = loggedUser;
         }
 
 
@@ -45,6 +46,7 @@ namespace Core.EF
             {
                 entry.Property("CreatedDateTime").CurrentValue = DateTime.Now;
                 entry.Property("IsDeleted").CurrentValue = false;
+                entry.Property("CreatedById").CurrentValue = LoggedUser.UserId;
             }
 
             foreach (var entry in ChangeTracker.Entries().Where(e => e.State == EntityState.Modified))
@@ -53,84 +55,41 @@ namespace Core.EF
                var isDeletedModified = entry.Property("IsDeleted").IsModified;
                var isDeletedDateTimeModified = entry.Property("DeletedDateTime").IsModified;
 
-               if(!isDeletedDateTimeModified && !isDeletedDateTimeModified)
+               if(!isDeletedModified && !isDeletedDateTimeModified)
                {
                    entry.Property("ModifiedDateTime").CurrentValue = DateTime.Now;
                }
                
             }
 
-            var auditEntries = ChangeTracker.Entries()
-                               .Where(e =>
-                                   e.State is EntityState.Added
-                                       or EntityState.Modified
-                                       or EntityState.Deleted)
-                               .Where(e =>
-                                   e.Metadata.GetTableName() != nameof(AuditLog) &&
-                                   e.Metadata.GetTableName() != nameof(AuditLogEntityPropertyChange))
-                               .ToList();
-
             var result = base.SaveChanges();
-            OnAfterSaveChanges(auditEntries);
-            base.SaveChanges(acceptAllChangesOnSuccess: false);
-
-            ChangeTracker.AcceptAllChanges();
-
             return result;
         }
 
-        private void OnAfterSaveChanges(List<EntityEntry> auditEntries)
+        public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {
-            var httpContext = HttpContextAccessor.HttpContext;
-
-            foreach(var entry in auditEntries)
+            foreach (var entry in ChangeTracker.Entries().Where(e => e.State == EntityState.Added))
             {
-                var model = entry.Metadata.GetTableName();
-
-                //if (entry.State == EntityState.Unchanged)
-                   // continue;
-
-                //if (model == nameof(AuditLog) || model == nameof(AuditLogEntityPropertyChange))
-                  //continue;
-
-                var auditLog = new AuditLog();
-                auditLog.UserId = httpContext?.User?.FindFirstValue(ClaimTypes.NameIdentifier);
-                auditLog.HttpMethod = httpContext?.Request.Method;
-                auditLog.Url = httpContext?.Request.Path.ToString();
-                auditLog.BrowserInfo = httpContext?.Request.Headers["User-Agent"].ToString();
-                auditLog.QueryParameters = httpContext?.Request.QueryString.ToString();
-                auditLog.CreatedDateTime = DateTime.Now;
-
-                var routeData = httpContext.GetRouteData();
-                auditLog.Controller = routeData?.Values["controller"]?.ToString();
-                auditLog.Method = routeData?.Values["action"]?.ToString();
-
-                auditLog.EntityId = entry.OriginalValues[entry.Metadata.FindPrimaryKey()!.Properties.First().Name]!.ToString();
-                auditLog.Table = model;
-
-                AuditLog.Add(auditLog);
-                base.SaveChanges(acceptAllChangesOnSuccess: false);
-
-                foreach(var property in  entry.Properties)
-                {
-                    var propertyName = property.Metadata.Name;
-                    var oldValue = property.OriginalValue?.ToString();
-                    var newValue = property.CurrentValue?.ToString();
-
-                    if(!Equals(oldValue, newValue) && !propertyName.Equals("CreatedDateTime"))
-                    {
-                        var auditEntityPropertyChange = new AuditLogEntityPropertyChange();
-                        auditEntityPropertyChange.Property = propertyName;
-                        auditEntityPropertyChange.OldValue = oldValue;
-                        auditEntityPropertyChange.NewValue = newValue;
-                        auditEntityPropertyChange.AuditLogId = auditLog.Id;
-                        auditEntityPropertyChange.CreatedDateTime = DateTime.Now;
-
-                        AuditLogEntityPropertyChange.Add(auditEntityPropertyChange);
-
-                    }
-                }
+                entry.Property("CreatedDateTime").CurrentValue = DateTime.Now;
+                entry.Property("IsDeleted").CurrentValue = false;
+                entry.Property("CreatedById").CurrentValue = LoggedUser.UserId;
             }
+
+            foreach (var entry in ChangeTracker.Entries().Where(e => e.State == EntityState.Modified))
+
+            {
+                var isDeletedModified = entry.Property("IsDeleted").IsModified;
+                var isDeletedDateTimeModified = entry.Property("DeletedDateTime").IsModified;
+
+                if (!isDeletedModified && !isDeletedDateTimeModified)
+                {
+                    entry.Property("ModifiedDateTime").CurrentValue = DateTime.Now;
+                }
+
+            }
+
+            var result = await base.SaveChangesAsync();
+            return result;
         }
 
         #region DbSets
@@ -155,10 +114,8 @@ namespace Core.EF
         public DbSet<Gender> Genders { get; set; }
         public DbSet<UserResidence> UserResidences { get; set; }
         public DbSet<Currency> Currencies { get; set; }
-        public DbSet<Domain.Entities.System.Claim> Claim { get; set; }
+        public DbSet<Claim> Claim { get; set; }
         public DbSet<RoleClaim> RoleClaim { get; set; }
-        public DbSet<AuditLog> AuditLog { get; set; }
-        public DbSet<AuditLogEntityPropertyChange> AuditLogEntityPropertyChange { get; set; }
         #endregion
 
     }
