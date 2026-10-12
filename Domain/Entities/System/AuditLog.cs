@@ -14,14 +14,14 @@ namespace Domain.Entities.System
     {
         [Key]
         public int Id { get; set; }
-        public string? UserId { get; set; }
+        public int UserId { get; set; }
         public string? HttpMethod { get; set; }
         public string? Method { get; set; }
         public string? Controller { get; set; }
         public string? BrowserInfo { get; set; }
         public string? Table { get; set; }
         public string? Url { get; set; }
-        public string? EntityId { get; set; }
+        public int EntityId { get; set; }
         public string? QueryParameters { get; set; }
         public DateTime CreatedDateTime { get; set; }
         public DateTime? ModifiedDateTime { get; set; }

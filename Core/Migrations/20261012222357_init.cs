@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace Core.Migrations.AuditDb
+namespace Core.Migrations
 {
     /// <inheritdoc />
     public partial class init : Migration
@@ -17,14 +17,14 @@ namespace Core.Migrations.AuditDb
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    UserId = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UserId = table.Column<int>(type: "int", nullable: false),
                     HttpMethod = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Method = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Controller = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     BrowserInfo = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Table = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Url = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    EntityId = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    EntityId = table.Column<int>(type: "int", nullable: false),
                     QueryParameters = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreatedDateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ModifiedDateTime = table.Column<DateTime>(type: "datetime2", nullable: true),

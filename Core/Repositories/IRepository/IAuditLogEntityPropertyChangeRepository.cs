@@ -1,4 +1,5 @@
-﻿using Domain.Entities.System;
+﻿using Domain.DTO;
+using Domain.Entities.System;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,5 +10,6 @@ namespace Core.Repositories.IRepository
 {
     public interface IAuditLogEntityPropertyChangeRepository : IRepository<AuditLogEntityPropertyChange>
     {
+        Task<List<AuditLogEntityPropertyChangeDto>> GetAsync(int auditLogId);
     }
 }

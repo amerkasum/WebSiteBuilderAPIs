@@ -4,19 +4,16 @@ using Core.EF;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace Core.Migrations.AuditDb
+namespace Core.Migrations
 {
-    [DbContext(typeof(AuditDbContext))]
-    [Migration("20261011212538_init")]
-    partial class init
+    [DbContext(typeof(LogsDbContext))]
+    partial class LogsDbContextModelSnapshot : ModelSnapshot
     {
-        /// <inheritdoc />
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -48,8 +45,8 @@ namespace Core.Migrations.AuditDb
                     b.Property<DateTime?>("DeletedDateTime")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("EntityId")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("EntityId")
+                        .HasColumnType("int");
 
                     b.Property<string>("HttpMethod")
                         .HasColumnType("nvarchar(max)");
@@ -72,8 +69,8 @@ namespace Core.Migrations.AuditDb
                     b.Property<string>("Url")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 

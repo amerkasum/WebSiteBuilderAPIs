@@ -57,23 +57,36 @@ namespace Benchmarks.Region
         }
 
         [Benchmark(Baseline = true)]
-        public List<RegionDto> Get_v1()
+        public PaginationResponse<RegionDto> Get_1()
         {
-            var result = _context.Regions.AsNoTracking()
-                .Where(x => (string.IsNullOrEmpty(model.Search) || x.Name.Contains(model.Search))
-                && (!model.CountryId.HasValue || model.CountryId == x.Country.Id))
-                .Select(x => new RegionDto
-                {
-                    Id = x.Id,
-                    CountryId = x.Country.Id,
-                    Region = $"{x.Name}, {x.Country.Name}",
-                }).ToList();
 
-            return result;
+            var query = _context.Regions.AsNoTracking()
+                .Where(x => (string.IsNullOrEmpty(model.Search) || x.Name.Contains(model.Search))
+                && (!model.CountryId.HasValue || model.CountryId == x.Country.Id));
+
+            var totalCount = query.Count();
+
+            var result = query
+                .OrderBy(x => x.Id).Skip(model.PageSize * (model.PageNumber - 1)).Take(model.PageSize)
+                .Select(x => new RegionDto
+            {
+                Id = x.Id,
+                CountryId = x.Country.Id,
+                Region = $"{x.Name} {x.Country.Name}"
+            }).ToList();
+
+            return new PaginationResponse<RegionDto>
+            {
+                Data = result,
+                PageNumber = model.PageNumber,
+                PageSize = model.PageSize,
+                TotalCount = totalCount,
+                TotalPages = (int)Math.Ceiling((double)totalCount / model.PageSize)
+            };
         }
 
         [Benchmark]
-        public PaginationResponse<RegionDto> Get()
+        public PaginationResponse<RegionDto> Get_2()
         {
 
             var query = _context.Regions.AsNoTracking()

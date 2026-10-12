@@ -18,7 +18,7 @@ namespace Core.Services.Service
 
         private ClaimsPrincipal? User => HttpContextAccessor.HttpContext?.User;
 
-        public int? UserId => int.TryParse(User?.FindFirst(ClaimTypes.NameIdentifier)?.Value, out var id) ? id : null;
+        public int UserId => int.Parse(User?.FindFirst(ClaimTypes.NameIdentifier)?.Value);
 
         public string? Username => User?.FindFirst(ClaimTypes.Name)?.Value;
 

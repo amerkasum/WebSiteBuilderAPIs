@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace Core.EF
 {
-    public class AuditDbContext : DbContext
+    public class LogsDbContext : DbContext
     {
-        public AuditDbContext(DbContextOptions<AuditDbContext> options) : base(options)
+        public LogsDbContext(DbContextOptions<LogsDbContext> options) : base(options)
         {   
         }
 

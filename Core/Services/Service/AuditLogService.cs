@@ -2,7 +2,10 @@
 using Core.EF;
 using Core.Services.IService;
 using Core.UnitOfWork;
+using Domain.DTO;
 using Domain.Entities.System;
+using Domain.Pagination;
+using Domain.Requests;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Controllers;
@@ -18,18 +21,46 @@ namespace Core.Services.Service
 {
     public class AuditLogService : IAuditLogService
     {
+        private readonly IUnitOfWork UnitOfWork;
         private readonly ApplicationDbContext ApplicationDbContext;
-        private readonly AuditDbContext AuditDbContext;
+        private readonly LogsDbContext AuditDbContext;
         private readonly ILoggedUser LoggedUser;
         private readonly IHttpContextAccessor HttpContextAccessor;
 
-        public AuditLogService(ApplicationDbContext applicationDbContext, AuditDbContext auditDbContext,
+        public AuditLogService(IUnitOfWork unitOfWork, ApplicationDbContext applicationDbContext, LogsDbContext auditDbContext,
             ILoggedUser loggedUser, IHttpContextAccessor httpContextAccessor)
         {
+            this.UnitOfWork = unitOfWork;
             this.ApplicationDbContext = applicationDbContext;
             this.AuditDbContext = auditDbContext;
             this.LoggedUser = loggedUser;
             this.HttpContextAccessor = httpContextAccessor;
+        }
+
+        public async Task<PaginationResponse<AuditLogDto>> GetAsync(AuditLogRequest model)
+        {
+            var results = await UnitOfWork.AuditLog.Get(model);
+
+            if (results == null || !results.Data.Any())
+                return new PaginationResponse<AuditLogDto>();
+
+            var userIds = results.Data.Select(x => x.User.Id).Distinct().ToList();         
+
+            var users = await UnitOfWork.User.GetByIdsAsync(userIds);
+
+            var userDictionary = users.ToDictionary(x => x.Id);
+
+            foreach (var auditLog in results.Data)
+            {
+                if (userDictionary.TryGetValue(auditLog.User.Id, out var user))
+                {
+                    auditLog.User.Email = user.Email;
+                    auditLog.User.FullName = user.FullName;
+                    auditLog.User.Username = user.Username;
+                }
+            }
+
+            return results;
         }
 
         public async Task Logger()
@@ -50,15 +81,15 @@ namespace Core.Services.Service
 
                 var auditLog = new AuditLog
                 {
-                    UserId = LoggedUser.UserId?.ToString(),
+                    UserId = LoggedUser.UserId,
                     Controller = context?.GetRouteData().Values["controller"]?.ToString(),
                     Method = context?.GetEndpoint()?.Metadata.GetMetadata<ControllerActionDescriptor>()?.ActionName,
                     HttpMethod = request?.Method,
                     BrowserInfo = request?.Headers.UserAgent.ToString(),
-                    Url = request == null ? null: $"{request.Path}{request.QueryString}",
+                    Url = request == null ? null: $"{request.Scheme}://{request.Host}{request.Path}{request.QueryString}",
                     QueryParameters = request?.QueryString.ToString(),
                     Table = entityType.GetTableName(),
-                    EntityId = entityId
+                    EntityId = int.TryParse(entityId, out int id) ? id : 0
                 };
 
                 AuditDbContext.AuditLog.Add(auditLog);

@@ -53,5 +53,16 @@ namespace Core.Repositories.Repository
             return _context.Users.FirstOrDefault(x => x.Email == email && !x.IsDeleted);
         }
 
+        public async Task<List<UserBasicDto>> GetByIdsAsync(List<int> ids)
+        {
+            var result = await _context.Users.Where(x => ids.Contains(x.Id)).Select(x => new UserBasicDto
+            {
+                Id = x.Id,
+                FullName = $"{x.FirstName} {x.LastName}",
+                Email = x.Email,
+                Username = x.Username
+            }).ToListAsync();
+            return result;
+        }
     }
 }

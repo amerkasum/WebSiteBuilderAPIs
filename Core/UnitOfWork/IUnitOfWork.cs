@@ -33,6 +33,8 @@ namespace Core.UnitOfWork
         ICurrencyRepository Currency { get; }
         IClaimRepository Claim { get; }
         IRoleClaimRepository RoleClaim { get; }
+        IAuditLogRepository AuditLog { get; }
+        IAuditLogEntityPropertyChangeRepository AuditLogEntityPropertyChange { get; }
         #endregion
 
         int SaveChanges();

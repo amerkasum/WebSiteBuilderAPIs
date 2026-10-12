@@ -13,8 +13,8 @@ namespace Benchmarks
     {
         public static void Main(string[] args)
         {
-            //BenchmarkRunner.Run<RegionBenchmarks>();
-            BenchmarkRunner.Run<CityBenchmark>();
+            BenchmarkRunner.Run<RegionBenchmarks>();
+            //BenchmarkRunner.Run<CityBenchmark>();
         }       
     }
 }

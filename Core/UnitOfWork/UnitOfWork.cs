@@ -11,7 +11,7 @@ namespace Core.UnitOfWork
     public class UnitOfWork : IUnitOfWork, IDisposable
     {
         private readonly ApplicationDbContext _context;
-        private readonly AuditDbContext _auditContext;
+        private readonly LogsDbContext _logsContext;
 
         #region Repositories
         public ICountryRepository Countries => new CountryRepository(_context);
@@ -37,12 +37,14 @@ namespace Core.UnitOfWork
         public ICurrencyRepository Currency => new CurrencyRepository(_context);
         public IClaimRepository Claim => new ClaimRepository(_context);
         public IRoleClaimRepository RoleClaim => new RoleClaimRepository(_context);
+        public IAuditLogRepository AuditLog => new AuditLogRepository(_logsContext);
+        public IAuditLogEntityPropertyChangeRepository AuditLogEntityPropertyChange => new AuditLogEntityPropertyChangeRepository(_logsContext);
 
         #endregion
-        public UnitOfWork(ApplicationDbContext context, AuditDbContext auditContext)
+        public UnitOfWork(ApplicationDbContext context, LogsDbContext logsContext)
         {
             this._context = context;
-            this._auditContext = auditContext;
+            this._logsContext = logsContext;
         }
 
         //begin, commit, rollback ----> implementirati

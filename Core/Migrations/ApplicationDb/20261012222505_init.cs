@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
 
-namespace Core.Migrations
+namespace Core.Migrations.ApplicationDb
 {
     /// <inheritdoc />
     public partial class init : Migration
@@ -21,7 +21,7 @@ namespace Core.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Code = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreatedDateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ModifiedDateTime = table.Column<DateTime>(type: "datetime2", nullable: true),
                     DeletedDateTime = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -41,7 +41,7 @@ namespace Core.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Code = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreatedDateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ModifiedDateTime = table.Column<DateTime>(type: "datetime2", nullable: true),
                     DeletedDateTime = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -61,7 +61,7 @@ namespace Core.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Code = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreatedDateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ModifiedDateTime = table.Column<DateTime>(type: "datetime2", nullable: true),
                     DeletedDateTime = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -81,7 +81,7 @@ namespace Core.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Code = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreatedDateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ModifiedDateTime = table.Column<DateTime>(type: "datetime2", nullable: true),
                     DeletedDateTime = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -121,7 +121,7 @@ namespace Core.Migrations
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Code = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Symbol = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     DecimalPlaces = table.Column<int>(type: "int", nullable: false),
                     CreatedDateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ModifiedDateTime = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -142,7 +142,7 @@ namespace Core.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Code = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreatedDateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ModifiedDateTime = table.Column<DateTime>(type: "datetime2", nullable: true),
                     DeletedDateTime = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -162,7 +162,7 @@ namespace Core.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Code = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreatedDateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ModifiedDateTime = table.Column<DateTime>(type: "datetime2", nullable: true),
                     DeletedDateTime = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -182,7 +182,7 @@ namespace Core.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Code = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreatedDateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ModifiedDateTime = table.Column<DateTime>(type: "datetime2", nullable: true),
                     DeletedDateTime = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -224,7 +224,7 @@ namespace Core.Migrations
                     Icon = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Color = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     DisplayOrder = table.Column<int>(type: "int", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreatedDateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ModifiedDateTime = table.Column<DateTime>(type: "datetime2", nullable: true),
                     DeletedDateTime = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -590,56 +590,56 @@ namespace Core.Migrations
                 columns: new[] { "Id", "Code", "CreatedById", "CreatedDateTime", "DeletedDateTime", "Description", "IsDeleted", "ModifiedDateTime", "Name" },
                 values: new object[,]
                 {
-                    { 1, "RESTAURANT", null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(1876), null, "Business that prepares and serves meals and beverages to customers.", false, null, "Restaurant" },
-                    { 2, "CAFE", null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(1898), null, "Business that serves coffee, beverages, snacks, and light meals.", false, null, "Cafe" },
-                    { 3, "BAKERY", null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(1903), null, "Business that produces and sells bread, pastries, cakes, and other baked goods.", false, null, "Bakery" },
-                    { 4, "FAST_FOOD", null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(1907), null, "Business that provides quickly prepared meals and takeaway food.", false, null, "Fast Food" },
-                    { 5, "HOTEL", null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(1914), null, "Business that provides accommodation and hospitality services to guests.", false, null, "Hotel" },
-                    { 6, "APARTMENT_RENTAL", null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(1965), null, "Business that provides apartments or residential properties for short-term or long-term rental.", false, null, "Apartment Rental" },
-                    { 7, "TRAVEL_AGENCY", null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(1971), null, "Business that organizes and sells travel arrangements, tours, transportation, and accommodation.", false, null, "Travel Agency" },
-                    { 8, "TOUR_GUIDE", null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(1975), null, "Professional service that provides guided tours and information about destinations and attractions.", false, null, "Tour Guide" },
-                    { 9, "CAR_RENTAL", null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(1979), null, "Business that provides vehicles for temporary rental to individuals or organizations.", false, null, "Car Rental" },
-                    { 10, "AUTO_REPAIR", null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(1983), null, "Business that provides maintenance, diagnostics, and repair services for vehicles.", false, null, "Auto Repair" },
-                    { 11, "CAR_DEALERSHIP", null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(1987), null, "Business that sells new or used vehicles and may provide related automotive services.", false, null, "Car Dealership" },
-                    { 12, "TAXI_SERVICE", null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(1992), null, "Transportation business that provides passenger transportation using taxis or similar vehicles.", false, null, "Taxi Service" },
-                    { 13, "MOVING_COMPANY", null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(1996), null, "Business that provides residential or commercial moving and relocation services.", false, null, "Moving Company" },
-                    { 14, "CONSTRUCTION_COMPANY", null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(2001), null, "Business that provides construction, building, renovation, and related services.", false, null, "Construction Company" },
-                    { 15, "ARCHITECTURE_STUDIO", null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(2005), null, "Professional business that provides architectural design, planning, and consulting services.", false, null, "Architecture Studio" },
-                    { 16, "INTERIOR_DESIGN", null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(2009), null, "Business that provides interior planning, decoration, and design services for residential or commercial spaces.", false, null, "Interior Design" },
-                    { 17, "REAL_ESTATE_AGENCY", null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(2013), null, "Business that provides services for buying, selling, renting, and managing real estate properties.", false, null, "Real Estate Agency" },
-                    { 18, "LAW_FIRM", null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(2018), null, "Professional legal business that provides legal advice, representation, and related services.", false, null, "Law Firm" },
-                    { 19, "ACCOUNTING_FIRM", null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(2022), null, "Professional business that provides accounting, bookkeeping, tax, and financial reporting services.", false, null, "Accounting Firm" },
-                    { 20, "INSURANCE_AGENCY", null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(2026), null, "Business that provides insurance products, policies, advice, and related services.", false, null, "Insurance Agency" },
-                    { 21, "BANK", null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(2030), null, "Financial institution that provides banking, payment, lending, savings, and other financial services.", false, null, "Bank" },
-                    { 22, "FINANCIAL_ADVISOR", null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(2034), null, "Professional service that provides financial planning, investment advice, and wealth management guidance.", false, null, "Financial Advisor" },
-                    { 23, "MEDICAL_CLINIC", null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(2039), null, "Healthcare facility that provides medical examinations, consultations, treatments, and related services.", false, null, "Medical Clinic" },
-                    { 24, "DENTAL_CLINIC", null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(2043), null, "Healthcare business that provides dental examinations, treatments, and oral health services.", false, null, "Dental Clinic" },
-                    { 25, "PHARMACY", null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(2047), null, "Healthcare business that dispenses medicines and provides pharmaceutical products and services.", false, null, "Pharmacy" },
-                    { 26, "VETERINARY_CLINIC", null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(2052), null, "Healthcare facility that provides medical care, treatment, and preventive services for animals.", false, null, "Veterinary Clinic" },
-                    { 27, "FITNESS_GYM", null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(2056), null, "Fitness facility that provides exercise equipment, workout programs, and fitness services.", false, null, "Fitness Gym" },
-                    { 28, "PERSONAL_TRAINER", null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(2060), null, "Fitness professional who provides personalized exercise programs, training, and fitness guidance.", false, null, "Personal Trainer" },
-                    { 29, "YOGA_STUDIO", null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(2064), null, "Fitness and wellness business that provides yoga classes, sessions, and related activities.", false, null, "Yoga Studio" },
-                    { 30, "BEAUTY_SALON", null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(2069), null, "Beauty business that provides hair, skincare, makeup, and other personal care services.", false, null, "Beauty Salon" },
-                    { 31, "BARBER_SHOP", null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(2073), null, "Business that provides haircuts, beard grooming, shaving, and other men's grooming services.", false, null, "Barber Shop" },
-                    { 32, "SPA", null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(2077), null, "Wellness business that provides relaxation, beauty, massage, and personal care treatments.", false, null, "Spa" },
-                    { 33, "TATTOO_STUDIO", null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(2081), null, "Studio that provides tattoo design and body art services.", false, null, "Tattoo Studio" },
-                    { 34, "PHOTOGRAPHER", null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(2086), null, "Professional service that provides photography for events, products, portraits, and other purposes.", false, null, "Photographer" },
-                    { 35, "VIDEOGRAPHER", null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(2092), null, "Professional service that provides video production, filming, editing, and related services.", false, null, "Videographer" },
-                    { 36, "GRAPHIC_DESIGNER", null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(2096), null, "Professional service that creates visual designs, branding materials, illustrations, and digital graphics.", false, null, "Graphic Designer" },
-                    { 37, "WEB_DESIGN_AGENCY", null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(2100), null, "Business that designs and develops websites and digital user experiences for clients.", false, null, "Web Design Agency" },
-                    { 38, "SOFTWARE_COMPANY", null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(2105), null, "Technology business that develops, sells, or maintains software products and applications.", false, null, "Software Company" },
-                    { 39, "IT_SERVICES", null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(2109), null, "Technology business that provides information technology support, consulting, infrastructure, and related services.", false, null, "IT Services" },
-                    { 40, "CYBERSECURITY_COMPANY", null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(2113), null, "Technology business that provides cybersecurity products, assessments, protection, and security services.", false, null, "Cybersecurity Company" },
-                    { 41, "MARKETING_AGENCY", null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(2118), null, "Business that provides marketing strategy, advertising, branding, and promotional services.", false, null, "Marketing Agency" },
-                    { 42, "SEO_AGENCY", null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(2122), null, "Digital marketing business that helps improve website visibility and rankings in search engines.", false, null, "SEO Agency" },
-                    { 43, "DIGITAL_AGENCY", null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(2126), null, "Agency that provides digital services such as web development, marketing, design, and online strategy.", false, null, "Digital Agency" },
-                    { 44, "FREELANCER", null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(2130), null, "Independent professional who provides specialized services to clients on a project or contract basis.", false, null, "Freelancer" },
-                    { 45, "PORTFOLIO", null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(2134), null, "Website or professional presence designed to showcase a person's work, projects, skills, and achievements.", false, null, "Portfolio" },
-                    { 46, "PERSONAL_WEBSITE", null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(2138), null, "Website created to present personal information, interests, skills, experience, or professional activities.", false, null, "Personal Website" },
-                    { 47, "BLOGGER", null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(2143), null, "Individual or business that regularly creates and publishes written or multimedia blog content.", false, null, "Blogger" },
-                    { 48, "INFLUENCER", null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(2147), null, "Individual who creates online content and engages an audience through social media or other digital platforms.", false, null, "Influencer" },
-                    { 49, "MUSICIAN", null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(2152), null, "Individual or business involved in creating, performing, recording, or promoting music.", false, null, "Musician" },
-                    { 50, "DJ", null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(2156), null, "Professional who selects, mixes, and performs recorded music for events, venues, or audiences.", false, null, "DJ" }
+                    { 1, "RESTAURANT", null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(1776), null, "Business that prepares and serves meals and beverages to customers.", false, null, "Restaurant" },
+                    { 2, "CAFE", null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(1796), null, "Business that serves coffee, beverages, snacks, and light meals.", false, null, "Cafe" },
+                    { 3, "BAKERY", null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(1804), null, "Business that produces and sells bread, pastries, cakes, and other baked goods.", false, null, "Bakery" },
+                    { 4, "FAST_FOOD", null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(1812), null, "Business that provides quickly prepared meals and takeaway food.", false, null, "Fast Food" },
+                    { 5, "HOTEL", null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(1823), null, "Business that provides accommodation and hospitality services to guests.", false, null, "Hotel" },
+                    { 6, "APARTMENT_RENTAL", null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(1890), null, "Business that provides apartments or residential properties for short-term or long-term rental.", false, null, "Apartment Rental" },
+                    { 7, "TRAVEL_AGENCY", null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(1896), null, "Business that organizes and sells travel arrangements, tours, transportation, and accommodation.", false, null, "Travel Agency" },
+                    { 8, "TOUR_GUIDE", null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(1901), null, "Professional service that provides guided tours and information about destinations and attractions.", false, null, "Tour Guide" },
+                    { 9, "CAR_RENTAL", null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(1906), null, "Business that provides vehicles for temporary rental to individuals or organizations.", false, null, "Car Rental" },
+                    { 10, "AUTO_REPAIR", null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(1912), null, "Business that provides maintenance, diagnostics, and repair services for vehicles.", false, null, "Auto Repair" },
+                    { 11, "CAR_DEALERSHIP", null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(1918), null, "Business that sells new or used vehicles and may provide related automotive services.", false, null, "Car Dealership" },
+                    { 12, "TAXI_SERVICE", null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(1925), null, "Transportation business that provides passenger transportation using taxis or similar vehicles.", false, null, "Taxi Service" },
+                    { 13, "MOVING_COMPANY", null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(1932), null, "Business that provides residential or commercial moving and relocation services.", false, null, "Moving Company" },
+                    { 14, "CONSTRUCTION_COMPANY", null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(1938), null, "Business that provides construction, building, renovation, and related services.", false, null, "Construction Company" },
+                    { 15, "ARCHITECTURE_STUDIO", null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(1944), null, "Professional business that provides architectural design, planning, and consulting services.", false, null, "Architecture Studio" },
+                    { 16, "INTERIOR_DESIGN", null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(1948), null, "Business that provides interior planning, decoration, and design services for residential or commercial spaces.", false, null, "Interior Design" },
+                    { 17, "REAL_ESTATE_AGENCY", null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(1952), null, "Business that provides services for buying, selling, renting, and managing real estate properties.", false, null, "Real Estate Agency" },
+                    { 18, "LAW_FIRM", null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(1956), null, "Professional legal business that provides legal advice, representation, and related services.", false, null, "Law Firm" },
+                    { 19, "ACCOUNTING_FIRM", null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(1961), null, "Professional business that provides accounting, bookkeeping, tax, and financial reporting services.", false, null, "Accounting Firm" },
+                    { 20, "INSURANCE_AGENCY", null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(1965), null, "Business that provides insurance products, policies, advice, and related services.", false, null, "Insurance Agency" },
+                    { 21, "BANK", null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(1972), null, "Financial institution that provides banking, payment, lending, savings, and other financial services.", false, null, "Bank" },
+                    { 22, "FINANCIAL_ADVISOR", null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(1977), null, "Professional service that provides financial planning, investment advice, and wealth management guidance.", false, null, "Financial Advisor" },
+                    { 23, "MEDICAL_CLINIC", null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(1982), null, "Healthcare facility that provides medical examinations, consultations, treatments, and related services.", false, null, "Medical Clinic" },
+                    { 24, "DENTAL_CLINIC", null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(1989), null, "Healthcare business that provides dental examinations, treatments, and oral health services.", false, null, "Dental Clinic" },
+                    { 25, "PHARMACY", null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(1994), null, "Healthcare business that dispenses medicines and provides pharmaceutical products and services.", false, null, "Pharmacy" },
+                    { 26, "VETERINARY_CLINIC", null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(1998), null, "Healthcare facility that provides medical care, treatment, and preventive services for animals.", false, null, "Veterinary Clinic" },
+                    { 27, "FITNESS_GYM", null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(2002), null, "Fitness facility that provides exercise equipment, workout programs, and fitness services.", false, null, "Fitness Gym" },
+                    { 28, "PERSONAL_TRAINER", null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(2009), null, "Fitness professional who provides personalized exercise programs, training, and fitness guidance.", false, null, "Personal Trainer" },
+                    { 29, "YOGA_STUDIO", null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(2128), null, "Fitness and wellness business that provides yoga classes, sessions, and related activities.", false, null, "Yoga Studio" },
+                    { 30, "BEAUTY_SALON", null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(2132), null, "Beauty business that provides hair, skincare, makeup, and other personal care services.", false, null, "Beauty Salon" },
+                    { 31, "BARBER_SHOP", null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(2136), null, "Business that provides haircuts, beard grooming, shaving, and other men's grooming services.", false, null, "Barber Shop" },
+                    { 32, "SPA", null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(2140), null, "Wellness business that provides relaxation, beauty, massage, and personal care treatments.", false, null, "Spa" },
+                    { 33, "TATTOO_STUDIO", null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(2145), null, "Studio that provides tattoo design and body art services.", false, null, "Tattoo Studio" },
+                    { 34, "PHOTOGRAPHER", null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(2151), null, "Professional service that provides photography for events, products, portraits, and other purposes.", false, null, "Photographer" },
+                    { 35, "VIDEOGRAPHER", null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(2158), null, "Professional service that provides video production, filming, editing, and related services.", false, null, "Videographer" },
+                    { 36, "GRAPHIC_DESIGNER", null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(2162), null, "Professional service that creates visual designs, branding materials, illustrations, and digital graphics.", false, null, "Graphic Designer" },
+                    { 37, "WEB_DESIGN_AGENCY", null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(2170), null, "Business that designs and develops websites and digital user experiences for clients.", false, null, "Web Design Agency" },
+                    { 38, "SOFTWARE_COMPANY", null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(2174), null, "Technology business that develops, sells, or maintains software products and applications.", false, null, "Software Company" },
+                    { 39, "IT_SERVICES", null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(2178), null, "Technology business that provides information technology support, consulting, infrastructure, and related services.", false, null, "IT Services" },
+                    { 40, "CYBERSECURITY_COMPANY", null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(2182), null, "Technology business that provides cybersecurity products, assessments, protection, and security services.", false, null, "Cybersecurity Company" },
+                    { 41, "MARKETING_AGENCY", null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(2203), null, "Business that provides marketing strategy, advertising, branding, and promotional services.", false, null, "Marketing Agency" },
+                    { 42, "SEO_AGENCY", null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(2209), null, "Digital marketing business that helps improve website visibility and rankings in search engines.", false, null, "SEO Agency" },
+                    { 43, "DIGITAL_AGENCY", null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(2216), null, "Agency that provides digital services such as web development, marketing, design, and online strategy.", false, null, "Digital Agency" },
+                    { 44, "FREELANCER", null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(2223), null, "Independent professional who provides specialized services to clients on a project or contract basis.", false, null, "Freelancer" },
+                    { 45, "PORTFOLIO", null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(2228), null, "Website or professional presence designed to showcase a person's work, projects, skills, and achievements.", false, null, "Portfolio" },
+                    { 46, "PERSONAL_WEBSITE", null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(2234), null, "Website created to present personal information, interests, skills, experience, or professional activities.", false, null, "Personal Website" },
+                    { 47, "BLOGGER", null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(2242), null, "Individual or business that regularly creates and publishes written or multimedia blog content.", false, null, "Blogger" },
+                    { 48, "INFLUENCER", null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(2249), null, "Individual who creates online content and engages an audience through social media or other digital platforms.", false, null, "Influencer" },
+                    { 49, "MUSICIAN", null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(2256), null, "Individual or business involved in creating, performing, recording, or promoting music.", false, null, "Musician" },
+                    { 50, "DJ", null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(2262), null, "Professional who selects, mixes, and performs recorded music for events, venues, or audiences.", false, null, "DJ" }
                 });
 
             migrationBuilder.InsertData(
@@ -647,10 +647,10 @@ namespace Core.Migrations
                 columns: new[] { "Id", "Code", "CreatedById", "CreatedDateTime", "DeletedDateTime", "Description", "IsDeleted", "ModifiedDateTime", "Name" },
                 values: new object[,]
                 {
-                    { 1, "CREATE", null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(2868), null, "Claim for creating entities.", false, null, "Create" },
-                    { 2, "READ", null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(2877), null, "Claim for reading entities.", false, null, "Read" },
-                    { 3, "UPDATE", null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(2881), null, "Claim for updating entities.", false, null, "Update" },
-                    { 4, "DELETE", null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(2885), null, "Claim for deleting entities.", false, null, "Delete" }
+                    { 1, "CREATE", null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(3513), null, "Claim for creating entities.", false, null, "Create" },
+                    { 2, "READ", null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(3523), null, "Claim for reading entities.", false, null, "Read" },
+                    { 3, "UPDATE", null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(3528), null, "Claim for updating entities.", false, null, "Update" },
+                    { 4, "DELETE", null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(3532), null, "Claim for deleting entities.", false, null, "Delete" }
                 });
 
             migrationBuilder.InsertData(
@@ -658,31 +658,31 @@ namespace Core.Migrations
                 columns: new[] { "Id", "Code", "CreatedById", "CreatedDateTime", "DeletedDateTime", "Description", "IsDeleted", "ModifiedDateTime", "Name" },
                 values: new object[,]
                 {
-                    { 1, "NAVBAR", null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(1215), null, "Website navigation bar used to provide links to the main pages and sections.", false, null, "Navbar" },
-                    { 2, "HERO", null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(1285), null, "Prominent introductory section that presents the main message, title, and call to action.", false, null, "Hero" },
-                    { 3, "ABOUT", null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(1289), null, "Section used to introduce a business, organization, person, or project.", false, null, "About" },
-                    { 4, "SERVICES", null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(1293), null, "Section that presents the services or solutions offered by a business or organization.", false, null, "Services" },
-                    { 5, "FEATURES", null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(1297), null, "Section that highlights the key features, benefits, or capabilities of a product or service.", false, null, "Features" },
-                    { 6, "PORTFOLIO", null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(1309), null, "Section used to showcase completed projects, work samples, or professional achievements.", false, null, "Portfolio" },
-                    { 7, "GALLERY", null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(1324), null, "Visual section used to display a collection of images or other media.", false, null, "Gallery" },
-                    { 8, "TESTIMONIALS", null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(1329), null, "Section that displays customer or client reviews, opinions, and experiences.", false, null, "Testimonials" },
-                    { 9, "PRICING", null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(1333), null, "Section used to present products, services, packages, or subscription plans together with their prices.", false, null, "Pricing" },
-                    { 10, "FAQ", null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(1337), null, "Section containing frequently asked questions and their answers.", false, null, "FAQ" },
-                    { 11, "CONTACT", null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(1348), null, "Section that provides contact information and allows visitors to get in touch.", false, null, "Contact" },
-                    { 12, "FOOTER", null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(1352), null, "Bottom section of a website containing additional navigation, contact information, legal links, and other details.", false, null, "Footer" },
-                    { 13, "TEAM", null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(1357), null, "Section used to introduce team members, employees, or staff.", false, null, "Team" },
-                    { 14, "CLIENTS", null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(1361), null, "Section used to showcase clients, customers, partners, or companies that work with the business.", false, null, "Clients" },
-                    { 15, "STATISTICS", null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(1365), null, "Section used to present important business statistics, numbers, metrics, or achievements.", false, null, "Statistics" },
-                    { 16, "SKILLS", null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(1392), null, "Section used to present professional skills, competencies, technologies, or areas of expertise.", false, null, "Skills" },
-                    { 17, "EXPERIENCE", null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(1397), null, "Section used to display professional experience, employment history, or previous positions.", false, null, "Experience" },
-                    { 18, "EDUCATION", null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(1401), null, "Section used to present educational background, degrees, certifications, or academic achievements.", false, null, "Education" },
-                    { 19, "BLOG", null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(1405), null, "Section used to display articles, news, posts, and other written content.", false, null, "Blog" },
-                    { 20, "NEWSLETTER", null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(1409), null, "Section that allows visitors to subscribe to a newsletter or receive updates.", false, null, "Newsletter" },
-                    { 21, "CTA", null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(1413), null, "Section designed to encourage visitors to perform a specific action, such as contacting the business, purchasing a product, or signing up.", false, null, "Call To Action" },
-                    { 22, "VIDEO", null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(1417), null, "Section used to display promotional, informational, or presentation videos.", false, null, "Video" },
-                    { 23, "PROCESS", null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(1421), null, "Section that explains the steps, stages, or workflow involved in delivering a product or service.", false, null, "Process" },
-                    { 24, "TECHNOLOGIES", null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(1425), null, "Section used to showcase technologies, tools, frameworks, or platforms used by a business or professional.", false, null, "Technologies" },
-                    { 25, "AWARDS", null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(1430), null, "Section used to showcase awards, recognitions, certificates, or professional achievements.", false, null, "Awards" }
+                    { 1, "NAVBAR", null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(1105), null, "Website navigation bar used to provide links to the main pages and sections.", false, null, "Navbar" },
+                    { 2, "HERO", null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(1182), null, "Prominent introductory section that presents the main message, title, and call to action.", false, null, "Hero" },
+                    { 3, "ABOUT", null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(1187), null, "Section used to introduce a business, organization, person, or project.", false, null, "About" },
+                    { 4, "SERVICES", null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(1192), null, "Section that presents the services or solutions offered by a business or organization.", false, null, "Services" },
+                    { 5, "FEATURES", null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(1196), null, "Section that highlights the key features, benefits, or capabilities of a product or service.", false, null, "Features" },
+                    { 6, "PORTFOLIO", null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(1210), null, "Section used to showcase completed projects, work samples, or professional achievements.", false, null, "Portfolio" },
+                    { 7, "GALLERY", null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(1227), null, "Visual section used to display a collection of images or other media.", false, null, "Gallery" },
+                    { 8, "TESTIMONIALS", null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(1234), null, "Section that displays customer or client reviews, opinions, and experiences.", false, null, "Testimonials" },
+                    { 9, "PRICING", null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(1241), null, "Section used to present products, services, packages, or subscription plans together with their prices.", false, null, "Pricing" },
+                    { 10, "FAQ", null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(1247), null, "Section containing frequently asked questions and their answers.", false, null, "FAQ" },
+                    { 11, "CONTACT", null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(1258), null, "Section that provides contact information and allows visitors to get in touch.", false, null, "Contact" },
+                    { 12, "FOOTER", null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(1263), null, "Bottom section of a website containing additional navigation, contact information, legal links, and other details.", false, null, "Footer" },
+                    { 13, "TEAM", null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(1270), null, "Section used to introduce team members, employees, or staff.", false, null, "Team" },
+                    { 14, "CLIENTS", null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(1276), null, "Section used to showcase clients, customers, partners, or companies that work with the business.", false, null, "Clients" },
+                    { 15, "STATISTICS", null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(1281), null, "Section used to present important business statistics, numbers, metrics, or achievements.", false, null, "Statistics" },
+                    { 16, "SKILLS", null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(1319), null, "Section used to present professional skills, competencies, technologies, or areas of expertise.", false, null, "Skills" },
+                    { 17, "EXPERIENCE", null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(1327), null, "Section used to display professional experience, employment history, or previous positions.", false, null, "Experience" },
+                    { 18, "EDUCATION", null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(1333), null, "Section used to present educational background, degrees, certifications, or academic achievements.", false, null, "Education" },
+                    { 19, "BLOG", null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(1339), null, "Section used to display articles, news, posts, and other written content.", false, null, "Blog" },
+                    { 20, "NEWSLETTER", null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(1347), null, "Section that allows visitors to subscribe to a newsletter or receive updates.", false, null, "Newsletter" },
+                    { 21, "CTA", null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(1353), null, "Section designed to encourage visitors to perform a specific action, such as contacting the business, purchasing a product, or signing up.", false, null, "Call To Action" },
+                    { 22, "VIDEO", null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(1360), null, "Section used to display promotional, informational, or presentation videos.", false, null, "Video" },
+                    { 23, "PROCESS", null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(1370), null, "Section that explains the steps, stages, or workflow involved in delivering a product or service.", false, null, "Process" },
+                    { 24, "TECHNOLOGIES", null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(1377), null, "Section used to showcase technologies, tools, frameworks, or platforms used by a business or professional.", false, null, "Technologies" },
+                    { 25, "AWARDS", null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(1383), null, "Section used to showcase awards, recognitions, certificates, or professional achievements.", false, null, "Awards" }
                 });
 
             migrationBuilder.InsertData(
@@ -690,8 +690,8 @@ namespace Core.Migrations
                 columns: new[] { "Id", "Code", "CreatedById", "CreatedDateTime", "DeletedDateTime", "Description", "IsDeleted", "ModifiedDateTime", "Name" },
                 values: new object[,]
                 {
-                    { 1, "EMAIL", null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(2738), null, "Email contact type.", false, null, "Email" },
-                    { 2, "PHONE_NUMBER", null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(2747), null, "Phone number contact type.", false, null, "Phone Number" }
+                    { 1, "EMAIL", null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(3263), null, "Email contact type.", false, null, "Email" },
+                    { 2, "PHONE_NUMBER", null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(3274), null, "Phone number contact type.", false, null, "Phone Number" }
                 });
 
             migrationBuilder.InsertData(
@@ -906,10 +906,10 @@ namespace Core.Migrations
                 columns: new[] { "Id", "Code", "CreatedById", "CreatedDateTime", "DecimalPlaces", "DeletedDateTime", "Description", "IsDeleted", "ModifiedDateTime", "Name", "Symbol" },
                 values: new object[,]
                 {
-                    { 1, "EUR", null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(2799), 2, null, "Euro currency.", false, null, "Euro", "€" },
-                    { 2, "USD", null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(2809), 2, null, "US Dollar currency.", false, null, "Dollar", "$" },
-                    { 3, "BAM", null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(2814), 2, null, "Bosnia and Herzegovina Convertible Mark currency.", false, null, "Konvertibilna marka", "KM" },
-                    { 4, "RSD", null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(2818), 2, null, "Serbian Dinar currency.", false, null, "Srpski dinar", "din." }
+                    { 1, "EUR", null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(3428), 2, null, "Euro currency.", false, null, "Euro", "€" },
+                    { 2, "USD", null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(3440), 2, null, "US Dollar currency.", false, null, "Dollar", "$" },
+                    { 3, "BAM", null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(3445), 2, null, "Bosnia and Herzegovina Convertible Mark currency.", false, null, "Konvertibilna marka", "KM" },
+                    { 4, "RSD", null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(3450), 2, null, "Serbian Dinar currency.", false, null, "Srpski dinar", "din." }
                 });
 
             migrationBuilder.InsertData(
@@ -917,9 +917,9 @@ namespace Core.Migrations
                 columns: new[] { "Id", "Code", "CreatedById", "CreatedDateTime", "DeletedDateTime", "Description", "IsDeleted", "ModifiedDateTime", "Name" },
                 values: new object[,]
                 {
-                    { 1, "M", null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(2663), null, "Male gender.", false, null, "Male" },
-                    { 2, "F", null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(2672), null, "Female gender.", false, null, "Female" },
-                    { 3, "PNTS", null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(2676), null, "The user prefers not to disclose their gender.", false, null, "Prefer not to say" }
+                    { 1, "M", null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(3168), null, "Male gender.", false, null, "Male" },
+                    { 2, "F", null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(3179), null, "Female gender.", false, null, "Female" },
+                    { 3, "PNTS", null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(3184), null, "The user prefers not to disclose their gender.", false, null, "Prefer not to say" }
                 });
 
             migrationBuilder.InsertData(
@@ -927,10 +927,10 @@ namespace Core.Migrations
                 columns: new[] { "Id", "Code", "CreatedById", "CreatedDateTime", "DeletedDateTime", "Description", "IsDeleted", "ModifiedDateTime", "Name" },
                 values: new object[,]
                 {
-                    { 1, "INFO", null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(2516), null, "General information and inquiries.", false, null, "Info" },
-                    { 2, "ORDER", null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(2526), null, "Questions or inquiries related to orders.", false, null, "Order" },
-                    { 3, "COMPLAIN", null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(2531), null, "Complaints about products, services, or orders.", false, null, "Complain" },
-                    { 4, "SUGGEST", null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(2535), null, "Suggestions, ideas, or feedback for improvement.", false, null, "Suggest" }
+                    { 1, "INFO", null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(2992), null, "General information and inquiries.", false, null, "Info" },
+                    { 2, "ORDER", null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(3003), null, "Questions or inquiries related to orders.", false, null, "Order" },
+                    { 3, "COMPLAIN", null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(3008), null, "Complaints about products, services, or orders.", false, null, "Complain" },
+                    { 4, "SUGGEST", null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(3013), null, "Suggestions, ideas, or feedback for improvement.", false, null, "Suggest" }
                 });
 
             migrationBuilder.InsertData(
@@ -938,8 +938,8 @@ namespace Core.Migrations
                 columns: new[] { "Id", "Code", "CreatedById", "CreatedDateTime", "DeletedDateTime", "Description", "IsDeleted", "ModifiedDateTime", "Name" },
                 values: new object[,]
                 {
-                    { 1, "ADMIN", null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(2601), null, "Administrator with full access to the system.", false, null, "Admin" },
-                    { 2, "USER", null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(2610), null, "Standard user with access to regular system features.", false, null, "User" }
+                    { 1, "ADMIN", null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(3090), null, "Administrator with full access to the system.", false, null, "Admin" },
+                    { 2, "USER", null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(3106), null, "Standard user with access to regular system features.", false, null, "User" }
                 });
 
             migrationBuilder.InsertData(
@@ -947,26 +947,26 @@ namespace Core.Migrations
                 columns: new[] { "Id", "Code", "Color", "CreatedById", "CreatedDateTime", "DeletedDateTime", "Description", "DisplayOrder", "Icon", "IsDeleted", "ModifiedDateTime", "Name" },
                 values: new object[,]
                 {
-                    { 1, "FACEBOOK", "#1877F2", null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(2276), null, "Social media platform used for connecting with people, sharing content, and promoting businesses.", 1, "fa-brands fa-facebook", false, null, "Facebook" },
-                    { 2, "INSTAGRAM", "#E4405F", null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(2285), null, "Visual social media platform focused on sharing photos, videos, stories, and other visual content.", 2, "fa-brands fa-instagram", false, null, "Instagram" },
-                    { 3, "LINKEDIN", "#0A66C2", null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(2290), null, "Professional social network used for business networking, career development, and professional content.", 3, "fa-brands fa-linkedin", false, null, "LinkedIn" },
-                    { 4, "X-TWITTER", "#000000", null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(2294), null, "Social media platform used for sharing short posts, news, opinions, and real-time updates.", 4, "fa-brands fa-x-twitter", false, null, "X" },
-                    { 5, "YOUTUBE", "#FF0000", null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(2298), null, "Video-sharing platform used to publish, watch, and share video content.", 5, "fa-brands fa-youtube", false, null, "YouTube" },
-                    { 6, "TIKTOK", "#000000", null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(2302), null, "Short-form video platform focused on entertainment, trends, and user-generated content.", 6, "fa-brands fa-tiktok", false, null, "TikTok" },
-                    { 7, "WHATSAPP", "#25D366", null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(2306), null, "Messaging platform used for instant messages, voice calls, video calls, and sharing media.", 7, "fa-brands fa-whatsapp", false, null, "WhatsApp" },
-                    { 8, "TELEGRAM", "#26A5E4", null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(2311), null, "Messaging platform that supports conversations, groups, channels, file sharing, and multimedia.", 8, "fa-brands fa-telegram", false, null, "Telegram" },
-                    { 9, "DISCORD", "#5865F2", null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(2315), null, "Communication platform focused on communities, messaging, voice communication, and online collaboration.", 9, "fa-brands fa-discord", false, null, "Discord" },
-                    { 10, "GITHUB", "#181717", null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(2319), null, "Development platform used for hosting, managing, collaborating on, and sharing source code.", 10, "fa-brands fa-github", false, null, "GitHub" },
-                    { 11, "GITLAB", "#FC6D26", null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(2323), null, "DevOps and software development platform used for source code management and collaboration.", 11, "fa-brands fa-gitlab", false, null, "GitLab" },
-                    { 12, "PINTEREST", "#E60023", null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(2327), null, "Visual discovery platform used to find, organize, and share ideas, images, and inspiration.", 12, "fa-brands fa-pinterest", false, null, "Pinterest" },
-                    { 13, "SNAPCHAT", "#FFFC00", null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(2402), null, "Social media and messaging platform focused on photos, videos, stories, and temporary content.", 13, "fa-brands fa-snapchat", false, null, "Snapchat" },
-                    { 14, "DRIBBBLE", "#EA4C89", null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(2409), null, "Online platform where designers showcase their creative work, designs, and portfolios.", 14, "fa-brands fa-dribbble", false, null, "Dribbble" },
-                    { 15, "BEHANCE", "#1769FF", null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(2414), null, "Creative platform used by designers and artists to showcase and discover creative projects.", 15, "fa-brands fa-behance", false, null, "Behance" },
-                    { 16, "MEDIUM", "#000000", null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(2418), null, "Online publishing platform used to write, publish, and discover articles and stories.", 16, "fa-brands fa-medium", false, null, "Medium" },
-                    { 17, "REDDIT", "#FF4500", null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(2422), null, "Community-based platform where users discuss topics, share content, and participate in online communities.", 17, "fa-brands fa-reddit", false, null, "Reddit" },
-                    { 18, "TWITCH", "#9146FF", null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(2426), null, "Live streaming platform primarily used for gaming, entertainment, creative content, and live interaction.", 18, "fa-brands fa-twitch", false, null, "Twitch" },
-                    { 19, "SPOTIFY", "#1DB954", null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(2430), null, "Digital music and audio streaming platform used to share and discover music, podcasts, and other audio content.", 19, "fa-brands fa-spotify", false, null, "Spotify" },
-                    { 20, "THREADS", "#000000", null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(2434), null, "Social media platform focused on text-based conversations, discussions, and sharing updates.", 20, "fa-brands fa-threads", false, null, "Threads" }
+                    { 1, "FACEBOOK", "#1877F2", null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(2498), null, "Social media platform used for connecting with people, sharing content, and promoting businesses.", 1, "fa-brands fa-facebook", false, null, "Facebook" },
+                    { 2, "INSTAGRAM", "#E4405F", null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(2511), null, "Visual social media platform focused on sharing photos, videos, stories, and other visual content.", 2, "fa-brands fa-instagram", false, null, "Instagram" },
+                    { 3, "LINKEDIN", "#0A66C2", null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(2517), null, "Professional social network used for business networking, career development, and professional content.", 3, "fa-brands fa-linkedin", false, null, "LinkedIn" },
+                    { 4, "X-TWITTER", "#000000", null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(2525), null, "Social media platform used for sharing short posts, news, opinions, and real-time updates.", 4, "fa-brands fa-x-twitter", false, null, "X" },
+                    { 5, "YOUTUBE", "#FF0000", null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(2532), null, "Video-sharing platform used to publish, watch, and share video content.", 5, "fa-brands fa-youtube", false, null, "YouTube" },
+                    { 6, "TIKTOK", "#000000", null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(2539), null, "Short-form video platform focused on entertainment, trends, and user-generated content.", 6, "fa-brands fa-tiktok", false, null, "TikTok" },
+                    { 7, "WHATSAPP", "#25D366", null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(2543), null, "Messaging platform used for instant messages, voice calls, video calls, and sharing media.", 7, "fa-brands fa-whatsapp", false, null, "WhatsApp" },
+                    { 8, "TELEGRAM", "#26A5E4", null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(2548), null, "Messaging platform that supports conversations, groups, channels, file sharing, and multimedia.", 8, "fa-brands fa-telegram", false, null, "Telegram" },
+                    { 9, "DISCORD", "#5865F2", null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(2553), null, "Communication platform focused on communities, messaging, voice communication, and online collaboration.", 9, "fa-brands fa-discord", false, null, "Discord" },
+                    { 10, "GITHUB", "#181717", null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(2559), null, "Development platform used for hosting, managing, collaborating on, and sharing source code.", 10, "fa-brands fa-github", false, null, "GitHub" },
+                    { 11, "GITLAB", "#FC6D26", null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(2566), null, "DevOps and software development platform used for source code management and collaboration.", 11, "fa-brands fa-gitlab", false, null, "GitLab" },
+                    { 12, "PINTEREST", "#E60023", null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(2787), null, "Visual discovery platform used to find, organize, and share ideas, images, and inspiration.", 12, "fa-brands fa-pinterest", false, null, "Pinterest" },
+                    { 13, "SNAPCHAT", "#FFFC00", null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(2801), null, "Social media and messaging platform focused on photos, videos, stories, and temporary content.", 13, "fa-brands fa-snapchat", false, null, "Snapchat" },
+                    { 14, "DRIBBBLE", "#EA4C89", null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(2807), null, "Online platform where designers showcase their creative work, designs, and portfolios.", 14, "fa-brands fa-dribbble", false, null, "Dribbble" },
+                    { 15, "BEHANCE", "#1769FF", null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(2813), null, "Creative platform used by designers and artists to showcase and discover creative projects.", 15, "fa-brands fa-behance", false, null, "Behance" },
+                    { 16, "MEDIUM", "#000000", null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(2818), null, "Online publishing platform used to write, publish, and discover articles and stories.", 16, "fa-brands fa-medium", false, null, "Medium" },
+                    { 17, "REDDIT", "#FF4500", null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(2824), null, "Community-based platform where users discuss topics, share content, and participate in online communities.", 17, "fa-brands fa-reddit", false, null, "Reddit" },
+                    { 18, "TWITCH", "#9146FF", null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(2828), null, "Live streaming platform primarily used for gaming, entertainment, creative content, and live interaction.", 18, "fa-brands fa-twitch", false, null, "Twitch" },
+                    { 19, "SPOTIFY", "#1DB954", null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(2833), null, "Digital music and audio streaming platform used to share and discover music, podcasts, and other audio content.", 19, "fa-brands fa-spotify", false, null, "Spotify" },
+                    { 20, "THREADS", "#000000", null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(2838), null, "Social media platform focused on text-based conversations, discussions, and sharing updates.", 20, "fa-brands fa-threads", false, null, "Threads" }
                 });
 
             migrationBuilder.InsertData(
@@ -974,16 +974,16 @@ namespace Core.Migrations
                 columns: new[] { "Id", "CreatedById", "CreatedDateTime", "DeletedDateTime", "EmailSender", "IsDeleted", "Message", "MessageUsReasonId", "ModifiedDateTime" },
                 values: new object[,]
                 {
-                    { 1, null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(3590), null, "amer.kasum@gmail.com", false, "Imam pitanje u vezi vaše usluge.", 1, null },
-                    { 2, null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(3598), null, "test.user@gmail.com", false, "Zanima me više informacija o vašim uslugama.", 2, null },
-                    { 3, null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(3602), null, "john.doe@gmail.com", false, "Molim vas za dodatne informacije.", 3, null },
-                    { 4, null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(3606), null, "info@example.com", false, "Želio bih prijaviti problem sa aplikacijom.", 4, null },
-                    { 5, null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(3610), null, "customer@gmail.com", false, "Kada mogu očekivati odgovor na moj zahtjev?", 1, null },
-                    { 6, null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(3613), null, "contact@example.com", false, "Imam prijedlog za poboljšanje vaše aplikacije.", 2, null },
-                    { 7, null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(3617), null, "user.test@gmail.com", false, "Aplikacija mi prikazuje grešku prilikom prijave.", 4, null },
-                    { 8, null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(3620), null, "example.user@gmail.com", false, "Želio bih saznati više o vašim mogućnostima.", 3, null },
-                    { 9, null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(3624), null, "test@example.com", false, "Molim vas da me kontaktirate kada budete u mogućnosti.", 1, null },
-                    { 10, null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(3628), null, "client@gmail.com", false, "Imam nekoliko pitanja prije korištenja usluge.", 2, null }
+                    { 1, null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(4393), null, "amer.kasum@gmail.com", false, "Imam pitanje u vezi vaše usluge.", 1, null },
+                    { 2, null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(4405), null, "test.user@gmail.com", false, "Zanima me više informacija o vašim uslugama.", 2, null },
+                    { 3, null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(4412), null, "john.doe@gmail.com", false, "Molim vas za dodatne informacije.", 3, null },
+                    { 4, null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(4419), null, "info@example.com", false, "Želio bih prijaviti problem sa aplikacijom.", 4, null },
+                    { 5, null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(4426), null, "customer@gmail.com", false, "Kada mogu očekivati odgovor na moj zahtjev?", 1, null },
+                    { 6, null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(4433), null, "contact@example.com", false, "Imam prijedlog za poboljšanje vaše aplikacije.", 2, null },
+                    { 7, null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(4439), null, "user.test@gmail.com", false, "Aplikacija mi prikazuje grešku prilikom prijave.", 4, null },
+                    { 8, null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(4445), null, "example.user@gmail.com", false, "Želio bih saznati više o vašim mogućnostima.", 3, null },
+                    { 9, null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(4452), null, "test@example.com", false, "Molim vas da me kontaktirate kada budete u mogućnosti.", 1, null },
+                    { 10, null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(4457), null, "client@gmail.com", false, "Imam nekoliko pitanja prije korištenja usluge.", 2, null }
                 });
 
             migrationBuilder.InsertData(
@@ -3994,14 +3994,14 @@ namespace Core.Migrations
                 columns: new[] { "Id", "ClaimId", "CreatedById", "CreatedDateTime", "DeletedDateTime", "IsDeleted", "ModifiedDateTime", "RoleId" },
                 values: new object[,]
                 {
-                    { 1, 1, null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(2945), null, false, null, 1 },
-                    { 2, 2, null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(2954), null, false, null, 1 },
-                    { 3, 3, null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(2958), null, false, null, 1 },
-                    { 4, 4, null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(2962), null, false, null, 1 },
-                    { 5, 1, null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(2967), null, false, null, 2 },
-                    { 6, 2, null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(2971), null, false, null, 2 },
-                    { 7, 3, null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(2975), null, false, null, 2 },
-                    { 8, 4, null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(2979), null, false, null, 2 }
+                    { 1, 1, null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(3601), null, false, null, 1 },
+                    { 2, 2, null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(3612), null, false, null, 1 },
+                    { 3, 3, null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(3617), null, false, null, 1 },
+                    { 4, 4, null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(3621), null, false, null, 1 },
+                    { 5, 1, null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(3626), null, false, null, 2 },
+                    { 6, 2, null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(3631), null, false, null, 2 },
+                    { 7, 3, null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(3636), null, false, null, 2 },
+                    { 8, 4, null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(3640), null, false, null, 2 }
                 });
 
             migrationBuilder.InsertData(
@@ -4009,8 +4009,8 @@ namespace Core.Migrations
                 columns: new[] { "Id", "BirthDate", "CreatedById", "CreatedDateTime", "DeletedDateTime", "Email", "FirstName", "GenderId", "ImageUrl", "IsDeleted", "LastName", "ModifiedDateTime", "Password", "PasswordSalt", "Username" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(1990, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(3708), null, "admin@admin.com", "Admin", 1, null, false, "Admin", null, "admin123", "salt", "admin" },
-                    { 2, new DateTime(1990, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(3857), null, "user@user.com", "User", 1, null, false, "User", null, "user123", "salt", "user" }
+                    { 1, new DateTime(1990, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(4578), null, "admin@admin.com", "Admin", 1, null, false, "Admin", null, "admin123", "salt", "admin" },
+                    { 2, new DateTime(1990, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(4844), null, "user@user.com", "User", 1, null, false, "User", null, "user123", "salt", "user" }
                 });
 
             migrationBuilder.InsertData(
@@ -4085,21 +4085,21 @@ namespace Core.Migrations
                 columns: new[] { "Id", "CreatedById", "CreatedDateTime", "DeletedDateTime", "IsDeleted", "Message", "ModifiedDateTime", "Rating", "UserId" },
                 values: new object[,]
                 {
-                    { 1, null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(3380), null, false, "Excellent service!", null, 5, 1 },
-                    { 2, null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(3389), null, false, "Good experience overall.", null, 4, 2 },
-                    { 3, null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(3393), null, false, "Average service.", null, 3, 1 },
-                    { 4, null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(3397), null, false, "Not satisfied with the service.", null, 2, 2 },
-                    { 5, null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(3401), null, false, "Very poor experience.", null, 1, 1 },
-                    { 6, null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(3405), null, false, "Odlična usluga, sve je bilo brzo i profesionalno.", null, 5, 1 },
-                    { 7, null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(3479), null, false, "Veoma sam zadovoljan uslugom. Sve preporuke!", null, 5, 2 },
-                    { 8, null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(3485), null, false, "Dobra usluga i ljubazno osoblje.", null, 4, 1 },
-                    { 9, null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(3489), null, false, "Sve je prošlo kako treba, nemam zamjerki.", null, 4, 1 },
-                    { 10, null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(3493), null, false, "Odlična komunikacija i veoma brzo riješena moja zahtjev.", null, 5, 2 },
-                    { 11, null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(3496), null, false, "Usluga je bila korektna, ali može biti malo brža.", null, 3, 1 },
-                    { 12, null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(3500), null, false, "Jako dobro iskustvo. Profesionalno i pouzdano.", null, 5, 2 },
-                    { 13, null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(3503), null, false, "Sve je bilo u redu i prema dogovoru.", null, 4, 1 },
-                    { 14, null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(3507), null, false, "Nisam potpuno zadovoljan iskustvom.", null, 2, 2 },
-                    { 15, null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(3511), null, false, "Odličan odnos prema korisnicima. Sve preporuke.", null, 5, 2 }
+                    { 1, null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(4172), null, false, "Excellent service!", null, 5, 1 },
+                    { 2, null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(4188), null, false, "Good experience overall.", null, 4, 2 },
+                    { 3, null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(4195), null, false, "Average service.", null, 3, 1 },
+                    { 4, null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(4202), null, false, "Not satisfied with the service.", null, 2, 2 },
+                    { 5, null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(4210), null, false, "Very poor experience.", null, 1, 1 },
+                    { 6, null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(4218), null, false, "Odlična usluga, sve je bilo brzo i profesionalno.", null, 5, 1 },
+                    { 7, null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(4226), null, false, "Veoma sam zadovoljan uslugom. Sve preporuke!", null, 5, 2 },
+                    { 8, null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(4233), null, false, "Dobra usluga i ljubazno osoblje.", null, 4, 1 },
+                    { 9, null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(4239), null, false, "Sve je prošlo kako treba, nemam zamjerki.", null, 4, 1 },
+                    { 10, null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(4246), null, false, "Odlična komunikacija i veoma brzo riješena moja zahtjev.", null, 5, 2 },
+                    { 11, null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(4251), null, false, "Usluga je bila korektna, ali može biti malo brža.", null, 3, 1 },
+                    { 12, null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(4259), null, false, "Jako dobro iskustvo. Profesionalno i pouzdano.", null, 5, 2 },
+                    { 13, null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(4265), null, false, "Sve je bilo u redu i prema dogovoru.", null, 4, 1 },
+                    { 14, null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(4274), null, false, "Nisam potpuno zadovoljan iskustvom.", null, 2, 2 },
+                    { 15, null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(4281), null, false, "Odličan odnos prema korisnicima. Sve preporuke.", null, 5, 2 }
                 });
 
             migrationBuilder.InsertData(
@@ -4107,10 +4107,10 @@ namespace Core.Migrations
                 columns: new[] { "Id", "ContactTypeId", "CreatedById", "CreatedDateTime", "DeletedDateTime", "IsDeleted", "ModifiedDateTime", "UserId", "Value" },
                 values: new object[,]
                 {
-                    { 1, 1, null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(3298), null, false, null, 1, "061123456" },
-                    { 2, 2, null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(3309), null, false, null, 1, "amer.kasum@example.com" },
-                    { 3, 1, null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(3313), null, false, null, 2, "062987654" },
-                    { 4, 2, null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(3317), null, false, null, 2, "user2@example.com" }
+                    { 1, 1, null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(4048), null, false, null, 1, "061123456" },
+                    { 2, 2, null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(4066), null, false, null, 1, "amer.kasum@example.com" },
+                    { 3, 1, null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(4074), null, false, null, 2, "062987654" },
+                    { 4, 2, null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(4081), null, false, null, 2, "user2@example.com" }
                 });
 
             migrationBuilder.InsertData(
@@ -4118,8 +4118,8 @@ namespace Core.Migrations
                 columns: new[] { "Id", "CreatedById", "CreatedDateTime", "DeletedDateTime", "IsDeleted", "ModifiedDateTime", "RoleId", "UserId" },
                 values: new object[,]
                 {
-                    { 1, null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(3773), null, false, null, 1, 1 },
-                    { 2, null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(3979), null, false, null, 2, 2 }
+                    { 1, null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(4668), null, false, null, 1, 1 },
+                    { 2, null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(4925), null, false, null, 2, 2 }
                 });
 
             migrationBuilder.InsertData(
@@ -4127,16 +4127,16 @@ namespace Core.Migrations
                 columns: new[] { "Id", "CreatedById", "CreatedDateTime", "DeletedDateTime", "IsDeleted", "Link", "ModifiedDateTime", "SocialMediaId", "UserId" },
                 values: new object[,]
                 {
-                    { 1, null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(4034), null, false, "https://facebook.com/user1", null, 1, 1 },
-                    { 2, null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(4043), null, false, "https://instagram.com/user1", null, 2, 1 },
-                    { 3, null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(4047), null, false, "https://twitter.com/user1", null, 3, 1 },
-                    { 4, null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(4051), null, false, "https://linkedin.com/in/user1", null, 4, 1 },
-                    { 5, null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(4055), null, false, "https://github.com/user1", null, 5, 1 },
-                    { 6, null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(4059), null, false, "https://facebook.com/user2", null, 1, 2 },
-                    { 7, null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(4063), null, false, "https://instagram.com/user2", null, 2, 2 },
-                    { 8, null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(4067), null, false, "https://youtube.com/user2", null, 6, 2 },
-                    { 9, null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(4071), null, false, "https://tiktok.com/@user2", null, 7, 2 },
-                    { 10, null, new DateTime(2026, 10, 11, 23, 21, 59, 643, DateTimeKind.Local).AddTicks(4075), null, false, "https://x.com/user2", null, 8, 2 }
+                    { 1, null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(5008), null, false, "https://facebook.com/user1", null, 1, 1 },
+                    { 2, null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(5021), null, false, "https://instagram.com/user1", null, 2, 1 },
+                    { 3, null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(5028), null, false, "https://twitter.com/user1", null, 3, 1 },
+                    { 4, null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(5038), null, false, "https://linkedin.com/in/user1", null, 4, 1 },
+                    { 5, null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(5042), null, false, "https://github.com/user1", null, 5, 1 },
+                    { 6, null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(5047), null, false, "https://facebook.com/user2", null, 1, 2 },
+                    { 7, null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(5054), null, false, "https://instagram.com/user2", null, 2, 2 },
+                    { 8, null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(5058), null, false, "https://youtube.com/user2", null, 6, 2 },
+                    { 9, null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(5062), null, false, "https://tiktok.com/@user2", null, 7, 2 },
+                    { 10, null, new DateTime(2026, 10, 13, 0, 25, 2, 821, DateTimeKind.Local).AddTicks(5075), null, false, "https://x.com/user2", null, 8, 2 }
                 });
 
             migrationBuilder.CreateIndex(

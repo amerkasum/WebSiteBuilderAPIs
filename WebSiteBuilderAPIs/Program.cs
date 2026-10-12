@@ -64,7 +64,7 @@ builder.Services.AddScoped<Localizer>();
 
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
-builder.Services.AddDbContext<AuditDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("AuditConnection")));
+builder.Services.AddDbContext<LogsDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("AuditConnection")));
 builder.Services.AddTransient<IUnitOfWork, UnitOfWork>(); //istraziti Transient, Scoped, Singleton
 builder.Services.AddCustomServices();
 
