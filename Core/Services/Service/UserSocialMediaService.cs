@@ -20,13 +20,13 @@ namespace Core.Services.Service
             this.UnitOfWork = unitOfWork;
         }
 
-        public IEnumerable<UserSocialMediaDto> Get(UserSocialMediaRequest model)
+        public async Task<IEnumerable<UserSocialMediaDto>> GetAsync(UserSocialMediaRequest model)
         {
             model.Search = model.Search?.Trim();
-            return UnitOfWork.UserSocialMedia.Get(model);
+            return await UnitOfWork.UserSocialMedia.GetAsync(model);
         }
 
-        public UserSocialMedia Add(UserSocialMediaViewModel model)
+        public async Task<UserSocialMedia> AddAsync(UserSocialMediaViewModel model)
         {
             var userSocialMedia = new UserSocialMedia
             {
@@ -36,12 +36,12 @@ namespace Core.Services.Service
             };
 
             UnitOfWork.UserSocialMedia.Add(userSocialMedia);
-            UnitOfWork.SaveChanges();
+            await UnitOfWork.SaveChangesAsync();
 
             return userSocialMedia;
         }
 
-        public UserSocialMedia Edit(UserSocialMediaViewModel model)
+        public async Task<UserSocialMedia> EditAsync(UserSocialMediaViewModel model)
         {
             var userSocialMedia = UnitOfWork.UserSocialMedia.GetById(model.Id);
 
@@ -53,12 +53,12 @@ namespace Core.Services.Service
             userSocialMedia.Link = model.Link;
 
             UnitOfWork.UserSocialMedia.Update(userSocialMedia);
-            UnitOfWork.SaveChanges();
+            await UnitOfWork.SaveChangesAsync();
 
             return userSocialMedia;
         }
 
-        public void Delete(int id)
+        public async Task DeleteAsync(int id)
         {
             var userSocialMedia = UnitOfWork.UserSocialMedia.GetById(id);
 
@@ -66,7 +66,7 @@ namespace Core.Services.Service
                 throw new KeyNotFoundException();
 
             UnitOfWork.UserSocialMedia.Remove(userSocialMedia);
-            UnitOfWork.SaveChanges();
+            await UnitOfWork.SaveChangesAsync();
         }
 
     }

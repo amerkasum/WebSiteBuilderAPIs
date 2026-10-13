@@ -20,9 +20,9 @@ namespace Core.Repositories.Repository
             
         }
 
-        public List<MessageUsDto> Get(MessageUsRequest model)
+        public async Task<List<MessageUsDto>> GetAsync(MessageUsRequest model)
         {
-            var result = _context.MessageUs.Include(x => x.MessageUsReason).Where(x => 
+            var result = await _context.MessageUs.AsNoTracking().Where(x => 
             (string.IsNullOrWhiteSpace(model.Email) || x.EmailSender.ToLower() == model.Email.ToLower())
             && (!model.MessageUsReasonId.HasValue || x.MessageUsReasonId == model.MessageUsReasonId.Value)
             && ((!model.DateFrom.HasValue || x.CreatedDateTime >= model.DateFrom.Value) && (!model.DateTo.HasValue || x.CreatedDateTime <= model.DateTo.Value))).Select(x => new MessageUsDto
@@ -34,7 +34,7 @@ namespace Core.Repositories.Repository
                 MessageUsReason = x.MessageUsReason.Name,
                 MessageUsReasonId = x.MessageUsReasonId
 
-            }).ToList();
+            }).ToListAsync();
 
             return result;
         }

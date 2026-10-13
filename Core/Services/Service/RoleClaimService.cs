@@ -20,12 +20,12 @@ namespace Core.Services.Service
             this.UnitOfWork = unitOfWork;
         }
 
-        public IEnumerable<RoleClaimDto> Get(RoleClaimRequest model)
+        public async Task<IEnumerable<RoleClaimDto>> GetAsync(RoleClaimRequest model)
         {
-            return UnitOfWork.RoleClaim.Get(model);
+            return await UnitOfWork.RoleClaim.GetAsync(model);
         }
 
-        public RoleClaim Add(RoleClaimViewModel model)
+        public async Task<RoleClaim> AddAsync(RoleClaimViewModel model)
         {
             var roleClaim = new RoleClaim
             {
@@ -34,12 +34,12 @@ namespace Core.Services.Service
             };
 
             UnitOfWork.RoleClaim.Add(roleClaim);
-            UnitOfWork.SaveChanges();
+            await UnitOfWork.SaveChangesAsync();
 
             return roleClaim;
         }
 
-        public RoleClaim Edit(RoleClaimViewModel model)
+        public async Task<RoleClaim> EditAsync(RoleClaimViewModel model)
         {
             var roleClaim = UnitOfWork.RoleClaim.GetById(model.Id);
 
@@ -50,12 +50,12 @@ namespace Core.Services.Service
             roleClaim.ClaimId = model.ClaimId;
 
             UnitOfWork.RoleClaim.Update(roleClaim);
-            UnitOfWork.SaveChanges();
+            await UnitOfWork.SaveChangesAsync();
 
             return roleClaim;
         }
 
-        public void Delete(int id)
+        public async Task DeleteAsync(int id)
         {
             var roleClaim = UnitOfWork.RoleClaim.GetById(id);
 
@@ -63,7 +63,7 @@ namespace Core.Services.Service
                 throw new KeyNotFoundException();
 
             UnitOfWork.RoleClaim.Remove(roleClaim);
-            UnitOfWork.SaveChanges();
+            await UnitOfWork.SaveChangesAsync();
         }
     }
 }

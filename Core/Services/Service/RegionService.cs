@@ -10,6 +10,7 @@ using Microsoft.EntityFrameworkCore.Query.SqlExpressions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -23,13 +24,13 @@ namespace Core.Services.Service
             this.UnitOfWork = unitOFWork;
         }
 
-        public PaginationResponse<RegionDto> Get(RegionRequest model)
+        public async Task<PaginationResponse<RegionDto>> GetAsync(RegionRequest model)
         {
             model.Search = model.Search?.Trim();
-            return UnitOfWork.Regions.Get(model);
+            return await UnitOfWork.Regions.GetAsync(model);
         }
 
-        public Region Add(RegionViewModel model)
+        public async Task<Region> AddAsync(RegionViewModel model)
         {
             var region = new Region
             {
@@ -38,12 +39,12 @@ namespace Core.Services.Service
             };
 
             UnitOfWork.Regions.Add(region);
-            UnitOfWork.SaveChanges();
+            await UnitOfWork.SaveChangesAsync();
 
             return region;
         }
 
-        public Region Edit(RegionViewModel model)
+        public async Task<Region> EditAsync(RegionViewModel model)
         {
             var region = UnitOfWork.Regions.GetById(model.Id);
 
@@ -54,12 +55,12 @@ namespace Core.Services.Service
             region.CountryId = model.CountryId;
 
             UnitOfWork.Regions.Update(region);
-            UnitOfWork.SaveChanges();
+            await UnitOfWork.SaveChangesAsync();
 
             return region;
         }
 
-        public void Delete(int id)
+        public async Task DeleteAsync(int id)
         {
             var region = UnitOfWork.Regions.GetById(id);
 
@@ -67,7 +68,7 @@ namespace Core.Services.Service
                 throw new KeyNotFoundException();
 
             UnitOfWork.Regions.Remove(region);
-            UnitOfWork.SaveChanges();
+            await UnitOfWork.SaveChangesAsync();
         }
     }
 }

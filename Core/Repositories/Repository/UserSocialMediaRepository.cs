@@ -18,13 +18,14 @@ namespace Core.Repositories.Repository
         {
         }
 
-        public IEnumerable<UserSocialMediaDto> Get(UserSocialMediaRequest model)
+        public async Task<IEnumerable<UserSocialMediaDto>> GetAsync(UserSocialMediaRequest model)
         {
-            var result = _context.UserSocialMedia.Include(x => x.User).Include(x => x.SocialMedia).
-                Where(x => !x.IsDeleted &&
+            var query = _context.UserSocialMedia.AsNoTracking()
+                .Where(x => !x.IsDeleted &&
                 (string.IsNullOrEmpty(model.Search) || (x.User.FirstName.Contains(model.Search) && x.User.LastName.Contains(model.Search) && x.User.Username.Contains(model.Search))) &&
-                (!model.SocialMediaId.HasValue || model.SocialMediaId == x.SocialMedia.Id)).ToList()
-                .Select(x => new UserSocialMediaDto
+                (!model.SocialMediaId.HasValue || model.SocialMediaId == x.SocialMedia.Id));
+
+            var result = await query.Select(x => new UserSocialMediaDto
                 {
                     Id = x.Id,
                     User = new UserBasicDto
@@ -44,7 +45,7 @@ namespace Core.Repositories.Repository
                         DisplaOrder = x.SocialMedia.DisplayOrder
                     },
                     Link = x.Link
-                });
+                }).ToListAsync();
 
             return result;
         }

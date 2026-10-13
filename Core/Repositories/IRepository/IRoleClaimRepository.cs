@@ -11,6 +11,6 @@ namespace Core.Repositories.IRepository
 {
     public interface IRoleClaimRepository : IRepository<RoleClaim>
     {
-        IEnumerable<RoleClaimDto> Get(RoleClaimRequest model);
+        Task<IEnumerable<RoleClaimDto>> GetAsync(RoleClaimRequest model);
     }
 }

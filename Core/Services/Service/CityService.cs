@@ -20,12 +20,12 @@ namespace Core.Services.Service
         {
             this.UnitOfWork = unitOfWork;
         }
-        public PaginationResponse<CityDto> Get(CityRequest model)
+        public async Task<PaginationResponse<CityDto>> GetAsync(CityRequest model)
         {
             model.Search = model.Search?.Trim();
-            return UnitOfWork.City.Get(model);
+            return await UnitOfWork.City.GetAsync(model);
         }
-        public City Add(CityViewModel model)
+        public async Task<City> AddAsync(CityViewModel model)
         {
             var city = new City
             {
@@ -35,12 +35,12 @@ namespace Core.Services.Service
             };
 
             UnitOfWork.City.Add(city);
-            UnitOfWork.SaveChanges();
+            await UnitOfWork.SaveChangesAsync();
 
             return city;
         }
 
-        public City Edit(CityViewModel model)
+        public async Task<City> EditAsync(CityViewModel model)
         {
             var city = UnitOfWork.City.GetById(model.Id);
 
@@ -52,12 +52,12 @@ namespace Core.Services.Service
             city.RegionId = model.RegionId;
 
             UnitOfWork.City.Update(city);
-            UnitOfWork.SaveChanges();
+            await UnitOfWork.SaveChangesAsync();
 
             return city;
         }
 
-        public void Delete(int id)
+        public async Task DeleteAsync(int id)
         {
             var city = UnitOfWork.City.GetById(id);
 
@@ -65,7 +65,7 @@ namespace Core.Services.Service
                 throw new KeyNotFoundException();
 
             UnitOfWork.City.Remove(city);
-            UnitOfWork.SaveChanges();
+            await UnitOfWork.SaveChangesAsync();
         }
     }
 }

@@ -12,10 +12,10 @@ namespace Core.Services.IService
 {
     public interface IUserContactService
     {
-        IEnumerable<UserContactDto> Get(UserContactRequest model);
+        Task<IEnumerable<UserContactDto>> GetAsync(UserContactRequest model);
         List<UserContact> HandleUserContacts(List<UserContactViewModel> model, int userId, string email);
-        UserContact Add(UserContactViewModel model);
-        UserContact Edit(UserContactViewModel model);
-        void Delete(int id);
+        Task<UserContact> AddAsync(UserContactViewModel model);
+        Task<UserContact> EditAsync(UserContactViewModel model);
+        Task DeleteAsync(int id);
     }
 }

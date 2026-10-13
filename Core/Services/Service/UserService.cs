@@ -59,7 +59,7 @@ namespace Core.Services.Service
             return result;
         }
 
-        public User Add(UserViewModel model)
+        public async Task<User> AddAsync(UserViewModel model)
         {
             try
             {
@@ -80,7 +80,7 @@ namespace Core.Services.Service
                 };
 
                 UnitOfWork.User.Add(user);
-                UnitOfWork.SaveChanges();
+                await UnitOfWork.SaveChangesAsync();
 
                 UserRoleViewModel userRoleModel = new UserRoleViewModel
                 {
@@ -88,7 +88,7 @@ namespace Core.Services.Service
                     RoleId = model.RoleId
                 };
 
-                var userRole = UserRoleService.Add(userRoleModel);
+                var userRole = await UserRoleService.AddAsync(userRoleModel);
 
                 List<UserContact> userContacts = UserContactService.HandleUserContacts(model.UserContacts, user.Id, model.Email);
 
@@ -108,7 +108,7 @@ namespace Core.Services.Service
                         RegionId = model.UserLocation.RegionId
                     };
                     UnitOfWork.City.Add(city);
-                    UnitOfWork.SaveChanges();
+                    await UnitOfWork.SaveChangesAsync();
                 }
                 else
                 {
@@ -134,7 +134,7 @@ namespace Core.Services.Service
                     AddressId = address.Id,
                     IsPrimary = model.UserLocation.IsPrimary
                 };
-                var userResidence = UserResidenceService.Add(userResidenceVM);
+                var userResidence = await UserResidenceService.AddAsync(userResidenceVM);
                 #endregion
 
                 UnitOfWork.Commit();

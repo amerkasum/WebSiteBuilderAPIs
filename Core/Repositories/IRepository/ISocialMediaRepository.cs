@@ -11,8 +11,7 @@ namespace Core.Repositories.IRepository
 {
     public interface ISocialMediaRepository : IRepository<SocialMedia>
     {
-        IEnumerable<BasicSearchResponse> Get(BasicSearchRequest model);
-        IEnumerable<SocialMediaBasicDto> GetSocialMediaBasic();
+        Task<IEnumerable<BasicSearchResponse>> GetAsync(BasicSearchRequest model);
         int GetHighestDisplayOrder();
     }
 }

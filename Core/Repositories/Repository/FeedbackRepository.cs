@@ -34,17 +34,19 @@ namespace Core.Repositories.Repository
             return feebacks;
         }
 
-        public IEnumerable<FeedbackDto> Get(BasicSearchRequest model)
+        public async Task<IEnumerable<FeedbackDto>> GetAsync(BasicSearchRequest model)
         {
-            return _context.Feedback.Include(x => x.User).Where(x => !x.IsDeleted 
-                            && (string.IsNullOrEmpty(model.Search) || (x.Message.Contains(model.Search) || x.User.FirstName.Contains(model.Search) || x.User.LastName.Contains(model.Search)))).Select(x => new FeedbackDto
+            return  await _context.Feedback.AsNoTracking().Where(x => !x.IsDeleted 
+                 && (string.IsNullOrEmpty(model.Search) || (x.Message.Contains(model.Search) 
+                 || x.User.FirstName.Contains(model.Search) || x.User.LastName.Contains(model.Search))))
+                .Select(x => new FeedbackDto
             {
                 Id = x.Id,
                 UserId = x.UserId,
                 FullName = $"{x.User.FirstName} {x.User.LastName}",
                 Message = x.Message,
                 Rating = x.Rating
-            }).AsEnumerable();
+            }).ToListAsync();
         }
     }
 }

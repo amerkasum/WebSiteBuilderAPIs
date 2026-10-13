@@ -3,6 +3,7 @@ using Core.Repositories.IRepository;
 using Domain.DTO;
 using Domain.Entities.System;
 using Domain.Requests;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,9 +18,9 @@ namespace Core.Repositories.Repository
         {
         }
 
-        public IEnumerable<BasicSearchResponse> Get(BasicSearchRequest model)
+        public async Task<IEnumerable<BasicSearchResponse>> GetAsync(BasicSearchRequest model)
         {
-            var result = _context.ContactTypes.Where(x => string.IsNullOrEmpty(model.Search) ||
+            var result = await _context.ContactTypes.AsNoTracking().Where(x => string.IsNullOrEmpty(model.Search) ||
             (x.Name.Contains(model.Search) || x.Code.Contains(model.Search) || x.Description.Contains(model.Search)))
                 .Select(x => new BasicSearchResponse
                 {
@@ -27,7 +28,7 @@ namespace Core.Repositories.Repository
                     Name = x.Name,
                     Code = x.Code,
                     Description = x.Description
-                }).ToList();
+                }).ToListAsync();
 
             return result;
         }

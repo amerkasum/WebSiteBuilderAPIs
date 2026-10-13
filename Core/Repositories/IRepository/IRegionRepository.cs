@@ -12,7 +12,7 @@ namespace Core.Repositories.IRepository
 {
     public interface IRegionRepository : IRepository<Region>
     {
-        PaginationResponse<RegionDto> Get(RegionRequest model);
+        Task<PaginationResponse<RegionDto>> GetAsync(RegionRequest model);
 
     }
 }

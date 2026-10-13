@@ -10,8 +10,8 @@ namespace Core.Services.IService
 {
     public interface IUserResidenceService
     {
-        UserResidence Add(UserResidenceViewModel model);
-        UserResidence Edit(UserResidenceViewModel model);
-        void Delete(int id);
+        Task<UserResidence> AddAsync(UserResidenceViewModel model);
+        Task<UserResidence> EditAsync(UserResidenceViewModel model);
+        Task DeleteAsync(int id);
     }
 }

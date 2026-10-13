@@ -13,7 +13,7 @@ namespace Core.Services.IService
     public interface IUserService
     {
         IEnumerable<UserDto> GetUsersWithParameters(string fullName);
-        User Add(UserViewModel model);
+        Task<User> AddAsync(UserViewModel model);
         LogInResponseDto LogIn(LogInViewModel model);
     }
 }

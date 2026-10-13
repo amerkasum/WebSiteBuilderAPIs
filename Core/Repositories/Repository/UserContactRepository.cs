@@ -18,9 +18,9 @@ namespace Core.Repositories.Repository
         {
         }
 
-        public IEnumerable<UserContactDto> Get(UserContactRequest model)
+        public async Task<IEnumerable<UserContactDto>> GetAsync(UserContactRequest model)
         {
-            var result = _context.UserContacts.Include(x => x.User).Include(x => x.ContactType)
+            var result = await _context.UserContacts.AsNoTracking()
                 .Where(x => (!model.ContactTypeId.HasValue || model.ContactTypeId == x.ContactType.Id) && (!model.UserId.HasValue || x.User.Id == model.UserId) &&
                 (string.IsNullOrEmpty(model.Sreach) || x.Value.Contains(model.Sreach))).Select(x => new UserContactDto
                 {
@@ -39,7 +39,7 @@ namespace Core.Repositories.Repository
                         Code = x.ContactType.Code
                     },
                     Value = x.Value
-                }).ToList();
+                }).ToListAsync();
 
             return result;
         }

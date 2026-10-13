@@ -1,5 +1,6 @@
 ﻿using Domain.DTO;
 using Domain.Entities.Personal;
+using Domain.Pagination;
 using Domain.Requests;
 using Domain.ViewModels;
 using System;
@@ -12,9 +13,9 @@ namespace Core.Services.IService
 {
     public interface IUserRoleService
     {
-        IEnumerable<UserRoleDto> Get(UserRoleRequest model);
-        UserRole Add(UserRoleViewModel model);
-        UserRole Edit(UserRoleViewModel model);
-        void Delete(int id);
+        Task<PaginationResponse<UserRoleDto>> GetAsync(UserRoleRequest model);
+        Task<UserRole> AddAsync(UserRoleViewModel model);
+        Task<UserRole> EditAsync(UserRoleViewModel model);
+        Task DeleteAsync(int id);
     }
 }

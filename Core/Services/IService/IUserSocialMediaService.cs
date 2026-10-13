@@ -13,9 +13,9 @@ namespace Core.Services.IService
 {
     public interface IUserSocialMediaService
     {
-        IEnumerable<UserSocialMediaDto> Get(UserSocialMediaRequest model);
-        UserSocialMedia Add(UserSocialMediaViewModel model);
-        UserSocialMedia Edit(UserSocialMediaViewModel model);
-        void Delete(int id);
+        Task<IEnumerable<UserSocialMediaDto>> GetAsync(UserSocialMediaRequest model);
+        Task<UserSocialMedia> AddAsync(UserSocialMediaViewModel model);
+        Task<UserSocialMedia> EditAsync(UserSocialMediaViewModel model);
+        Task DeleteAsync(int id);
     }
 }

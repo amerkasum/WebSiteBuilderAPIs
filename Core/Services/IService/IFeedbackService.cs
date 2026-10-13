@@ -12,9 +12,9 @@ namespace Core.Services.IService
 {
     public interface IFeedbackService
     {
-        IEnumerable<FeedbackDto> Get(BasicSearchRequest model);
-        Feedback Add(FeedbackViewModel model);
-        Feedback Edit(FeedbackViewModel model);
-        void Delete(int id);
+        Task<IEnumerable<FeedbackDto>> GetAsync(BasicSearchRequest model);
+        Task<Feedback> AddAsync(FeedbackViewModel model);
+        Task<Feedback> EditAsync(FeedbackViewModel model);
+        Task DeleteAsync(int id);
     }
 }

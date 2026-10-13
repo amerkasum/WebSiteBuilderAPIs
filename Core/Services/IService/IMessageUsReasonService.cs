@@ -12,9 +12,9 @@ namespace Core.Services.IService
 {
     public interface IMessageUsReasonService
     {
-        IEnumerable<BasicSearchResponse> Get(BasicSearchRequest model);
-        MessageUsReason Add(MessageUsReasonViewModel model);
-        MessageUsReason Edit(MessageUsReasonViewModel model);
-        void Delete(int id);
+        Task<IEnumerable<BasicSearchResponse>> GetAsync(BasicSearchRequest model);
+        Task<MessageUsReason> AddAsync(MessageUsReasonViewModel model);
+        Task<MessageUsReason> EditAsync(MessageUsReasonViewModel model);
+        Task DeleteAsync(int id);
     }
 }

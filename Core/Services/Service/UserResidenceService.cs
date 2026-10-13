@@ -18,7 +18,7 @@ namespace Core.Services.Service
             this.UnitOfWork = unitOfWork;
         }
 
-        public UserResidence Add(UserResidenceViewModel model)
+        public async Task<UserResidence> AddAsync(UserResidenceViewModel model)
         {
             var userResidence = new UserResidence
             {
@@ -28,12 +28,12 @@ namespace Core.Services.Service
             };
 
             UnitOfWork.UserResidence.Add(userResidence);
-            UnitOfWork.SaveChanges();
+            await UnitOfWork.SaveChangesAsync();
 
             return userResidence;
         }
 
-        public UserResidence Edit(UserResidenceViewModel model)
+        public async Task<UserResidence> EditAsync(UserResidenceViewModel model)
         {
             var userResidence = UnitOfWork.UserResidence.GetById(model.Id);
 
@@ -44,12 +44,12 @@ namespace Core.Services.Service
             userResidence.IsPrimary = model.IsPrimary;
 
             UnitOfWork.UserResidence.Update(userResidence);
-            UnitOfWork.SaveChanges();
+            await UnitOfWork.SaveChangesAsync();
 
             return userResidence;
         }
 
-        public void Delete(int id)
+        public async Task DeleteAsync(int id)
         {
             var userResidence = UnitOfWork.UserResidence.GetById(id);
 
@@ -57,7 +57,7 @@ namespace Core.Services.Service
                 throw new KeyNotFoundException();
 
             UnitOfWork.UserResidence.Remove(userResidence);
-            UnitOfWork.SaveChanges();
+            await UnitOfWork.SaveChangesAsync();
         }
 
         

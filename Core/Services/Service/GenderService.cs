@@ -20,28 +20,29 @@ namespace Core.Services.Service
             this.UnitOfWork = unitOfwork;
         }
 
-        public IEnumerable<BasicSearchResponse> Get(BasicSearchRequest model)
+        public async Task<IEnumerable<BasicSearchResponse>> GetAsync(BasicSearchRequest model)
         {
             model.Search = model?.Search?.Trim();
-            var result = UnitOfWork.Gender.Get(model);
+            var result = await UnitOfWork.Gender.GetAsync(model);
             return result;
         }
 
-        public Gender Add(GenderViewModel model)
+        public async Task<Gender> AddAsync(GenderViewModel model)
         {
             var gender = new Gender
             {
                 Name = model.Name,
-                Code = model.Code
+                Code = model.Code,
+                Description = model.Description
             };
 
             UnitOfWork.Gender.Add(gender);
-            UnitOfWork.SaveChanges();
+            await UnitOfWork.SaveChangesAsync();
 
             return gender;
         }
 
-        public Gender Edit(GenderViewModel model)
+        public async Task<Gender> EditAsync(GenderViewModel model)
         {
             var gender = UnitOfWork.Gender.GetById(model.Id);
 
@@ -50,14 +51,15 @@ namespace Core.Services.Service
 
             gender.Name = model.Name;
             gender.Code = model.Code;
+            gender.Description = model.Description;
 
             UnitOfWork.Gender.Update(gender);
-            UnitOfWork.SaveChanges();
+            await UnitOfWork.SaveChangesAsync();
 
             return gender;
         }
 
-        public void Delete(int id)
+        public async Task DeleteAsync(int id)
         {
             var gender = UnitOfWork.Gender.GetById(id);
 
@@ -65,7 +67,7 @@ namespace Core.Services.Service
                 throw new KeyNotFoundException();
 
             UnitOfWork.Gender.Remove(gender);
-            UnitOfWork.SaveChanges();
+            await UnitOfWork.SaveChangesAsync();
         }
     }
 }

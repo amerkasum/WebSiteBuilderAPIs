@@ -27,20 +27,20 @@ namespace WebSiteBuilderAPIs.Controllers
         }
 
         [HttpGet(nameof(Get))]
-        public PaginationResponse<CityDto> Get([FromQuery] CityRequest model)
+        public async Task<PaginationResponse<CityDto>> Get([FromQuery] CityRequest model)
         {
-            return CityService.Get(model);
+            return await CityService.GetAsync(model);
         }
 
         [HttpPost(nameof(Add))]
-        public IActionResult Add(CityViewModel model)
+        public async Task<IActionResult> Add(CityViewModel model)
         {
             if (!ModelState.IsValid)
                 return BadRequest(new { success = false, message = ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage).ToList() });
 
             try
             {
-                var city = CityService.Add(model);
+                var city = await CityService.AddAsync(model);
                 return Ok(new { success = true, message = string.Format(Localizer.Added, Localizer.City) });
             }
             catch(Exception e)
@@ -50,13 +50,13 @@ namespace WebSiteBuilderAPIs.Controllers
         }
 
         [HttpPut(nameof(Edit))]
-        public IActionResult Edit(CityViewModel model)
+        public async Task<IActionResult> Edit(CityViewModel model)
         {
             if (!ModelState.IsValid)
                 return BadRequest(new { success = false, message = ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage).ToList() });
             try
             {
-                var city = CityService.Edit(model);
+                var city = await CityService.EditAsync(model);
                 return Ok(new { success = true, message = string.Format(Localizer.Edited, Localizer.City) });
             }
             catch(KeyNotFoundException)
@@ -70,11 +70,11 @@ namespace WebSiteBuilderAPIs.Controllers
         }
 
         [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> DeleteAsync(int id)
         {
             try
             {
-                CityService.Delete(id);
+                await CityService.DeleteAsync(id);
                 return Ok(new { success = true, message = string.Format(Localizer.Deleted, Localizer.City) });
             }
             catch(KeyNotFoundException)

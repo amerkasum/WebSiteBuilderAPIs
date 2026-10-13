@@ -1,5 +1,6 @@
 ﻿using Core.Services.IService;
 using Domain.DTO;
+using Domain.Pagination;
 using Domain.Requests;
 using Domain.ViewModels;
 using Microsoft.AspNetCore.Authorization;
@@ -23,20 +24,20 @@ namespace WebSiteBuilderAPIs.Controllers
         }
 
         [HttpGet(nameof(Get))]
-        public IEnumerable<UserRoleDto> Get([FromQuery] UserRoleRequest model)
+        public async Task<PaginationResponse<UserRoleDto>> Get([FromQuery] UserRoleRequest model)
         {
-            return UserRoleService.Get(model);
+            return await UserRoleService.GetAsync(model);
         }
 
         [HttpPost(nameof(Add))]
-        public IActionResult Add(UserRoleViewModel model)
+        public async Task<IActionResult> Add(UserRoleViewModel model)
         {
             if (!ModelState.IsValid)
                 return BadRequest(new { success = false, message = ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage).ToList() });
 
             try
             {
-                var userRole = UserRoleService.Add(model);
+                var userRole = await UserRoleService.AddAsync(model);
 
                 return Ok(new { success = true, message = string.Format(Localizer.Added2, Localizer.UserRole) });
             }
@@ -47,14 +48,14 @@ namespace WebSiteBuilderAPIs.Controllers
         }
 
         [HttpPut(nameof(Edit))]
-        public IActionResult Edit(UserRoleViewModel model)
+        public async Task<IActionResult> Edit(UserRoleViewModel model)
         {
             if (!ModelState.IsValid)
                 return BadRequest(new { success = false, message = ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage).ToList() });
 
             try
             {
-                var userRole = UserRoleService.Edit(model);
+                var userRole = await UserRoleService.EditAsync(model);
 
                 return Ok(new { success = true, message = string.Format(Localizer.Edited2, Localizer.UserRole) });
             }
@@ -69,11 +70,11 @@ namespace WebSiteBuilderAPIs.Controllers
         }
 
         [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
             try
             {
-                UserRoleService.Delete(id);
+                await UserRoleService.DeleteAsync(id);
 
                 return Ok(new { success = true, message = string.Format(Localizer.Deleted2, Localizer.UserRole) });
             }

@@ -12,7 +12,7 @@ namespace Core.Repositories.IRepository
 {
     public interface ICityRepository : IRepository<City>
     {
-        PaginationResponse<CityDto> Get(CityRequest model);
+        Task<PaginationResponse<CityDto>> GetAsync(CityRequest model);
         bool DoesCityExist(string name, string pttCode);
         City GetByName(string name);
 

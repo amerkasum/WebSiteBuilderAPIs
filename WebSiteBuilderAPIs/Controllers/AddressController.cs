@@ -2,6 +2,7 @@
 using Core.UnitOfWork;
 using Domain.DTO;
 using Domain.Entities.Location;
+using Domain.Pagination;
 using Domain.Requests;
 using Domain.ViewModels;
 using Microsoft.AspNetCore.Authorization;
@@ -26,21 +27,21 @@ namespace WebSiteBuilderAPIs.Controllers
             this.AddressService = addressService;
         }
 
-        [HttpGet(nameof(Get))]
-        public IEnumerable<AddressDto> Get([FromQuery] BasicSearchRequest model)
+        [HttpGet(nameof(GetAsync))]
+        public async Task<PaginationResponse<AddressDto>> GetAsync([FromQuery] BasicSearchRequest model)
         {
-            return AddressService.Get(model);
+            return await AddressService.GetAsync(model);
         }
 
         [HttpPost(nameof(Add))]
-        public IActionResult Add(LocationViewModel model)
+        public async Task<IActionResult> Add(LocationViewModel model)
         {
             if (!ModelState.IsValid)
                 return BadRequest(new { success = false, message = ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage).ToList() });
 
             try 
             {
-                var address = AddressService.Add(model);
+                var address = await AddressService.AddAsync(model);
 
                 return Ok(new { success = false, message = string.Format(Localizer.Added2, Localizer.Address) });
             }
@@ -51,11 +52,11 @@ namespace WebSiteBuilderAPIs.Controllers
         }
 
         [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
             try
             {
-                AddressService.Delete(id);
+                await AddressService.DeleteAsync(id);
 
                 return Ok(new { success = true, message = string.Format(Localizer.Deleted, Localizer.Location) });  
             }

@@ -11,6 +11,6 @@ namespace Core.Repositories.IRepository
 {
     public interface IMessageUsReasonRepository : IRepository<MessageUsReason>
     {
-        IEnumerable<BasicSearchResponse> Get(BasicSearchRequest model);
+        Task<IEnumerable<BasicSearchResponse>> GetAsync(BasicSearchRequest model);
     }
 }

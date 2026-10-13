@@ -1,5 +1,6 @@
 ﻿using Domain.DTO;
 using Domain.Entities.System;
+using Domain.Pagination;
 using Domain.Requests;
 using Domain.ViewModels;
 using System;
@@ -12,9 +13,9 @@ namespace Core.Services.IService
 {
     public interface IClaimService
     {
-        IEnumerable<BasicSearchResponse> Get(BasicSearchRequest model);
-        Claim Add(ClaimViewModel model);
-        Claim Edit(ClaimViewModel model);
-        void Delete(int id);
+        Task<PaginationResponse<BasicSearchResponse>> GetAsync(BasicSearchRequest model);
+        Task<Claim> AddAsync(ClaimViewModel model);
+        Task<Claim> EditAsync(ClaimViewModel model);
+        Task DeleteAsync(int id);
     }
 }

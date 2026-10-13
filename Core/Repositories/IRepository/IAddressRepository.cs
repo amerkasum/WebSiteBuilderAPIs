@@ -1,5 +1,6 @@
 ﻿using Domain.DTO;
 using Domain.Entities.Location;
+using Domain.Pagination;
 using Domain.Requests;
 using System;
 using System.Collections.Generic;
@@ -12,6 +13,6 @@ namespace Core.Repositories.IRepository
     public interface IAddressRepository : IRepository<Address>
     {
         bool DoesAddressExist(string name, int cityId);
-        IEnumerable<AddressDto> Get(BasicSearchRequest model);
+        Task<PaginationResponse<AddressDto>> GetAsync(BasicSearchRequest model);
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Domain.DTO;
 using Domain.Entities.Personal;
 using Domain.Entities.System;
+using Domain.Pagination;
 using Domain.Requests;
 using System;
 using System.Collections.Generic;
@@ -12,6 +13,6 @@ namespace Core.Repositories.IRepository
 {
     public interface IUserRoleRepository : IRepository<UserRole>
     {
-        IEnumerable<UserRoleDto> Get(UserRoleRequest model);
+        Task<PaginationResponse<UserRoleDto>> GetAsync(UserRoleRequest model);
     }
 }

@@ -20,14 +20,14 @@ namespace Core.Services.Service
             this.UnitOfWork = unitOfWork;
         }
 
-        public IEnumerable<BasicSearchResponse> Get(BasicSearchRequest model)
+        public async Task<IEnumerable<BasicSearchResponse>> GetAsync(BasicSearchRequest model)
         {
             model.Search = model?.Search?.Trim();
-            var result = UnitOfWork.MessageUsReason.Get(model);
+            var result = await UnitOfWork.MessageUsReason.GetAsync(model);
             return result;
         }
 
-        public MessageUsReason Add(MessageUsReasonViewModel model)
+        public async Task<MessageUsReason> AddAsync(MessageUsReasonViewModel model)
         {
             var messageUsReason = new MessageUsReason
             {
@@ -36,12 +36,12 @@ namespace Core.Services.Service
             };
 
             UnitOfWork.MessageUsReason.Add(messageUsReason);
-            UnitOfWork.SaveChanges();
+            await UnitOfWork.SaveChangesAsync();
 
             return messageUsReason;
         }
 
-        public MessageUsReason Edit(MessageUsReasonViewModel model)
+        public async Task<MessageUsReason> EditAsync(MessageUsReasonViewModel model)
         {
             var messageUsReason = UnitOfWork.MessageUsReason.GetById(model.Id);
 
@@ -52,12 +52,12 @@ namespace Core.Services.Service
             messageUsReason.Code = model.Code;
 
             UnitOfWork.MessageUsReason.Update(messageUsReason);
-            UnitOfWork.SaveChanges();
+            await UnitOfWork.SaveChangesAsync();
 
             return messageUsReason;
         }
 
-        public void Delete(int id)
+        public async Task DeleteAsync(int id)
         {
             var messageUsReason = UnitOfWork.MessageUsReason.GetById(id);
 
@@ -65,7 +65,7 @@ namespace Core.Services.Service
                 throw new KeyNotFoundException();
 
             UnitOfWork.MessageUsReason.Remove(messageUsReason);
-            UnitOfWork.SaveChanges();
+            await UnitOfWork.SaveChangesAsync();
         }
 
         

@@ -13,9 +13,9 @@ namespace Core.Services.IService
 {
     public interface IRegionService
     {
-        PaginationResponse<RegionDto> Get(RegionRequest model);
-        Region Add(RegionViewModel model);
-        Region Edit(RegionViewModel model);
-        void Delete(int id);
+        Task<PaginationResponse<RegionDto>> GetAsync(RegionRequest model);
+        Task<Region> AddAsync(RegionViewModel model);
+        Task<Region> EditAsync(RegionViewModel model);
+        Task DeleteAsync(int id);
     }
 }

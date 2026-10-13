@@ -2,6 +2,7 @@
 using Core.UnitOfWork;
 using Domain.DTO;
 using Domain.Entities.Personal;
+using Domain.Pagination;
 using Domain.Requests;
 using Domain.ViewModels;
 using System;
@@ -20,12 +21,12 @@ namespace Core.Services.Service
             this.UnitOfWork = unitOfWork;
         }
 
-        public IEnumerable<UserRoleDto> Get(UserRoleRequest model)
+        public async Task<PaginationResponse<UserRoleDto>> GetAsync(UserRoleRequest model)
         {
             model.Search = model.Search?.Trim();
-            return UnitOfWork.UserRole.Get(model);
+            return await UnitOfWork.UserRole.GetAsync(model);
         }
-        public UserRole Add(UserRoleViewModel model)
+        public async Task<UserRole> AddAsync(UserRoleViewModel model)
         {
             var userRole = new UserRole
             {
@@ -34,12 +35,12 @@ namespace Core.Services.Service
             };
 
             UnitOfWork.UserRole.Add(userRole);
-            UnitOfWork.SaveChanges();
+            await UnitOfWork.SaveChangesAsync();
 
             return userRole;
         }
 
-        public UserRole Edit(UserRoleViewModel model)
+        public async Task<UserRole> EditAsync(UserRoleViewModel model)
         {
             var userRole = UnitOfWork.UserRole.GetById(model.Id);
 
@@ -50,12 +51,12 @@ namespace Core.Services.Service
             userRole.RoleId = model.RoleId;
 
             UnitOfWork.UserRole.Update(userRole);
-            UnitOfWork.SaveChanges();
+            await UnitOfWork.SaveChangesAsync();
 
             return userRole;
         }
 
-        public void Delete(int id)
+        public async Task DeleteAsync(int id)
         {
             var userRole = UnitOfWork.UserRole.GetById(id);
 
@@ -63,7 +64,7 @@ namespace Core.Services.Service
                 throw new KeyNotFoundException();
 
             UnitOfWork.UserRole.Remove(userRole);
-            UnitOfWork.SaveChanges();
+            await UnitOfWork.SaveChangesAsync();
         }
 
     }

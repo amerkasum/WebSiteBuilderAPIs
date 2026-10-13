@@ -1,5 +1,6 @@
 ﻿using Domain.DTO;
 using Domain.Entities.WebSiteBuilder;
+using Domain.Pagination;
 using Domain.Requests;
 using Domain.ViewModels;
 using System;
@@ -12,9 +13,9 @@ namespace Core.Services.IService
 {
     public interface IBusinessTypeService
     {
-        IEnumerable<BasicSearchResponse> Get(BasicSearchRequest model);
-        BusinessType Add(BusinessTypeViewModel model);
-        Task<BusinessType> Edit(BusinessTypeViewModel model);
-        Task Delete(int id);
+        Task<PaginationResponse<BasicSearchResponse>> GetAsync(BasicSearchRequest model);
+        Task<BusinessType> AddAsync(BusinessTypeViewModel model);
+        Task<BusinessType> EditAsync(BusinessTypeViewModel model);
+        Task DeleteAsync(int id);
     }
 }

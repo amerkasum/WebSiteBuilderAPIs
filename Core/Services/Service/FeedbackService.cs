@@ -20,13 +20,13 @@ namespace Core.Services.Service
             this.UnitOfWork = unitOfwork;
         }
 
-        public IEnumerable<FeedbackDto> Get(BasicSearchRequest model)
+        public async Task<IEnumerable<FeedbackDto>> GetAsync(BasicSearchRequest model)
         {
             model.Search = model?.Search?.Trim();
-            return UnitOfWork.Feedback.Get(model);
+            return  await UnitOfWork.Feedback.GetAsync(model);
         }
 
-        public Feedback Add(FeedbackViewModel model)
+        public async Task<Feedback> AddAsync(FeedbackViewModel model)
         {
             var feedback = new Feedback
             {
@@ -36,12 +36,12 @@ namespace Core.Services.Service
             };
 
             UnitOfWork.Feedback.Add(feedback);
-            UnitOfWork.SaveChanges();
+            await UnitOfWork.SaveChangesAsync();
 
             return feedback;
         }
 
-        public Feedback Edit(FeedbackViewModel model)
+        public async Task<Feedback> EditAsync(FeedbackViewModel model)
         {
             var feedback = UnitOfWork.Feedback.GetById(model.Id);
 
@@ -52,12 +52,12 @@ namespace Core.Services.Service
             feedback.Rating = model.Rating;
 
             UnitOfWork.Feedback.Update(feedback);
-            UnitOfWork.SaveChanges();
+            await UnitOfWork.SaveChangesAsync();
 
             return feedback;
         }
 
-        public void Delete(int id)
+        public async Task DeleteAsync(int id)
         {
             var feedback = UnitOfWork.Feedback.GetById(id);
 
@@ -65,7 +65,7 @@ namespace Core.Services.Service
                 throw new KeyNotFoundException();
 
             UnitOfWork.Feedback.Remove(feedback);
-            UnitOfWork.SaveChanges();
+            await UnitOfWork.SaveChangesAsync();
         }
     }
 }

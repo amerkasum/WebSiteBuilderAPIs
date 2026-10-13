@@ -12,6 +12,6 @@ namespace Core.Repositories.IRepository
     public interface IRoleRepository : IRepository<Role>
     {
         Role GetByUserId(int userId);
-        IEnumerable<BasicSearchResponse> Get(BasicSearchRequest model);
+        Task<IEnumerable<BasicSearchResponse>> GetAsync(BasicSearchRequest model);
     }
 }

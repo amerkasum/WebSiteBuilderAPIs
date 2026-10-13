@@ -26,20 +26,20 @@ namespace WebSiteBuilderAPIs.Controllers
         }
 
         [HttpGet(nameof(Get))]
-        public IEnumerable<BasicSearchResponse> Get([FromQuery] BasicSearchRequest model)
+        public async Task<IEnumerable<BasicSearchResponse>> Get([FromQuery] BasicSearchRequest model)
         {
-            return RoleService.Get(model);
+            return await RoleService.GetAsync(model);
         }
 
         [HttpPost(nameof(Add))]
-        public IActionResult Add(RoleViewModel model)
+        public async Task<IActionResult> Add(RoleViewModel model)
         {
             if(!ModelState.IsValid)
                 return BadRequest(new { success= false, message = ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage).ToList() });
 
             try
             {
-                var role = RoleService.Add(model);
+                var role = await RoleService.AddAsync(model);
 
                 return Ok(new { success = true, message = string.Format(Localizer.Added, Localizer.Role) });
             }
@@ -50,14 +50,14 @@ namespace WebSiteBuilderAPIs.Controllers
         }
 
         [HttpPut(nameof(Edit))]
-        public IActionResult Edit(RoleViewModel model)
+        public async Task<IActionResult> Edit(RoleViewModel model)
         {
             if (!ModelState.IsValid)
                 return BadRequest(new { success = false, message = ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage).ToList() });
 
             try
             {
-                var role = RoleService.Edit(model);
+                var role = await RoleService.EditAsync(model);
 
                 return Ok(new { success = true, message = string.Format(Localizer.Edited, Localizer.Role) });
             }
@@ -72,11 +72,11 @@ namespace WebSiteBuilderAPIs.Controllers
         }
 
         [HttpDelete(nameof(Delete))]
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
             try
             {
-                RoleService.Delete(id);
+                await RoleService.DeleteAsync(id);
                 return Ok(new { success = true, message = string.Format(Localizer.Deleted, Localizer.Role) });
             }
             catch(KeyNotFoundException)

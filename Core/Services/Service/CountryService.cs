@@ -22,13 +22,13 @@ namespace Core.Services.Service
             this.UnitOfWork = unitOfWork;
         }
 
-        public PaginationResponse<CountryDto> Get(CountryRequest model)
+        public async Task<PaginationResponse<CountryDto>> GetAsync(CountryRequest model)
         {
             model.Search = model.Search?.Trim();
-            return UnitOfWork.Countries.Get(model);
+            return await UnitOfWork.Countries.GetAsync(model);
         }
 
-        public Country Add(CountryViewModel model)
+        public async Task<Country> AddAsync(CountryViewModel model)
         {
             var country = new Country
             {
@@ -37,11 +37,11 @@ namespace Core.Services.Service
             };
 
             UnitOfWork.Countries.Add(country);
-            UnitOfWork.SaveChanges();
+            await UnitOfWork.SaveChangesAsync();
 
             return country;
         }
-        public Country Edit(CountryViewModel model)
+        public async Task<Country> EditAsync(CountryViewModel model)
         {
             var country = UnitOfWork.Countries.GetById(model.Id);
 
@@ -52,12 +52,12 @@ namespace Core.Services.Service
             country.Iso = model.Iso;
 
             UnitOfWork.Countries.Update(country);
-            UnitOfWork.SaveChanges();
+            await UnitOfWork.SaveChangesAsync();
 
             return country;
         }
 
-        public void Delete(int id)
+        public async Task DeleteAsync(int id)
         {
             var country = UnitOfWork.Countries.GetById(id);
 
@@ -65,7 +65,7 @@ namespace Core.Services.Service
                 throw new KeyNotFoundException();
 
             UnitOfWork.Countries.Remove(country);
-            UnitOfWork.SaveChanges();
+            await UnitOfWork.SaveChangesAsync();
         }      
     }
 }

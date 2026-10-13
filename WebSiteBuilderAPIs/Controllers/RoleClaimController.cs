@@ -27,20 +27,20 @@ namespace WebSiteBuilderAPIs.Controllers
         }
 
         [HttpGet(nameof(Get))]
-        public IEnumerable<RoleClaimDto> Get([FromQuery] RoleClaimRequest model)
+        public async Task<IEnumerable<RoleClaimDto>> Get([FromQuery] RoleClaimRequest model)
         {
-            return RoleClaimService.Get(model);
+            return await RoleClaimService.GetAsync(model);
         }
 
         [HttpPost(nameof(Add))]
-        public IActionResult Add(RoleClaimViewModel model)
+        public async Task<IActionResult> Add(RoleClaimViewModel model)
         {
             if (!ModelState.IsValid)
                 return BadRequest(new { success = false, message = ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage).ToList() });
 
             try
             {
-                var roleClaim = RoleClaimService.Add(model);
+                var roleClaim = await RoleClaimService.AddAsync(model);
 
                 return Ok(new { success = true, message = string.Format(Localizer.Added2, Localizer.RoleClaim) });
             }
@@ -51,13 +51,13 @@ namespace WebSiteBuilderAPIs.Controllers
         }
 
         [HttpPost(nameof(Edit))]
-        public IActionResult Edit(RoleClaimViewModel model)
+        public async Task<IActionResult> Edit(RoleClaimViewModel model)
         {
             if (!ModelState.IsValid)
                 return BadRequest(new { success = false, message = ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage).ToList() });
             try
             {
-                var roleClaim = RoleClaimService.Edit(model);
+                var roleClaim = await RoleClaimService.EditAsync(model);
                 return Ok(new { success = true, message = string.Format(Localizer.Edited2, Localizer.RoleClaim) });
             }
             catch(KeyNotFoundException)
@@ -71,11 +71,11 @@ namespace WebSiteBuilderAPIs.Controllers
         }
 
         [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
             try
             {
-                RoleClaimService.Delete(id);
+                await RoleClaimService.DeleteAsync(id);
                 return Ok(new { success = false, message = string.Format(Localizer.Deleted2, Localizer.RoleClaim) });
             }
             catch(KeyNotFoundException)

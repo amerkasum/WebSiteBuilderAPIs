@@ -23,7 +23,7 @@ namespace Core.Repositories.Repository
         {
         }
 
-        public PaginationResponse<RegionDto> Get(RegionRequest model)
+        public async Task<PaginationResponse<RegionDto>> GetAsync(RegionRequest model)
         {
 
             var query = _context.Regions.AsNoTracking()
@@ -32,12 +32,12 @@ namespace Core.Repositories.Repository
 
             var totalCount = query.Count();
 
-            var result = query.Select(x => new RegionDto
+            var result = await query.Select(x => new RegionDto
             {
                 Id = x.Id,
                 CountryId = x.Country.Id,
                 Region = $"{x.Name}, {x.Country.Name}"
-            }).OrderBy(x => x.Id).Skip(model.PageSize * (model.PageNumber - 1)).Take(model.PageSize).ToList();
+            }).OrderBy(x => x.Id).Skip(model.PageSize * (model.PageNumber - 1)).Take(model.PageSize).ToListAsync();
 
             return new PaginationResponse<RegionDto> { Data = result, PageNumber = model.PageNumber, PageSize = model.PageSize, TotalCount = totalCount,
                 TotalPages = (int)Math.Ceiling((double)totalCount/model.PageSize)

@@ -13,9 +13,9 @@ namespace Core.Services.IService
 {
     public interface ICityService
     {
-        PaginationResponse<CityDto> Get(CityRequest model);
-        City Add(CityViewModel model);
-        City Edit(CityViewModel model);
-        void Delete(int id);
+        Task<PaginationResponse<CityDto>> GetAsync(CityRequest model);
+        Task<City> AddAsync(CityViewModel model);
+        Task<City> EditAsync(CityViewModel model);
+        Task DeleteAsync(int id);
     }
 }

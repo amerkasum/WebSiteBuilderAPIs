@@ -13,9 +13,9 @@ namespace Core.Services.IService
 {
     public interface ICountryService
     {
-        PaginationResponse<CountryDto> Get(CountryRequest model);
-        Country Add(CountryViewModel model);
-        Country Edit(CountryViewModel model);
-        void Delete(int id);
+        Task<PaginationResponse<CountryDto>> GetAsync(CountryRequest model);
+        Task<Country> AddAsync(CountryViewModel model);
+        Task<Country> EditAsync(CountryViewModel model);
+        Task DeleteAsync(int id);
     }
 }

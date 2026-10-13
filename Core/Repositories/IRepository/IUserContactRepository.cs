@@ -11,6 +11,6 @@ namespace Core.Repositories.IRepository
 {
     public interface IUserContactRepository : IRepository<UserContact>
     {
-        IEnumerable<UserContactDto> Get(UserContactRequest model);
+        Task<IEnumerable<UserContactDto>> GetAsync(UserContactRequest model);
     }
 }

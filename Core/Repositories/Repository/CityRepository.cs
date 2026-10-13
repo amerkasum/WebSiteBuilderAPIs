@@ -21,7 +21,7 @@ namespace Core.Repositories.Repository
         {
         }
 
-        public PaginationResponse<CityDto> Get(CityRequest model)
+        public async Task<PaginationResponse<CityDto>> GetAsync(CityRequest model)
         {
             var query = _context.Cities.AsNoTracking()
                 .Where(x => !x.IsDeleted && (string.IsNullOrEmpty(model.Search) || x.Name.Contains(model.Search)) &&
@@ -30,7 +30,7 @@ namespace Core.Repositories.Repository
 
             var totalCount = query.Count();
 
-            var result = query.Select(x => new CityDto
+            var result =  await query.Select(x => new CityDto
             {
                 Id = x.Id,
                 Name = x.Name,
@@ -38,7 +38,7 @@ namespace Core.Repositories.Repository
                 RegionCountry = $"{x.Region.Name}, {x.Region.Country.Name}",
                 RegionId = x.Region.Id,
                 CountryId = x.Region.Country.Id
-            }).OrderBy(x => x.Id).Skip(model.PageSize * (model.PageNumber - 1)).Take(model.PageSize).ToList();
+            }).OrderBy(x => x.Id).Skip(model.PageSize * (model.PageNumber - 1)).Take(model.PageSize).ToListAsync();
 
             return new PaginationResponse<CityDto> { Data = result, TotalCount = totalCount, PageNumber = model.PageNumber,
             PageSize = model.PageSize, TotalPages = (int)Math.Ceiling((double)totalCount/model.PageSize) };

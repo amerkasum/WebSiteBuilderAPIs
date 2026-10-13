@@ -1,5 +1,6 @@
 ﻿using Domain.DTO;
 using Domain.Entities.Location;
+using Domain.Pagination;
 using Domain.Requests;
 using Domain.ViewModels;
 using System;
@@ -12,9 +13,9 @@ namespace Core.Services.IService
 {
     public interface IAddressService
     {
-        IEnumerable<AddressDto> Get(BasicSearchRequest model);
-        Address Add(LocationViewModel model);
-        Address Edit(LocationViewModel model);
-        void Delete(int id);
+        Task<PaginationResponse<AddressDto>> GetAsync(BasicSearchRequest model);
+        Task<Address> AddAsync(LocationViewModel model);
+        Task<Address> EditAsync(LocationViewModel model);
+        Task DeleteAsync(int id);
     }
 }

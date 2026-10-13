@@ -20,7 +20,7 @@ namespace Core.Repositories.Repository
         {
         }
 
-        public PaginationResponse<CountryDto> Get(CountryRequest model)
+        public async Task<PaginationResponse<CountryDto>> GetAsync(CountryRequest model)
         {
             var query = _context.Countries.AsNoTracking()
                 .Where(x => !x.IsDeleted &&
@@ -28,12 +28,12 @@ namespace Core.Repositories.Repository
 
             var totalCount = query.Count();
 
-            var result = query.Select(x => new CountryDto
+            var result =  await query.Select(x => new CountryDto
             {
                 Id = x.Id,
                 Name = x.Name,
                 Iso = x.Iso,
-            }).OrderBy(x => x.Id).Skip(model.PageSize * (model.PageNumber -1)).Take(model.PageSize).ToList();
+            }).OrderBy(x => x.Id).Skip(model.PageSize * (model.PageNumber -1)).Take(model.PageSize).ToListAsync();
 
             return new PaginationResponse<CountryDto> { Data = result, TotalCount = totalCount,
                 PageSize = model.PageSize, PageNumber = model.PageNumber,

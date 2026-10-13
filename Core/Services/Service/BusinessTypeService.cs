@@ -2,6 +2,7 @@
 using Core.UnitOfWork;
 using Domain.DTO;
 using Domain.Entities.WebSiteBuilder;
+using Domain.Pagination;
 using Domain.Requests;
 using Domain.ViewModels;
 using System;
@@ -22,14 +23,14 @@ namespace Core.Services.Service
             this.AuditLogService = auditLogService;
         }
 
-        public IEnumerable<BasicSearchResponse> Get(BasicSearchRequest model)
+        public async Task<PaginationResponse<BasicSearchResponse>> GetAsync(BasicSearchRequest model)
         {
             model.Search = model?.Search?.Trim();
-            var result = UnitOfWork.BusinessType.Get(model);
+            var result =  await UnitOfWork.BusinessType.Get(model);
             return result;
         }
 
-        public BusinessType Add(BusinessTypeViewModel model)
+        public async Task<BusinessType> AddAsync(BusinessTypeViewModel model)
         {
             var businessType = new BusinessType
             {
@@ -39,12 +40,12 @@ namespace Core.Services.Service
             };
 
             UnitOfWork.BusinessType.Add(businessType);
-            UnitOfWork.SaveChanges();
+            await UnitOfWork.SaveChangesAsync();
 
             return businessType;
         }
 
-        public async Task<BusinessType> Edit(BusinessTypeViewModel model)
+        public async Task<BusinessType> EditAsync(BusinessTypeViewModel model)
         {
             var businessType = UnitOfWork.BusinessType.GetById(model.Id);
 
@@ -63,7 +64,7 @@ namespace Core.Services.Service
 
         }
 
-        public async Task Delete(int id)
+        public async Task DeleteAsync(int id)
         {
             var businessType = UnitOfWork.BusinessType.GetById(id);
 

@@ -22,13 +22,13 @@ namespace Core.Services.Service
             this.UnitOfWork = unitOfWork;
         }
 
-        public IEnumerable<UserContactDto> Get(UserContactRequest model)
+        public async Task<IEnumerable<UserContactDto>> GetAsync(UserContactRequest model)
         {
             model.Sreach = model.Sreach?.Trim();
-            return UnitOfWork.UserContact.Get(model);
+            return await UnitOfWork.UserContact.GetAsync(model);
         }
 
-        public UserContact Add(UserContactViewModel model)
+        public async Task<UserContact> AddAsync(UserContactViewModel model)
         {
             var userContact = new UserContact
             {
@@ -38,12 +38,12 @@ namespace Core.Services.Service
             };
 
             UnitOfWork.UserContact.Add(userContact);
-            UnitOfWork.SaveChanges();
+            await UnitOfWork.SaveChangesAsync();
 
             return userContact;
         }
 
-        public UserContact Edit(UserContactViewModel model)
+        public async Task<UserContact> EditAsync(UserContactViewModel model)
         {
             var userContact = UnitOfWork.UserContact.GetById(model.Id);
 
@@ -55,12 +55,12 @@ namespace Core.Services.Service
             userContact.Value = model.Value;
 
             UnitOfWork.UserContact.Update(userContact);
-            UnitOfWork.SaveChanges();
+            await UnitOfWork.SaveChangesAsync();
 
             return userContact;
         }
 
-        public void Delete(int id)
+        public async Task DeleteAsync(int id)
         {
             var userContact = UnitOfWork.UserContact.GetById(id);
 
@@ -68,7 +68,7 @@ namespace Core.Services.Service
                 throw new KeyNotFoundException();
 
             UnitOfWork.UserContact.Remove(userContact);
-            UnitOfWork.SaveChanges();
+            await UnitOfWork.SaveChangesAsync();
         }
 
         public List<UserContact> HandleUserContacts(List<UserContactViewModel> userContactsModel, int userId, string email)

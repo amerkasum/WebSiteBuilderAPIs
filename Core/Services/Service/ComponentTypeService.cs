@@ -2,6 +2,7 @@
 using Core.UnitOfWork;
 using Domain.DTO;
 using Domain.Entities.WebSiteBuilder;
+using Domain.Pagination;
 using Domain.Requests;
 using Domain.ViewModels;
 using Microsoft.EntityFrameworkCore.Query.SqlExpressions;
@@ -22,14 +23,14 @@ namespace Core.Services.Service
             this.UnitOfWork = unitOfWork;
         }
 
-        public IEnumerable<BasicSearchResponse> Get(BasicSearchRequest model)
+        public async Task<PaginationResponse<BasicSearchResponse>> GetAsync(BasicSearchRequest model)
         {
             model.Search = model?.Search?.Trim();
-            var result = UnitOfWork.ComponentType.Get(model);
+            var result = await UnitOfWork.ComponentType.GetAsync(model);
             return result;
         }
 
-        public ComponentType Add(ComponentTypeViewModel model)
+        public async Task<ComponentType> AddAsync(ComponentTypeViewModel model)
         {
             var componentType = new ComponentType
             {
@@ -38,12 +39,12 @@ namespace Core.Services.Service
             };
 
             UnitOfWork.ComponentType.Add(componentType);
-            UnitOfWork.SaveChanges();
+            await UnitOfWork.SaveChangesAsync();
 
             return componentType;
         }
 
-        public ComponentType Edit(ComponentTypeViewModel model)
+        public async Task<ComponentType> EditAsync(ComponentTypeViewModel model)
         {
             var componentType = UnitOfWork.ComponentType.GetById(model.Id);
 
@@ -54,12 +55,12 @@ namespace Core.Services.Service
             componentType.Code = model.Code;
 
             UnitOfWork.ComponentType.Update(componentType);
-            UnitOfWork.SaveChanges();
+            await UnitOfWork.SaveChangesAsync();
 
             return componentType;
         }
 
-        public void Delete(int id)
+        public async Task DeleteAsync(int id)
         {
             var componentType = UnitOfWork.ComponentType.GetById(id);
 
@@ -67,7 +68,7 @@ namespace Core.Services.Service
                 throw new KeyNotFoundException();
 
             UnitOfWork.ComponentType.Remove(componentType);
-            UnitOfWork.SaveChanges();
+            await UnitOfWork.SaveChangesAsync();
         }
     }
 }

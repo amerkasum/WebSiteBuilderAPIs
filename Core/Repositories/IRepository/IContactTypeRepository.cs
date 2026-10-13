@@ -11,6 +11,6 @@ namespace Core.Repositories.IRepository
 {
     public interface IContactTypeRepository : IRepository<ContactType>
     {
-        IEnumerable<BasicSearchResponse> Get(BasicSearchRequest model);
+        Task<IEnumerable<BasicSearchResponse>> GetAsync(BasicSearchRequest model);
     }
 }

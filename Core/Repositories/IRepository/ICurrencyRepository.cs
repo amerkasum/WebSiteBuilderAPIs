@@ -11,6 +11,6 @@ namespace Core.Repositories.IRepository
 {
     public interface ICurrencyRepository : IRepository<Currency>
     {
-        IEnumerable<CurrencyDto> Get(BasicSearchRequest model);
+        Task<IEnumerable<CurrencyDto>> GetAsync(BasicSearchRequest model);
     }
 }

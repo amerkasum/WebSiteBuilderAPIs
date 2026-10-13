@@ -25,20 +25,20 @@ namespace WebSiteBuilderAPIs.Controllers
 
 
         [HttpGet(nameof(Get))]
-        public IEnumerable<UserSocialMediaDto> Get([FromQuery] UserSocialMediaRequest model)
+        public async Task<IEnumerable<UserSocialMediaDto>> Get([FromQuery] UserSocialMediaRequest model)
         {
-            return UserSocialMediaService.Get(model);
+            return await UserSocialMediaService.GetAsync(model);
         }
 
         [HttpPost(nameof(Add))]
-        public IActionResult Add(UserSocialMediaViewModel model)
+        public async Task<IActionResult> Add(UserSocialMediaViewModel model)
         {
             if (!ModelState.IsValid)
                 return BadRequest(new { success = false, message = ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage).ToList() });
 
             try
             {
-                var userSocialMedia = UserSocialMediaService.Add(model);
+                var userSocialMedia = await UserSocialMediaService.AddAsync(model);
                 return Ok(new { success = true, message = string.Format(Localizer.Added2, Localizer.SocialMedia) });
             }
             catch(Exception e)
@@ -48,14 +48,14 @@ namespace WebSiteBuilderAPIs.Controllers
         }
 
         [HttpPut(nameof(Edit))]
-        public IActionResult Edit(UserSocialMediaViewModel model)
+        public async Task<IActionResult> Edit(UserSocialMediaViewModel model)
         {
             if (!ModelState.IsValid)
                 return BadRequest(new { success = false, message = ModelState.Values.SelectMany(x => x.Errors).SelectMany(x => x.ErrorMessage).ToList() });
 
             try
             {
-                var userSocialMedia = UserSocialMediaService.Edit(model);
+                var userSocialMedia = await UserSocialMediaService.EditAsync(model);
                 return Ok(new { success = true, message = string.Format(Localizer.Edited2, Localizer.SocialMedia) });
             }
             catch (KeyNotFoundException)
@@ -69,11 +69,11 @@ namespace WebSiteBuilderAPIs.Controllers
         }
 
         [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
             try
             {
-                UserSocialMediaService.Delete(id);
+                await UserSocialMediaService.DeleteAsync(id);
 
                 return Ok(new { success = true, message = string.Format(Localizer.Deleted2, Localizer.SocialMedia) });
             }

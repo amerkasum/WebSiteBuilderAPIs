@@ -20,28 +20,29 @@ namespace Core.Services.Service
             this.UnitOfWork = unitOfWork;
         }
 
-        public IEnumerable<BasicSearchResponse> Get(BasicSearchRequest model)
+        public async Task<IEnumerable<BasicSearchResponse>> GetAsync(BasicSearchRequest model)
         {
             model.Search = model?.Search?.Trim();
-            var result = UnitOfWork.Role.Get(model);
+            var result = await UnitOfWork.Role.GetAsync(model);
             return result;
         }
 
-        public Role Add(RoleViewModel model)
+        public async Task<Role> AddAsync(RoleViewModel model)
         {
             var role = new Role
             {
                 Name = model.Code,
-                Code = model.Code
+                Code = model.Code,
+                Description = model.Description
             };
 
             UnitOfWork.Role.Add(role);
-            UnitOfWork.SaveChanges();
+            await UnitOfWork.SaveChangesAsync();
 
             return role;
         }
 
-        public Role Edit(RoleViewModel model)
+        public async Task<Role> EditAsync(RoleViewModel model)
         {
             var role = UnitOfWork.Role.GetById(model.Id);
 
@@ -50,14 +51,15 @@ namespace Core.Services.Service
 
             role.Name = model.Name;
             role.Code = model.Code;
+            role.Description = model.Description;
 
             UnitOfWork.Role.Update(role);
-            UnitOfWork.SaveChanges();
+            await UnitOfWork.SaveChangesAsync();
 
             return role;
         }
 
-        public void Delete(int id)
+        public async Task DeleteAsync(int id)
         {
             var role = UnitOfWork.Role.GetById(id);
 
@@ -65,7 +67,7 @@ namespace Core.Services.Service
                 throw new KeyNotFoundException();
 
             UnitOfWork.Role.Remove(role);
-            UnitOfWork.SaveChanges();
+            await UnitOfWork.SaveChangesAsync();
         }
     }
 }

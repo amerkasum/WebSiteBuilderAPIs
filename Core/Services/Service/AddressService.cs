@@ -2,6 +2,7 @@
 using Core.UnitOfWork;
 using Domain.DTO;
 using Domain.Entities.Location;
+using Domain.Pagination;
 using Domain.Requests;
 using Domain.ViewModels;
 using System;
@@ -20,13 +21,13 @@ namespace Core.Services.Service
             this.UnitOfWork = unitOfWork;
         }
 
-        public IEnumerable<AddressDto> Get(BasicSearchRequest model)
+        public async Task<PaginationResponse<AddressDto>> GetAsync(BasicSearchRequest model)
         {
             model.Search = model.Search?.Trim();
-            return UnitOfWork.Address.Get(model);
+            return await UnitOfWork.Address.GetAsync(model);
         }
 
-        public Address Add(LocationViewModel model)
+        public async Task<Address> AddAsync(LocationViewModel model)
         {
             try
             {
@@ -44,7 +45,7 @@ namespace Core.Services.Service
                         RegionId = model.RegionId
                     };
                     UnitOfWork.City.Add(city);
-                    UnitOfWork.SaveChanges();
+                    await UnitOfWork.SaveChangesAsync();
                 }
                 else
                 {
@@ -61,7 +62,7 @@ namespace Core.Services.Service
                         CityId = city.Id
                     };
                     UnitOfWork.Address.Add(address);
-                    UnitOfWork.SaveChanges();
+                    await UnitOfWork.SaveChangesAsync();
                 }
                 UnitOfWork.Commit();
 
@@ -70,17 +71,17 @@ namespace Core.Services.Service
             catch(Exception e)
             {
                 UnitOfWork.RollBack();
-                throw e;
+                throw;
             }
             
         }
 
-        public Address Edit(LocationViewModel model)
+        public async Task<Address> EditAsync(LocationViewModel model)
         {
             throw new NotImplementedException();
         }
 
-        public void Delete(int id)
+        public async Task DeleteAsync(int id)
         {
             var address = UnitOfWork.Address.GetById(id);
 
@@ -88,7 +89,7 @@ namespace Core.Services.Service
                 throw new KeyNotFoundException();
 
             UnitOfWork.Address.Remove(address);
-            UnitOfWork.SaveChanges();
+            await UnitOfWork.SaveChangesAsync();
         }
     }
 }

@@ -11,6 +11,6 @@ namespace Core.Repositories.IRepository
 {
     public interface IMessageUsRepository : IRepository<MessageUs>
     {
-        List<MessageUsDto> Get(MessageUsRequest model);
+        Task<List<MessageUsDto>> GetAsync(MessageUsRequest model);
     }
 }

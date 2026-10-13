@@ -3,6 +3,7 @@ using Core.Services.Service;
 using Core.UnitOfWork;
 using Domain.DTO;
 using Domain.Entities.System;
+using Domain.Pagination;
 using Domain.Requests;
 using Domain.ViewModels;
 using Microsoft.AspNetCore.Authorization;
@@ -26,20 +27,20 @@ namespace WebSiteBuilderAPIs.Controllers
         }
 
         [HttpGet(nameof(Get))]
-        public IEnumerable<BasicSearchResponse> Get([FromQuery] BasicSearchRequest model)
+        public async Task<PaginationResponse<BasicSearchResponse>> Get([FromQuery] BasicSearchRequest model)
         {
-            return ClaimService.Get(model);
+            return await ClaimService.GetAsync(model);
         }
 
         [HttpPost(nameof(Add))]
-        public IActionResult Add(ClaimViewModel model)
+        public async Task<IActionResult> Add(ClaimViewModel model)
         {
             if (!ModelState.IsValid)
                 return BadRequest(new { success = false, message = ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage).ToList() });
 
             try
             {
-                var claim = ClaimService.Add(model);
+                var claim = await ClaimService.AddAsync(model);
                 return Ok(new { success = true, message = string.Format(Localizer.Added2, Localizer.Claim) });
             }
             catch(Exception e)
@@ -49,14 +50,14 @@ namespace WebSiteBuilderAPIs.Controllers
         }
 
         [HttpPut(nameof(Edit))]
-        public IActionResult Edit(ClaimViewModel model)
+        public async Task<IActionResult> Edit(ClaimViewModel model)
         {
             if (!ModelState.IsValid)
                 return BadRequest(new { success = false, message = ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage).ToList() });
 
             try
             {
-                var claim = ClaimService.Edit(model);
+                var claim = await ClaimService.EditAsync(model);
                 return Ok(new { success = true, message = string.Format(Localizer.Edited2, Localizer.Claim) });
             }
             catch(KeyNotFoundException)
@@ -70,11 +71,11 @@ namespace WebSiteBuilderAPIs.Controllers
         }
 
         [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
             try
             {
-                ClaimService.Delete(id);
+                await ClaimService.DeleteAsync(id);
 
                 return Ok(new { success = true, message = string.Format(Localizer.Deleted2, Localizer.Claim) });
             }

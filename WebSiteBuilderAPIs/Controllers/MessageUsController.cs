@@ -28,19 +28,19 @@ namespace WebSiteBuilderAPIs.Controllers
         }
 
         [HttpGet(nameof(Get))]
-        public IEnumerable<MessageUsDto> Get([FromQuery] MessageUsRequest model)
+        public async Task<IEnumerable<MessageUsDto>> Get([FromQuery] MessageUsRequest model)
         {
-            return MessageUsService.Get(model);
+            return await MessageUsService.GetAsync(model);
         }
 
         [HttpPost(nameof(Add))]
-        public IActionResult Add(MessageUsViewModel model)
+        public async Task<IActionResult> Add(MessageUsViewModel model)
         {
             if (!ModelState.IsValid)
                 return BadRequest(new { success = false, message = ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage).ToList() });
             try
             {
-                var messageUs = MessageUsService.Add(model);
+                var messageUs = await MessageUsService.AddAsync(model);
                 return Ok(new { success = true, message = Localizer.MessageSent });
             }
             catch(Exception e)
@@ -50,14 +50,14 @@ namespace WebSiteBuilderAPIs.Controllers
         }
 
         [HttpPut(nameof(Edit))]
-        public IActionResult Edit(MessageUsViewModel model)
+        public async Task<IActionResult> Edit(MessageUsViewModel model)
         {
             if (!ModelState.IsValid)
                 return BadRequest(new { success = false, message = ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage).ToString() });
 
             try
             {
-                var messageUs = MessageUsService.Edit(model);
+                var messageUs = await MessageUsService.EditAsync(model);
                 return Ok(new { success = true, message = Localizer.MessageSent });
             }
             catch(KeyNotFoundException)
@@ -71,11 +71,11 @@ namespace WebSiteBuilderAPIs.Controllers
         }
 
         [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
             try
             {
-                MessageUsService.Delete(id);
+                await MessageUsService.DeleteAsync(id);
                 return Ok(new { success = true, message = string.Format(Localizer.Deleted, Localizer.Message) });
             }
             catch(KeyNotFoundException)

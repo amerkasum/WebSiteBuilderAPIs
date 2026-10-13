@@ -12,9 +12,9 @@ namespace Core.Services.IService
 {
     public interface IContactTypeService
     {
-        IEnumerable<BasicSearchResponse> Get(BasicSearchRequest model);
-        ContactType Add(ContactTypeViewModel model);
-        ContactType Edit(ContactTypeViewModel model);
-        void Delete(int id);
+        Task<IEnumerable<BasicSearchResponse>> GetAsync(BasicSearchRequest model);
+        Task<ContactType> AddAsync(ContactTypeViewModel model);
+        Task<ContactType> EditAsync(ContactTypeViewModel model);
+        Task DeleteAsync(int id);
     }
 }

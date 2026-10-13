@@ -25,20 +25,20 @@ namespace WebSiteBuilderAPIs.Controllers
         }
 
         [HttpGet(nameof(Get))]
-        public IEnumerable<BasicSearchResponse> Get([FromQuery] BasicSearchRequest model)
+        public async Task<IEnumerable<BasicSearchResponse>> Get([FromQuery] BasicSearchRequest model)
         {
-            return SocialMediaService.Get(model);
+            return await SocialMediaService.GetAsync(model);
         }
 
         [HttpPost(nameof(Add))]
-        public IActionResult Add(SocialMediaViewModel model)
+        public async Task<IActionResult> Add(SocialMediaViewModel model)
         {
             if (!ModelState.IsValid)
                 return BadRequest(new { success = false, message = ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage).ToList() });
 
             try
             {
-                var socialMedia = SocialMediaService.Add(model);
+                var socialMedia = await SocialMediaService.AddAsync(model);
 
                 return Ok(new { success = true, message = string.Format(Localizer.Added2, Localizer.SocialMedia) });
             }
@@ -49,14 +49,14 @@ namespace WebSiteBuilderAPIs.Controllers
         }
 
         [HttpPut(nameof(Edit))]
-        public IActionResult Edit(SocialMediaViewModel model)
+        public async Task<IActionResult> Edit(SocialMediaViewModel model)
         {
             if (!ModelState.IsValid)
                 return BadRequest(new { success = false, message = ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage).ToList() });
 
             try
             {
-                var socialMedia = SocialMediaService.Edit(model);
+                var socialMedia = await SocialMediaService.EditAsync(model);
                 return Ok(new { success = true, message = string.Format(Localizer.Edited2, Localizer.SocialMedia) });            
             }
             catch(KeyNotFoundException)
@@ -70,11 +70,11 @@ namespace WebSiteBuilderAPIs.Controllers
         }
 
         [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
             try
             {
-                SocialMediaService.Delete(id);
+                await SocialMediaService.DeleteAsync(id);
                 return Ok(new { success = true, message = string.Format(Localizer.Deleted2, Localizer.SocialMedia) });
             }
             catch (KeyNotFoundException)

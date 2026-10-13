@@ -12,9 +12,9 @@ namespace Core.Services.IService
 {
     public interface IRoleService
     {
-        IEnumerable<BasicSearchResponse> Get(BasicSearchRequest model);
-        Role Add(RoleViewModel model);
-        Role Edit(RoleViewModel model);
-        void Delete(int id);
+        Task<IEnumerable<BasicSearchResponse>> GetAsync(BasicSearchRequest model);
+        Task<Role> AddAsync(RoleViewModel model);
+        Task<Role> EditAsync(RoleViewModel model);
+        Task DeleteAsync(int id);
     }
 }

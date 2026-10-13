@@ -20,14 +20,14 @@ namespace Core.Services.Service
             this.UnitOfWork = unitOfWork;
         }
 
-        public IEnumerable<CurrencyDto> Get(BasicSearchRequest model)
+        public async Task<IEnumerable<CurrencyDto>> GetAsync(BasicSearchRequest model)
         {
             model.Search = model?.Search?.Trim();
-            var result = UnitOfWork.Currency.Get(model);
+            var result = await UnitOfWork.Currency.GetAsync(model);
             return result;
         }
 
-        public Currency Add(CurrencyViewModel model)
+        public async Task<Currency> AddAsync(CurrencyViewModel model)
         {
             var currency = new Currency
             {
@@ -38,11 +38,11 @@ namespace Core.Services.Service
             };
 
             UnitOfWork.Currency.Add(currency);
-            UnitOfWork.SaveChanges();
+            await UnitOfWork.SaveChangesAsync();
 
             return currency;
         }
-        public Currency Edit(CurrencyViewModel model)
+        public async Task<Currency> EditAsync(CurrencyViewModel model)
         {
             var currency = UnitOfWork.Currency.GetById(model.Id);
 
@@ -55,12 +55,12 @@ namespace Core.Services.Service
             currency.DecimalPlaces = model.DecimalPlaces;
 
             UnitOfWork.Currency.Update(currency);
-            UnitOfWork.SaveChanges();
+            await UnitOfWork.SaveChangesAsync();
 
             return currency;
         }
 
-        public void Delete(int id)
+        public async Task DeleteAsync(int id)
         {
             var currency = UnitOfWork.Currency.GetById(id);
 
@@ -68,7 +68,7 @@ namespace Core.Services.Service
                 throw new KeyNotFoundException();
 
             UnitOfWork.Currency.Remove(currency);
-            UnitOfWork.SaveChanges();
+            await UnitOfWork.SaveChangesAsync();
         }
 
         

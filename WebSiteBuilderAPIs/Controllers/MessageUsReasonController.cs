@@ -26,20 +26,20 @@ namespace WebSiteBuilderAPIs.Controllers
         }
 
         [HttpGet(nameof(Get))]
-        public IEnumerable<BasicSearchResponse> Get([FromQuery] BasicSearchRequest model)
+        public async Task<IEnumerable<BasicSearchResponse>> Get([FromQuery] BasicSearchRequest model)
         {
-            return MessageUsReasonService.Get(model);
+            return await MessageUsReasonService.GetAsync(model);
         }
 
         [HttpPost(nameof(Add))]
-        public IActionResult Add(MessageUsReasonViewModel model)
+        public async Task<IActionResult> Add(MessageUsReasonViewModel model)
         {
             if (!ModelState.IsValid)
                 return BadRequest(new { success = false, message = ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage).ToList() });
 
             try
             {
-                var messageUsreason = MessageUsReasonService.Add(model);
+                var messageUsreason = await MessageUsReasonService.AddAsync(model);
 
                 return Ok(new { success = true, message = string.Format(Localizer.Added, Localizer.Reason) });
             }
@@ -50,14 +50,14 @@ namespace WebSiteBuilderAPIs.Controllers
         }
 
         [HttpPut(nameof(Edit))]
-        public IActionResult Edit(MessageUsReasonViewModel model)
+        public async Task<IActionResult> Edit(MessageUsReasonViewModel model)
         {
             if (!ModelState.IsValid)
                 return BadRequest(new { success = false, message = ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage).ToList() });
 
             try
             {
-                var messageUsReason = MessageUsReasonService.Edit(model);
+                var messageUsReason = await MessageUsReasonService.EditAsync(model);
 
                 return Ok(new { success = true, message = string.Format(Localizer.Edited, Localizer.Reason) });
             }
@@ -72,11 +72,11 @@ namespace WebSiteBuilderAPIs.Controllers
         }
 
         [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
             try
             {
-                MessageUsReasonService.Delete(id);
+                await MessageUsReasonService.DeleteAsync(id);
 
                 return Ok(new { success= false, message = string.Format(Localizer.Deleted, Localizer.Reason) });
             }

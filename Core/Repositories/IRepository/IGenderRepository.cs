@@ -11,6 +11,6 @@ namespace Core.Repositories.IRepository
 {
     public interface IGenderRepository : IRepository<Gender>
     {
-        IEnumerable<BasicSearchResponse> Get(BasicSearchRequest model);
+        Task<IEnumerable<BasicSearchResponse>> GetAsync(BasicSearchRequest model);
     }
 }

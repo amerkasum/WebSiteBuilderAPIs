@@ -29,20 +29,20 @@ namespace WebSiteBuilderAPIs.Controllers
         }
 
         [HttpGet(nameof(Get))]
-        public IEnumerable<FeedbackDto> Get([FromQuery] BasicSearchRequest model)
+        public async Task<IEnumerable<FeedbackDto>> Get([FromQuery] BasicSearchRequest model)
         {
-            return FeedbackService.Get(model);
+            return await FeedbackService.GetAsync(model);
         }
 
         [HttpPost(nameof(Add))]
-        public IActionResult Add(FeedbackViewModel model) 
+        public async Task<IActionResult> Add(FeedbackViewModel model) 
         {
             if (!ModelState.IsValid)
                 return BadRequest(new { success= false, message = ModelState.Values.SelectMany(x => x.Errors).SelectMany(x => x.ErrorMessage).ToList() });
 
             try
             {
-                var feedback = FeedbackService.Add(model);
+                var feedback = await FeedbackService.AddAsync(model);
 
                 return Ok(new { success = true, message = string.Format(Localizer.Added2, Localizer.Feedback) });
             }
@@ -53,7 +53,7 @@ namespace WebSiteBuilderAPIs.Controllers
         }
 
         [HttpPut(nameof(Edit))]
-        public IActionResult Edit(FeedbackViewModel model)
+        public async Task<IActionResult> Edit(FeedbackViewModel model)
         {
             if (!ModelState.IsValid)
                 return BadRequest(new { success= false, message = ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage).ToList() });
@@ -62,7 +62,7 @@ namespace WebSiteBuilderAPIs.Controllers
 
             try
             {
-                var feedback = FeedbackService.Edit(model);
+                var feedback =  await FeedbackService.EditAsync(model);
 
                 return Ok(new { success = true, message = string.Format(Localizer.Edited2, Localizer.Feedback) });
             }
@@ -77,12 +77,12 @@ namespace WebSiteBuilderAPIs.Controllers
         }
 
         [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
             try
 
             {
-                FeedbackService.Delete(id);
+                await FeedbackService.DeleteAsync(id);
 
                 return Ok(new { success = true, message = string.Format(Localizer.Deleted2, Localizer.Feedback) });
             }

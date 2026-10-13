@@ -2,6 +2,7 @@
 using Core.UnitOfWork;
 using Domain.DTO;
 using Domain.Entities.WebSiteBuilder;
+using Domain.Pagination;
 using Domain.Requests;
 using Domain.ViewModels;
 using Microsoft.AspNetCore.Authorization;
@@ -25,20 +26,20 @@ namespace WebSiteBuilderAPIs.Controllers
         }
 
         [HttpGet(nameof(Get))]
-        public IEnumerable<BasicSearchResponse> Get([FromQuery] BasicSearchRequest model)
+        public async Task<PaginationResponse<BasicSearchResponse>> Get([FromQuery] BasicSearchRequest model)
         {
-            return BusinessTypeService.Get(model);
+            return await BusinessTypeService.GetAsync(model);
         }
 
         [HttpPost(nameof(Add))]
-        public IActionResult Add(BusinessTypeViewModel model)
+        public async Task<IActionResult> Add(BusinessTypeViewModel model)
         {
             if (!ModelState.IsValid)
                 return BadRequest(new { success = false, message = ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage).ToList() });
 
             try
             {
-                var businessType = BusinessTypeService.Add(model);
+                var businessType = await BusinessTypeService.AddAsync(model);
 
                 return Ok(new { success = true, message = string.Format(Localizer.Added, Localizer.BusinessType) });
             }
@@ -56,7 +57,7 @@ namespace WebSiteBuilderAPIs.Controllers
 
             try
             {
-                var businessType = await BusinessTypeService.Edit(model);
+                var businessType = await BusinessTypeService.EditAsync(model);
 
                 return Ok(new { success = true, message = string.Format(Localizer.Edited, Localizer.BusinessType) });
             }
@@ -75,7 +76,7 @@ namespace WebSiteBuilderAPIs.Controllers
         {
             try
             {
-                await BusinessTypeService.Delete(id);
+                await BusinessTypeService.DeleteAsync(id);
 
                 return Ok(new { success = true, message = string.Format(Localizer.Deleted, Localizer.BusinessType) });
             }

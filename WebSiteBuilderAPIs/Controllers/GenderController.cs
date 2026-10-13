@@ -28,20 +28,20 @@ namespace WebSiteBuilderAPIs.Controllers
         }
 
         [HttpGet(nameof(Get))]
-        public IEnumerable<BasicSearchResponse> Get([FromQuery] BasicSearchRequest model)
+        public async Task<IEnumerable<BasicSearchResponse>> Get([FromQuery] BasicSearchRequest model)
         {
-            return GenderService.Get(model);
+            return await GenderService.GetAsync(model);
         }
 
         [HttpPost(nameof(Add))]
-        public IActionResult Add(GenderViewModel model)
+        public async Task<IActionResult> Add(GenderViewModel model)
         {
             if (!ModelState.IsValid)
                 return BadRequest(new { success = false, message = ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage).ToList() });
 
             try
             {
-                var gender = GenderService.Add(model);
+                var gender = await GenderService.AddAsync(model);
 
                 return Ok(new { success = true, message = string.Format(Localizer.Added, Localizer.Gender) });
             }
@@ -52,14 +52,14 @@ namespace WebSiteBuilderAPIs.Controllers
         }
 
         [HttpPut(nameof(Edit))]
-        public IActionResult Edit(GenderViewModel model)
+        public async Task<IActionResult> Edit(GenderViewModel model)
         {
             if (!ModelState.IsValid)
                 return BadRequest(new { success = false, message = ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage).ToList() });
 
             try
             {
-                var gender = GenderService.Edit(model);
+                var gender = await GenderService.EditAsync(model);
 
                 return Ok(new { success = false, message = string.Format(Localizer.Edited, Localizer.Gender) });
             }
@@ -74,11 +74,11 @@ namespace WebSiteBuilderAPIs.Controllers
         }
 
         [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
             try
             {
-                GenderService.Delete(id);
+                await GenderService.DeleteAsync(id);
 
                 return Ok(new { success = true, message = string.Format(Localizer.Deleted, Localizer.Gender) });
             }

@@ -20,7 +20,7 @@ namespace Core.Services.Service
         {
             this.UnitOfWork = unitOfWork;
         }
-        public MessageUs Add(MessageUsViewModel model)
+        public async Task<MessageUs> AddAsync(MessageUsViewModel model)
         {
             var messageUs = new MessageUs
             {
@@ -30,12 +30,12 @@ namespace Core.Services.Service
             };
 
             UnitOfWork.MessageUs.Add(messageUs);
-            UnitOfWork.SaveChanges();
+            await UnitOfWork.SaveChangesAsync();
 
             return messageUs;
         }
 
-        public MessageUs Edit(MessageUsViewModel model)
+        public async Task<MessageUs> EditAsync(MessageUsViewModel model)
         {
             var messageUs = UnitOfWork.MessageUs.GetById(model.Id);
 
@@ -46,12 +46,12 @@ namespace Core.Services.Service
             messageUs.MessageUsReasonId = model.MessageUsReasonId;
 
             UnitOfWork.MessageUs.Update(messageUs);
-            UnitOfWork.SaveChanges();
+            await UnitOfWork.SaveChangesAsync();
 
             return messageUs;
         }
 
-        public void Delete(int id)
+        public async Task DeleteAsync(int id)
         {
             var messageUs = UnitOfWork.MessageUs.GetById(id);
 
@@ -59,12 +59,12 @@ namespace Core.Services.Service
                 throw new KeyNotFoundException();
 
             UnitOfWork.MessageUs.Remove(messageUs);
-            UnitOfWork.SaveChanges();
+            await UnitOfWork.SaveChangesAsync();
         }
 
-        public IEnumerable<MessageUsDto> Get(MessageUsRequest model)
+        public async Task<IEnumerable<MessageUsDto>> GetAsync(MessageUsRequest model)
         {
-            return UnitOfWork.MessageUs.Get(model);
+            return await UnitOfWork.MessageUs.GetAsync(model);
         }
     }
 }

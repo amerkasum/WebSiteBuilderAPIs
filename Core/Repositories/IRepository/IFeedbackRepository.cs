@@ -11,7 +11,7 @@ namespace Core.Repositories.IRepository
 {
     public interface IFeedbackRepository : IRepository<Feedback>
     {
-        IEnumerable<FeedbackDto> Get(BasicSearchRequest model);
+        Task<IEnumerable<FeedbackDto>> GetAsync(BasicSearchRequest model);
         IEnumerable<FeedbackDto> GetByUserId(int userId);
     }
 }

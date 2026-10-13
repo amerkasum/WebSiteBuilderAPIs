@@ -1,5 +1,6 @@
 ﻿using Domain.DTO;
 using Domain.Entities.System;
+using Domain.Pagination;
 using Domain.Requests;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,6 @@ namespace Core.Repositories.IRepository
 {
     public interface IClaimRepository :IRepository<Claim>
     {
-        IEnumerable<BasicSearchResponse> Get(BasicSearchRequest model);
+        Task<PaginationResponse<BasicSearchResponse>> GetAsync(BasicSearchRequest model);
     }
 }

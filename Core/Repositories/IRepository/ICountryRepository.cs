@@ -12,6 +12,6 @@ namespace Core.Repositories.IRepository
 {
     public interface ICountryRepository : IRepository<Country>
     {
-        PaginationResponse<CountryDto> Get(CountryRequest model);
+        Task<PaginationResponse<CountryDto>> GetAsync(CountryRequest model);
     }
 }

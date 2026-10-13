@@ -12,9 +12,9 @@ namespace Core.Services.IService
 {
     public interface ICurrencyService
     {
-        IEnumerable<CurrencyDto> Get(BasicSearchRequest model);
-        Currency Add(CurrencyViewModel model);
-        Currency Edit(CurrencyViewModel model);
-        void Delete(int id);
+        Task<IEnumerable<CurrencyDto>> GetAsync(BasicSearchRequest model);
+        Task<Currency> AddAsync(CurrencyViewModel model);
+        Task<Currency> EditAsync(CurrencyViewModel model);
+        Task DeleteAsync(int id);
     }
 }

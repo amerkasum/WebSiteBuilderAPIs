@@ -3,6 +3,7 @@ using Core.Services.Service;
 using Core.UnitOfWork;
 using Domain.DTO;
 using Domain.Entities.WebSiteBuilder;
+using Domain.Pagination;
 using Domain.Requests;
 using Domain.ViewModels;
 using Microsoft.AspNetCore.Authorization;
@@ -26,20 +27,20 @@ namespace WebSiteBuilderAPIs.Controllers
         }
 
         [HttpGet(nameof(Get))]
-        public IEnumerable<BasicSearchResponse> Get([FromQuery] BasicSearchRequest model)
+        public async Task<PaginationResponse<BasicSearchResponse>> Get([FromQuery] BasicSearchRequest model)
         {
-            return ComponentTypeService.Get(model);
+            return await ComponentTypeService.GetAsync(model);
         }
 
         [HttpPost(nameof(Add))]
-        public IActionResult Add(ComponentTypeViewModel model)
+        public async Task<IActionResult> Add(ComponentTypeViewModel model)
         {
             if (!ModelState.IsValid)
                 return BadRequest(new { success = false, message = ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage).ToList() });
 
             try
             {
-                var componentType = ComponentTypeService.Add(model);
+                var componentType = await ComponentTypeService.AddAsync(model);
 
                 return Ok(new { success = true, message = string.Format(Localizer.Added, Localizer.ComponentType) });
             }
@@ -50,14 +51,14 @@ namespace WebSiteBuilderAPIs.Controllers
         }
 
         [HttpPut(nameof(Edit))]
-        public IActionResult Edit(ComponentTypeViewModel model)
+        public async Task<IActionResult> Edit(ComponentTypeViewModel model)
         {
             if (!ModelState.IsValid)
                 return BadRequest(new { success = false, message = ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage).ToList() });
 
             try
             {
-                var componentType = ComponentTypeService.Edit(model);
+                var componentType = await ComponentTypeService.EditAsync(model);
 
                 return Ok(new { success = true, message = string.Format(Localizer.Edited, Localizer.ComponentType) });
             }
@@ -72,11 +73,11 @@ namespace WebSiteBuilderAPIs.Controllers
         }
 
         [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
             try
             {
-                ComponentTypeService.Delete(id);
+                await ComponentTypeService.DeleteAsync(id);
 
                 return Ok(new { success = true, message = string.Format(Localizer.Deleted, Localizer.ComponentType) });
             }

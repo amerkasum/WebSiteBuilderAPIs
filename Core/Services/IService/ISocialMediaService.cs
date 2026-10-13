@@ -12,9 +12,9 @@ namespace Core.Services.IService
 {
     public interface ISocialMediaService
     {
-        IEnumerable<BasicSearchResponse> Get(BasicSearchRequest model);
-        SocialMedia Add(SocialMediaViewModel model);
-        SocialMedia Edit(SocialMediaViewModel model);
-        void Delete(int id);
+        Task<IEnumerable<BasicSearchResponse>> GetAsync(BasicSearchRequest model);
+        Task<SocialMedia> AddAsync(SocialMediaViewModel model);
+        Task<SocialMedia> EditAsync(SocialMediaViewModel model);
+        Task DeleteAsync(int id);
     }
 }

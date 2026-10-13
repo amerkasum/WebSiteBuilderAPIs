@@ -25,19 +25,19 @@ namespace WebSiteBuilderAPIs.Controllers
         }
 
         [HttpGet(nameof(Get))]
-        public IEnumerable<UserContactDto> Get([FromQuery] UserContactRequest model)
+        public async Task<IEnumerable<UserContactDto>> Get([FromQuery] UserContactRequest model)
         {
-            return UserContactService.Get(model);
+            return await UserContactService.GetAsync(model);
         }
 
         [HttpPost(nameof(Add))]
-        public IActionResult Add(UserContactViewModel model)
+        public async Task<IActionResult> Add(UserContactViewModel model)
         {
             if (!ModelState.IsValid)
                 return BadRequest(new { success = false, message = ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage).ToList() });
             try
             {
-                var userContact = UserContactService.Add(model);
+                var userContact = await UserContactService.AddAsync(model);
                 return Ok(new { success = true, message = string.Format(Localizer.Added, Localizer.UserContact) });
             }
             catch(Exception e)
@@ -47,13 +47,13 @@ namespace WebSiteBuilderAPIs.Controllers
         }
 
         [HttpPut(nameof(Edit))]
-        public IActionResult Edit(UserContactViewModel model)
+        public async Task<IActionResult> Edit(UserContactViewModel model)
         {
             if (!ModelState.IsValid)
                 return BadRequest(new { success = false, message = ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage).ToList() });
             try
             {
-                var userContact = UserContactService.Edit(model);
+                var userContact = await UserContactService.EditAsync(model);
                 return Ok(new { success = true, message = string.Format(Localizer.Added, Localizer.UserContact) });
             }
             catch(KeyNotFoundException)
@@ -67,11 +67,11 @@ namespace WebSiteBuilderAPIs.Controllers
         }
 
         [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
             try
             {
-                UserContactService.Delete(id);
+                await UserContactService.DeleteAsync(id);
 
                 return Ok(new { success = true, message = string.Format(Localizer.Added, Localizer.UserContact) });
             }

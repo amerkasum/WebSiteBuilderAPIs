@@ -21,13 +21,13 @@ namespace Core.Services.Service
             this.UnitOfWork = unitOfWork;
         }
 
-        public IEnumerable<BasicSearchResponse> Get(BasicSearchRequest model)
+        public async Task<IEnumerable<BasicSearchResponse>> GetAsync(BasicSearchRequest model)
         {
             model.Search = model?.Search?.Trim();
-            var result = UnitOfWork.ContactType.Get(model);
+            var result = await UnitOfWork.ContactType.GetAsync(model);
             return result;
         }
-        public ContactType Add(ContactTypeViewModel model)
+        public async Task<ContactType> AddAsync(ContactTypeViewModel model)
         {
             var contactType = new ContactType
             {
@@ -36,12 +36,12 @@ namespace Core.Services.Service
             };
 
             UnitOfWork.ContactType.Add(contactType);
-            UnitOfWork.SaveChanges();
+            await UnitOfWork.SaveChangesAsync();
 
             return contactType;
         }
 
-        public ContactType Edit(ContactTypeViewModel model)
+        public async Task<ContactType> EditAsync(ContactTypeViewModel model)
         {
             var contactType = UnitOfWork.ContactType.GetById(model.Id);
 
@@ -52,12 +52,12 @@ namespace Core.Services.Service
             contactType.Code = model.Code;
 
             UnitOfWork.ContactType.Update(contactType);
-            UnitOfWork.SaveChanges();
+            await UnitOfWork.SaveChangesAsync();
 
             return contactType;
         }
 
-        public void Delete(int id)
+        public async Task DeleteAsync(int id)
         {
             var contactType = UnitOfWork.ContactType.GetById(id);
 
@@ -65,7 +65,7 @@ namespace Core.Services.Service
                 throw new KeyNotFoundException();
 
             UnitOfWork.ContactType.Remove(contactType);
-            UnitOfWork.SaveChanges();
+            await UnitOfWork.SaveChangesAsync();
         }
     }
 }

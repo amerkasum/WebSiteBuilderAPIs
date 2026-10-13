@@ -18,9 +18,9 @@ namespace Core.Repositories.Repository
         {
         }
 
-        public IEnumerable<RoleClaimDto> Get(RoleClaimRequest model)
+        public async Task<IEnumerable<RoleClaimDto>> GetAsync(RoleClaimRequest model)
         {
-            var result = _context.RoleClaim.Include(x => x.Role).Include(x => x.Claim)
+            var result = await _context.RoleClaim.AsNoTracking()
                 .Where(x => (!model.RoleId.HasValue || model.RoleId == x.Role.Id) && (!model.ClaimId.HasValue || model.ClaimId == x.Claim.Id))
                 .Select(x => new RoleClaimDto
                 {
@@ -39,7 +39,7 @@ namespace Core.Repositories.Repository
                         Code = x.Claim.Code,
                         Description = x.Claim.Description
                     }
-                }).AsEnumerable();
+                }).ToListAsync();
 
             return result;
         }

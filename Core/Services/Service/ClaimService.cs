@@ -2,6 +2,7 @@
 using Core.UnitOfWork;
 using Domain.DTO;
 using Domain.Entities.System;
+using Domain.Pagination;
 using Domain.Requests;
 using Domain.ViewModels;
 using System;
@@ -20,14 +21,14 @@ namespace Core.Services.Service
             this.UnitOfWork = unitOfWork;
         }
 
-        public IEnumerable<BasicSearchResponse> Get(BasicSearchRequest model)
+        public async Task<PaginationResponse<BasicSearchResponse>> GetAsync(BasicSearchRequest model)
         {
             model.Search = model?.Search?.Trim();
-            var result = UnitOfWork.Claim.Get(model);
+            var result = await UnitOfWork.Claim.GetAsync(model);
             return result;
         }
 
-        public Claim Add(ClaimViewModel model)
+        public async Task<Claim> AddAsync(ClaimViewModel model)
         {
             var claim = new Claim
             {
@@ -36,12 +37,12 @@ namespace Core.Services.Service
             };
 
             UnitOfWork.Claim.Add(claim);
-            UnitOfWork.SaveChanges();
+            await UnitOfWork.SaveChangesAsync();
 
             return claim;
         }
 
-        public Claim Edit(ClaimViewModel model)
+        public async Task<Claim> EditAsync(ClaimViewModel model)
         {
             var claim = UnitOfWork.Claim.GetById(model.Id);
 
@@ -52,12 +53,12 @@ namespace Core.Services.Service
             claim.Code = model.Code;
 
             UnitOfWork.Claim.Update(claim);
-            UnitOfWork.SaveChanges();
+            await UnitOfWork.SaveChangesAsync();
 
             return claim;
         }
 
-        public void Delete(int id)
+        public async Task DeleteAsync(int id)
         {
             var claim = UnitOfWork.Claim.GetById(id);
 
@@ -65,7 +66,7 @@ namespace Core.Services.Service
                 throw new KeyNotFoundException();
 
             UnitOfWork.Claim.Remove(claim);
-            UnitOfWork.SaveChanges();
+            await UnitOfWork.SaveChangesAsync();
         }
 
         

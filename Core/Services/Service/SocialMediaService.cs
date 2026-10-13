@@ -20,14 +20,14 @@ namespace Core.Services.Service
             this.UnitOfWork = unitOfWork;
         }
 
-        public IEnumerable<BasicSearchResponse> Get(BasicSearchRequest model)
+        public async Task<IEnumerable<BasicSearchResponse>> GetAsync(BasicSearchRequest model)
         {
             model.Search = model?.Search?.Trim();
-            var result = UnitOfWork.SocialMedia.Get(model);
+            var result =  await UnitOfWork.SocialMedia.GetAsync(model);
             return result;
         }
 
-        public SocialMedia Add(SocialMediaViewModel model)
+        public async Task<SocialMedia> AddAsync(SocialMediaViewModel model)
         {
             var socialMedia = new SocialMedia
             {
@@ -41,12 +41,12 @@ namespace Core.Services.Service
             socialMedia.DisplayOrder = highestDisplayOrder + 1;
 
             UnitOfWork.SocialMedia.Add(socialMedia);
-            UnitOfWork.SaveChanges();
+            await UnitOfWork.SaveChangesAsync();
 
             return socialMedia;
         }
 
-        public SocialMedia Edit(SocialMediaViewModel model)
+        public async Task<SocialMedia> EditAsync(SocialMediaViewModel model)
         {
             var socialMedia = UnitOfWork.SocialMedia.GetById(model.Id);
 
@@ -60,12 +60,12 @@ namespace Core.Services.Service
             socialMedia.DisplayOrder = model.DisplayOrder;
 
             UnitOfWork.SocialMedia.Update(socialMedia);
-            UnitOfWork.SaveChanges();
+            await UnitOfWork.SaveChangesAsync();
 
             return socialMedia;
         }
 
-        public void Delete(int id)
+        public async Task DeleteAsync(int id)
         {
             var socialMedia = UnitOfWork.SocialMedia.GetById(id);
 
@@ -73,7 +73,7 @@ namespace Core.Services.Service
                 throw new KeyNotFoundException();
 
             UnitOfWork.SocialMedia.Remove(socialMedia);
-            UnitOfWork.SaveChanges();
+            await UnitOfWork.SaveChangesAsync();
         }
     }
 }

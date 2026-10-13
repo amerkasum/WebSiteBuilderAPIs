@@ -2,7 +2,9 @@
 using Core.Repositories.IRepository;
 using Domain.DTO;
 using Domain.Entities.System;
+using Domain.Pagination;
 using Domain.Requests;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,19 +19,23 @@ namespace Core.Repositories.Repository
         {
         }
 
-        public IEnumerable<BasicSearchResponse> Get(BasicSearchRequest model)
+        public async Task<PaginationResponse<BasicSearchResponse>> GetAsync(BasicSearchRequest model)
         {
-            var result = _context.Claim.Where(x => string.IsNullOrEmpty(model.Search) ||
-            (x.Name.Contains(model.Search) || x.Code.Contains(model.Search) || x.Description.Contains(model.Search)))
-                .Select(x => new BasicSearchResponse
+            var query = _context.Claim.AsNoTracking().Where(x => string.IsNullOrEmpty(model.Search) ||
+            (x.Name.Contains(model.Search) || x.Code.Contains(model.Search) || x.Description.Contains(model.Search)));
+
+            var totalCount = query.Count();
+
+            var result = await query.Select(x => new BasicSearchResponse
                 {
                     Id = x.Id,
                     Name = x.Name,
                     Code = x.Code,
                     Description = x.Description
-                }).ToList();
+                }).OrderBy(x => x.Id).Skip(model.PageSize * (model.PageNumber - 1)).Take(model.PageSize).ToListAsync();
 
-            return result;
+            return new PaginationResponse<BasicSearchResponse> { Data = result, PageSize = model.PageSize, PageNumber = model.PageNumber, TotalCount = totalCount,
+                                                                 TotalPages = (int)Math.Ceiling((double)totalCount/model.PageSize)};
         }
     }
 }

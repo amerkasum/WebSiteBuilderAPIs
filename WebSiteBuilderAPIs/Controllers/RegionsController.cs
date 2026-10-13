@@ -26,20 +26,20 @@ namespace WebSiteBuilderAPIs.Controllers
         }
 
         [HttpGet(nameof(Get))]
-        public PaginationResponse<RegionDto> Get([FromQuery] RegionRequest model)
+        public async Task<PaginationResponse<RegionDto>> Get([FromQuery] RegionRequest model)
         {
-            return RegionService.Get(model);
+            return await RegionService.GetAsync(model);
         }
 
         [HttpPost(nameof(Add))]
-        public IActionResult Add(RegionViewModel model)
+        public async Task<IActionResult> Add(RegionViewModel model)
         {
             if (!ModelState.IsValid)
                 return BadRequest(new { success = false, message = ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage).ToList() });
 
             try
             {
-                var region = RegionService.Add(model);
+                var region = await RegionService.AddAsync(model);
 
                 return Ok(new { success = true, message = string.Format(Localizer.Added2, Localizer.Region) });
             }
@@ -50,14 +50,14 @@ namespace WebSiteBuilderAPIs.Controllers
         }
 
         [HttpPut(nameof(Edit))]
-        public IActionResult Edit(RegionViewModel model)
+        public async Task<IActionResult> Edit(RegionViewModel model)
         {
             if (!ModelState.IsValid)
                 return BadRequest(new { success = false, message = ModelState.Values.SelectMany(x => x.Errors).SelectMany(x => x.ErrorMessage).ToList() });
 
             try
             {
-                var region = RegionService.Edit(model);
+                var region = await RegionService.EditAsync(model);
 
                 return Ok(new { success = true, message = string.Format(Localizer.Edited2, Localizer.Region) });
             }
@@ -72,11 +72,11 @@ namespace WebSiteBuilderAPIs.Controllers
         }
 
         [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
             try
             {
-                RegionService.Delete(id);
+                await RegionService.DeleteAsync(id);
 
                 return Ok(new { success = true, message = string.Format(Localizer.Deleted2, Localizer.Region) });
             }

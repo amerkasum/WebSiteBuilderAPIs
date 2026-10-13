@@ -2,7 +2,9 @@
 using Core.Repositories.IRepository;
 using Domain.DTO;
 using Domain.Entities.Location;
+using Domain.Pagination;
 using Domain.Requests;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -23,21 +25,26 @@ namespace Core.Repositories.Repository
             return _context.Addresses.Any(x => x.Name.ToLower().Equals(name.ToLower()) && x.CityId == cityId);
         }
 
-        public IEnumerable<AddressDto> Get(BasicSearchRequest model)
+        public async Task<PaginationResponse<AddressDto>> GetAsync(BasicSearchRequest model)
         {
-            var result = _context.Addresses.AsNoTracking()
+            var query = _context.Addresses.AsNoTracking()
                 .Where(x => (string.IsNullOrEmpty(model.Search) || (x.Name.Contains(model.Search) || x.City.Name.Contains(model.Search) ||
                             x.City.Region.Name.Contains(model.Search) || x.City.Region.Country.Name.Contains(model.Search))) &&
-                            (!x.IsDeleted && x.City.RegionId == x.City.Region.Id && x.City.Region.CountryId == x.City.Region.Country.Id))
-                .Select(x => new AddressDto
+                            (!x.IsDeleted && x.City.RegionId == x.City.Region.Id && x.City.Region.CountryId == x.City.Region.Country.Id));
+
+            var totalCount = query.Count();
+
+            var result = await query.Select(x => new AddressDto
                 {
                     Id = x.Id,
                     Address = x.Name,
                     City = x.City.Name,
                     Region = x.City.Region.Name,
                     Country = x.City.Region.Country.Name,
-                }).AsEnumerable();
-            return result;
+                }).OrderBy(x => x.Id).Skip(model.PageSize * (model.PageNumber - 1)).Take(model.PageSize).ToListAsync();
+
+            return new PaginationResponse<AddressDto> { Data = result, PageSize = model.PageSize, PageNumber = model.PageNumber, TotalCount = totalCount,
+                                                        TotalPages = (int)Math.Ceiling((double)totalCount/model.PageSize) };
         }
     }
 }

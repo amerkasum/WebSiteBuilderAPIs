@@ -26,20 +26,20 @@ namespace WebSiteBuilderAPIs.Controllers
         }
 
         [HttpGet(nameof(Get))]
-        public IEnumerable<CurrencyDto> Get([FromQuery] BasicSearchRequest model)
+        public async Task<IEnumerable<CurrencyDto>> Get([FromQuery] BasicSearchRequest model)
         {
-            return CurrencyService.Get(model);
+            return await CurrencyService.GetAsync(model);
         }
 
         [HttpPost(nameof(Add))]
-        public IActionResult Add(CurrencyViewModel model)
+        public async Task<IActionResult> Add(CurrencyViewModel model)
         {
             if (!ModelState.IsValid)
                 return BadRequest(new { success = false, message = ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage).ToList() });
 
             try
             {
-                var currency = CurrencyService.Add(model);
+                var currency = await CurrencyService.AddAsync(model);
 
                 return Ok(new { success = true, message = string.Format(Localizer.Added2, Localizer.Currency) });
             }
@@ -50,14 +50,14 @@ namespace WebSiteBuilderAPIs.Controllers
         }
 
         [HttpPut(nameof(Edit))]
-        public IActionResult Edit(CurrencyViewModel model)
+        public async Task<IActionResult> Edit(CurrencyViewModel model)
         {
             if (!ModelState.IsValid)
                 return BadRequest(new { success = false, message = ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage).ToList() });
 
             try
             {
-                var currency = CurrencyService.Edit(model);
+                var currency = await CurrencyService.EditAsync(model);
                 return Ok(new { success = true, message = string.Format(Localizer.Edited2, Localizer.Currency) });
             }
             catch(KeyNotFoundException)
@@ -71,11 +71,11 @@ namespace WebSiteBuilderAPIs.Controllers
         }
 
         [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
             try
             {
-                CurrencyService.Delete(id);
+                await CurrencyService.DeleteAsync(id);
                 return Ok(new { success = true, message = string.Format(Localizer.Deleted2, Localizer.Currency) });
             }
             catch(KeyNotFoundException)

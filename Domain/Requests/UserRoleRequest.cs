@@ -11,5 +11,7 @@ namespace Domain.Requests
         public string? Search { get; set; }
         public int? RoleId { get; set; }
         public int? ClaimId { get; set; }
+        public int PageSize { get; set; }
+        public int PageNumber { get; set; }
     }
 }

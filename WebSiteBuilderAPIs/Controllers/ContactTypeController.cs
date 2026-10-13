@@ -29,14 +29,14 @@ namespace WebSiteBuilderAPIs.Controllers
         }
 
         [HttpGet(nameof(Get))]
-        public IEnumerable<BasicSearchResponse> Get([FromQuery] BasicSearchRequest model)
+        public async Task<IEnumerable<BasicSearchResponse>> Get([FromQuery] BasicSearchRequest model)
         {
-            return ContactTypeService.Get(model);
+            return await ContactTypeService.GetAsync(model);
         }
 
 
         [HttpPost(nameof(Add))]
-        public IActionResult Add(ContactTypeViewModel model)
+        public async Task<IActionResult> Add(ContactTypeViewModel model)
         {
             try
             {
@@ -45,7 +45,7 @@ namespace WebSiteBuilderAPIs.Controllers
                     return BadRequest(new { success = false, message = ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage).ToList() });
                 }
 
-                var contactType = ContactTypeService.Add(model);
+                var contactType = await ContactTypeService.AddAsync(model);
 
                 return Ok(new { success = true, message = string.Format(Localizer.Added, Localizer.ContactType) });
             }
@@ -56,7 +56,7 @@ namespace WebSiteBuilderAPIs.Controllers
 
 
         [HttpPut(nameof(Edit))]
-        public IActionResult Edit(ContactTypeViewModel model)
+        public async Task<IActionResult> Edit(ContactTypeViewModel model)
         {
             try
             {
@@ -65,7 +65,7 @@ namespace WebSiteBuilderAPIs.Controllers
                     return BadRequest(new { success = false, message = ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage).ToList() });
                 }
 
-                var contactType = ContactTypeService.Edit(model);
+                var contactType = await ContactTypeService.EditAsync(model);
                 return Ok(new { success = true, message = string.Format(Localizer.Edited, Localizer.ContactType) });
             }
             catch (KeyNotFoundException)
@@ -80,11 +80,11 @@ namespace WebSiteBuilderAPIs.Controllers
         }
 
         [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
             try
             {
-                ContactTypeService.Delete(id);
+                await ContactTypeService.DeleteAsync(id);
 
                 return Ok(new { success = true, message = string.Format(Localizer.Deleted, Localizer.ContactType) });
             }

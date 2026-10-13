@@ -28,19 +28,19 @@ namespace WebSiteBuilderAPIs.Controllers
         }
 
         [HttpGet(nameof(Get))]
-        public PaginationResponse<CountryDto> Get([FromQuery] CountryRequest model)
+        public async Task<PaginationResponse<CountryDto>> Get([FromQuery] CountryRequest model)
         {
-            return CountryService.Get(model);
+            return await CountryService.GetAsync(model);
         }
 
         [HttpPost(nameof(Add))]
-        public IActionResult Add(CountryViewModel model)
+        public async Task<IActionResult> Add(CountryViewModel model)
         {
             if (!ModelState.IsValid)
                 return BadRequest(new { success = false, message = ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage).ToList() });
             try
             {
-                var country = CountryService.Add(model);
+                var country = await CountryService.AddAsync(model);
                 return Ok(new { success = true, message = string.Format(Localizer.Added2, Localizer.Country) });
             }
             catch(Exception e)
@@ -50,14 +50,14 @@ namespace WebSiteBuilderAPIs.Controllers
         }
 
         [HttpPut(nameof(Edit))]
-        public IActionResult Edit(CountryViewModel model)
+        public async Task<IActionResult> Edit(CountryViewModel model)
         {
             if (!ModelState.IsValid)
                 return BadRequest(new { success =false, message = ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage).ToList() });
             
             try
             {
-                var country = CountryService.Edit(model);
+                var country = await CountryService.EditAsync(model);
                 return Ok(new { success = true, message = string.Format(Localizer.Edited2, Localizer.Country) });
             }
             catch(KeyNotFoundException)
@@ -71,11 +71,11 @@ namespace WebSiteBuilderAPIs.Controllers
         }
 
         [HttpDelete(nameof(Delete))]
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
             try
             {
-                CountryService.Delete(id);
+                await CountryService.DeleteAsync(id);
                 return Ok(new { success = true, message = string.Format(Localizer.Deleted2, Localizer.Country) });
             }
             catch(KeyNotFoundException)

@@ -11,6 +11,6 @@ namespace Core.Repositories.IRepository
 {
     public interface IUserSocialMediaRepository : IRepository<UserSocialMedia>
     {
-        IEnumerable<UserSocialMediaDto> Get(UserSocialMediaRequest model);
+        Task<IEnumerable<UserSocialMediaDto>> GetAsync(UserSocialMediaRequest model);
     }
 }

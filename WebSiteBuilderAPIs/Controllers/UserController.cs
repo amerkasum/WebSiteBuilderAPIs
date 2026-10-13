@@ -35,7 +35,7 @@ namespace WebSiteBuilderAPIs.Controllers
         }
 
         [HttpPost(nameof(Add))]
-        public IActionResult Add([FromBody]UserViewModel model)
+        public async Task<IActionResult> Add([FromBody]UserViewModel model)
         {
             if (!ModelState.IsValid)
                 return BadRequest(new { success = false, message = ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage).ToList() });
@@ -45,7 +45,7 @@ namespace WebSiteBuilderAPIs.Controllers
 
             try
             {
-                var user = UserService.Add(model);
+                var user = await UserService.AddAsync(model);
 
                 return Ok(new { success = true, message = string.Format(Localizer.Added, Localizer.User)});   
             }
