@@ -43,7 +43,7 @@ namespace Core.Services.Service
 
         public async Task<Feedback> EditAsync(FeedbackViewModel model)
         {
-            var feedback = UnitOfWork.Feedback.GetById(model.Id);
+            var feedback = await UnitOfWork.Feedback.GetByIdAsync(model.Id);
 
             if (feedback == null)
                 throw new KeyNotFoundException();
@@ -59,7 +59,7 @@ namespace Core.Services.Service
 
         public async Task DeleteAsync(int id)
         {
-            var feedback = UnitOfWork.Feedback.GetById(id);
+            var feedback = await UnitOfWork.Feedback.GetByIdAsync(id);
 
             if (feedback == null)
                 throw new KeyNotFoundException();

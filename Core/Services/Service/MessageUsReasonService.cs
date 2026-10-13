@@ -43,7 +43,7 @@ namespace Core.Services.Service
 
         public async Task<MessageUsReason> EditAsync(MessageUsReasonViewModel model)
         {
-            var messageUsReason = UnitOfWork.MessageUsReason.GetById(model.Id);
+            var messageUsReason = await UnitOfWork.MessageUsReason.GetByIdAsync(model.Id);
 
             if (messageUsReason == null)
                 throw new KeyNotFoundException();
@@ -59,7 +59,7 @@ namespace Core.Services.Service
 
         public async Task DeleteAsync(int id)
         {
-            var messageUsReason = UnitOfWork.MessageUsReason.GetById(id);
+            var messageUsReason = await UnitOfWork.MessageUsReason.GetByIdAsync(id);
 
             if (messageUsReason == null)
                 throw new KeyNotFoundException();

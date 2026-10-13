@@ -44,7 +44,7 @@ namespace Core.Services.Service
 
         public async Task<Gender> EditAsync(GenderViewModel model)
         {
-            var gender = UnitOfWork.Gender.GetById(model.Id);
+            var gender = await UnitOfWork.Gender.GetByIdAsync(model.Id);
 
             if (gender == null)
                 throw new KeyNotFoundException();
@@ -61,7 +61,7 @@ namespace Core.Services.Service
 
         public async Task DeleteAsync(int id)
         {
-            var gender = UnitOfWork.Gender.GetById(id);
+            var gender = await UnitOfWork.Gender.GetByIdAsync(id);
 
             if (gender == null)
                 throw new KeyNotFoundException();

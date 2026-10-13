@@ -46,7 +46,7 @@ namespace Core.Services.Service
         }
         public async Task<Currency> EditAsync(CurrencyViewModel model)
         {
-            var currency = UnitOfWork.Currency.GetById(model.Id);
+            var currency = await UnitOfWork.Currency.GetByIdAsync(model.Id);
 
             if (currency == null)
                 throw new KeyNotFoundException();
@@ -65,7 +65,7 @@ namespace Core.Services.Service
 
         public async Task DeleteAsync(int id)
         {
-            var currency = UnitOfWork.Currency.GetById(id);
+            var currency = await UnitOfWork.Currency.GetByIdAsync(id);
 
             if (currency == null)
                 throw new KeyNotFoundException();

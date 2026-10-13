@@ -59,6 +59,7 @@ namespace Resources.Localizer
         public string Claim => _localizer["Claim"];
         public string RoleClaim => _localizer["RoleClaim"];
         public string UserRole => _localizer["UserRole"];
+        public string AuthEventType => _localizer["AuthEventType"];
 
         #endregion
     }

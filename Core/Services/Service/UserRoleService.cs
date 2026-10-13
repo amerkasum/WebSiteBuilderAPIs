@@ -44,7 +44,7 @@ namespace Core.Services.Service
 
         public async Task<UserRole> EditAsync(UserRoleViewModel model)
         {
-            var userRole = UnitOfWork.UserRole.GetById(model.Id);
+            var userRole = await UnitOfWork.UserRole.GetByIdAsync(model.Id);
 
             if (userRole == null)
                 throw new KeyNotFoundException();
@@ -61,7 +61,7 @@ namespace Core.Services.Service
 
         public async Task DeleteAsync(int id)
         {
-            var userRole = UnitOfWork.UserRole.GetById(id);
+            var userRole = await UnitOfWork.UserRole.GetByIdAsync(id);
 
             if (userRole == null)
                 throw new KeyNotFoundException();

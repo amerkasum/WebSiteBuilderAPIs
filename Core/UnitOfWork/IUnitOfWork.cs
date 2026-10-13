@@ -9,7 +9,7 @@ namespace Core.UnitOfWork
 {
     public interface IUnitOfWork
     {
-        #region Repositories
+        #region Application Repositories
         ICountryRepository Countries { get; }
         IRegionRepository Regions { get; }
         IMessageUsRepository MessageUs { get; }
@@ -33,8 +33,13 @@ namespace Core.UnitOfWork
         ICurrencyRepository Currency { get; }
         IClaimRepository Claim { get; }
         IRoleClaimRepository RoleClaim { get; }
+
+        #endregion
+
+        #region Logs Repositories
         IAuditLogRepository AuditLog { get; }
         IAuditLogEntityPropertyChangeRepository AuditLogEntityPropertyChange { get; }
+        IAuthEventTypeRepository AuthEventType { get; }
         #endregion
 
         int SaveChanges();

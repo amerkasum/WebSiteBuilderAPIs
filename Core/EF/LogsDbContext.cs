@@ -1,4 +1,5 @@
 ﻿using Core.Services.Service;
+using Domain.Entities.Logs;
 using Domain.Entities.System;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -73,6 +74,7 @@ namespace Core.EF
         #region
         public DbSet<AuditLog> AuditLog { get; set; }
         public DbSet<AuditLogEntityPropertyChange> AuditLogEntityPropertyChange { get; set; }
+        public DbSet<AuthEventType> AuthEventType { get; set; }
         #endregion
     }
 }

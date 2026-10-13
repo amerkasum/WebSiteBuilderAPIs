@@ -46,7 +46,7 @@ namespace Core.Services.Service
 
         public async Task<Claim> EditAsync(ClaimViewModel model)
         {
-            var claim = UnitOfWork.Claim.GetById(model.Id);
+            var claim = await UnitOfWork.Claim.GetByIdAsync(model.Id);
 
             if (claim == null)
                 throw new KeyNotFoundException();
@@ -63,7 +63,7 @@ namespace Core.Services.Service
 
         public async Task DeleteAsync(int id)
         {
-            var claim = UnitOfWork.Claim.GetById(id);
+            var claim = await UnitOfWork.Claim.GetByIdAsync(id);
 
             if (claim == null)
                 throw new KeyNotFoundException();

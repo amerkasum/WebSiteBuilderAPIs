@@ -45,7 +45,7 @@ namespace Core.Services.Service
 
         public async Task<UserSocialMedia> EditAsync(UserSocialMediaViewModel model)
         {
-            var userSocialMedia = UnitOfWork.UserSocialMedia.GetById(model.Id);
+            var userSocialMedia = await UnitOfWork.UserSocialMedia.GetByIdAsync(model.Id);
 
             if (userSocialMedia == null)
                 throw new KeyNotFoundException();
@@ -63,7 +63,7 @@ namespace Core.Services.Service
 
         public async Task DeleteAsync(int id)
         {
-            var userSocialMedia = UnitOfWork.UserSocialMedia.GetById(id);
+            var userSocialMedia = await UnitOfWork.UserSocialMedia.GetByIdAsync(id);
 
             if (userSocialMedia == null)
                 throw new KeyNotFoundException();

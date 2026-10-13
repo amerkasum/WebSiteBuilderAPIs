@@ -1,7 +1,7 @@
 ﻿using Domain.DTO;
+using Domain.Entities.Logs;
 using Domain.Entities.System;
 using Domain.Pagination;
-using Domain.Requests;
 using System;
 using System.Collections.Generic;
 using System.Linq;

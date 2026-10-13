@@ -47,7 +47,7 @@ namespace Core.Services.Service
 
         public async Task<BusinessType> EditAsync(BusinessTypeViewModel model)
         {
-            var businessType = UnitOfWork.BusinessType.GetById(model.Id);
+            var businessType = await UnitOfWork.BusinessType.GetByIdAsync(model.Id);
 
             if (businessType == null)
                 throw new KeyNotFoundException();
@@ -66,7 +66,7 @@ namespace Core.Services.Service
 
         public async Task DeleteAsync(int id)
         {
-            var businessType = UnitOfWork.BusinessType.GetById(id);
+            var businessType = await UnitOfWork.BusinessType.GetByIdAsync(id);
 
             if (businessType == null)
                 throw new KeyNotFoundException();

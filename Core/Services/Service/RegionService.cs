@@ -46,7 +46,7 @@ namespace Core.Services.Service
 
         public async Task<Region> EditAsync(RegionViewModel model)
         {
-            var region = UnitOfWork.Regions.GetById(model.Id);
+            var region = await UnitOfWork.Regions.GetByIdAsync(model.Id);
 
             if (region == null)
                 throw new KeyNotFoundException();
@@ -62,7 +62,7 @@ namespace Core.Services.Service
 
         public async Task DeleteAsync(int id)
         {
-            var region = UnitOfWork.Regions.GetById(id);
+            var region = await UnitOfWork.Regions.GetByIdAsync(id);
 
             if (region == null)
                 throw new KeyNotFoundException();

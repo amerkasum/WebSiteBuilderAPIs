@@ -13,7 +13,7 @@ namespace Core.UnitOfWork
         private readonly ApplicationDbContext _context;
         private readonly LogsDbContext _logsContext;
 
-        #region Repositories
+        #region Application Repositories
         public ICountryRepository Countries => new CountryRepository(_context);
         public IRegionRepository Regions => new RegionRepository(_context);
         public IMessageUsRepository MessageUs => new MessageUsRepository(_context);
@@ -37,10 +37,16 @@ namespace Core.UnitOfWork
         public ICurrencyRepository Currency => new CurrencyRepository(_context);
         public IClaimRepository Claim => new ClaimRepository(_context);
         public IRoleClaimRepository RoleClaim => new RoleClaimRepository(_context);
-        public IAuditLogRepository AuditLog => new AuditLogRepository(_logsContext);
-        public IAuditLogEntityPropertyChangeRepository AuditLogEntityPropertyChange => new AuditLogEntityPropertyChangeRepository(_logsContext);
 
         #endregion
+
+        #region Logs Repositories
+        public IAuditLogRepository AuditLog => new AuditLogRepository(_logsContext);
+        public IAuditLogEntityPropertyChangeRepository AuditLogEntityPropertyChange => new AuditLogEntityPropertyChangeRepository(_logsContext);
+        public IAuthEventTypeRepository AuthEventType => new AuthEventTypeRepository(_logsContext);
+        #endregion
+
+
         public UnitOfWork(ApplicationDbContext context, LogsDbContext logsContext)
         {
             this._context = context;

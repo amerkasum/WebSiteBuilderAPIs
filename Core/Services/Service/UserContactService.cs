@@ -47,7 +47,7 @@ namespace Core.Services.Service
 
         public async Task<UserContact> EditAsync(UserContactViewModel model)
         {
-            var userContact = UnitOfWork.UserContact.GetById(model.Id);
+            var userContact = await UnitOfWork.UserContact.GetByIdAsync(model.Id);
 
             if (userContact == null)
                 throw new KeyNotFoundException();
@@ -65,7 +65,7 @@ namespace Core.Services.Service
 
         public async Task DeleteAsync(int id)
         {
-            var userContact = UnitOfWork.UserContact.GetById(id);
+            var userContact = await UnitOfWork.UserContact.GetByIdAsync(id);
 
             if (userContact == null)
                 throw new KeyNotFoundException();

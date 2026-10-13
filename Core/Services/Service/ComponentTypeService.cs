@@ -48,7 +48,7 @@ namespace Core.Services.Service
 
         public async Task<ComponentType> EditAsync(ComponentTypeViewModel model)
         {
-            var componentType = UnitOfWork.ComponentType.GetById(model.Id);
+            var componentType = await UnitOfWork.ComponentType.GetByIdAsync(model.Id);
 
             if (componentType == null)
                 throw new KeyNotFoundException();
@@ -65,7 +65,7 @@ namespace Core.Services.Service
 
         public async Task DeleteAsync(int id)
         {
-            var componentType = UnitOfWork.ComponentType.GetById(id);
+            var componentType = await UnitOfWork.ComponentType.GetByIdAsync(id);
 
             if (componentType == null)
                 throw new KeyNotFoundException();

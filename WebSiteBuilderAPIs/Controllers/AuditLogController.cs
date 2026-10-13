@@ -1,7 +1,7 @@
 ﻿using Core.Services.IService;
 using Domain.DTO;
+using Domain.Entities.Logs;
 using Domain.Pagination;
-using Domain.Requests;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;

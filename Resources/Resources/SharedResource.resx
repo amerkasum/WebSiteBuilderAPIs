@@ -132,6 +132,9 @@
   <data name="AlreadyExist" xml:space="preserve">
     <value>{0} already exist.</value>
   </data>
+  <data name="AuthEventType" xml:space="preserve">
+    <value>Authentication event type</value>
+  </data>
   <data name="BusinessType" xml:space="preserve">
     <value>Business type</value>
   </data>

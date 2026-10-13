@@ -42,7 +42,7 @@ namespace Core.Services.Service
 
         public async Task<City> EditAsync(CityViewModel model)
         {
-            var city = UnitOfWork.City.GetById(model.Id);
+            var city = await UnitOfWork.City.GetByIdAsync(model.Id);
 
             if (city == null)
                 throw new KeyNotFoundException();
@@ -59,7 +59,7 @@ namespace Core.Services.Service
 
         public async Task DeleteAsync(int id)
         {
-            var city = UnitOfWork.City.GetById(id);
+            var city = await UnitOfWork.City.GetByIdAsync(id);
 
             if (city == null)
                 throw new KeyNotFoundException();

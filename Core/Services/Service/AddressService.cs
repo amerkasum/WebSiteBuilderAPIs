@@ -83,7 +83,7 @@ namespace Core.Services.Service
 
         public async Task DeleteAsync(int id)
         {
-            var address = UnitOfWork.Address.GetById(id);
+            var address = await UnitOfWork.Address.GetByIdAsync(id);
 
             if (address == null)
                 throw new KeyNotFoundException();

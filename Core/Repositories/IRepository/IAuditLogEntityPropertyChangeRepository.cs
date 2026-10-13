@@ -1,5 +1,5 @@
 ﻿using Domain.DTO;
-using Domain.Entities.System;
+using Domain.Entities.Logs;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -35,8 +35,13 @@ namespace Core.Services
             services.AddTransient<IRoleClaimService, RoleClaimService>();
             services.AddTransient<IRegionService, RegionService>();
             services.AddTransient<ILoggedUser, LoggedUser>();
+
+
+
+
             services.AddTransient<IAuditLogService, AuditLogService>();
             services.AddTransient<IAuditLogEntityPropertyChangeService, AuditLogEntityPropertyChangeService>();
+            services.AddTransient<IAuthEventTypeService, AuthEventTypeService>();
                 
         }
     }

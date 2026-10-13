@@ -37,7 +37,7 @@ namespace Core.Services.Service
 
         public async Task<UserResidence> EditAsync(UserResidenceViewModel model)
         {
-            var userResidence = UnitOfWork.UserResidence.GetById(model.Id);
+            var userResidence = await UnitOfWork.UserResidence.GetByIdAsync(model.Id);
 
             if (userResidence == null)
                 throw new KeyNotFoundException();
@@ -54,7 +54,7 @@ namespace Core.Services.Service
 
         public async Task DeleteAsync(int id)
         {
-            var userResidence = UnitOfWork.UserResidence.GetById(id);
+            var userResidence = await UnitOfWork.UserResidence.GetByIdAsync(id);
 
             if (userResidence == null)
                 throw new KeyNotFoundException();

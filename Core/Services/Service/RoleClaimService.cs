@@ -43,7 +43,7 @@ namespace Core.Services.Service
 
         public async Task<RoleClaim> EditAsync(RoleClaimViewModel model)
         {
-            var roleClaim = UnitOfWork.RoleClaim.GetById(model.Id);
+            var roleClaim = await UnitOfWork.RoleClaim.GetByIdAsync(model.Id);
 
             if (roleClaim == null)
                 throw new KeyNotFoundException();
@@ -60,7 +60,7 @@ namespace Core.Services.Service
 
         public async Task DeleteAsync(int id)
         {
-            var roleClaim = UnitOfWork.RoleClaim.GetById(id);
+            var roleClaim = await UnitOfWork.RoleClaim.GetByIdAsync(id);
 
             if (roleClaim == null)
                 throw new KeyNotFoundException();
