@@ -13,9 +13,11 @@ namespace Core.Services.Service
     public class UserResidenceService : IUserResidenceService
     {
         private readonly IUnitOfWork UnitOfWork;
-        public UserResidenceService(IUnitOfWork unitOfWork)
+        private readonly IAuditLogService AuditLogService;
+        public UserResidenceService(IUnitOfWork unitOfWork, IAuditLogService auditLogService)
         {
             this.UnitOfWork = unitOfWork;
+            this.AuditLogService = auditLogService;
         }
 
         public async Task<UserResidence> AddAsync(UserResidenceViewModel model)
@@ -44,6 +46,7 @@ namespace Core.Services.Service
             userResidence.IsPrimary = model.IsPrimary;
 
             UnitOfWork.UserResidence.Update(userResidence);
+            await AuditLogService.Logger();
             await UnitOfWork.SaveChangesAsync();
 
             return userResidence;
@@ -57,6 +60,7 @@ namespace Core.Services.Service
                 throw new KeyNotFoundException();
 
             UnitOfWork.UserResidence.Remove(userResidence);
+            await AuditLogService.Logger();
             await UnitOfWork.SaveChangesAsync();
         }
 

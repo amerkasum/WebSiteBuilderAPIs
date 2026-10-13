@@ -15,9 +15,11 @@ namespace Core.Services.Service
     public class RoleClaimService : IRoleClaimService
     {
         private readonly IUnitOfWork UnitOfWork;
-        public RoleClaimService(IUnitOfWork unitOfWork)
+        private readonly IAuditLogService AuditLogService;
+        public RoleClaimService(IUnitOfWork unitOfWork, IAuditLogService auditLogService)
         {
             this.UnitOfWork = unitOfWork;
+            this.AuditLogService = auditLogService;
         }
 
         public async Task<IEnumerable<RoleClaimDto>> GetAsync(RoleClaimRequest model)
@@ -49,7 +51,8 @@ namespace Core.Services.Service
             roleClaim.RoleId = model.RoleId;
             roleClaim.ClaimId = model.ClaimId;
 
-            UnitOfWork.RoleClaim.Update(roleClaim);
+            UnitOfWork.RoleClaim.Update(roleClaim); 
+            await AuditLogService.Logger();
             await UnitOfWork.SaveChangesAsync();
 
             return roleClaim;
@@ -63,6 +66,7 @@ namespace Core.Services.Service
                 throw new KeyNotFoundException();
 
             UnitOfWork.RoleClaim.Remove(roleClaim);
+            await AuditLogService.Logger();
             await UnitOfWork.SaveChangesAsync();
         }
     }

@@ -15,9 +15,11 @@ namespace Core.Services.Service
     public class RoleService : IRoleService
     {
         private readonly IUnitOfWork UnitOfWork;
-        public RoleService(IUnitOfWork unitOfWork)
+        private readonly IAuditLogService AuditLogService;
+        public RoleService(IUnitOfWork unitOfWork, IAuditLogService auditLogService)
         {
             this.UnitOfWork = unitOfWork;
+            this.AuditLogService = auditLogService;
         }
 
         public async Task<IEnumerable<BasicSearchResponse>> GetAsync(BasicSearchRequest model)
@@ -54,6 +56,7 @@ namespace Core.Services.Service
             role.Description = model.Description;
 
             UnitOfWork.Role.Update(role);
+            await AuditLogService.Logger();
             await UnitOfWork.SaveChangesAsync();
 
             return role;
@@ -67,6 +70,7 @@ namespace Core.Services.Service
                 throw new KeyNotFoundException();
 
             UnitOfWork.Role.Remove(role);
+            await AuditLogService.Logger();
             await UnitOfWork.SaveChangesAsync();
         }
     }

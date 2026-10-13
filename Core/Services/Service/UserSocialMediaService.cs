@@ -15,9 +15,11 @@ namespace Core.Services.Service
     public class UserSocialMediaService : IUserSocialMediaService
     {
         private readonly IUnitOfWork UnitOfWork;
-        public UserSocialMediaService(IUnitOfWork unitOfWork)
+        private readonly IAuditLogService AuditLogService;
+        public UserSocialMediaService(IUnitOfWork unitOfWork, IAuditLogService auditLogService)
         {
             this.UnitOfWork = unitOfWork;
+            this.AuditLogService = auditLogService;
         }
 
         public async Task<IEnumerable<UserSocialMediaDto>> GetAsync(UserSocialMediaRequest model)
@@ -53,6 +55,7 @@ namespace Core.Services.Service
             userSocialMedia.Link = model.Link;
 
             UnitOfWork.UserSocialMedia.Update(userSocialMedia);
+            await AuditLogService.Logger();
             await UnitOfWork.SaveChangesAsync();
 
             return userSocialMedia;
@@ -66,6 +69,7 @@ namespace Core.Services.Service
                 throw new KeyNotFoundException();
 
             UnitOfWork.UserSocialMedia.Remove(userSocialMedia);
+            await AuditLogService.Logger();
             await UnitOfWork.SaveChangesAsync();
         }
 

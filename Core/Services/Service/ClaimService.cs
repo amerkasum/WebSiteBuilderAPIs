@@ -16,9 +16,11 @@ namespace Core.Services.Service
     public class ClaimService : IClaimService
     {
         private readonly IUnitOfWork UnitOfWork;
-        public ClaimService(IUnitOfWork unitOfWork)
+        private readonly IAuditLogService AuditLogService;
+        public ClaimService(IUnitOfWork unitOfWork, IAuditLogService auditLogService)
         {
             this.UnitOfWork = unitOfWork;
+            this.AuditLogService = auditLogService;
         }
 
         public async Task<PaginationResponse<BasicSearchResponse>> GetAsync(BasicSearchRequest model)
@@ -53,6 +55,7 @@ namespace Core.Services.Service
             claim.Code = model.Code;
 
             UnitOfWork.Claim.Update(claim);
+            await AuditLogService.Logger();
             await UnitOfWork.SaveChangesAsync();
 
             return claim;
@@ -66,6 +69,7 @@ namespace Core.Services.Service
                 throw new KeyNotFoundException();
 
             UnitOfWork.Claim.Remove(claim);
+            await AuditLogService.Logger();
             await UnitOfWork.SaveChangesAsync();
         }
 

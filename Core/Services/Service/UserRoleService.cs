@@ -16,9 +16,11 @@ namespace Core.Services.Service
     public class UserRoleService : IUserRoleService
     {
         private readonly IUnitOfWork UnitOfWork;
-        public UserRoleService(IUnitOfWork unitOfWork)
+        private readonly IAuditLogService AuditLogService;
+        public UserRoleService(IUnitOfWork unitOfWork, IAuditLogService auditLogService)
         {
             this.UnitOfWork = unitOfWork;
+            this.AuditLogService = auditLogService;
         }
 
         public async Task<PaginationResponse<UserRoleDto>> GetAsync(UserRoleRequest model)
@@ -51,6 +53,7 @@ namespace Core.Services.Service
             userRole.RoleId = model.RoleId;
 
             UnitOfWork.UserRole.Update(userRole);
+            await AuditLogService.Logger();
             await UnitOfWork.SaveChangesAsync();
 
             return userRole;
@@ -64,6 +67,7 @@ namespace Core.Services.Service
                 throw new KeyNotFoundException();
 
             UnitOfWork.UserRole.Remove(userRole);
+            await AuditLogService.Logger();
             await UnitOfWork.SaveChangesAsync();
         }
 

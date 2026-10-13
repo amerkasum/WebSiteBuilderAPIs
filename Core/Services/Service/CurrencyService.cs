@@ -15,9 +15,11 @@ namespace Core.Services.Service
     public class CurrencyService : ICurrencyService
     {
         private readonly IUnitOfWork UnitOfWork;
-        public CurrencyService(IUnitOfWork unitOfWork)
+        private readonly IAuditLogService AuditLogService;
+        public CurrencyService(IUnitOfWork unitOfWork, IAuditLogService auditLogService)
         {
             this.UnitOfWork = unitOfWork;
+            this.AuditLogService = auditLogService;
         }
 
         public async Task<IEnumerable<CurrencyDto>> GetAsync(BasicSearchRequest model)
@@ -55,6 +57,7 @@ namespace Core.Services.Service
             currency.DecimalPlaces = model.DecimalPlaces;
 
             UnitOfWork.Currency.Update(currency);
+            await AuditLogService.Logger();
             await UnitOfWork.SaveChangesAsync();
 
             return currency;
@@ -68,6 +71,7 @@ namespace Core.Services.Service
                 throw new KeyNotFoundException();
 
             UnitOfWork.Currency.Remove(currency);
+            await AuditLogService.Logger();
             await UnitOfWork.SaveChangesAsync();
         }
 

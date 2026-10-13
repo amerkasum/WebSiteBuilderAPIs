@@ -17,9 +17,11 @@ namespace Core.Services.Service
     public class UserContactService : IUserContactService
     {
         private readonly IUnitOfWork UnitOfWork;
-        public UserContactService(IUnitOfWork unitOfWork)
+        private readonly IAuditLogService AuditLogService;
+        public UserContactService(IUnitOfWork unitOfWork, IAuditLogService auditLogService)
         {
             this.UnitOfWork = unitOfWork;
+            this.AuditLogService = auditLogService;
         }
 
         public async Task<IEnumerable<UserContactDto>> GetAsync(UserContactRequest model)
@@ -55,6 +57,7 @@ namespace Core.Services.Service
             userContact.Value = model.Value;
 
             UnitOfWork.UserContact.Update(userContact);
+            await AuditLogService.Logger();
             await UnitOfWork.SaveChangesAsync();
 
             return userContact;
@@ -68,6 +71,7 @@ namespace Core.Services.Service
                 throw new KeyNotFoundException();
 
             UnitOfWork.UserContact.Remove(userContact);
+            await AuditLogService.Logger();
             await UnitOfWork.SaveChangesAsync();
         }
 

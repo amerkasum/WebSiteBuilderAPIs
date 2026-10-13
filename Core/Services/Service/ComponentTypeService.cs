@@ -18,9 +18,11 @@ namespace Core.Services.Service
     public class ComponentTypeService : IComponentTypeService
     {
         private readonly IUnitOfWork UnitOfWork;
-        public ComponentTypeService(IUnitOfWork unitOfWork)
+        private readonly IAuditLogService AuditLogService;
+        public ComponentTypeService(IUnitOfWork unitOfWork, IAuditLogService auditLogService    )
         {
             this.UnitOfWork = unitOfWork;
+            this.AuditLogService = auditLogService;
         }
 
         public async Task<PaginationResponse<BasicSearchResponse>> GetAsync(BasicSearchRequest model)
@@ -55,6 +57,7 @@ namespace Core.Services.Service
             componentType.Code = model.Code;
 
             UnitOfWork.ComponentType.Update(componentType);
+            await AuditLogService.Logger();
             await UnitOfWork.SaveChangesAsync();
 
             return componentType;
@@ -68,6 +71,7 @@ namespace Core.Services.Service
                 throw new KeyNotFoundException();
 
             UnitOfWork.ComponentType.Remove(componentType);
+            await AuditLogService.Logger();
             await UnitOfWork.SaveChangesAsync();
         }
     }
