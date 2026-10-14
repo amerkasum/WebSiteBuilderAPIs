@@ -183,6 +183,9 @@
   <data name="Gender" xml:space="preserve">
     <value>Spol</value>
   </data>
+  <data name="IncorrectPassword" xml:space="preserve">
+    <value>Netačna šifra.</value>
+  </data>
   <data name="InternalServerError" xml:space="preserve">
     <value>Došlo je do greške na serveru. </value>
   </data>
@@ -245,6 +248,9 @@
   </data>
   <data name="User" xml:space="preserve">
     <value>Korisnik</value>
+  </data>
+  <data name="UserAccountNotFound" xml:space="preserve">
+    <value>Korisnički nalog nije pronađen.</value>
   </data>
   <data name="UserContact" xml:space="preserve">
     <value>Kontakt korisnika</value>

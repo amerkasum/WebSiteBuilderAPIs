@@ -183,6 +183,9 @@
   <data name="Gender" xml:space="preserve">
     <value>Gender</value>
   </data>
+  <data name="IncorrectPassword" xml:space="preserve">
+    <value>Password is incorrect.</value>
+  </data>
   <data name="InternalServerError" xml:space="preserve">
     <value>A server error occured.</value>
   </data>
@@ -245,6 +248,9 @@
   </data>
   <data name="User" xml:space="preserve">
     <value>User</value>
+  </data>
+  <data name="UserAccountNotFound" xml:space="preserve">
+    <value>User account not found.</value>
   </data>
   <data name="UserContact" xml:space="preserve">
     <value>User contact</value>

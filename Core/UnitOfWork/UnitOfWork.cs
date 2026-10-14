@@ -37,6 +37,7 @@ namespace Core.UnitOfWork
         public ICurrencyRepository Currency => new CurrencyRepository(_context);
         public IClaimRepository Claim => new ClaimRepository(_context);
         public IRoleClaimRepository RoleClaim => new RoleClaimRepository(_context);
+        public IRefreshTokenRepository RefreshToken => new RefreshTokenRepository(_context);
 
         #endregion
 
@@ -44,6 +45,7 @@ namespace Core.UnitOfWork
         public IAuditLogRepository AuditLog => new AuditLogRepository(_logsContext);
         public IAuditLogEntityPropertyChangeRepository AuditLogEntityPropertyChange => new AuditLogEntityPropertyChangeRepository(_logsContext);
         public IAuthEventTypeRepository AuthEventType => new AuthEventTypeRepository(_logsContext);
+        public IAuthLogRepository AuthLog => new AuthLogRepository(_logsContext);
         #endregion
 
 

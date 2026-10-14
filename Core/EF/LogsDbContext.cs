@@ -1,6 +1,6 @@
 ﻿using Core.Services.Service;
+using Domain.Entities.AppLogs;
 using Domain.Entities.Logs;
-using Domain.Entities.System;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;

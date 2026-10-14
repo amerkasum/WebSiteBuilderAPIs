@@ -1,6 +1,6 @@
 ﻿using Domain.DTO;
-using Domain.Entities.Logs;
 using Domain.Pagination;
+using Domain.Requests;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;

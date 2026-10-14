@@ -259,6 +259,15 @@ namespace Resources.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Password is incorrect..
+        /// </summary>
+        public static string IncorrectPassword {
+            get {
+                return ResourceManager.GetString("IncorrectPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to A server error occured..
         /// </summary>
         public static string InternalServerError {
@@ -444,6 +453,15 @@ namespace Resources.Resources {
         public static string User {
             get {
                 return ResourceManager.GetString("User", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User account not found..
+        /// </summary>
+        public static string UserAccountNotFound {
+            get {
+                return ResourceManager.GetString("UserAccountNotFound", resourceCulture);
             }
         }
         

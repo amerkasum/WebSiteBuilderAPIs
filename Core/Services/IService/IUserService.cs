@@ -14,6 +14,6 @@ namespace Core.Services.IService
     {
         IEnumerable<UserDto> GetUsersWithParameters(string fullName);
         Task<User> AddAsync(UserViewModel model);
-        LogInResponseDto LogIn(LogInViewModel model);
+        Task<LogInResponseDto> LogIn(LogInViewModel model);
     }
 }

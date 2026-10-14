@@ -33,6 +33,7 @@ namespace Core.UnitOfWork
         ICurrencyRepository Currency { get; }
         IClaimRepository Claim { get; }
         IRoleClaimRepository RoleClaim { get; }
+        IRefreshTokenRepository RefreshToken { get; }
 
         #endregion
 
@@ -40,6 +41,7 @@ namespace Core.UnitOfWork
         IAuditLogRepository AuditLog { get; }
         IAuditLogEntityPropertyChangeRepository AuditLogEntityPropertyChange { get; }
         IAuthEventTypeRepository AuthEventType { get; }
+        IAuthLogRepository AuthLog { get; }
         #endregion
 
         int SaveChanges();

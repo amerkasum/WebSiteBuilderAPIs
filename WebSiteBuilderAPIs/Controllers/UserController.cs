@@ -20,18 +20,29 @@ namespace WebSiteBuilderAPIs.Controllers
         private readonly IUnitOfWork UnitOfWork;
         private readonly Localizer Localizer;
         private readonly IUserService UserService;
+        private readonly IRefreshTokenService RefreshTokenService;
         
-        public UserController(IUnitOfWork unitOfwork, Localizer localizer, IUserService userService)
+        public UserController(IUnitOfWork unitOfwork, Localizer localizer, IUserService userService, IRefreshTokenService refreshTokenService)
         {
             this.UnitOfWork = unitOfwork;
             this.Localizer = localizer;
             this.UserService = userService;
+            this.RefreshTokenService = refreshTokenService;
         }
 
         [HttpGet(nameof(GetUsersWithParameters))]
         public IEnumerable<UserDto> GetUsersWithParameters(string fullName)
         {
             return UserService.GetUsersWithParameters(fullName);
+        }
+
+        [AllowAnonymous]
+        [HttpPost(nameof(RefreshToken))]
+        public async Task<IActionResult> RefreshToken(string refreshToken)
+        {
+            var result = await RefreshTokenService.RefreshTokenAsync(refreshToken);
+
+            return Ok(new { success = true, data = result });
         }
 
         [HttpPost(nameof(Add))]

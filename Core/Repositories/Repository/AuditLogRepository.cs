@@ -1,10 +1,10 @@
 ﻿using Core.EF;
 using Core.Repositories.IRepository;
 using Domain.DTO;
-using Domain.Entities.Logs;
+using Domain.Entities.AppLogs;
 using Domain.Entities.Personal;
-using Domain.Entities.System;
 using Domain.Pagination;
+using Domain.Requests;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;

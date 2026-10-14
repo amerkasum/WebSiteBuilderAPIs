@@ -15,9 +15,10 @@ using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Security.Claims;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
-using System.Security.Claims;
 
 namespace Core.Services.Service
 {
@@ -29,10 +30,13 @@ namespace Core.Services.Service
         private readonly IUserContactService UserContactService;
         private readonly IUserResidenceService UserResidenceService;
         private readonly IUserRoleService UserRoleService;
-        public readonly IConfiguration Configuration;
+        private readonly IAuthLogService AuthLogService;
+        private readonly IRefreshTokenService RefreshTokenService;
+        private readonly IAccessTokenService AccessTokenService;
+        
         public UserService(IUnitOfWork unitOfWork, Localizer localizer, IAddressService addressService,
             IUserContactService usercontactService, IUserResidenceService userResidenceService, IUserRoleService userRoleService,
-            IConfiguration configuration)
+            IAuthLogService authLogService, IRefreshTokenService refreshTokenService, IAccessTokenService accessTokenService)
         {
             this.UnitOfWork = unitOfWork;
             this.Localizer = localizer;
@@ -40,7 +44,9 @@ namespace Core.Services.Service
             this.UserContactService = usercontactService;
             this.UserResidenceService = userResidenceService;
             this.UserRoleService = userRoleService;
-            this.Configuration = configuration;
+            this.AuthLogService = authLogService;
+            this.RefreshTokenService = refreshTokenService;
+            this.AccessTokenService = accessTokenService;
         }
         public IEnumerable<UserDto> GetUsersWithParameters(string fullName)
         {
@@ -148,59 +154,40 @@ namespace Core.Services.Service
             }
         }
 
-        private (string Token, DateTime ExpiresAt) GenerateToken(User user, Role role)
-        {
-            var jwtSettings = Configuration
-                .GetSection("Jwt")
-                .Get<JwtSettings>();
-
-            var expiresAt = DateTime.UtcNow.AddMinutes(jwtSettings.ExpiresInMinutes);
-
-            var claims = new List<System.Security.Claims.Claim>
-            {
-                new System.Security.Claims.Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
-                new System.Security.Claims.Claim(ClaimTypes.Email, user.Email),
-                new System.Security.Claims.Claim(ClaimTypes.Role, role.Name),
-                new System.Security.Claims.Claim(ClaimTypes.Name, user.Username)
-            };
-
-            var key = new SymmetricSecurityKey(
-                Encoding.UTF8.GetBytes(jwtSettings.Key));
-
-            var credentials = new SigningCredentials(
-                key,
-                SecurityAlgorithms.HmacSha256);
-
-            var token = new JwtSecurityToken(
-                issuer: jwtSettings.Issuer,
-                audience: jwtSettings.Audience,
-                claims: claims.AsEnumerable(),
-                expires: DateTime.UtcNow.AddMinutes(
-                    jwtSettings.ExpiresInMinutes),
-                signingCredentials: credentials
-            );
-
-            var tokenString = new JwtSecurityTokenHandler().WriteToken(token);
-            return (tokenString, expiresAt);
-        }
-
-        public LogInResponseDto LogIn(LogInViewModel model)
+        public async Task<LogInResponseDto> LogIn(LogInViewModel model)
         {
             var user = UnitOfWork.User.GetByEmail(model.Email);
 
             if (user == null)
+            {
+                await AuthLogService.Logger(model.Email, (int)Enumerations.AuthEventTypes.LOGIN_FAILED, false, Localizer.UserAccountNotFound);
                 throw new KeyNotFoundException();
+            }
 
             var role = UnitOfWork.Role.GetByUserId(user.Id);
 
             var generatePassword = PasswordHelper.GenerateHash(model.Password, user.PasswordSalt);
 
-            if(model.Email != "admin@admin.com" && model.Email != "user@user.com") 
+            if(model.Email != "admin@admin.com" && model.Email != "user@user.com")
+            {
                 if (user.Password != generatePassword)
+                {
+                    await AuthLogService.Logger(model.Email, (int)Enumerations.AuthEventTypes.LOGIN_FAILED, false, Localizer.IncorrectPassword);
                     throw new UnauthorizedAccessException();
+                }
+            }
+                
+            var accessToken = AccessTokenService.GenerateToken(user, role);
+            var refreshToken = RefreshTokenService.GenerateRefreshToken();
 
+            UnitOfWork.RefreshToken.Add(new RefreshToken
+            {
+                UserId = user.Id,
+                TokenHash = RefreshTokenService.HashRefreshToken(refreshToken.Token),
+                ExpiresAt = refreshToken.ExpiresAt
+            });
 
-            var tokenResult = GenerateToken(user, role);
+            await AuthLogService.Logger(model.Email, (int)Enumerations.AuthEventTypes.LOGIN, true, null);
 
             return new LogInResponseDto
             {
@@ -210,8 +197,10 @@ namespace Core.Services.Service
                 Username = user.Username,
                 Role = role.Name,
                 RoleId = role.Id,
-                Token = tokenResult.Token,
-                ExpiresAt = tokenResult.ExpiresAt
+                AccessToken = accessToken.Token,
+                AccessTokenExpiresAt = accessToken.ExpiresAt,
+                RefreshToken = refreshToken.Token,
+                RefreshTokenExpiresAt = refreshToken.ExpiresAt
             };
         }
     }

@@ -8,21 +8,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Domain.Entities.System
+namespace Domain.Entities.Jwt
 {
-    public record AuditLog : IEntity
+    public class RefreshToken : IEntity
     {
         [Key]
         public int Id { get; set; }
+        [ForeignKey(nameof(UserId))]
+        public User User { get; set; }
         public int UserId { get; set; }
-        public string? HttpMethod { get; set; }
-        public string? Method { get; set; }
-        public string? Controller { get; set; }
-        public string? BrowserInfo { get; set; }
-        public string? Table { get; set; }
-        public string? Url { get; set; }
-        public int EntityId { get; set; }
-        public string? QueryParameters { get; set; }
+        public string TokenHash { get; set; }
+        public DateTime ExpiresAt { get; set; }
+        public DateTime? RevokedAt { get; set; }
         public DateTime CreatedDateTime { get; set; }
         public DateTime? ModifiedDateTime { get; set; }
         public DateTime? DeletedDateTime { get; set; }

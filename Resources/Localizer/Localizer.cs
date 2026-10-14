@@ -60,6 +60,8 @@ namespace Resources.Localizer
         public string RoleClaim => _localizer["RoleClaim"];
         public string UserRole => _localizer["UserRole"];
         public string AuthEventType => _localizer["AuthEventType"];
+        public string UserAccountNotFound => _localizer["UserAccountNotFound"];
+        public string IncorrectPassword => _localizer["IncorrectPassword"];
 
         #endregion
     }

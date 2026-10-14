@@ -1,5 +1,6 @@
 ﻿using Core.EF.Seed;
 using Core.Services;
+using Domain.Entities.Jwt;
 using Domain.Entities.Location;
 using Domain.Entities.Personal;
 using Domain.Entities.System;
@@ -116,6 +117,7 @@ namespace Core.EF
         public DbSet<Currency> Currencies { get; set; }
         public DbSet<Claim> Claim { get; set; }
         public DbSet<RoleClaim> RoleClaim { get; set; }
+        public DbSet<RefreshToken> RefreshToken { get; set; }
         #endregion
 
     }
