@@ -304,6 +304,24 @@ namespace Resources.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Logged out successfully..
+        /// </summary>
+        public static string LoggedOutSuccessfully {
+            get {
+                return ResourceManager.GetString("LoggedOutSuccessfully", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Log out failed..
+        /// </summary>
+        public static string LogOutFailed {
+            get {
+                return ResourceManager.GetString("LogOutFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Message.
         /// </summary>
         public static string Message {

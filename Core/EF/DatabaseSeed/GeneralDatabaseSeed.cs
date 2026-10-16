@@ -1,7 +1,9 @@
 ﻿using Domain.Entities.Location;
+using Domain.Entities.Logs;
 using Domain.Entities.Personal;
 using Domain.Entities.System;
 using Domain.Entities.WebSiteBuilder;
+using Helpers.Helpers;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -166,6 +168,16 @@ namespace Core.EF.Seed
                 new RoleClaim { Id = 6, RoleId = 2, ClaimId = 2, CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
                 new RoleClaim { Id = 7, RoleId = 2, ClaimId = 3, CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
                 new RoleClaim { Id = 8, RoleId = 2, ClaimId = 4, CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false }
+            );
+
+            modelBuilder.Entity<AuthEventType>().HasData(
+                new AuthEventType { Id = 1, Name = Enumerations.AuthEventTypes.LOGIN.ToString(), Code = Enumerations.AuthEventTypes.LOGIN.ToString(), CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new AuthEventType { Id = 2, Name = Enumerations.AuthEventTypes.LOGOUT.ToString(), Code = Enumerations.AuthEventTypes.LOGOUT.ToString(), CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new AuthEventType { Id = 3, Name = Enumerations.AuthEventTypes.LOGIN_FAILED.ToString(), Code = Enumerations.AuthEventTypes.LOGIN_FAILED.ToString(), CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new AuthEventType { Id = 4, Name = Enumerations.AuthEventTypes.LOGOUT_FAILED.ToString(), Code = Enumerations.AuthEventTypes.LOGOUT_FAILED.ToString(), CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new AuthEventType { Id = 5, Name = Enumerations.AuthEventTypes.INCORRECT_PASSWORD.ToString(), Code = Enumerations.AuthEventTypes.INCORRECT_PASSWORD.ToString(), CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new AuthEventType { Id = 6, Name = Enumerations.AuthEventTypes.REFRESH_TOKEN_FAILED.ToString(), Code = Enumerations.AuthEventTypes.REFRESH_TOKEN_FAILED.ToString(), CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false },
+                new AuthEventType { Id = 7, Name = Enumerations.AuthEventTypes.REFRESH_TOKEN_SUCCESS.ToString(), Code = Enumerations.AuthEventTypes.REFRESH_TOKEN_SUCCESS.ToString(), CreatedDateTime = DateTime.Now, ModifiedDateTime = null, DeletedDateTime = null, IsDeleted = false }
             );
 
             modelBuilder.Entity<City>().HasData(

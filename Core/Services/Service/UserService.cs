@@ -7,7 +7,9 @@ using Domain.Entities.Personal;
 using Domain.Entities.System;
 using Domain.ViewModels;
 using Helpers.Helpers;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using Resources.Localizer;
@@ -131,7 +133,7 @@ namespace Core.Services.Service
                         CityId = city.Id
                     };
                     UnitOfWork.Address.Add(address);
-                    UnitOfWork.SaveChanges();
+                    await UnitOfWork.SaveChangesAsync();
                 }
 
                 var userResidenceVM = new UserResidenceViewModel
@@ -154,13 +156,13 @@ namespace Core.Services.Service
             }
         }
 
-        public async Task<LogInResponseDto> LogIn(LogInViewModel model)
+        public async Task<LogInResponseDto> LogInAsync(LogInViewModel model)
         {
             var user = UnitOfWork.User.GetByEmail(model.Email);
 
             if (user == null)
             {
-                await AuthLogService.Logger(model.Email, (int)Enumerations.AuthEventTypes.LOGIN_FAILED, false, Localizer.UserAccountNotFound);
+                await AuthLogService.Logger(model.Email, (int)Enumerations.AuthEventTypes.LOGIN_FAILED, false, "User account not found.");
                 throw new KeyNotFoundException();
             }
 
@@ -172,7 +174,7 @@ namespace Core.Services.Service
             {
                 if (user.Password != generatePassword)
                 {
-                    await AuthLogService.Logger(model.Email, (int)Enumerations.AuthEventTypes.LOGIN_FAILED, false, Localizer.IncorrectPassword);
+                    await AuthLogService.Logger(model.Email, (int)Enumerations.AuthEventTypes.INCORRECT_PASSWORD, false, "Incorrect password.");
                     throw new UnauthorizedAccessException();
                 }
             }
@@ -186,6 +188,7 @@ namespace Core.Services.Service
                 TokenHash = RefreshTokenService.HashRefreshToken(refreshToken.Token),
                 ExpiresAt = refreshToken.ExpiresAt
             });
+            await UnitOfWork.SaveChangesAsync();
 
             await AuthLogService.Logger(model.Email, (int)Enumerations.AuthEventTypes.LOGIN, true, null);
 
@@ -202,6 +205,53 @@ namespace Core.Services.Service
                 RefreshToken = refreshToken.Token,
                 RefreshTokenExpiresAt = refreshToken.ExpiresAt
             };
+        }
+
+        public async Task LogOutAsync(string refreshToken)
+        {
+            if(string.IsNullOrEmpty(refreshToken))
+            {
+                await AuthLogService.Logger("Unknown", (int)Enumerations.AuthEventTypes.LOGOUT_FAILED, false, "Refresh token was not provided.");
+                throw new UnauthorizedAccessException();
+            }
+                
+
+            var tokenHash = RefreshTokenService.HashRefreshToken(refreshToken);
+
+            var storedToken = UnitOfWork.RefreshToken.GetTokenByHash(tokenHash);
+
+            if (storedToken == null)
+            {
+                await AuthLogService.Logger("Unknown", (int)Enumerations.AuthEventTypes.LOGOUT_FAILED, false, "Refresh token was not found.");
+                throw new UnauthorizedAccessException();
+            }
+
+            var user = UnitOfWork.User.GetById(storedToken.UserId);
+
+            if (user == null)
+            {
+                await AuthLogService.Logger("Unknown", (int)Enumerations.AuthEventTypes.LOGOUT_FAILED, false, "User associated with refresh token was not found.");
+                throw new UnauthorizedAccessException();
+            }
+
+            if (storedToken.RevokedAt.HasValue)
+            {
+                await AuthLogService.Logger(user.Email, (int)Enumerations.AuthEventTypes.LOGOUT_FAILED, false, "Refresh token has already been revoked.");
+                throw new UnauthorizedAccessException();
+            }
+
+            if (storedToken.ExpiresAt <= DateTime.UtcNow)
+            {
+                await AuthLogService.Logger(user.Email, (int)Enumerations.AuthEventTypes.LOGOUT_FAILED, false, "Refresh token has expired.");
+                throw new UnauthorizedAccessException();
+            }
+
+            storedToken.RevokedAt = DateTime.UtcNow;
+
+            UnitOfWork.RefreshToken.Update(storedToken);
+            await UnitOfWork.SaveChangesAsync();
+
+            await AuthLogService.Logger(user.Email, (int)Enumerations.AuthEventTypes.LOGOUT, true, null);
         }
     }
 }

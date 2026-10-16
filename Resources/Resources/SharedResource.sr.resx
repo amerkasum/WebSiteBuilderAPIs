@@ -198,6 +198,12 @@
   <data name="Location" xml:space="preserve">
     <value>Lokacija</value>
   </data>
+  <data name="LoggedOutSuccessfully" xml:space="preserve">
+    <value>Uspešna odjava.</value>
+  </data>
+  <data name="LogOutFailed" xml:space="preserve">
+    <value>Odjavljivanje neuspešno.</value>
+  </data>
   <data name="Message" xml:space="preserve">
     <value>Poruka</value>
   </data>

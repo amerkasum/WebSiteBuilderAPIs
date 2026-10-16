@@ -19,14 +19,10 @@ namespace Helpers.Helpers
             LOGIN = 1,
             LOGOUT = 2,
             LOGIN_FAILED = 3,
-            INCORRECT_PASSWORD = 4,
-            ACCESS_DENIED = 5,
-            PASSWORD_RESET_REQUEST = 6,
-            PASSWORD_RESET_COMPLETE = 7,
-            ACCOUNT_LOCKED = 8,
-            ACCOUNT_UNLOCKED = 9,
-            REFRESH_TOKEN_FAILED = 10,
-            REFRESH_TOKEN_SUCCESS = 11
+            LOGOUT_FAILED = 4,
+            INCORRECT_PASSWORD = 5,
+            REFRESH_TOKEN_FAILED = 6,
+            REFRESH_TOKEN_SUCCESS = 7
         }
     }
 }

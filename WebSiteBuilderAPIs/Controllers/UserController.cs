@@ -75,7 +75,7 @@ namespace WebSiteBuilderAPIs.Controllers
 
             try
             {
-                var response = UserService.LogIn(model);
+                var response = UserService.LogInAsync(model);
 
                 return Ok(new { success = true, message = Localizer.SuccessfulLogIn, data = response });
             }
@@ -88,6 +88,25 @@ namespace WebSiteBuilderAPIs.Controllers
                 return BadRequest(new { success = false, message = string.Format(Localizer.NotFound, Localizer.User) });
             }
             catch (Exception e)
+            {
+                return StatusCode(500, new { success = false, message = string.Format(Localizer.SomethingWentWrong, e.Message) });
+            }
+        }
+
+        [HttpPost(nameof(LogOut))]
+        [AllowAnonymous]
+        public async Task<IActionResult> LogOut([FromBody] string refreshToken)
+        {
+            try
+            {
+                await UserService.LogOutAsync(refreshToken);
+                return Ok(new { success = true, message = Localizer.LoggedOutSuccessfully });
+            }
+            catch(UnauthorizedAccessException)
+            {
+                return BadRequest(new { success = false, message = Localizer.LogOutFailed });
+            }
+            catch(Exception e)
             {
                 return StatusCode(500, new { success = false, message = string.Format(Localizer.SomethingWentWrong, e.Message) });
             }

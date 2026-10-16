@@ -62,6 +62,8 @@ namespace Resources.Localizer
         public string AuthEventType => _localizer["AuthEventType"];
         public string UserAccountNotFound => _localizer["UserAccountNotFound"];
         public string IncorrectPassword => _localizer["IncorrectPassword"];
+        public string LoggedOutSuccessfully => _localizer["LoggedOutSuccessfully"];
+        public string LogOutFailed => _localizer["LogOutFailed"];
 
         #endregion
     }
